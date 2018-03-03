@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptsAll" xml:space="preserve">
+    <value>Allow All</value>
+  </data>
+  <data name="AcceptsAll.ja" xml:space="preserve">
+    <value>全て許可</value>
+  </data>
+  <data name="AcceptsAlpha" xml:space="preserve">
+    <value>Alpha</value>
+  </data>
+  <data name="AcceptsAlpha.ja" xml:space="preserve">
+    <value>英字</value>
+  </data>
+  <data name="AcceptsFull" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="AcceptsFull.ja" xml:space="preserve">
+    <value>全角</value>
+  </data>
+  <data name="AcceptsHalf" xml:space="preserve">
+    <value>Half</value>
+  </data>
+  <data name="AcceptsHalf.ja" xml:space="preserve">
+    <value>半角</value>
+  </data>
+  <data name="AcceptsNum" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="AcceptsNum.ja" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="AcceptsSign" xml:space="preserve">
+    <value>Sign</value>
+  </data>
+  <data name="AcceptsSign.ja" xml:space="preserve">
+    <value>記号</value>
+  </data>
+  <data name="ControlAcceptsChar" xml:space="preserve">
+    <value>Sets the type of input permitted characters.</value>
+  </data>
+  <data name="ControlAcceptsChar.ja" xml:space="preserve">
+    <value>入力許可文字の種類を設定します。</value>
+  </data>
+  <data name="ControlAcceptNegative" xml:space="preserve">
+    <value>Indicates whether input of a negative value is permitted.</value>
+  </data>
+  <data name="ControlAcceptNegative.ja" xml:space="preserve">
+    <value>マイナス値の入力を許可するかどうかを表します。</value>
+  </data>
+  <data name="ControlAutoFocus" xml:space="preserve">
+    <value>Sets whether to shift the focus to the next control when it is done up to the maximum input.</value>
+  </data>
+  <data name="ControlAutoFocus.ja" xml:space="preserve">
+    <value>最大入力まで行われた時、次のコントロールへフォーカスを遷移するかを設定します。</value>
+  </data>
+  <data name="ControlBaseBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the control.</value>
+  </data>
+  <data name="ControlBaseBackColor.ja" xml:space="preserve">
+    <value>コントロールの背景色を取得または設定します。</value>
+  </data>
+  <data name="ControlBaseForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the control.</value>
+  </data>
+  <data name="ControlBaseForeColor.ja" xml:space="preserve">
+    <value>コントロールの前景色を取得または設定します。</value>
+  </data>
+  <data name="ControlByteEncoding" xml:space="preserve">
+    <value>Specify the character encoding that implements the maximum byte limit.</value>
+  </data>
+  <data name="ControlByteEncoding.ja" xml:space="preserve">
+    <value>最大バイト数制限を実施する文字エンコーディングを指定します。</value>
+  </data>
+  <data name="ControlCurrencySymbol" xml:space="preserve">
+    <value>Represents the symbol when currency is expressed.</value>
+  </data>
+  <data name="ControlCurrencySymbol.ja" xml:space="preserve">
+    <value>通貨表現の時の記号を表します。</value>
+  </data>
+  <data name="ControlCustomChars" xml:space="preserve">
+    <value>When the character type is custom, set a single character to be entered on a line-by-line basis.</value>
+  </data>
+  <data name="ControlCustomChars.ja" xml:space="preserve">
+    <value>文字種類がカスタムな場合に、入力を許可する単一文字を1行単位で設定します。</value>
+  </data>
+  <data name="ControlDateTimeValue" xml:space="preserve">
+    <value>The current date and time value for this control.</value>
+  </data>
+  <data name="ControlDateTimeValue.ja" xml:space="preserve">
+    <value>このコントロールの現在の日付/時間の値です。</value>
+  </data>
+  <data name="ControlDecimalDigits" xml:space="preserve">
+    <value>Represents the number of decimal places that can be entered.</value>
+  </data>
+  <data name="ControlDecimalDigits.ja" xml:space="preserve">
+    <value>入力可能な小数桁数を表します。</value>
+  </data>
+  <data name="ControlDecimalSeparator" xml:space="preserve">
+    <value>Represents the delimiter between the integer part and the decimal part.</value>
+  </data>
+  <data name="ControlDecimalSeparator.ja" xml:space="preserve">
+    <value>整数部と小数部の区切り文字を表します。</value>
+  </data>
+  <data name="ControlEnterFocus" xml:space="preserve">
+    <value>Set whether to shift the focus when the Enter key is pressed.</value>
+  </data>
+  <data name="ControlEnterFocus.ja" xml:space="preserve">
+    <value>Enterキーが押された時にフォーカスを遷移するかを設定します。</value>
+  </data>
+  <data name="ControlEscPush" xml:space="preserve">
+    <value>Set the behavior when the ESC key is pressed.</value>
+  </data>
+  <data name="ControlEscPush.ja" xml:space="preserve">
+    <value>ESCキーが押された時の振る舞いを設定します。</value>
+  </data>
+  <data name="ControlExcludeChars" xml:space="preserve">
+    <value>Set a single character to reject input on a line-by-line basis.</value>
+  </data>
+  <data name="ControlExcludeChars.ja" xml:space="preserve">
+    <value>入力を拒否する単一文字を1行単位で設定します。</value>
+  </data>
+  <data name="ControlFocusBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusBackColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの背景色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusForeColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの前景色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusSelect" xml:space="preserve">
+    <value>Sets whether to invert text when getting focus.</value>
+  </data>
+  <data name="ControlFocusSelect.ja" xml:space="preserve">
+    <value>フォーカスを得た時、テキストを反転させるかを設定します。</value>
+  </data>
+  <data name="ControlFullSignSpecialChars" xml:space="preserve">
+    <value>Separately specify the double-byte symbols to be set on a line-by-line basis.</value>
+  </data>
+  <data name="ControlFullSignSpecialChars.ja" xml:space="preserve">
+    <value>個別で許可する全角記号を1行単位で設定します。</value>
+  </data>
+  <data name="ControlGroupSeparator" xml:space="preserve">
+    <value>Represents a digit separator character in the integer part.</value>
+  </data>
+  <data name="ControlGroupSeparator.ja" xml:space="preserve">
+    <value>整数部の桁区切り文字を表します。</value>
+  </data>
+  <data name="ControlGroupSizes" xml:space="preserve">
+    <value>Represents the number of delimited digits in the integer part.</value>
+  </data>
+  <data name="ControlGroupSizes.ja" xml:space="preserve">
+    <value>整数部の区切り桁数を表します。</value>
+  </data>
+  <data name="ControlMaxByteLength" xml:space="preserve">
+    <value>Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited.</value>
+  </data>
+  <data name="ControlMaxByteLength.ja" xml:space="preserve">
+    <value>エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxValue" xml:space="preserve">
+    <value>It represents the maximum value that can be entered.</value>
+  </data>
+  <data name="ControlMaxValue.ja" xml:space="preserve">
+    <value>入力可能な最大値を表します。</value>
+  </data>
+  <data name="ControlMetForm" xml:space="preserve">
+    <value>We extend the standard Form and provide a form with some new functions.</value>
+  </data>
+  <data name="ControlMetForm.ja" xml:space="preserve">
+    <value>標準Formを拡張し、新たにいくつかの機能を設けたフォームを提供します。</value>
+  </data>
+  <data name="ControlMinValue" xml:space="preserve">
+    <value>It represents the minimum value that can be entered.</value>
+  </data>
+  <data name="ControlMinValue.ja" xml:space="preserve">
+    <value>入力可能な最小値を表します。</value>
+  </data>
+  <data name="ControlMode" xml:space="preserve">
+    <value>It represents the format displayed when there is no focus.</value>
+  </data>
+  <data name="ControlMode.ja" xml:space="preserve">
+    <value>フォーカスがない時に表示される形式を表します。</value>
+  </data>
+  <data name="ControlNegativeForeColor" xml:space="preserve">
+    <value>It represents the character color at minus.</value>
+  </data>
+  <data name="ControlNegativeForeColor.ja" xml:space="preserve">
+    <value>マイナス時の文字色を表します。</value>
+  </data>
+  <data name="ControlNegativePattern" xml:space="preserve">
+    <value>Represents a symbolic representation when it is a negative number.</value>
+  </data>
+  <data name="ControlNegativePattern.ja" xml:space="preserve">
+    <value>負数の時の記号表現を表します。</value>
+  </data>
+  <data name="ControlNegativeSign" xml:space="preserve">
+    <value>Represents the sign when it is a negative number.</value>
+  </data>
+  <data name="ControlNegativeSign.ja" xml:space="preserve">
+    <value>負数の時の記号を表します。</value>
+  </data>
+  <data name="ControlPercentSymbol" xml:space="preserve">
+    <value>Represents the symbol for percent representation.</value>
+  </data>
+  <data name="ControlPercentSymbol.ja" xml:space="preserve">
+    <value>パーセント表現の時の記号を表します。</value>
+  </data>
+  <data name="ControlPositivePattern" xml:space="preserve">
+    <value>Represents a symbolic representation when it is a positive number.</value>
+  </data>
+  <data name="ControlPositivePattern.ja" xml:space="preserve">
+    <value>正数の時の記号表現を表します。</value>
+  </data>
+  <data name="ControlReadOnly" xml:space="preserve">
+    <value>Replace the control with a text box.</value>
+  </data>
+  <data name="ControlReadOnly.ja" xml:space="preserve">
+    <value>コントロールをテキストボックスで置き換えます。</value>
+  </data>
+  <data name="ControlReadOnlyLabel" xml:space="preserve">
+    <value>Replace the control with a label.</value>
+  </data>
+  <data name="ControlReadOnlyLabel.ja" xml:space="preserve">
+    <value>コントロールをラベルで置き換えます。</value>
+  </data>
+  <data name="ControlValue" xml:space="preserve">
+    <value>The number associated with the control.</value>
+  </data>
+  <data name="ControlValue.ja" xml:space="preserve">
+    <value>コントロールに関連付けられた数値です。</value>
+  </data>
+  <data name="CurrencyPattern" xml:space="preserve">
+    <value>Currency Pattern</value>
+  </data>
+  <data name="CurrencyPattern.ja" xml:space="preserve">
+    <value>通貨表記時</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Custom.ja" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="MetAppearance" xml:space="preserve">
+    <value>Metroit Extension Appearance</value>
+  </data>
+  <data name="MetAppearance.ja" xml:space="preserve">
+    <value>Metroit拡張 表示</value>
+  </data>
+  <data name="MetBehavior" xml:space="preserve">
+    <value>Metroit Extension Behavior</value>
+  </data>
+  <data name="MetBehavior.ja" xml:space="preserve">
+    <value>Metroit拡張 動作</value>
+  </data>
+  <data name="MetDateTimePicker" xml:space="preserve">
+    <value>Represents a Windows control that allows the user to select a date and time, specify the format and display the date and time.</value>
+  </data>
+  <data name="MetDateTimePicker.ja" xml:space="preserve">
+    <value>ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。</value>
+  </data>
+  <data name="MetLimitedTextBox" xml:space="preserve">
+    <value>Provides a text area with input character type and input byte count limiting function.</value>
+  </data>
+  <data name="MetLimitedTextBox.ja" xml:space="preserve">
+    <value>入力文字種、入力バイト数制限機能を設けたテキストエリアを提供します。</value>
+  </data>
+  <data name="MetNumericTextBox" xml:space="preserve">
+    <value>Provide a text area that allows users to enter numerical values only.</value>
+  </data>
+  <data name="MetNumericTextBox.ja" xml:space="preserve">
+    <value>ユーザーが数値のみを入力できるようにしたテキストエリアを提供します。</value>
+  </data>
+  <data name="MetPropertyChange" xml:space="preserve">
+    <value>Metroit Extension Property Changed</value>
+  </data>
+  <data name="MetPropertyChange.ja" xml:space="preserve">
+    <value>Metroit拡張 プロパティ変更</value>
+  </data>
+  <data name="MetTextBoxMultilineSelectAll" xml:space="preserve">
+    <value>In multi-line text editing, you can set whether to select all text by pressing Ctrl + A.</value>
+  </data>
+  <data name="MetTextBoxMultilineSelectAll.ja" xml:space="preserve">
+    <value>複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。</value>
+  </data>
+  <data name="MetTextBoxTextChangeValidationEventHandler" xml:space="preserve">
+    <value>occurs when the value of the Text property is added or inserted. You can verify the value and reject the change.</value>
+  </data>
+  <data name="MetTextBoxTextChangeValidationEventHandler.ja" xml:space="preserve">
+    <value>Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
+  </data>
+  <data name="NumericPattern" xml:space="preserve">
+    <value>Numeric Pattern</value>
+  </data>
+  <data name="NumericPattern.ja" xml:space="preserve">
+    <value>数値表記時</value>
+  </data>
+  <data name="PercentPattern" xml:space="preserve">
+    <value>Percent Pattern</value>
+  </data>
+  <data name="PercentPattern.ja" xml:space="preserve">
+    <value>パーセント表記時</value>
+  </data>
+  <data name="ControlAcceptNull" xml:space="preserve">
+    <value>Gets / sets whether or not to accept NULL input.</value>
+  </data>
+  <data name="ControlAcceptNull.ja" xml:space="preserve">
+    <value>NULLの入力を受け入れるかどうかを取得または設定します。</value>
+  </data>
+</root>

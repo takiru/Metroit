@@ -1,0 +1,2741 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Metroit.Windows.Forms.2</name>
+    </assembly>
+    <members>
+        <member name="T:Metroit.Windows.Forms.AcceptsCharType">
+            <summary>
+            許可する文字を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.All">
+            <summary>
+            全ての文字を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.HalfNumeric">
+            <summary>
+            半角数字を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.FullNumeric">
+            <summary>
+            全角数字を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.HalfAlpha">
+            <summary>
+            半角英字を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.FullAlpha">
+            <summary>
+            全角英字を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.HalfSign">
+            <summary>
+            半角記号を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.FullSign">
+            <summary>
+            全角記号を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.AcceptsCharType.Custom">
+            <summary>
+            カスタムを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl">
+            <summary>
+            許可文字を設定するためのユーザーコントロールを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.#ctor">
+            <summary>
+            ApprovalCharControl クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.#ctor(Metroit.Windows.Forms.AcceptsCharType)">
+            <summary>
+            ApprovalCharControl クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="approvalCharacters">許可文字。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.ApprovalCharacters">
+            <summary>
+            許可文字の取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkAll_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            全て許可以外のチェックボックスを外します。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkNumeric_CheckStateChanged(System.Object,System.EventArgs)">
+            <summary>
+            数字チェックボックスの操作時、中間状態チェックを行いません。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkAlpha_CheckStateChanged(System.Object,System.EventArgs)">
+            <summary>
+            英字チェックボックスの操作時、中間状態チェックを行いません。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkSign_CheckStateChanged(System.Object,System.EventArgs)">
+            <summary>
+            記号チェックボックスの操作時、中間状態チェックを行いません。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkCustom_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            カスタム以外のチェックボックスを外します。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkType_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            個別種類チェックボックスが操作された際に、全体設定及び、
+            個別種類設定のチェックボックスの状態を変化させます。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.checkTypeParcelling_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            半角／全角チェックボックスが操作された際に、全体設定及び、
+            個別種類設定のチェックボックスの状態を変化させます。
+            </summary>
+            <param name="sender">操作チェックボックス</param>
+            <param name="e">空イベントオブジェクト</param>
+        </member>
+        <member name="F:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.components">
+            <summary> 
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.Dispose(System.Boolean)">
+            <summary> 
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl.InitializeComponent">
+            <summary> 
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を 
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.AcceptsCharEditor">
+            <summary>
+            許可文字を設定するためのエディタを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            表示タイプ設定処理を取得します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <returns>表示タイプ。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.AcceptsCharEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            許可文字を設定するためのユーザーコントロールを表示します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <param name="provider">IServiceProvider オブジェクト。</param>
+            <param name="value">object オブジェクト。</param>
+            <returns>プロパティ値。</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter">
+            <summary>
+            文字エンコーディング名を選択可能にするコンバーターを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            変換可能な文字列かどうかを取得します。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <param name="sourceType">変換元のタイプ。</param>
+            <returns>true:変換可能, false:変換不可能。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            文字列から文字エンコーディングに変換します。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <param name="culture">カルチャー情報。</param>
+            <param name="value">変換元の値。</param>
+            <returns>文字エンコーディング。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            文字列の場合、変換可能を得ます。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <param name="destinationType">変換元のタイプ。</param>
+            <returns>true:変換可能, false:変換不可能。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            文字エンコーディングから文字列に変換します。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <param name="culture">カルチャー情報。</param>
+            <param name="value">変換元の値。</param>
+            <param name="destinationType">変換元のタイプ。</param>
+            <returns>文字列。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            ドロップダウンで選択可能にします。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <returns>true</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            文字エンコーディング名のリストを取得します。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <returns>文字エンコーディング名のリスト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.EncodingNameConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            選択肢以外の入力を認めません。
+            </summary>
+            <param name="context">コンテキスト情報。</param>
+            <returns>true</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl">
+            <summary>
+            マイナス数値の記号表現を設定するためのユーザーコントロールを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.#ctor">
+            <summary>
+            NumericNegativePatternControl クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.#ctor(Metroit.Windows.Forms.NumericNegativePattern)">
+            <summary>
+            NumericNegativePatternControl クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="nnp">NumericNegativePattern オブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.NumericNegativePattern">
+            <summary>
+            マイナス数値の記号表現を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.comboNPattern_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            数値時のマイナス記号表現を決定する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.comboCPattern_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            通貨時のマイナス記号表現を決定する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.comboPPattern_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            パーセント時のマイナス記号表現を決定する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.setNumberList">
+            <summary>
+            数値時のマイナス記号表現リストを生成する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.setCurrencyList">
+            <summary>
+            通貨時のマイナス記号表現リストを生成する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.setPercentList">
+            <summary>
+            パーセント時のマイナス記号表現リストを生成する。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.components">
+            <summary> 
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.Dispose(System.Boolean)">
+            <summary> 
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternControl.InitializeComponent">
+            <summary> 
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を 
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternEditor">
+            <summary>
+            マイナス数値の記号表現を設定するためのエディタを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            表示タイプ設定処理を取得します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <returns>表示タイプ。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericNegativePatternEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            マイナス数値の記号表現を設定するためのユーザーコントロールを表示します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <param name="provider">IServiceProvider オブジェクト。</param>
+            <param name="value">object オブジェクト。</param>
+            <returns>プロパティ値。</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl">
+            <summary>
+            プラス数値の記号表現を設定するためのユーザーコントロールを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.#ctor">
+            <summary>
+            NumericPositivePatternControl クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.#ctor(Metroit.Windows.Forms.NumericPositivePattern)">
+            <summary>
+            NumericPositivePatternControl クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="npp">NumericPositivePattern オブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.NumericPositivePattern">
+            <summary>
+            プラス数値の記号表現を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.comboCPattern_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            通貨時のプラス記号表現を決定する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.comboPPattern_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            パーセント時のプラス記号表現を決定する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.setCurrencyList">
+            <summary>
+            通貨時のプラス記号表現リストを生成する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.setPercentList">
+            <summary>
+            パーセント時のプラス記号表現リストを生成する。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.components">
+            <summary> 
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.Dispose(System.Boolean)">
+            <summary> 
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternControl.InitializeComponent">
+            <summary> 
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を 
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternEditor">
+            <summary>
+            プラス数値の記号表現を設定するためのエディタを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            表示タイプ設定処理を取得します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <returns>表示タイプ。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.ComponentModel.NumericPositivePatternEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            プラス数値の記号表現を設定するためのユーザーコントロールを表示します。
+            </summary>
+            <param name="context">ITypeDescriptorContext オブジェクト。</param>
+            <param name="provider">IServiceProvider オブジェクト。</param>
+            <param name="value">object オブジェクト。</param>
+            <returns>プロパティ値。</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.CurrencyNegativePatternType">
+            <summary>
+            通貨のマイナス値の表現パターンを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.IncloseLeftSymbol">
+            <summary>
+            ($n) を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSignSymbol">
+            <summary>
+            -$n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSymbolSign">
+            <summary>
+            $-n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSymbolRightSign">
+            <summary>
+            $n- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.IncloseRightSymbol">
+            <summary>
+            (n$) を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSignRightSymbol">
+            <summary>
+            -n$ を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.RightSignSymbol">
+            <summary>
+            n-$ を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.RightSymbolSign">
+            <summary>
+            n$- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSignRightSpaceSymbol">
+            <summary>
+            -n $ を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSignSymbolSpace">
+            <summary>
+            -$ n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.RightSpaceSymbolSign">
+            <summary>
+            n $- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSymbolSpaceRightSign">
+            <summary>
+            $ n- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.LeftSymbolSpaceSign">
+            <summary>
+            $ -n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.RightSignSpaceSymbol">
+            <summary>
+            n- $ を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.IncloseLeftSymbolSpace">
+            <summary>
+            ($ n) を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyNegativePatternType.IncloseRightSpaceSymbol">
+            <summary>
+            (n $) を示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.CurrencyPositivePatternType">
+            <summary>
+            通貨のプラス値の表現パターンを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyPositivePatternType.LeftSymbol">
+            <summary>
+            $n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyPositivePatternType.RightSymbol">
+            <summary>
+            n$ を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyPositivePatternType.LeftSymbolSpace">
+            <summary>
+            $ n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CurrencyPositivePatternType.RightSpaceSymbol">
+            <summary>
+            n $ を示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.DeniedTextException">
+            <summary>
+            コントロールに無効な値が設定されたときの発生する例外です。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.DeniedTextException.#ctor(System.String,System.String)">
+            <summary>
+            DeniedTextException クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="message">例外メッセージ。</param>
+            <param name="text">例外が発生する元となったテキスト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.DeniedTextException.#ctor(System.String,System.Exception,System.String)">
+            <summary>
+            DeniedTextException クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="message">例外メッセージ。</param>
+            <param name="innerException">内部例外オブジェクト。</param>
+            <param name="text">例外が発生する元となったテキスト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.DeniedTextException.InvalidText">
+            <summary>
+            例外が発生する元となったテキストを取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.DesignResources">
+            <summary>
+            デザイン情報のリソース取得を提供します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ExceptionResources">
+            <summary>
+            例外メッセージのリソース取得を提供します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.Extensions.ControlExtensions">
+            <summary>
+            Control クラスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.IsDesignMode(System.Windows.Forms.Control)">
+            <summary>
+            <para>Control が現在デザイン モードかどうかを示す値を取得します。</para>
+            <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
+            </summary>
+            <returns>true:デザインモード中、false:実行中</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.MoveNextControl(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            次のコントロールをアクティブにします。
+            この命令は、TABキーを押下したものと同様の動作をします。
+            </summary>
+            <param name="control">対象Control オブジェクト。</param>
+            <param name="forward">タブオーダー内を前方に移動する場合はtrue。後方に移動する場合はfalse。</param>
+            <remarks>TextBox の AcceptsTab が true の時、タブ文字が入力されます。</remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.GetChildControls(System.Windows.Forms.Control,System.Boolean,System.Boolean)">
+            <summary>
+            コントロールに存在するすべてのコントロールをフォーカス遷移順に取得します。
+            </summary>
+            <param name="control">対象Control オブジェクト。</param>
+            <param name="excludeInvisible">true:非表示項目を取得しない, false:非表示項目を取得する。</param>
+            <param name="excludeDisable">true:無効項目を取得しない, false:無効項目を取得する。</param>
+            <returns>コントロールリスト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.GetTargetChildControls(System.Windows.Forms.Control,System.Windows.Forms.Control,System.Boolean,System.Boolean,System.Collections.Generic.List{System.Windows.Forms.Control}@)">
+            <summary>
+            対象コントロール上のすべてのコントロールを取得する。
+            </summary>
+            <param name="targetControl">次のコントロールを取得する対象オブジェクト。</param>
+            <param name="currentControl">手前のコントロールオブジェクト。</param>
+            <param name="excludeInvisible">true:非表示項目を取得しない, false:非表示項目を取得する。</param>
+            <param name="excludeDisable">true:無効項目を取得しない, false:無効項目を取得する。</param>
+            <param name="allControls">取得したすべてのコントロールオブジェクト</param>
+            <returns>コントロールリスト。</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.FormEscapeBehavior">
+            <summary>
+            ESCキーが押された時の振る舞いの定義です。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.None">
+            <summary>
+            何もしないことを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.ControlLeave">
+            <summary>
+            コントロールがアクティブの時に非アクティブにすることを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.FormClose">
+            <summary>
+            フォームを閉じることを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.Both">
+            <summary>
+            1回目の押下で非アクティブにし、2回目の押下でフォームを閉じることを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetCategoryAttribute">
+            <summary>
+            Metroit で用意された新たなカテゴリを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetCategoryAttribute.#ctor">
+            <summary>
+            MetCategoryAttribute クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetCategoryAttribute.#ctor(System.String)">
+            <summary>
+            MetCategoryAttribute クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="category">カテゴリ名。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetCategoryAttribute.GetLocalizedString(System.String)">
+            <summary>
+            指定されたカテゴリ名からローカライズされたカテゴリ表示文字を取得します。
+            </summary>
+            <param name="value">カテゴリ名。</param>
+            <returns>ローカライズされたカテゴリ表示文字。</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetDateTimePicker">
+            <summary>
+            ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.#ctor">
+            <summary>
+            MetDateTimePicker の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.MetDateTimePicker_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Backspace, Deleteキー押下でnull表示にする。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.MetDateTimePicker_Enter(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを得た時、色の変更とテキストの反転を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.MetDateTimePicker_Leave(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを失った時、色の変更を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.switchFormat(System.Boolean)">
+            <summary>
+            状態に応じてフォーマットの変更を行う。
+            </summary>
+            <param name="isNull">null値かどうか。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.Value">
+            <summary>
+            コントロールに代入された日付/時刻値を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ShouldSerializeValue">
+            <summary>
+            Value が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ResetValue">
+            <summary>
+            Value のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.Text">
+            <summary>
+            このコントロールに関連付けられているテキストを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.Format">
+            <summary>
+            コントロールに表示される日時の書式を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.CustomFormat">
+            <summary>
+            日付/時刻のカスタム書式指定文字列を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.Visible">
+            <summary>
+            コントロールとそのすべての子コントロールが表示されているかどうかを示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BackColor">
+            <summary>
+            DateTimePicker コントロールの背景色を示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ForeColor">
+            <summary>
+            DateTimePicker コントロールの文字色を示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.AcceptNull">
+            <summary>
+            NULLの入力を受け入れるかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ReadOnly">
+            <summary>
+            TextBox による代替表示を行っているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.switchTextBox">
+            <summary>
+            表示状態に応じて、Visible、テキスト代替を切り替える。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ReadOnlyLabel">
+            <summary>
+            Label による代替表示を行っているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.switchLabel">
+            <summary>
+            表示状態に応じて、Visible、ラベル代替を切り替える。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.switchControl(System.Boolean)">
+            <summary>
+            TextBoxまたはLabelへ切り替える。
+            </summary>
+            <param name="isCustomFormatChange">CustomFormat プロパティを変更したかどうか。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BaseBackColor">
+            <summary>
+            コントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ShouldSerializeBaseBackColor">
+            <summary>
+            BaseBackColor が既定値から変更されたかどうかを返却します。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ResetBaseBackColor">
+            <summary>
+            BaseBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.FocusBackColor">
+            <summary>
+            フォーカス時のコントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ShouldSerializeFocusBackColor">
+            <summary>
+            FocusBackColor が既定値から変更されたかどうかを返却します。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ResetFocusBackColor">
+            <summary>
+            FocusBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BaseForeColor">
+            <summary>
+            コントロールの文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ShouldSerializeBaseForeColor">
+            <summary>
+            BaseBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ResetBaseForeColor">
+            <summary>
+            BaseBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.FocusForeColor">
+            <summary>
+            フォーカス時のコントロールの文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ShouldSerializeFocusForeColor">
+            <summary>
+            FocusBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ResetFocusForeColor">
+            <summary>
+            FocusBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.ChangeDisplayColor">
+            <summary>
+            コントロールのアクティブ状態に応じた表示色に変更します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.changeFocusColor">
+            <summary>
+            表示色をフォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.changeBaseColor">
+            <summary>
+            表示色を非フォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BeginInit">
+            <summary>
+            InitializeComponent()でコントロールの生成が完了していないことを通知します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.EndInit">
+            <summary>
+            実装はありません。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnCreateControl">
+            <summary>
+            コントロールの生成が完了したことを通知し、ReadOnly, ReadOnlyLabelの制御を行います。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnDropDown(System.EventArgs)">
+            <summary>
+            カレンダーを表示した時、日付を復帰します。
+            </summary>
+            <param name="eventargs">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnParentChanged(System.EventArgs)">
+            <summary>
+            コントロールの配置元が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの配置元も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnLocationChanged(System.EventArgs)">
+            <summary>
+            コントロールの表示位置が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの表示位置も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnSizeChanged(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのサイズも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnResize(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのサイズも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnDockChanged(System.EventArgs)">
+            <summary>
+            コントロールのドッキングが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのドッキングも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnRightToLeftChanged(System.EventArgs)">
+            <summary>
+            コントロールの文字入力方向が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの文字入力方向も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnFontChanged(System.EventArgs)">
+            <summary>
+            コントロールのフォントが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのフォントも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnMarginChanged(System.EventArgs)">
+            <summary>
+            コントロールのマージンが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのマージンも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnCursorChanged(System.EventArgs)">
+            <summary>
+            コントロールのカーソルが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのカーソルも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnEnabledChanged(System.EventArgs)">
+            <summary>
+            コントロールの活性状態が変更時、テキスト代替表示をしていたらテキストの活性状態も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            背景色の変更を行います。
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.redrawColor(System.Windows.Forms.Message@)">
+            <summary>
+            背景色・文字色の描画し直します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.getControlImage">
+            <summary>
+            背景色・文字色描画用のBitmapオブジェクトを取得する。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
+            <summary>
+            Metroit で用意された説明文を提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDescriptionAttribute.#ctor">
+            <summary>
+            MetDescriptionAttribute クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDescriptionAttribute.#ctor(System.String)">
+            <summary>
+            MetDescriptionAttribute クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="description">説明文。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDescriptionAttribute.Description">
+            <summary>
+            指定された説明文キーワードからローカライズされた説明文を取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetForm">
+            <summary>
+            標準Formを拡張し、新たにいくつかの機能を設けたフォームを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.#ctor">
+            <summary>
+            MetForm の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetForm.EnterFocus">
+            <summary>
+            Enterキーが押された時にフォーカスを遷移するかを取得または設定します。
+            </summary>
+            <remarks>
+            TextBox の AcceptsTabがtrueの時はフォーカス遷移をせず、 TextBox にタブが入力されます。
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetForm.EscPush">
+            <summary>
+            ESCキーが押された時の動作を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetForm.Request">
+            <summary>
+            呼び元からのリクエストパラメータを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetForm.Response">
+            <summary>
+            呼び元へのレスポンスパラメータを設定し、呼び元で取得可能にします。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.Show(System.Object)">
+            <summary>
+            リクエストパラメーターを送り、コントロールをユーザーに対して表示します。
+            </summary>
+            <param name="request">リクエストパラメーター。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.Show(System.Windows.Forms.IWin32Window,System.Object)">
+            <summary>
+            リクエストパラメーターを送り、所有側フォームを指定してフォームをユーザーに表示します。
+            </summary>
+            <param name="owner">親ウィンドウオブジェクト</param>
+            <param name="request">リクエストパラメータ</param>
+            <remarks>パラメータを渡し、モードレスウィンドウを表示する。</remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.ShowDialog(System.Object)">
+            <summary>
+            リクエストパラメーターを送り、フォームをモーダル ダイアログ ボックスとして表示します。
+            </summary>
+            <param name="request">リクエストパラメータ</param>
+            <returns>パラメータを渡し、モーダルウィンドウを表示する。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.ShowDialog(System.Windows.Forms.IWin32Window,System.Object)">
+            <summary>
+            リクエストパラメーターを送り、指定した所有者を持つモーダル ダイアログ ボックスとしてフォームを表示します。
+            </summary>
+            <param name="owner">親ウィンドウオブジェクト</param>
+            <param name="request">リクエストパラメータ</param>
+            <returns>パラメータを渡し、モーダルウィンドウを表示する。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
+            <summary>
+            Enterキー、ESCキーの制御を行います。
+            </summary>
+            <param name="msg">Messageオブジェクト</param>
+            <param name="keyData">Keysオブジェクト</param>
+            <returns>true:以降のイベントハンドラを制御しない, false:以降のイベントハンドラを制御する</returns>
+        </member>
+        <member name="F:Metroit.Windows.Forms.MetForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetLimitedTextBox">
+            <summary>
+            入力文字種、入力バイト数制限機能を設けたテキストエリアを提供します。
+            </summary>
+            <remarks>
+            テキストボックスとしての機能をいくつか拡張し、利用することができます。<br />
+            [拡張機能]<br />
+            　・Bytes指定による入力Bytes数制限。<br />
+            　・入力許可文字制限。<br />
+            <br />
+            入力許可文字制限は、全て許可、半角数字、全角数字、半角英字、全角英字、半角記号、全角記号、カスタムを組み合わせて利用することができます。<br />
+            入力許可文字制限に、改行コードは含まれません。<br />
+            全て許可、カスタムを指定した場合は、他のどの文字制限も併せて利用することはできません。<br />
+            許可文字内から、拒否する文字を指定することができます。<br />
+            カスタムを設定した場合、許可する文字を指定することができます。<br />
+            </remarks>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetLimitedTextBox.CharacterValidationStatus">
+            <summary>
+            各入力値検証を行った状態
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.MetLimitedTextBox.CharacterValidationStatus.Allow">
+            <summary>
+            入力値を許可する。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.MetLimitedTextBox.CharacterValidationStatus.Deny">
+            <summary>
+            入力値を拒否する。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.MetLimitedTextBox.CharacterValidationStatus.NoControl">
+            <summary>
+            入力値に合致するパターンでないか、特定パターンでは拒否される値である。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.#ctor">
+            <summary>
+            MetLimitedTextBox の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.MetLimitedTextBox_TextChangeValidation(System.Object,Metroit.Windows.Forms.TextChangeValidationEventArgs)">
+            <summary>
+            テキスト変更中、バイト数チェック、許可文字チェックを行います。
+            </summary>
+            <param name="sender"></param>
+            <param name="e">入力値許可イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.CanAutoFocus">
+            <summary>
+            バイト数を考慮して、オートフォーカスを行うか確認します。
+            </summary>
+            <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isValidChars(System.String)">
+            <summary>
+            入力された文字列を1文字ずつ有効文字かチェックします。
+            </summary>
+            <param name="inputText">入力文字列</param>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isExcludeChar(System.Char)">
+            <summary>
+            対象文字が拒否文字かどうかを取得する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>true:拒否文字, false:拒否文字でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isFullSignSpecialChar(System.Char)">
+            <summary>
+            対象文字が個別許可した全角記号であるかどうかを取得する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>true:個別許可した全角記号, false:個別許可した全角記号でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateAllChar(System.Char)">
+            <summary>
+            対象文字が全て許可による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateCustomChar(System.Char)">
+            <summary>
+            対象文字がカスタムによる許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateHalfNumericChar(System.Char)">
+            <summary>
+            対象文字が半角数値による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateFullNumericChar(System.Char)">
+            <summary>
+            対象文字が全角数値による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateHalfAlphaChar(System.Char)">
+            <summary>
+            対象文字が半角英字による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateFullAlphaChar(System.Char)">
+            <summary>
+            対象文字が全角英字による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateHalfSignChar(System.Char)">
+            <summary>
+            対象文字が半角記号による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.validateFullSignChar(System.Char)">
+            <summary>
+            対象文字が全角記号による許可文字か検証する。
+            </summary>
+            <param name="singleChar">文字</param>
+            <returns>検証結果</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isHalfNumeric(System.Char)">
+            <summary>
+            1文字分の入力値が半角数字かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:半角数字, false:半角数字でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isFullNumeric(System.Char)">
+            <summary>
+            1文字分の入力値が全角数字かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:全角数字, false:全角数字でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isHalfAlpha(System.Char)">
+            <summary>
+            1文字分の入力値が半角英字かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:半角英字, false:半角英字でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isFullAlpha(System.Char)">
+            <summary>
+            1文字分の入力値が全角英字かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:全角英字, false:全角英字でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isHalfSign(System.Char)">
+            <summary>
+            1文字分の入力値が半角記号かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:半角記号, false:半角記号でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isFullSign(System.Char)">
+            <summary>
+            1文字分の入力値が全角記号かどうかを取得する。
+            </summary>
+            <param name="value">1文字分の入力値。</param>
+            <returns>true:全角記号, false:全角記号でない</returns>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.MaxByteLength">
+            <summary>
+            エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。
+            </summary>
+            <remarks>
+            0を指定した場合、無制限となります。<br />
+            半角1バイト、全角2バイトとして制限されます。<br />
+            当プロパティを設定することによってMaxLengthが無視されるわけではありません。
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.ByteEncoding">
+            <summary>
+            最大バイト数制限を実施する文字エンコーディングを指定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.ShouldSerializeByteEncoding">
+            <summary>
+            ByteEncoding が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.ResetByteEncoding">
+            <summary>
+            ByteEncoding のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.AcceptsChar">
+            <summary>
+            入力が許可される文字の種類を設定します。
+            </summary>
+            <remarks>
+            当プロパティは、アプリケーションの状態に応じて変化させるアプローチを可能とする為、コード上で変更可能としています。<br />
+            コード上でText値が設定済みの際に変更する場合は気を付けてください。
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.CustomChars">
+            <summary>
+            入力許可文字の種類がカスタムの場合に、入力を許可する単一文字を1行単位で設定します。
+            </summary>
+            <remarks>
+            ApprovalCharactersがカスタムの場合のみ有効です。
+            当プロパティは、アプリケーションの状態に応じて変化させるアプローチを可能とする為、コード上で変更可能としています。<br />
+            コード上でText値が設定済みの際に変更する場合は気を付けてください。
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.FullSignSpecialChars">
+            <summary>
+            個別で許可する全角記号を1行単位で設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLimitedTextBox.ExcludeChars">
+            <summary>
+            入力許可文字の種類がカスタム以外の場合に、入力を拒否する単一文字を1行単位で設定します。
+            </summary>
+            <remarks>
+            ApprovalCharactersがカスタム以外の場合のみ有効です。<br />
+            当プロパティは、アプリケーションの状態に応じて変化させるアプローチを可能とする為、コード上で変更可能としています。<br />
+            コード上でText値が設定済みの際に変更する場合は気を付けてください。
+            </remarks>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetNumericTextBox">
+            <summary>
+            ユーザーが数値のみを入力できるようにしたテキストエリアを提供します。
+            </summary>
+            <remarks>
+            テキストボックスとしての機能をいくつか拡張し、利用することができます。<br />
+            [拡張機能]<br />
+            　・入力可能範囲の設定。<br />
+            　・null許可制御。<br />
+            　・入力値の表示フォーマット設定。<br />
+            　・マイナス値の文字色設定。<br />
+            　・以下の標準プロパティは利用できません。<br />
+            　　　・MaxLength<br />
+            　　　・Multiline<br />
+            　　　・PasswordChar<br />
+            　　　・UseSystemPasswordChar<br />
+            　　　・AcceptsReturn<br />
+            　　　・AcceptsTab<br />
+            　　　・CharacterCasing<br />
+            </remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.#ctor">
+            <summary>
+            MetNumberFormatTextBox の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.MetNumericFormatTextBox_Enter(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを得た時、数値で描画しなおす。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.MetNumericFormatTextBox_Leave(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを失った時、数値をフォーマット化する。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.MetNumericFormatTextBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            テキストが変わったらValueに値を設定し、背景色・文字色を変更する。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.NegativePattern_PatternChanged(System.Object,System.EventArgs)">
+            <summary>
+            マイナス記号表現が変更された時、表示を再描画する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.PositivePattern_PatternChanged(System.Object,System.EventArgs)">
+            <summary>
+            プラス記号表現が変更された時、表示を再描画する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.TextAlign">
+            <summary>
+            エディットコントロールに対してどのようにテキストを配置するかを示します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.Text">
+            <summary>
+            現在のテキストを取得します。数値の取得または設定は、Valueプロパティを利用してください。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.ImeMode">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.MaxLength">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.Multiline">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.PasswordChar">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.UseSystemPasswordChar">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.AcceptsReturn">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.AcceptsTab">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.CharacterCasing">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.Lines">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.ScrollBars">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.RightToLeft">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.MultilineSelectAll">
+            <summary>
+            このプロパティの使用は禁止されています。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.Value">
+            <summary>
+            現在の数値を取得または設定します。
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.Mode">
+            <summary>
+            フォーカスがない時に表示される形式を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.NegativeForeColor">
+            <summary>
+            マイナス時の文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.AcceptNegative">
+            <summary>
+            マイナス値の入力許可を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.MaxValue">
+            <summary>
+            入力可能な最大値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.MinValue">
+            <summary>
+            入力可能な最小値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.DecimalDigits">
+            <summary>
+            入力可能な小数桁数の取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.AcceptNull">
+            <summary>
+            NULLの入力を受け入れるかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.DecimalSeparator">
+            <summary>
+            整数部と小数部の区切り文字を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.GroupSeparator">
+            <summary>
+            整数部の桁区切り文字を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.GroupSizes">
+            <summary>
+            整数部の区切り桁数を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.PositivePattern">
+            <summary>
+            正数の時の記号表現を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.NegativePattern">
+            <summary>
+            負数の時の記号表現を設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.CurrencySymbol">
+            <summary>
+            通貨表現の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.PercentSymbol">
+            <summary>
+            パーセント表現の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.NegativeSign">
+            <summary>
+            負数の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.createFormattedText(System.Nullable{System.Decimal})">
+            <summary>
+            数値データを記号表現に対応したフォーマットに変換する
+            </summary>
+            <param name="value">数値データ</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.EndInit">
+            <summary>
+            記号表現が変更された時のイベントを登録します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            特定動作が行われた時のTextChanged イベントを制御する。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.OnTextChangeValidation(Metroit.Windows.Forms.TextChangeValidationEventArgs)">
+            <summary>
+            テキスト変更中、許可文字チェックを行います。
+            </summary>
+            <param name="e">入力値過程オブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.CanAutoFocus">
+            <summary>
+            数値桁数を考慮して、オートフォーカスを行うか確認します。
+            </summary>
+            <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.ChangeDisplayColor">
+            <summary>
+            コントロールのアクティブ状態に応じた表示色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.isNumeric(System.String)">
+            <summary>
+            入力値が数値かどうか。
+            </summary>
+            <param name="after">入力値</param>
+            <returns>true:数値, false:数値でない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.isValidNegative(System.Decimal)">
+            <summary>
+            入力値にマイナス許可があるかどうか。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:許可あり, false:許可なし</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.isValidDecimalDigits(System.Decimal)">
+            <summary>
+            入力値が有効小数桁数かどうか。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.isValidRangeValue(System.Decimal)">
+            <summary>
+            最小値 ≦ 入力値 ≦ 最大値かどうか。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetTextBox">
+            <summary>
+            標準TextBoxを拡張し、新たにいくつかの機能を設けたテキストエリアを提供します。
+            </summary>
+            <remarks>
+            [拡張機能]<br />
+            　・コピー、貼り付け、切り取り個別制御。<br />
+            　・TextChangeValidation イベントの実装による入力値の可否制御。<br />
+            　・ラベルによる代替表示。<br />
+            　・最大入力文字後、次コントロールへの自動遷移(ペースト時、コードによる直接入力は行わない)。<br />
+            　・フォーカス取得時の全選択。<br />
+            　・フォーカス取得時の背景色、文字色の変更。<br />
+            　・Multiline時、Ctrl+Aによるテキストの全選択。<br />
+            <br />
+            TextChangeValidation イベントは、削除／切り取り／元に戻すなど、一度入力が許容された値に対しての操作や、オートコンプリートの候補値による値設定では発生しません。<br />
+            そのため、TextChangeValidation イベント内で、状態変更・保持を行うべきではありません。<br />
+            状態変更・保持などを行う場合はTextChanged イベント、またはValidated イベントで行うべきです。<br />
+            TextChangeValidation イベントが発生しない操作<br />
+            　・AutoCompleteMode プロパティによって、入力値の補完が行われた時<br />
+            　・BackSpace、Deleteキーなどによって、入力値が削除された時<br />
+            　・切り取り、Ctrl+Xによって、入力値が切り取られた時<br />
+            　・元に戻す、Ctrl+Zによって、入力値が直前の内容に戻された時<br />
+            </remarks>
+            <exception cref="T:Metroit.Windows.Forms.DeniedTextException">
+            Textプロパティをコード上で書き換え、入力値が拒否された場合に発生します。
+            </exception>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.#ctor">
+            <summary>
+            MetTextBox の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.Finalize">
+            <summary>
+            MetTextBox のインスタンスを破棄します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_Enter(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを得た時、色の変更とテキストの反転を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_Leave(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを失った時、色の変更を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_KeyUp(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            キーが離れた時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            キーが押された時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            キーが押された時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            マウスがクリックされてフォーカスを得た時、テキストの反転を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.MetTextBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            テキストが変更された時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.createTextAfterInput(System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            文字キーによってテキスト入力が行われた際の、入力後テキストを取得する。
+            </summary>
+            <param name="e">キーイベント</param>
+            <returns>入力後テキスト</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.autoFocus">
+            <summary>
+            オートフォーカスを行う。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.CanAutoFocus">
+            <summary>
+            オートフォーカスが実行可能な状態かどうかを取得します。
+            </summary>
+            <returns>true:実行可能, false:実行不可能</returns>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetTextBox.TextChangeValidation">
+            <summary>
+            <para>Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。</para>
+            <para>値の削除や元に戻す操作では発生しないことに注意してください。</para>
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnTextChangeValidation(Metroit.Windows.Forms.TextChangeValidationEventArgs)">
+            <summary>
+            入力値を変更しているときに走行します。
+            </summary>
+            <param name="e">入力値許可イベントオブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Anchor">
+            <summary>
+            コントロールがバインドされるコンテナーの端を取得または設定し、親のサイズ変更時に、コントロールのサイズがどのように変化するかを決定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Visible">
+            <summary>
+            コントロールとそのすべての子コントロールが表示されているかどうかを示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Text">
+            <summary>
+            コントロールに関連付けられたテキストです。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.ReadOnly">
+            <summary>
+            取得またはテキスト ボックスにテキストが読み取り専用かどうかを示す値を設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.ForeColor">
+            <summary>
+            コントロールの前景色を取得または特定のプロパティによって強制的に前景色を設定します。
+            意図的に前景色の変更が必要な場合のみ利用してください。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.BackColor">
+            <summary>
+            コントロールの背景色を取得または特定のプロパティによって強制的に背景色を設定します。
+            意図的に背景色の変更が必要な場合のみ利用してください。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Initialized">
+            <summary>
+            InitializeComponent() によってコントロールの準備が完了したかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.ReadOnlyLabel">
+            <summary>
+            Label による代替表示を行うかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.BaseForeColor">
+            <summary>
+            コントロールの前景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.BaseBackColor">
+            <summary>
+            コントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.ShouldSerializeBaseBackColor">
+            <summary>
+            BaseBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.ResetBaseBackColor">
+            <summary>
+            BaseBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusForeColor">
+            <summary>
+            フォーカス時のコントロールの前景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusBackColor">
+            <summary>
+            フォーカス時のコントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.ShouldSerializeFocusBackColor">
+            <summary>
+            FocusBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.ResetFocusBackColor">
+            <summary>
+            FocusBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusSelect">
+            <summary>
+            フォーカスを得た時、テキストを反転させるかを設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.MultilineSelectAll">
+            <summary>
+            複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.AutoFocus">
+            <summary>
+            最大入力まで行われた時、次のコントロールへフォーカスを遷移するかを設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.changeFocusColor">
+            <summary>
+            表示色をフォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.changeBaseColor">
+            <summary>
+            表示色を非フォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.ChangeDisplayColor">
+            <summary>
+            コントロールのアクティブ状態に応じた表示色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.switchLabel">
+            <summary>
+            表示状態に応じて、Visible、ラベル代替を切り替える。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.BeginInit">
+            <summary>
+            InitializeComponent()でコントロールの初期化が完了していないことを通知します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.EndInit">
+            <summary>
+            InitializeComponent()でコントロールの初期化が完了したことを通知し、ReadOnlyLabelの制御を行います。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            テキストが変更後、可能の場合にフォーカス遷移を行います。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnParentChanged(System.EventArgs)">
+            <summary>
+            コントロールの配置元が変更時、ラベル代替表示をしていたらラベルの配置元も変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnLocationChanged(System.EventArgs)">
+            <summary>
+            コントロールの表示位置が変更時、ラベル代替表示をしていたらラベルの表示位置も変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnSizeChanged(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル代替表示をしていたらラベルのサイズも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnResize(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル代替表示をしていたらラベルのサイズも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnDockChanged(System.EventArgs)">
+            <summary>
+            コントロールのドッキングが変更時、ラベル代替表示をしていたらラベルのドッキングも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnRightToLeftChanged(System.EventArgs)">
+            <summary>
+            コントロールの文字入力方向が変更時、ラベル代替表示をしていたらラベルの文字入力方向も変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnFontChanged(System.EventArgs)">
+            <summary>
+            コントロールのフォントが変更時、ラベル代替表示をしていたらラベルのフォントも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnMarginChanged(System.EventArgs)">
+            <summary>
+            コントロールのマージンが変更時、ラベル代替表示をしていたらラベルのマージンも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnBorderStyleChanged(System.EventArgs)">
+            <summary>
+            コントロールのボーダーが変更時、ラベル代替表示をしていたらラベルのボーダーも変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnTextAlignChanged(System.EventArgs)">
+            <summary>
+            コントロールの文字表示位置が変更時、ラベル代替表示をしていたらラベルの文字表示位置も変更します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
+            </summary>
+            <param name="m">ウィンドウメッセージ。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.canPaste">
+            <summary>
+            貼り付けが可能かどうかを取得する。
+            </summary>
+            <returns>true:貼付成功, false:貼付失敗</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.createInputString(System.String)">
+            <summary>
+            入力文字を生成する。
+            </summary>
+            <param name="inputText">入力文字</param>
+            <returns>生成後の入力文字</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.createTextAfterPasted(System.String)">
+            <summary>
+            ペースト操作によってテキストペーストが行われた後のテキストを取得する。
+            </summary>
+            <param name="pasteText">ペースト文字列</param>
+            <returns>ペースト後テキスト</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.Dispose(System.Boolean)">
+            <summary>
+            オブジェクトの破棄を行います。
+            </summary>
+            <param name="disposing">マネージリソースの破棄を行うかどうか。</param>
+        </member>
+        <member name="T:Metroit.Windows.Forms.NumericFormatMode">
+            <summary>
+            MetNumberFormatTextBox の表示モードを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericFormatMode.Numeric">
+            <summary>
+            数値を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericFormatMode.Currency">
+            <summary>
+            通貨を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericFormatMode.Percent">
+            <summary>
+            パーセントを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.NumericNegativePattern">
+            <summary>
+            数値コントロールのマイナス値の記号表現を提供します。
+            </summary>
+        </member>
+        <member name="E:Metroit.Windows.Forms.NumericNegativePattern.PatternChanged">
+            <summary>
+            パターンが変更された時に実行されます。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.NumericNegativePattern.NumberNegativePattern">
+            <summary>
+            数値マイナス時の記号表現を指定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.NumericNegativePattern.CurrencyNegativePattern">
+            <summary>
+            通貨マイナス時の記号表現を指定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.NumericNegativePattern.PercentNegativePattern">
+            <summary>
+            パーセントマイナス時の記号表現を指定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.NumericNegativePattern.OnPatternChanged">
+            <summary>
+            パターンが変更された時にイベントを実行します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.NumericNegativePattern.ToString">
+            <summary>
+            プロパティエディタ上の見た目を変更します。
+            </summary>
+            <remarks>
+            コードを書く上で、特に利用する場面はないでしょう。
+            </remarks>
+            <returns>設定値文字列</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.NumericNegativePatternType">
+            <summary>
+            数値のマイナス値の表現パターンを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericNegativePatternType.Inclose">
+            <summary>
+            (n) を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericNegativePatternType.LeftSign">
+            <summary>
+            -n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericNegativePatternType.LeftSignSpace">
+            <summary>
+            - n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericNegativePatternType.RightSign">
+            <summary>
+            n- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.NumericNegativePatternType.RightSpaceSign">
+            <summary>
+            n - を示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.NumericPositivePattern">
+            <summary>
+            数値コントロールのプラス時の記号表現を扱います。
+            </summary>
+        </member>
+        <member name="E:Metroit.Windows.Forms.NumericPositivePattern.PatternChanged">
+            <summary>
+            パターンが変更された時に実行されます。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.NumericPositivePattern.CurrencyPositivePattern">
+            <summary>
+            通貨プラス時の記号表現を指定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.NumericPositivePattern.PercentPositivePattern">
+            <summary>
+            パーセントプラス時の記号表現を指定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.NumericPositivePattern.OnPatternChanged">
+            <summary>
+            パターンが変更された時にイベントを実行します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.NumericPositivePattern.ToString">
+            <summary>
+            プロパティエディタ上の見た目を変更します。
+            </summary>
+            <remarks>
+            コードを書く上で、特に利用する場面はないでしょう。
+            </remarks>
+            <returns>設定値文字列</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.PercentNegativePatternType">
+            <summary>
+            パーセントのマイナス値の表現パターンを定義します。
+            </summary>
+            <remarks>7の表現-%nが2の表現と一緒なので、列挙体には定義無し。</remarks>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSignRightSpaceSymbol">
+            <summary>
+            -n % を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSignRightSymbol">
+            <summary>
+            -n% を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSignSymbol">
+            <summary>
+            -%n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSymbolSign">
+            <summary>
+            %-n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSymbolRightSign">
+            <summary>
+            %n- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.RightSignSymbol">
+            <summary>
+            n-% を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.RightSymbolSign">
+            <summary>
+            n%- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.RightSpaceSymbolSign">
+            <summary>
+            n %- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSymbolSpaceRightSign">
+            <summary>
+            % n- を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.LeftSymbolSpaceSign">
+            <summary>
+            % -n を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentNegativePatternType.RightSignSpaceSymbol">
+            <summary>
+            n- % を示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.PercentPositivePatternType">
+            <summary>
+            パーセントのプラス値の表現パターンを定義します。
+            </summary>
+            <remarks>3の表現%nが2の表現と一緒なので、列挙体には定義無し</remarks>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentPositivePatternType.RightSpaceSymbol">
+            <summary>
+            n % を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentPositivePatternType.RightSymbol">
+            <summary>
+            n% を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.PercentPositivePatternType.LeftSymbol">
+            <summary>
+            %n を示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.Properties.DesignResources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsAll">
+            <summary>
+              Allow All に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsAll_ja">
+            <summary>
+              全て許可 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsAlpha">
+            <summary>
+              Alpha に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsAlpha_ja">
+            <summary>
+              英字 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsFull">
+            <summary>
+              Full に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsFull_ja">
+            <summary>
+              全角 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsHalf">
+            <summary>
+              Half に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsHalf_ja">
+            <summary>
+              半角 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsNum">
+            <summary>
+              Number に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsNum_ja">
+            <summary>
+              数字 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsSign">
+            <summary>
+              Sign に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AcceptsSign_ja">
+            <summary>
+              記号 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptNegative">
+            <summary>
+              Indicates whether input of a negative value is permitted. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptNegative_ja">
+            <summary>
+              マイナス値の入力を許可するかどうかを表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptNull">
+            <summary>
+              Gets / sets whether or not to accept NULL input. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptNull_ja">
+            <summary>
+              NULLの入力を受け入れるかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptsChar">
+            <summary>
+              Sets the type of input permitted characters. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAcceptsChar_ja">
+            <summary>
+              入力許可文字の種類を設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAutoFocus">
+            <summary>
+              Sets whether to shift the focus to the next control when it is done up to the maximum input. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlAutoFocus_ja">
+            <summary>
+              最大入力まで行われた時、次のコントロールへフォーカスを遷移するかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseBackColor">
+            <summary>
+              Gets or sets the background color of the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseBackColor_ja">
+            <summary>
+              コントロールの背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseForeColor">
+            <summary>
+              Gets or sets the foreground color of the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseForeColor_ja">
+            <summary>
+              コントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlByteEncoding">
+            <summary>
+              Specify the character encoding that implements the maximum byte limit. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlByteEncoding_ja">
+            <summary>
+              最大バイト数制限を実施する文字エンコーディングを指定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlCurrencySymbol">
+            <summary>
+              Represents the symbol when currency is expressed. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlCurrencySymbol_ja">
+            <summary>
+              通貨表現の時の記号を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlCustomChars">
+            <summary>
+              When the character type is custom, set a single character to be entered on a line-by-line basis. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlCustomChars_ja">
+            <summary>
+              文字種類がカスタムな場合に、入力を許可する単一文字を1行単位で設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeValue">
+            <summary>
+              The current date and time value for this control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeValue_ja">
+            <summary>
+              このコントロールの現在の日付/時間の値です。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDecimalDigits">
+            <summary>
+              Represents the number of decimal places that can be entered. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDecimalDigits_ja">
+            <summary>
+              入力可能な小数桁数を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDecimalSeparator">
+            <summary>
+              Represents the delimiter between the integer part and the decimal part. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDecimalSeparator_ja">
+            <summary>
+              整数部と小数部の区切り文字を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlEnterFocus">
+            <summary>
+              Set whether to shift the focus when the Enter key is pressed. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlEnterFocus_ja">
+            <summary>
+              Enterキーが押された時にフォーカスを遷移するかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlEscPush">
+            <summary>
+              Set the behavior when the ESC key is pressed. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlEscPush_ja">
+            <summary>
+              ESCキーが押された時の振る舞いを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlExcludeChars">
+            <summary>
+              Set a single character to reject input on a line-by-line basis. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlExcludeChars_ja">
+            <summary>
+              入力を拒否する単一文字を1行単位で設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusBackColor">
+            <summary>
+              Gets or sets the background color of the control at focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusBackColor_ja">
+            <summary>
+              フォーカス時のコントロールの背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusForeColor">
+            <summary>
+              Gets or sets the foreground color of the control at focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusForeColor_ja">
+            <summary>
+              フォーカス時のコントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusSelect">
+            <summary>
+              Sets whether to invert text when getting focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusSelect_ja">
+            <summary>
+              フォーカスを得た時、テキストを反転させるかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFullSignSpecialChars">
+            <summary>
+              Separately specify the double-byte symbols to be set on a line-by-line basis. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFullSignSpecialChars_ja">
+            <summary>
+              個別で許可する全角記号を1行単位で設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlGroupSeparator">
+            <summary>
+              Represents a digit separator character in the integer part. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlGroupSeparator_ja">
+            <summary>
+              整数部の桁区切り文字を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlGroupSizes">
+            <summary>
+              Represents the number of delimited digits in the integer part. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlGroupSizes_ja">
+            <summary>
+              整数部の区切り桁数を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxByteLength">
+            <summary>
+              Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxByteLength_ja">
+            <summary>
+              エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxValue">
+            <summary>
+              It represents the maximum value that can be entered. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxValue_ja">
+            <summary>
+              入力可能な最大値を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMetForm">
+            <summary>
+              We extend the standard Form and provide a form with some new functions. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMetForm_ja">
+            <summary>
+              標準Formを拡張し、新たにいくつかの機能を設けたフォームを提供します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMinValue">
+            <summary>
+              It represents the minimum value that can be entered. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMinValue_ja">
+            <summary>
+              入力可能な最小値を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMode">
+            <summary>
+              It represents the format displayed when there is no focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMode_ja">
+            <summary>
+              フォーカスがない時に表示される形式を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativeForeColor">
+            <summary>
+              It represents the character color at minus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativeForeColor_ja">
+            <summary>
+              マイナス時の文字色を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativePattern">
+            <summary>
+              Represents a symbolic representation when it is a negative number. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativePattern_ja">
+            <summary>
+              負数の時の記号表現を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativeSign">
+            <summary>
+              Represents the sign when it is a negative number. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlNegativeSign_ja">
+            <summary>
+              負数の時の記号を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlPercentSymbol">
+            <summary>
+              Represents the symbol for percent representation. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlPercentSymbol_ja">
+            <summary>
+              パーセント表現の時の記号を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlPositivePattern">
+            <summary>
+              Represents a symbolic representation when it is a positive number. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlPositivePattern_ja">
+            <summary>
+              正数の時の記号表現を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlReadOnly">
+            <summary>
+              Replace the control with a text box. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlReadOnly_ja">
+            <summary>
+              コントロールをテキストボックスで置き換えます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlReadOnlyLabel">
+            <summary>
+              Replace the control with a label. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlReadOnlyLabel_ja">
+            <summary>
+              コントロールをラベルで置き換えます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlValue">
+            <summary>
+              The number associated with the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlValue_ja">
+            <summary>
+              コントロールに関連付けられた数値です。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.CurrencyPattern">
+            <summary>
+              Currency Pattern に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.CurrencyPattern_ja">
+            <summary>
+              通貨表記時 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.Custom">
+            <summary>
+              Custom に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.Custom_ja">
+            <summary>
+              カスタム に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetAppearance">
+            <summary>
+              Metroit Extension Appearance に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetAppearance_ja">
+            <summary>
+              Metroit拡張 表示 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetBehavior">
+            <summary>
+              Metroit Extension Behavior に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetBehavior_ja">
+            <summary>
+              Metroit拡張 動作 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetDateTimePicker">
+            <summary>
+              Represents a Windows control that allows the user to select a date and time, specify the format and display the date and time. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetDateTimePicker_ja">
+            <summary>
+              ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetLimitedTextBox">
+            <summary>
+              Provides a text area with input character type and input byte count limiting function. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetLimitedTextBox_ja">
+            <summary>
+              入力文字種、入力バイト数制限機能を設けたテキストエリアを提供します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetNumericTextBox">
+            <summary>
+              Provide a text area that allows users to enter numerical values only. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetNumericTextBox_ja">
+            <summary>
+              ユーザーが数値のみを入力できるようにしたテキストエリアを提供します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetPropertyChange">
+            <summary>
+              Metroit Extension Property Changed に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetPropertyChange_ja">
+            <summary>
+              Metroit拡張 プロパティ変更 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxMultilineSelectAll">
+            <summary>
+              In multi-line text editing, you can set whether to select all text by pressing Ctrl + A. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxMultilineSelectAll_ja">
+            <summary>
+              複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidationEventHandler">
+            <summary>
+              occurs when the value of the Text property is added or inserted. You can verify the value and reject the change. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidationEventHandler_ja">
+            <summary>
+              Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.NumericPattern">
+            <summary>
+              Numeric Pattern に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.NumericPattern_ja">
+            <summary>
+              数値表記時 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.PercentPattern">
+            <summary>
+              Percent Pattern に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.PercentPattern_ja">
+            <summary>
+              パーセント表記時 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.Properties.ExceptionResources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.AcceptNegativeCanNotChange">
+            <summary>
+              Value is negative and can not be changed. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.AcceptNegativeCanNotChange_ja">
+            <summary>
+              Valueが負数のため、変更できません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.DeniedTextException">
+            <summary>
+              An unacceptable value has been set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.DeniedTextException_ja">
+            <summary>
+              許可されない値が設定されました。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.InvalidValue">
+            <summary>
+              An unacceptable value has been set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.InvalidValue_ja">
+            <summary>
+              許可されない文字列が設定されました。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.MaxValueSmallerCanNotChange">
+            <summary>
+              Values larger than MaxValue can not be set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.MaxValueSmallerCanNotChange_ja">
+            <summary>
+              MaxValueの値より小さい値は設定できません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.MinValueSmallerCanNotChange">
+            <summary>
+              Values smaller than MinValue can not be set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.MinValueSmallerCanNotChange_ja">
+            <summary>
+              MinValueの値より小さい値は設定できません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.ValueLargerCanNotChange">
+            <summary>
+              Values larger than Value can not be set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.ValueLargerCanNotChange_ja">
+            <summary>
+              Valueの値より大きい値は設定できません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.ValueSmallerCanNotChange">
+            <summary>
+              Values smaller than Value can not be set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.ExceptionResources.ValueSmallerCanNotChange_ja">
+            <summary>
+              Valueの値より小さい値は設定できません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.TextChangeValidationEventArgs">
+            <summary>
+            キャンセルできるイベントと値変更時の過程のデータを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.TextChangeValidationEventArgs.Input">
+            <summary>
+            入力された値です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.TextChangeValidationEventArgs.Before">
+            <summary>
+            入力値を許可する前の値です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.TextChangeValidationEventArgs.After">
+            <summary>
+            入力値を許可した時の値です。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.TextChangeValidationEventHandler">
+            <summary>
+            TextChangeValidation イベントを発生させる為のデリゲート
+            </summary>
+            <param name="sender">実行発生オブジェクト</param>
+            <param name="e">値変更イベントデータ</param>
+        </member>
+    </members>
+</doc>

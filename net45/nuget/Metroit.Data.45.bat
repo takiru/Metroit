@@ -1,0 +1,1 @@
+nuget pack "..\src\Metroit.Data.45\Metroit.Data.45.csproj" -Prop Configuration=Release

@@ -1,0 +1,1 @@
+nuget pack "..\src\Metroit.Windows.Forms.2\Metroit.Windows.Forms.2.csproj" -Prop Configuration=Release

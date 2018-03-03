@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Metroit.2</name>
+    </assembly>
+    <members>
+        <member name="T:Metroit.Collections.Generic.LimitedList`1">
+            <summary>
+            管理上限を有する List を提供します。
+            </summary>
+            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor">
+            <summary>
+            LimitedList クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor(System.Int32)">
+            <summary>
+            LimitedList クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.MaxSize">
+            <summary>
+            管理可能な最大インスタンス数を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.LastAccessItem">
+            <summary>
+            直前で操作した値を取得します。
+            </summary>
+            <returns>直前で操作した値。</returns>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.Item(System.Int32)">
+            <summary>指定されたインデックスの値を取得または設定します。</summary>
+            <param name="index">インデックス。</param>
+            <returns>指定されたインデックスの値。</returns>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.Add(`0)">
+            <summary>指定した値をリストに追加します。</summary>
+            <param name="value">追加する要素の値。</param>
+            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.CanAdd">
+            <summary>
+            追加が可能かどうかを取得します。
+            </summary>
+            <returns>true:追加可能, false:追加不可。</returns>
+        </member>
+        <member name="T:Metroit.Collections.Generic.LimitedDictionary`2">
+            <summary>
+            管理上限を有する Dictionary を提供します。
+            </summary>
+            <typeparam name="TKey">キーオブジェクト。</typeparam>
+            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor">
+            <summary>
+            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor(System.Int32)">
+            <summary>
+            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.MaxSize">
+            <summary>
+            管理可能な最大インスタンス数を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.LastAccessItem">
+            <summary>
+            直前で操作した値を取得します。
+            </summary>
+            <returns>直前で操作した値。</returns>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.Item(`0)">
+            <summary>指定されたキーに関連付けられている値を取得または設定します。</summary>
+            <param name="key">取得または設定する値のキー。</param>
+            <returns>指定されたキーに関連付けられている値。</returns>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.Add(`0,`1)">
+            <summary>指定したキーと値をディクショナリに追加します。</summary>
+            <param name="key">追加する要素のキー。</param>
+            <param name="value">追加する要素の値。</param>
+            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.CanAdd">
+            <summary>
+            追加が可能かどうかを取得します。
+            </summary>
+            <returns>true:追加可能, false:追加不可。</returns>
+        </member>
+        <member name="T:Metroit.IO.ConvertCompleteEventArgs">
+            <summary>
+            変換処理完成時のイベントのデータを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.ConvertCompleteEventArgs.Error">
+            <summary>
+            タスク内で発生した例外情報を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.ConvertCompleteEventArgs.Result">
+            <summary>
+            変換結果を取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.ConverterBase">
+            <summary>
+            データの変換を表します。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.ConverterBase.ConvertCompleteEventHandler">
+            <summary>
+            実行が完了したイベントを処理するメソッドを表します。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+            <param name="e">実行完了イベント。</param>
+        </member>
+        <member name="T:Metroit.IO.ConverterBase.ConvertPrepareEventHandler">
+            <summary>
+            変換準備のイベントを処理するメソッドを表します。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+            <param name="e">キャンセルイベント。</param>
+        </member>
+        <member name="E:Metroit.IO.ConverterBase.Prepare">
+            <summary>
+            変換準備が行われたときに発生します。
+            </summary>
+        </member>
+        <member name="E:Metroit.IO.ConverterBase.ConvertCompleted">
+            <summary>
+            変換処理が完了したときに発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.ConverterBase.Convert(Metroit.IO.IConvertParameter)">
+            <summary>
+            変換を行います。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.ConverterBase.DoConvert(Metroit.IO.IConvertParameter)">
+            <summary>
+            変換を行います。
+            </summary>
+            <param name="parameter">変換パラメーター</param>
+        </member>
+        <member name="M:Metroit.IO.ConverterBase.onConvert(Metroit.IO.IConvertParameter)">
+            <summary>
+            変換の呼び出しを実施する。
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.IO.FileConvertException">
+            <summary>
+            ファイルの変換に失敗した時に発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConvertException.#ctor(System.String,Metroit.IO.FileConvertParameter)">
+            <summary>
+            FileConvertException クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="message">変換に失敗した理由。</param>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="P:Metroit.IO.FileConvertException.Parameter">
+            <summary>
+            ファイルの変換に失敗した時の変換パラメーターを取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.ConvertResultType">
+            <summary>
+            変換結果を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.IO.ConvertResultType.Succeed">
+            <summary>
+            変換の成功を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.IO.ConvertResultType.Failed">
+            <summary>
+            変換の失敗を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.IO.ConvertResultType.Cancelled">
+            <summary>
+            変換のキャンセルを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.FileConverterBase">
+            <summary>
+            ファイルのコンバーターを表します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConverterBase.Parameter">
+            <summary>
+            ファイル変換を実施するパラメーター値を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConverterBase.ErrorMessage">
+            <summary>
+            エラーメッセージの取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.DoConvert(Metroit.IO.IConvertParameter)">
+            <summary>
+            変換を行います。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.CanConvert">
+            <summary>
+            変換実行が有効かどうかを取得します。
+            </summary>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.ConvertFile(Metroit.IO.FileConvertParameter)">
+            <summary>
+            ファイルの変換を行います。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.CreateTemporaryFilePath">
+            <summary>
+            一時ファイルパスを決定する。
+            </summary>
+            <returns>一時ファイルパス。</returns>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.TempFileToDestFile">
+            <summary>
+            一時ファイルパスを変換後ファイルパスへ移動させる。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.FileConvertParameter">
+            <summary>
+            ファイルの変換パラメーターを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.SourceFilePath">
+            <summary>
+            変換元ファイルのパスの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.DestinationFilePath">
+            <summary>
+            ファイルを保存する変換先パスの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.UseTemporary">
+            <summary>
+            一時ディレクトリを利用した変換を行うかどうかの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.TemporaryDirectory">
+            <summary>
+            <para>一時ディレクトリの取得または設定します。</para>
+            <para>設定しない場合、Windows標準の一時ディレクトリを使用します。</para>
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.Overwrite">
+            <summary>
+            DestinationFilePath に既に同名のファイルがあった時、上書きするかどうかの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.TemporaryFilePath">
+            <summary>
+            一時ディレクトリを利用した際に、変換が行われたファイルのフルパスの取得を行います。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.ConvertingPath">
+            <summary>
+            <para>変換を行うファイルパスの取得を行います。</para>
+            <para>UseTemporary=trueの場合、TemporaryFilePath と同じです。</para>
+            <para>UseTemporary=falseの場合、DestinationFilePath と同じです。</para>
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConvertParameter.#ctor">
+            <summary>
+            FileConvertParameter クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.Boolean,System.String)">
+            <summary>
+            FileConvertParameter クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
+            <param name="directory">一時ディレクトリ。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            FileConvertParameter クラスの新しいインスタンスを初期化します。
+            <param name="sourceFilePath">変換元ファイルのフルパス。</param>
+            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
+            <param name="directory">一時ディレクトリ。</param>
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            FileConvertParameter クラスの新しいインスタンスを初期化します。
+            <param name="sourceFilePath">変換元ファイルのフルパス。</param>
+            <param name="destinationFilePath">変換先ファイルのフルパス。</param>
+            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
+            <param name="directory">一時ディレクトリ。</param>
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.IFileConverterFactory">
+            <summary>
+            ファイル変換コンバーター生成用のインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.IFileConverterFactory.Create">
+            <summary>
+            変換コンバーターを生成します。
+            </summary>
+            <returns>変換コンバーター。</returns>
+        </member>
+        <member name="T:Metroit.IO.IFileConverterFactoryMetadata">
+            <summary>
+            ファイル変換コンバーターを決定する為の属性インターフェースを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.IFileConverterFactoryMetadata.ConverterName">
+            <summary>
+            変換コンバーター名を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.IFileConverterFactoryMetadata.FromType">
+            <summary>
+            変換元ファイル種類を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.IFileConverterFactoryMetadata.ToType">
+            <summary>
+            変換先ファイル種類を取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.IO.IConvertParameter">
+            <summary>
+            変換パラメーター用のインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="T:Metroit.ExceptionResources">
+            <summary>
+            例外メッセージのリソース取得を提供します。
+            </summary>
+        </member>
+        <member name="T:Metroit.MetMath">
+            <summary>
+            数値の算出を提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.MetMath.Round(System.Decimal,System.Int32,System.Int32,System.MidpointRounding)">
+            <summary>
+            10進値を、指定した小数部の桁数に丸めます。パラメーターは、値が2つの数値の中間にある場合にその値を丸める方法を指定します。
+            数値を指定した小数位まで丸めます。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <param name="roundingNum">丸め値。四捨五入であれば5。</param>
+            <param name="mode">dが2つの数値の中間にある場合にその値を丸める方法を指定します。</param>
+            <returns>指定した小数部まで丸めた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Round(System.Double,System.Int32,System.Int32,System.MidpointRounding)">
+            <summary>
+            倍精度浮動小数点を、指定した小数部の桁数に丸めます。パラメーターは、値が2つの数値の中間にある場合にその値を丸める方法を指定します。
+            数値を指定した小数位まで丸めます。
+            </summary>
+            <param name="value">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <param name="roundingNum">丸め値。四捨五入であれば5。</param>
+            <param name="mode">dが2つの数値の中間にある場合にその値を丸める方法を指定します。</param>
+            <returns>指定した小数部まで丸めた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Ceiling(System.Decimal,System.Int32)">
+            <summary>
+            指定した10進数以上の数のうち、最小の整数値を返します。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数部まで切り上げた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Ceiling(System.Double,System.Int32)">
+            <summary>
+            指定した倍精度浮動小数点以上の数のうち、最小の整数値を返します。
+            </summary>
+            <param name="a">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数部まで切り上げた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Floor(System.Decimal,System.Int32)">
+            <summary>
+            指定した10進数以下の数のうち、最大の整数値を返します。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数部まで切り捨てた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Floor(System.Double,System.Int32)">
+            <summary>
+            指定した倍精度浮動小数点以下の数のうち、最大の整数値を返します。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数部まで切り捨てた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Truncate(System.Decimal,System.Int32)">
+            <summary>
+            指定した10進数の整数部を計算します。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数位まで丸めた数値。</returns>
+        </member>
+        <member name="M:Metroit.MetMath.Truncate(System.Double,System.Int32)">
+            <summary>
+            指定した倍精度浮動小数の整数部を計算します。
+            </summary>
+            <param name="d">丸め対象数値。</param>
+            <param name="dec">有効小数桁数。</param>
+            <returns>指定した小数位まで丸めた数値。</returns>
+        </member>
+        <member name="T:Metroit.Extensions.SeparateJudgeType">
+            <summary>
+            区切りを判断する種類を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Extensions.SeparateJudgeType.UpperChar">
+            <summary>
+            大文字であることを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Extensions.SeparateJudgeType.LowerChar">
+            <summary>
+            小文字であることを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Extensions.StringExtensions">
+            <summary>
+            String クラスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Extensions.StringExtensions.InsertSeparator(System.String,System.String,Metroit.Extensions.SeparateJudgeType)">
+            <summary>
+            区切り文字判断から単語を区切り、区切り文字を挿入します。
+            </summary>
+            <param name="value">文字列</param>
+            <param name="separateChar">区切り文字</param>
+            <param name="type">区切り文字判断</param>
+            <returns>区切り文字を挿入した文字列</returns>
+        </member>
+        <member name="T:Metroit.Properties.ExceptionResources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ExistsDestFilePath">
+            <summary>
+              Since the file already exists in the conversion destination file path, conversion can not be continued. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ExistsDestFilePath_ja">
+            <summary>
+              変換先ファイルパスに既にファイルが存在するため、変換を続行することはできません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.InvalidConvertParameter">
+            <summary>
+              Invalid conversion parameter specification. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.InvalidConvertParameter_ja">
+            <summary>
+              変換パラメーターの指定が不正です。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.NotExistsFilePath">
+             <summary>
+               The path does not exist.
+            {0} に類似しているローカライズされた文字列を検索します。
+             </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.NotExistsFilePath_ja">
+             <summary>
+               パスが存在しません。
+            {0} に類似しているローカライズされた文字列を検索します。
+             </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ObjectMaxReached">
+            <summary>
+              Because I reached the upper limit, I cannot add it. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ObjectMaxReached_ja">
+            <summary>
+              上限に達したため、追加を行うことができません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ObjectMaxSizeOutOfRange">
+            <summary>
+              The maximum size can not be less than 0. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.ObjectMaxSizeOutOfRange_ja">
+            <summary>
+              最大サイズに0未満を指定することはできません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.SameTempPathAndDestFilePath">
+            <summary>
+              Since the temporary file path and the conversion destination file path are the same, conversion can not be continued. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Properties.ExceptionResources.SameTempPathAndDestFilePath_ja">
+            <summary>
+              一時ファイルパスと変換先ファイルパスが同一のため、変換を続行することはできません。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+            <summary>
+            プロパティのマップ先のデータベース列を表します。
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Name">
+            <summary>
+            プロパティのマップ先列の名前を取得します。
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Order">
+            <summary>
+            取得またはプロパティのマップ先列の 0 から始まる順序を設定します。
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.TypeName">
+            <summary>
+            取得またはプロパティのマップ先列のデータベース プロバイダー固有のデータ型を設定します。
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.ExtensionAttribute">
+            <summary>
+            メソッドが拡張メソッドであること、またはクラスやアセンブリに拡張メソッドが含まれていることを示します。
+            </summary>
+        </member>
+    </members>
+</doc>
