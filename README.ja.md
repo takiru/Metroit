@@ -1,17 +1,17 @@
 [English](README.md "English")
 
 # Metroit #
-���W�b�N���T�|�[�g���邢�����̃N���X�A�����WinForms�̊g���@�\�R���g���[���B  
-�^�[�Q�b�g�t���[�����[�N��.NET 2.0, 4.5�ł��B  
-WinForms�𗘗p�����J�����s���Ă�����ɂ����āA�������̎菕�������܂��B  
-�悭���肻���ȓ���𔲂��o�����Ƃɂ��A�ʓ|�Ȏ������Ȃ��܂��B  
-�悭���邱�Ƃ�AWPF�AEntityFramework�̗��p�ɐ��������鎞�ɁA�������������N���A�ɂ��Ă���邩������܂���B
+ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
+ターゲットフレームワークは.NET 2.0, 4.5です。  
+WinFormsを利用した開発を行っている環境において、いくつかの手助けをします。  
+よくありそうな動作を抜き出すことにより、面倒な実装を省きます。  
+よく困ることや、WPF、EntityFrameworkの利用に制限がある時に、少しだけ問題をクリアにしてくれるかもしれません。
 
 ## Metroit ##
-��{�I�ȃN���X���܂܂�郉�C�u�����ł��B
+基本的なクラスが含まれるライブラリです。
 
-#### �����݂���Dictionary ####
-�Ӑ}�I�ɏ����K�v�Ƃ���Dictionary�𗘗p���܂��B
+#### 上限を設けたDictionary ####
+意図的に上限を必要とするDictionaryを利用します。
 ```C#
 var dic = new Metroit.Collections.Generic.LimitedDictionary<string, string>(3);
 dic.Add("key1", "value1");
@@ -21,34 +21,34 @@ if (!dic.CanAdd()) {
     dic.Add("key4", "value4");  // ArgumentException
 }
 ```
-#### string �N���X�̊g�� ####
+#### string クラスの拡張 ####
 ```C#
 using Metroit.Extensions;
 
-// �啶���𔻒f�ɁA��؂蕶����}������B
+// 大文字を判断に、区切り文字を挿入する。
 var value = "TestTestTest";
 Console.WriteLine(value.InsertSeparator("_", SeparateJudgeType.UpperChar));  // Test_Test_Test
 ```
-#### �ۂߌv�Z���s�� ####
+#### 丸め計算を行う ####
 ```C#
-// �������ʂ��A3��4������B
+// 小数第二位を、3捨4入する。
 var value = 1.24;
 value = Metroit.MetMath.Round(1, 4, MidpointRounding.AwayFromZero); // 1.3
 
-// ������O�ʂ�؂�グ��B
+// 小数第三位を切り上げる。
 var value = 1.123;
 value = Metroit.MetMath.Ceiling(1, 2); // 1.13
 
-// ������O�ʂ�؂�̂Ă�B
+// 小数第三位を切り捨てる。
 var value = 1.123;
 value = Metroit.MetMath.Floor(1, 2); // 1.12
 
-// ������O�ʂ�؂�̂Ă�B
+// 小数第三位を切り捨てる。
 var value = 1.123;
 value = Metroit.MetMath.Truncate(1, 2); // 1.12
 ```
-#### �����̕ϊ����s�� ####
-ConverterBase �N���X���g���āA������ϊ�����N���X���쐬���邱�Ƃ��ł��܂��B
+#### 何かの変換を行う ####
+ConverterBase クラスを使って、何かを変換するクラスを作成することができます。
 ```C#
 using Metroit.IO;
 
@@ -61,16 +61,16 @@ class TestConverter : ConverterBase
     }
     protected void DoConvert(IConverterParameter parameter)
     {
-        // �Ȃɂ��̕ϊ�����
+        // なにかの変換処理
     }
     private void TestConverter_Prepare(IConvertParameter parameter, CancelEventArgs e)
     {
-        // �ϊ��O��������
-        // e.Cancel = true �ŕϊ��L�����Z��
+        // 変換前準備処理
+        // e.Cancel = true で変換キャンセル
     }
     private void TestConverter_ConvertCompleted(IConvertParameter parameter, ConvertCompleteEventArgs e)
     {
-        // �ϊ���������
+        // 変換完了処理
         switch (e.Result) {
             case ConvertResultType.Succeed:
                 break;
@@ -94,8 +94,8 @@ class Test
     // var t = converter.ConvertAsync(); // 4.5 only
 }
 ```
-#### �t�@�C���̕ϊ����s�� ####
-FileConverterBase �N���X���g���āA�t�@�C����ϊ�����N���X���쐬���邱�Ƃ��ł��܂��B
+#### ファイルの変換を行う ####
+FileConverterBase クラスを使って、ファイルを変換するクラスを作成することができます。
 ```C#
 using Metroit.IO;
 
@@ -104,7 +104,7 @@ class TestFileConverter : FileConverterBase
     public TestFileConverter() : base() { }
 
     protected void ConvertFileType() {
-        // �t�@�C���̕ϊ������Ȃ�
+        // ファイルの変換処理など
         File.Copy(this.Parameter.SourceFilePath, this.Parameter.ConvertingPath);
     }
 }
@@ -127,7 +127,7 @@ class Test
     }
 }
 ```
-IFileConverterFactory, IFileConverterFactoryMetadata ���g���āA�ȒP��MEF���������邱�Ƃ��ł��܂��B
+IFileConverterFactory, IFileConverterFactoryMetadata を使って、簡単なMEFを実現することもできます。
 ```C#
 using Metroit.IO;
 
@@ -146,11 +146,11 @@ public class TestConverterFactory : IFileTypeConverterFactory
 ---
 
 ## Metroit.Data ##
-�f�[�^�x�[�X�����������@�\���܂܂�郉�C�u�����ł��B
+データベース操作を助ける機能が含まれるライブラリです。
 
-#### �f�[�^�x�[�X�֐ڑ����� ####
-�v���o�C�_�[�̕s�ϖ����o����K�v���Ȃ��Ȃ�܂��B  
-Dictionary �ɂ��ڑ�����ݒ�ł��܂��B
+#### データベースへ接続する ####
+プロバイダーの不変名を覚える必要がなくなります。  
+Dictionary による接続情報を設定できます。
 ```C#
 using Metroit.Data.Common;
 using Metroit.Data.Extensions;
@@ -167,8 +167,8 @@ using (var conn = pf.CreateConnection()) {
 }
 ```
 
-#### �N�G���𔭍s���� ####
-DbConnection.CreateQueryCommand()�́A�����I��BindByName()�����{���܂��B
+#### クエリを発行する ####
+DbConnection.CreateQueryCommand()は、自動的にBindByName()を実施します。
 ```C#
 // conn : DbConnection
 var query = "SELECT * FROM TBL WHERE COLUMN1 = :COLUMN1 AND COLUMN2 = :COLUMN2";
@@ -180,9 +180,9 @@ var dt = new DataTable();
 comm.Fill(pf, dt);
 ```
 
-#### �g�����U�N�V�����𗘗p�����N�G���𔭍s���� ####
-DbTransaction.CreateQueryCommand()�́A�����I��BindByName()�����{���܂��B  
-DbTransaction ���쐬��́ADbConnection �𑀍삷��K�v������܂���B
+#### トランザクションを利用したクエリを発行する ####
+DbTransaction.CreateQueryCommand()は、自動的にBindByName()を実施します。  
+DbTransaction を作成後は、DbConnection を操作する必要がありません。
 ```C#
 using Metroit.Data.Extensions;
 
@@ -201,7 +201,7 @@ using (var trans = conn.BeginTransaction())
 }
 ```
 
-#### �v���V�[�W���̎��s���ʂ𓾂� ####
+#### プロシージャの実行結果を得る ####
 ```C#
 using Metroit.Data.Extensions;
 
@@ -217,8 +217,8 @@ var result = comm.GetProcedureResult()
 Console.WriteLine(result.ReturnValue.ToString());
 ```
 
-#### �擾�����f�[�^���I�u�W�F�N�g�ő��삷�� ####
-DataTable �𐶂ň������Ƃ�������܂��B
+#### 取得したデータをオブジェクトで操作する ####
+DataTable を生で扱うことを回避します。
 ```C#
 using Metroit.Data.Extensions;
 
@@ -226,7 +226,7 @@ class Tbl1
 {
     public string Column1 { get; set; }
 
-    // �v���p�e�B�� != �J�������̎��́AColumnAttribute �𗘗p����
+    // プロパティ名 != カラム名の時は、ColumnAttribute を利用する
     [Column("COLUMN2")]
     public string ColumnPrpoerty2 { get; set; }
 }
@@ -240,13 +240,13 @@ foreach(var row in dt.AsEnumerableEntity<Tbl1>())
     Console.WriteLine(row.ColumnPrpoerty2);
 }
 
-// �s�P�ʂɍs���ꍇ
+// 行単位に行う場合
 var row = dt[0].ToEntity<Tbl1>();
 Console.WriteLine(row.Column1);
 ```
 
-#### �N�G��������̍쐬���s�� ####
-�N�G��������̐��������������܂��B
+#### クエリ文字列の作成を行う ####
+クエリ文字列の生成を少し助けます。
 ```C#
 using Metroit.Data;
 
@@ -256,9 +256,9 @@ builder.ReplaceQueries(new List<string, string>() { "REP", "COLUMN1" });
 var query = builder.Build(); // SELECT *, COLUMN1 FROM TBL
 ```
 
-#### �N�G���p�����[�^�[�̍œK�����s�� ####
-�N�G���Ɏw�肳��Ă���p�����[�^�[�̐ړ�����L�������߂���̂ɍœK�����܂��B  
-�ړ�����":", "@"���A�L����"?"��F�����܂��B
+#### クエリパラメーターの最適化を行う ####
+クエリに指定されているパラメーターの接頭辞や記号を求めるものに最適化します。  
+接頭辞は":", "@"を、記号は"?"を認識します。
 ```C#
 using Metroit.Data;
 
@@ -269,109 +269,113 @@ query = op.GetOptimizedText(query, QueryBindVariableType.ColonWithParam); // SEL
 ---
 
 ## Metroit.Windows.Forms ##
-WinForms �A�v���P�[�V�����̍쐬�������郉�C�u�����ł��B
+WinForms アプリケーションの作成を助けるライブラリです。
 
-#### �g�����ꂽ Form ####
+#### 拡張された Form ####
 - MetForm  
-  ������UI����ƃ��W�b�N���菕�����܂��B
-  - �v���p�e�B  
+  少しのUI動作とロジックを手助けします。
+  - プロパティ  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |EnterFocus          |Enter�L�[�Ńt�H�[�J�X�J�ڂ��邩�ǂ����B                 |
-    |EscPush             |ESC�L�[�̓���B                                         |
-    |Request             |���N�G�X�g�f�[�^�B                                      |
-    |Response            |���X�|���X�f�[�^�B                                      |
+    |EnterFocus          |Enterキーでフォーカス遷移するかどうか。                 |
+    |EscPush             |ESCキーの動作。                                         |
+    |Request             |リクエストデータ。                                      |
+    |Response            |レスポンスデータ。                                      |
 
-  - ���\�b�h  
+  - メソッド  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |Show                |���N�G�X�g����ʂɑ����ă��[�h���X�\������B            |
-    |ShowDialog          |���N�G�X�g����ʂɑ����ă��[�_���\������B              |
+    |Show                |リクエストを画面に送ってモードレス表示する。            |
+    |ShowDialog          |リクエストを画面に送ってモーダル表示する。              |
 
-#### �g�����ꂽ TextBox ####
+#### 拡張された TextBox ####
 - MetTextBox  
-  ��������UI����ƃ��W�b�N���菕�����܂��B
-  - �v���p�e�B  
+  いくつかのUI動作とロジックを手助けします。
+  - プロパティ  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |AutoFocus           |�ő���͌��܂œ��͂��ꂽ��A���̃R���g���[���֑J�ڂ���B|
-    |FocusSelect         |�t�H�[�J�X�𓾂����A�����𔽓]�����邩�ǂ����B          |
-    |MultilineSelectAll  |Multiline�̎��ACtrl+A��L���ɂ���B                     |
-    |BaseBackColor       |��{�̔w�i�F�B                                          |
-    |BaseForeColor       |��{�̕����F�B                                          |
-    |FocusBackColor      |�t�H�[�J�X�𓾂����̔w�i�F�B                            |
-    |FocusForeColor      |�t�H�[�J�X�𓾂����̕����F�B                            |
-    |ReadOnlyLabel       |Label �ɒu�������邩�ǂ����B                            |
+    |AutoFocus           |最大入力桁まで入力されたら、次のコントロールへ遷移する。|
+    |FocusSelect         |フォーカスを得た時、文字を反転させるかどうか。          |
+    |MultilineSelectAll  |Multilineの時、Ctrl+Aを有効にする。                     |
+    |BaseBackColor       |基本の背景色。                                          |
+    |BaseForeColor       |基本の文字色。                                          |
+    |FocusBackColor      |フォーカスを得た時の背景色。                            |
+    |FocusForeColor      |フォーカスを得た時の文字色。                            |
+    |ReadOnlyLabel       |Label に置き換えるかどうか。                            |
 
-        BackColor, ForeColor �́A���W�b�N����̂ݗ��p�\�ł��B  
-        �������A�t�H�[�J�X�J�ڂɂ��ABaseBackColor, FocusBackColor, BaseForeColor, FocusForeColor ���D�悳��܂��B
+        BackColor, ForeColor は、ロジックからのみ利用可能です。  
+        ただし、フォーカス遷移により、BaseBackColor, FocusBackColor, BaseForeColor, FocusForeColor が優先されます。
 
-  - �C�x���g  
+  - イベント  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |TextChangeValidation|���͂��ꂽ�l�̎�����؂�����B                          |
+    |TextChangeValidation|入力された値の受入検証をする。                          |
     
-        AutoComplete, ���ɖ߂��ɂ��ύX�͔������܂���B
+        TextChangeValidationは、以下の操作では発生しません。
+        - AutoComplete  
+        - 削除(Backspace, Deleteキーなど)  
+        - 切り取り(コンテキストメニュー, Ctrl+X)  
+        - 元に戻す(コンテキストメニュー, Ctrl+Z)  
 
 - MetLimitedTextBox  
-  MetTextBox ���p�����܂��B  
-  �������͂̐�����K�v����ꍇ�̎菕�������܂��B  
-  - �v���p�e�B  
+  MetTextBox を継承します。  
+  文字入力の制限を必要する場合の手助けをします。  
+  - プロパティ  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |AcceptsChar         |���͂��󂯓���镶���̎�ނ��w�肷��B                  |
-    |ByteEncoding        |MaxByteLength�̔���ɗ��p���镶���G���R�[�f�B���O�B       |
-    |CustomChars         |�J�X�^���w�莞�̎󂯕t���镶�����w�肷��B              |
-    |ExcludeChars        |�����̎�ޓ��ŁA�󂯓���Ȃ��������w�肷��B            |
-    |FullSignSpecialChars|�S�p�L���w�莞�ɁA���ɂ��󂯓����S�p�L�����w�肷��B  |
-    |MaxByteLength       |���͂�������ő�o�C�g���B                            |
+    |AcceptsChar         |入力を受け入れる文字の種類を指定する。                  |
+    |ByteEncoding        |MaxByteLengthの判定に利用する文字エンコーディング。       |
+    |CustomChars         |カスタム指定時の受け付ける文字を指定する。              |
+    |ExcludeChars        |文字の種類内で、受け入れない文字を指定する。            |
+    |FullSignSpecialChars|全角記号指定時に、他にも受け入れる全角記号を指定する。  |
+    |MaxByteLength       |入力を許可する最大バイト数。                            |
 
 - MetNumericTextBox  
-  MetTextBox ���p�����܂��B  
-  ���l���͂̐�����K�v�Ƃ���ꍇ�̎菕�������܂��B
-  - �v���p�e�B  
+  MetTextBox を継承します。  
+  数値入力の制限を必要とする場合の手助けをします。
+  - プロパティ  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |AcceptNegative      |�������󂯓���邩�ǂ����B                              |
-    |AcceptNull          |null���󂯓���邩�ǂ����B                              |
-    |CurrencySymbol      |���l�̕\�����@���ʉ݂̎��̋L���B                        |
-    |DecimalDigits       |���͉\�ȏ��������B                                    |
-    |DecimalSeparator    |�����Ə����̋�؂蕶���B                                |
-    |GroupSeparator      |�����̋�؂蕶���B                                      |
-    |GroupSizes          |�����̋�؂�ʒu�B                                      |
-    |MaxValue            |���͂�������ő�l�B                                  |
-    |MinValue            |���͂�������ŏ��l�B                                  |
-    |NegativePattern     |�����̎��̕\�����@�B                                    |
-    |NegativeSign        |�����̕\�������B                                        |
-    |PercentSymbol       |���l�̕\�����@���p�[�Z���g�̎��̋L���B                  |
-    |PositivePattern     |�����̎��̕\�����@�B                                    |
-    |Mode                |���l�̕\�����@�B                                        |
-    |NegativeForeColor   |�����̎��̕����F�B                                      |
-    |Value               |���͒l�B                                                |
+    |AcceptNegative      |負数を受け入れるかどうか。                              |
+    |AcceptNull          |nullを受け入れるかどうか。                              |
+    |CurrencySymbol      |数値の表現方法が通貨の時の記号。                        |
+    |DecimalDigits       |入力可能な小数桁数。                                    |
+    |DecimalSeparator    |整数と小数の区切り文字。                                |
+    |GroupSeparator      |整数の区切り文字。                                      |
+    |GroupSizes          |整数の区切る位置。                                      |
+    |MaxValue            |入力を許可する最大値。                                  |
+    |MinValue            |入力を許可する最小値。                                  |
+    |NegativePattern     |負数の時の表現方法。                                    |
+    |NegativeSign        |負数の表現符号。                                        |
+    |PercentSymbol       |数値の表現方法がパーセントの時の記号。                  |
+    |PositivePattern     |正数の時の表現方法。                                    |
+    |Mode                |数値の表現方法。                                        |
+    |NegativeForeColor   |負数の時の文字色。                                      |
+    |Value               |入力値。                                                |
 
-        ���L�̃v���p�e�B�͗��p�ł��܂���B  
+        下記のプロパティは利用できません。  
         ImeMode, MaxLength, Multiline, PasswordChar, UseSystemPasswordChar, AcceptsReturn, AcceptsTab, CharacterCasing, Lines, ScrollBars, RightToLeft, MultilineSelectAll
 
-#### �g�����ꂽ DateTimePicker ####
+#### 拡張された DateTimePicker ####
 - MetDateTimePicker  
-  ���t�̓��͂ɂ��āA�������̎菕�������܂��B
-  - �v���p�e�B  
+  日付の入力について、いくつかの手助けをします。
+  - プロパティ  
 
-    |���O                |�Ӗ�                                                    |
+    |名前                |意味                                                    |
     |--------------------|--------------------------------------------------------|
-    |AcceptNull          |null���󂯓���邩�ǂ����B                              |
-    |ReadOnly            |�ǂݎ���p�ɂ��邩�ǂ����B                            |
-    |ReadOnlyLabel       |Label �ɒu�������邩�ǂ����B                            |
-    |Value               |���͒l�B                                                |
-    |BaseBackColor       |��{�̔w�i�F�B                                          |
-    |BaseForeColor       |��{�̕����F�B                                          |
-    |FocusBackColor      |�t�H�[�J�X�𓾂����̔w�i�F�B                            |
-    |FocusForeColor      |�t�H�[�J�X�𓾂����̕����F�B                            |
+    |AcceptNull          |nullを受け入れるかどうか。                              |
+    |ReadOnly            |読み取り専用にするかどうか。                            |
+    |ReadOnlyLabel       |Label に置き換えるかどうか。                            |
+    |Value               |入力値。                                                |
+    |BaseBackColor       |基本の背景色。                                          |
+    |BaseForeColor       |基本の文字色。                                          |
+    |FocusBackColor      |フォーカスを得た時の背景色。                            |
+    |FocusForeColor      |フォーカスを得た時の文字色。                            |
 
-        ReadOnly �́ATextBox �ɒu�������܂��B
+        ReadOnly は、TextBox に置き換えます。
