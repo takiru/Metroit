@@ -315,7 +315,12 @@ It is a library that helps to create WinForms application.
     |--------------------|--------------------------------------------------------|
     |TextChangeValidation|Validate acceptance of the entered value.                          |
     
-        No changes due to AutoComplete, Undo will occur.
+        TextChangeValidation does not occur with the following operations.
+        - AutoComplete
+        - Delete (Backspace, Delete key, etc.)
+        - Cut (context menu, Ctrl+X)
+        - Undo (context menu, Ctrl+Z)
+
 
 - MetLimitedTextBox  
   Inherit MetTextBox.  
