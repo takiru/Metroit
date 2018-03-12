@@ -56,15 +56,15 @@ namespace Metroit.Data
             // 挿入クエリ
             foreach (var insert in this.InsertQueries)
             {
-                query.Append(insert + " ");
+                query.AppendLine(insert.Trim());
             }
 
-            query.Append(this.Query);
+            query.AppendLine(this.Query.Trim());
 
             // 追加クエリ
             foreach (var add in this.AddQueries)
             {
-                query.Append(" " + add);
+                query.AppendLine(add.Trim());
             }
 
             // 差し替えクエリ
@@ -77,7 +77,7 @@ namespace Metroit.Data
                 }
             }
 
-            return query.ToString();
+            return query.ToString().Trim();
         }
 
         /// <summary>
