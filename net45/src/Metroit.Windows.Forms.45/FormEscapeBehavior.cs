@@ -1,25 +1,66 @@
-﻿namespace Metroit.Windows.Forms
+﻿using System.ComponentModel;
+using System.Text;
+
+namespace Metroit.Windows.Forms
 {
     /// <summary>
-    /// ESCキーが押された時の振る舞いの定義です。
+    /// ESCキーが押された時の振る舞いを扱います。
     /// </summary>
-    public enum FormEscapeBehavior
+    [TypeConverter(typeof(ExpandableObjectConverter))]
+    public class FormEscapeBehavior
     {
         /// <summary>
-        /// 何もしないことを示します。
+        /// このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。
         /// </summary>
-        None,
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetDescription("ControlRollback")]
+        public bool ControlRollback { get; set; } = false;
+
         /// <summary>
-        /// コントロールがアクティブの時に非アクティブにすることを示します。
+        /// コントロールを非アクティブにします。
         /// </summary>
-        ControlLeave,
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetDescription("ControlLeave")]
+        public bool ControlLeave { get; set; } = false;
+
         /// <summary>
-        /// フォームを閉じることを示します。
+        /// フォームを閉じます。
         /// </summary>
-        FormClose,
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetDescription("ControlFormClose")]
+        public bool FormClose { get; set; } = false;
+
         /// <summary>
-        /// 1回目の押下で非アクティブにし、2回目の押下でフォームを閉じることを示します。
+        /// 有効になっている要素を文字列で返却します。
         /// </summary>
-        Both
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            if (ControlRollback)
+            {
+                sb.Append("ControlRollback,");
+            }
+            if (ControlLeave)
+            {
+                sb.Append("ControlLeave,");
+            }
+            if (FormClose)
+            {
+                sb.Append("FormClose,");
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("(None)");
+            }
+            else
+            {
+                sb.Length -= 1;
+            }
+            return sb.ToString();
+        }
     }
 }

@@ -429,4 +429,22 @@
   <data name="ControlAcceptNull.ja" xml:space="preserve">
     <value>NULLの入力を受け入れるかどうかを取得または設定します。</value>
   </data>
+  <data name="ControlFormClose" xml:space="preserve">
+    <value>Close the form.</value>
+  </data>
+  <data name="ControlFormClose.ja" xml:space="preserve">
+    <value>フォームを閉じます。</value>
+  </data>
+  <data name="ControlLeave" xml:space="preserve">
+    <value>Deactivate the control.</value>
+  </data>
+  <data name="ControlLeave.ja" xml:space="preserve">
+    <value>コントロールを非アクティブにします。</value>
+  </data>
+  <data name="ControlRollback" xml:space="preserve">
+    <value>When implementing the ILeaveRollback interface for this form or each control, roll back control information.</value>
+  </data>
+  <data name="ControlRollback.ja" xml:space="preserve">
+    <value>このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。</value>
+  </data>
 </root>

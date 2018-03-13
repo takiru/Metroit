@@ -76,6 +76,7 @@
     <Compile Include="CurrencyNegativePatternType.cs" />
     <Compile Include="CurrencyPositivePatternType.cs" />
     <Compile Include="ExceptionResources.cs" />
+    <Compile Include="IControlRollback.cs" />
     <Compile Include="MetDescriptionAttribute.cs" />
     <Compile Include="MetCategoryAttribute.cs" />
     <Compile Include="DesignResources.cs" />

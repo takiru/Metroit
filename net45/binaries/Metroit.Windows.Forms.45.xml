@@ -513,6 +513,26 @@
             例外メッセージのリソース取得を提供します。
             </summary>
         </member>
+        <member name="T:Metroit.Windows.Forms.IControlRollback">
+            <summary>
+            コントロールのロールバックを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.IControlRollback.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            ロールバック済みかどうかを取得します。
+            </summary>
+            <param name="sender">指示したオブジェクト。</param>
+            <param name="control">コントロール。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.IControlRollback.Rollback(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            ロールバックを実施します。
+            </summary>
+            <param name="sender">指示したオブジェクト。</param>
+            <param name="control">コントロール。</param>
+        </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>
             Metroit で用意された説明文を提供します。
@@ -564,28 +584,29 @@
         </member>
         <member name="T:Metroit.Windows.Forms.FormEscapeBehavior">
             <summary>
-            ESCキーが押された時の振る舞いの定義です。
+            ESCキーが押された時の振る舞いを扱います。
             </summary>
         </member>
-        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.None">
+        <member name="P:Metroit.Windows.Forms.FormEscapeBehavior.ControlRollback">
             <summary>
-            何もしないことを示します。
+            このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。
             </summary>
         </member>
-        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.ControlLeave">
+        <member name="P:Metroit.Windows.Forms.FormEscapeBehavior.ControlLeave">
             <summary>
-            コントロールがアクティブの時に非アクティブにすることを示します。
+            コントロールを非アクティブにします。
             </summary>
         </member>
-        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.FormClose">
+        <member name="P:Metroit.Windows.Forms.FormEscapeBehavior.FormClose">
             <summary>
-            フォームを閉じることを示します。
+            フォームを閉じます。
             </summary>
         </member>
-        <member name="F:Metroit.Windows.Forms.FormEscapeBehavior.Both">
+        <member name="M:Metroit.Windows.Forms.FormEscapeBehavior.ToString">
             <summary>
-            1回目の押下で非アクティブにし、2回目の押下でフォームを閉じることを示します。
+            有効になっている要素を文字列で返却します。
             </summary>
+            <returns></returns>
         </member>
         <member name="T:Metroit.Windows.Forms.NumericNegativePatternType">
             <summary>
@@ -959,6 +980,21 @@
             実装はありません。
             </summary>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            ロールバック済みかどうかを取得します。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
+            <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.Rollback(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            フォーカスを得た時の値にロールバックを行います。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnCreateControl">
             <summary>
             コントロールの生成が完了したことを通知し、ReadOnly, ReadOnlyLabelの制御を行います。
@@ -1070,6 +1106,17 @@
             ESCキーが押された時の動作を取得または設定します。
             </summary>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.ShouldSerializeEscPush">
+            <summary>
+            EscPush が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.ResetEscPush">
+            <summary>
+            EscPush のリセット操作を行う。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.MetForm.Request">
             <summary>
             呼び元からのリクエストパラメータを取得または設定します。
@@ -1116,6 +1163,40 @@
             <param name="msg">Messageオブジェクト</param>
             <param name="keyData">Keysオブジェクト</param>
             <returns>true:以降のイベントハンドラを制御しない, false:以降のイベントハンドラを制御する</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.GetLeaveRollbackObject">
+            <summary>
+            ILeaveRollback オブジェクトを取得する。
+            </summary>
+            <returns>ILeaveRollback オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.IsRollbacked(Metroit.Windows.Forms.IControlRollback)">
+            <summary>
+            対象コントロールのロールバックが済んでいるかどうかを取得する。
+            </summary>
+            <param name="leaveRollback">ILeaveRollback オブジェクト</param>
+            <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.RollbackControl(Metroit.Windows.Forms.IControlRollback,System.Boolean)">
+            <summary>
+            コントロールのロールバックを行う。
+            </summary>
+            <param name="leaveRollback">ILeaveRollback オブジェクト。</param>
+            <param name="isRollbacked">ロールバック済みかどうか。</param>
+            <returns>true:ロールバックの実施, false:ロールバックの未実施。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.LeaveControl(System.Boolean)">
+            <summary>
+            コントロールのフォーカスアウトを行う。
+            </summary>
+            <param name="isRollbacked">ロールバック済みかどうか。</param>
+            <returns>true:フォーカスアウトの実施, false:フォーカスアウトの未実施。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.CloseForm">
+            <summary>
+            フォームを閉じる。
+            </summary>
+            <returns>true:フォーム終了の実施, false:フォーム終了の未実施。</returns>
         </member>
         <member name="F:Metroit.Windows.Forms.MetForm.components">
             <summary>
@@ -1706,6 +1787,16 @@
               フォーカスを得た時、テキストを反転させるかを設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFormClose">
+            <summary>
+              Close the form. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFormClose_ja">
+            <summary>
+              フォームを閉じます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFullSignSpecialChars">
             <summary>
               Separately specify the double-byte symbols to be set on a line-by-line basis. に類似しているローカライズされた文字列を検索します。
@@ -1734,6 +1825,16 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlGroupSizes_ja">
             <summary>
               整数部の区切り桁数を表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLeave">
+            <summary>
+              Deactivate the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLeave_ja">
+            <summary>
+              コントロールを非アクティブにします。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxByteLength">
@@ -1854,6 +1955,16 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlReadOnlyLabel_ja">
             <summary>
               コントロールをラベルで置き換えます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlRollback">
+            <summary>
+              When implementing the ILeaveRollback interface for this form or each control, roll back control information. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlRollback_ja">
+            <summary>
+              このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlValue">
@@ -2618,6 +2729,21 @@
             <summary>
             InitializeComponent()でコントロールの初期化が完了したことを通知し、ReadOnlyLabelの制御を行います。
             </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            ロールバック済みかどうかを取得します。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
+            <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.Rollback(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            フォーカスを得た時の値にロールバックを行います。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.OnTextChanged(System.EventArgs)">
             <summary>

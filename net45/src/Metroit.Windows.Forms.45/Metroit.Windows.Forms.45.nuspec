@@ -10,7 +10,9 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>New release.</releaseNotes>
+    <releaseNotes>Changed behavior of MetForm's EscPush property.
+MetTextBox, MetDateTimePicker has methods to validate and implement value rollback.
+It is not compatible with 1.0.0.</releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>

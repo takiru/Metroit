@@ -33,7 +33,7 @@ namespace Metroit.Windows.Forms
     /// Textプロパティをコード上で書き換え、入力値が拒否された場合に発生します。
     /// </exception>
     [ToolboxItem(true)]
-    public class MetTextBox : TextBox, ISupportInitialize
+    public class MetTextBox : TextBox, ISupportInitialize, IControlRollback
     {
         /// <summary>
         /// MetTextBox の新しいインスタンスを初期化します。
@@ -73,6 +73,8 @@ namespace Metroit.Windows.Forms
         // IME入力時、何か1文字でも入力値を拒否したかどうか
         private bool isDenyImeKeyChar = false;
 
+        private string enterText = "";
+
         /// <summary>
         /// フォーカスを得た時、色の変更とテキストの反転を行う。
         /// </summary>
@@ -80,6 +82,8 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_Enter(object sender, EventArgs e)
         {
+            this.enterText = this.Text;
+
             // フォーカス取得時の色に変更
             this.changeFocusColor();
 
@@ -455,6 +459,10 @@ namespace Metroit.Windows.Forms
             }
             set
             {
+                if (value && this.ReadOnly)
+                {
+                    this.ReadOnly = false;
+                }
                 this.readOnlyLabel = value;
 
                 if (ControlExtensions.IsDesignMode(this))
@@ -770,6 +778,27 @@ namespace Metroit.Windows.Forms
 
             this.switchLabel();
 
+        }
+
+        /// <summary>
+        /// ロールバック済みかどうかを取得します。
+        /// </summary>
+        /// <param name="sender">ロールバック指示オブジェクト。</param>
+        /// <param name="control">ロールバック対象オブジェクト。</param>
+        /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        public bool IsRollbacked(object sender, Control control)
+        {
+            return this.Text == this.enterText;
+        }
+
+        /// <summary>
+        /// フォーカスを得た時の値にロールバックを行います。
+        /// </summary>
+        /// <param name="sender">ロールバック指示オブジェクト。</param>
+        /// <param name="control">ロールバック対象オブジェクト。</param>
+        public void Rollback(object sender, Control control)
+        {
+            this.Text = this.enterText;
         }
 
         /// <summary>

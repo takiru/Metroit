@@ -493,6 +493,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Close the form. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFormClose {
+            get {
+                return ResourceManager.GetString("ControlFormClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォームを閉じます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFormClose_ja {
+            get {
+                return ResourceManager.GetString("ControlFormClose.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Separately specify the double-byte symbols to be set on a line-by-line basis. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlFullSignSpecialChars {
@@ -543,6 +561,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlGroupSizes_ja {
             get {
                 return ResourceManager.GetString("ControlGroupSizes.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Deactivate the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLeave {
+            get {
+                return ResourceManager.GetString("ControlLeave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロールを非アクティブにします。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLeave_ja {
+            get {
+                return ResourceManager.GetString("ControlLeave.ja", resourceCulture);
             }
         }
         
@@ -759,6 +795,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlReadOnlyLabel_ja {
             get {
                 return ResourceManager.GetString("ControlReadOnlyLabel.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   When implementing the ILeaveRollback interface for this form or each control, roll back control information. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlRollback {
+            get {
+                return ResourceManager.GetString("ControlRollback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlRollback_ja {
+            get {
+                return ResourceManager.GetString("ControlRollback.ja", resourceCulture);
             }
         }
         

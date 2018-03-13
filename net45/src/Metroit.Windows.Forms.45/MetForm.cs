@@ -43,10 +43,28 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetBehavior")]
-        [DefaultValue(FormEscapeBehavior.None)]
         [MetDescription("ControlEscPush")]
-        public FormEscapeBehavior EscPush { get; set; } = FormEscapeBehavior.None;
+        public FormEscapeBehavior EscPush { get; set; } = new FormEscapeBehavior();
 
+        /// <summary>
+        /// EscPush が既定値から変更されたかどうかを返却する。
+        /// </summary>
+        /// <returns>true:変更された, false:変更されていない</returns>
+        private bool ShouldSerializeEscPush()
+        {
+            return this.EscPush.ControlRollback | this.EscPush.ControlLeave | this.EscPush.FormClose;
+        }
+
+        /// <summary>
+        /// EscPush のリセット操作を行う。
+        /// </summary>
+        private void ResetEscPush()
+        {
+            this.EscPush.ControlRollback = false;
+            this.EscPush.ControlLeave = false;
+            this.EscPush.FormClose = false;
+        }
+        
         /// <summary>
         /// 呼び元からのリクエストパラメータを取得または設定します。
         /// </summary>
@@ -118,19 +136,13 @@ namespace Metroit.Windows.Forms
         /// <returns>true:以降のイベントハンドラを制御しない, false:以降のイベントハンドラを制御する</returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            // システムメニューアイテム選択
-            const int WM_SYSCOMMAND = 0x0112;
-
-            // 画面を閉じる
-            const int SC_CLOSE = 0xF060;
-
             // Enter
             if (EnterFocus && keyData == Keys.Return)
             {
                 // 対象がボタンの時は通常制御とする
                 if (this.ActiveControl is Button)
                 {
-                    return false;
+                    return base.ProcessCmdKey(ref msg, keyData);
                 }
                 this.MoveNextControl();
                 return true;
@@ -139,31 +151,144 @@ namespace Metroit.Windows.Forms
             // ESC
             if (keyData == Keys.Escape)
             {
-                // コントロールのアクティブ状態に応じて動作
-                if (this.ActiveControl == null)
+                var rollback = GetLeaveRollbackObject();
+                var isRollbacked = IsRollbacked(rollback);
+
+                // ControlRollback
+                if (this.RollbackControl(rollback, isRollbacked))
                 {
-                    if (this.EscPush == FormEscapeBehavior.FormClose || this.EscPush == FormEscapeBehavior.Both)
-                    {
-                        MetForm.SendMessage(this.Handle, WM_SYSCOMMAND,SC_CLOSE, 0);
-                        return true;
-                    }
+                    return true;
                 }
-                else
+
+                // ControlLeave
+                if (this.LeaveControl(isRollbacked))
                 {
-                    if (this.EscPush == FormEscapeBehavior.ControlLeave || this.EscPush == FormEscapeBehavior.Both)
-                    {
-                        this.ActiveControl = null;
-                        return true;
-                    }
-                    if (this.EscPush == FormEscapeBehavior.FormClose)
-                    {
-                        MetForm.SendMessage(this.Handle, WM_SYSCOMMAND, SC_CLOSE, 0);
-                        return true;
-                    }
+                    return true;
+                }
+
+                // FormClose
+                if (this.CloseForm())
+                {
+                    return true;
                 }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
+        /// ILeaveRollback オブジェクトを取得する。
+        /// </summary>
+        /// <returns>ILeaveRollback オブジェクト。</returns>
+        private IControlRollback GetLeaveRollbackObject()
+        {
+            // 対象コントロールにILeaveRollback が実装されていない場合は、フォームに実装されているかまで見る
+            var rollback = this.ActiveControl as IControlRollback;
+            if (rollback == null)
+            {
+                rollback = this as IControlRollback;
+            }
+            return rollback;
+        }
+
+        /// <summary>
+        /// 対象コントロールのロールバックが済んでいるかどうかを取得する。
+        /// </summary>
+        /// <param name="leaveRollback">ILeaveRollback オブジェクト</param>
+        /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        private bool IsRollbacked(IControlRollback leaveRollback)
+        {
+            // ILeaveRollback インターフェースを実装していなかったらロールバック済みとみなす
+            if (leaveRollback == null)
+            {
+                return true;
+            }
+
+            return leaveRollback.IsRollbacked(this, this.ActiveControl);
+        }
+
+        /// <summary>
+        /// コントロールのロールバックを行う。
+        /// </summary>
+        /// <param name="leaveRollback">ILeaveRollback オブジェクト。</param>
+        /// <param name="isRollbacked">ロールバック済みかどうか。</param>
+        /// <returns>true:ロールバックの実施, false:ロールバックの未実施。</returns>
+        private bool RollbackControl(IControlRollback leaveRollback, bool isRollbacked)
+        {
+            if (!this.EscPush.ControlRollback)
+            {
+                return false;
+            }
+            if (this.ActiveControl == null)
+            {
+                return false;
+            }
+
+            // ロールバック済みなら処理しない
+            if (isRollbacked)
+            {
+                return false;
+            }
+            leaveRollback.Rollback(this, this.ActiveControl);
+            return true;
+        }
+
+        /// <summary>
+        /// コントロールのフォーカスアウトを行う。
+        /// </summary>
+        /// <param name="isRollbacked">ロールバック済みかどうか。</param>
+        /// <returns>true:フォーカスアウトの実施, false:フォーカスアウトの未実施。</returns>
+        private bool LeaveControl(bool isRollbacked)
+        {
+            if (!this.EscPush.ControlLeave)
+            {
+                return false;
+            }
+            if (this.ActiveControl == null)
+            {
+                return false;
+            }
+
+            // ロールバック済みでない場合は処理しない
+            if (this.EscPush.ControlRollback && !isRollbacked)
+            {
+                return false;
+            }
+
+            // 一時的にボタンを用意して、ボタンにフォーカス遷移させる
+            using (var hiddenButton = new Button())
+            {
+                hiddenButton.Name = Guid.NewGuid().ToString("N").Substring(0, 10);
+                hiddenButton.Size = new System.Drawing.Size(0, 0);
+                this.Controls.Add(hiddenButton);
+
+                hiddenButton.Focus();
+
+                this.ActiveControl = null;
+                this.Controls.Remove(hiddenButton);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// フォームを閉じる。
+        /// </summary>
+        /// <returns>true:フォーム終了の実施, false:フォーム終了の未実施。</returns>
+        private bool CloseForm()
+        {
+            // システムメニューアイテム選択
+            const int WM_SYSCOMMAND = 0x0112;
+
+            // 画面を閉じる
+            const int SC_CLOSE = 0xF060;
+
+            if (!this.EscPush.FormClose)
+            {
+                return false;
+            }
+
+            MetForm.SendMessage(this.Handle, WM_SYSCOMMAND, SC_CLOSE, 0);
+            return true;
         }
 
         #endregion        

@@ -11,7 +11,7 @@ namespace Metroit.Windows.Forms
     /// ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。
     /// </summary>
     [ToolboxItem(true)]
-    public class MetDateTimePicker : DateTimePicker, ISupportInitialize
+    public class MetDateTimePicker : DateTimePicker, ISupportInitialize, IControlRollback
     {
         /// <summary>
         /// MetDateTimePicker の新しいインスタンスを初期化します。
@@ -33,6 +33,7 @@ namespace Metroit.Windows.Forms
         #region イベント
 
         private bool isNull = false;
+        private DateTime? enterValue = null;
 
         /// <summary>
         /// Backspace, Deleteキー押下でnull表示にする。
@@ -80,6 +81,8 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetDateTimePicker_Enter(object sender, EventArgs e)
         {
+            this.enterValue = this.Value;
+
             // フォーカス取得時の色に変更
             this.changeFocusColor();
         }
@@ -977,6 +980,27 @@ namespace Metroit.Windows.Forms
         /// 実装はありません。
         /// </summary>
         public void EndInit() { }
+
+        /// <summary>
+        /// ロールバック済みかどうかを取得します。
+        /// </summary>
+        /// <param name="sender">ロールバック指示オブジェクト。</param>
+        /// <param name="control">ロールバック対象オブジェクト。</param>
+        /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        public bool IsRollbacked(object sender, Control control)
+        {
+            return this.Value == this.enterValue;
+        }
+
+        /// <summary>
+        /// フォーカスを得た時の値にロールバックを行います。
+        /// </summary>
+        /// <param name="sender">ロールバック指示オブジェクト。</param>
+        /// <param name="control">ロールバック対象オブジェクト。</param>
+        public void Rollback(object sender, Control control)
+        {
+            this.Value = this.enterValue;
+        }
 
         /// <summary>
         /// コントロールの生成が完了したことを通知し、ReadOnly, ReadOnlyLabelの制御を行います。

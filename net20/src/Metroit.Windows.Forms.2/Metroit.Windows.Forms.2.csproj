@@ -89,6 +89,7 @@
     <Compile Include="ExceptionResources.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="FormEscapeBehavior.cs" />
+    <Compile Include="IControlRollback.cs" />
     <Compile Include="MetCategoryAttribute.cs" />
     <Compile Include="MetDateTimePicker.cs">
       <SubType>Component</SubType>
