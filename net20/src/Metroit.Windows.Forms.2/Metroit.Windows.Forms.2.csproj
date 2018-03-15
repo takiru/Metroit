@@ -91,6 +91,9 @@
     <Compile Include="FormEscapeBehavior.cs" />
     <Compile Include="IControlRollback.cs" />
     <Compile Include="MetCategoryAttribute.cs" />
+    <Compile Include="MetComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MetDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>

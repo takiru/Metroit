@@ -306,6 +306,7 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
     |ReadOnlyLabel       |Label に置き換えるかどうか。                            |
 
+        ReadOnlyLabel は、 Label に置き換えます。
         BackColor, ForeColor は、ロジックからのみ利用可能です。  
         ただし、フォーカス遷移により、BaseBackColor, FocusBackColor, BaseForeColor, FocusForeColor が優先されます。
 
@@ -379,3 +380,22 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
 
         ReadOnly は、TextBox に置き換えます。
+        ReadOnlyLabel は、 Label に置き換えます。
+
+#### 拡張された ComboBox ####
+- MetComboBox  
+  プルダウンの入力について、いくつかの手助けをします。
+  - プロパティ  
+
+    |名前                |意味                                                    |
+    |--------------------|--------------------------------------------------------|
+    |ReadOnly            |読み取り専用にするかどうか。                            |
+    |ReadOnlyLabel       |Label に置き換えるかどうか。                            |
+    |BaseBackColor       |基本の背景色。                                          |
+    |BaseForeColor       |基本の文字色。                                          |
+    |FocusBackColor      |フォーカスを得た時の背景色。                            |
+    |FocusForeColor      |フォーカスを得た時の文字色。                            |
+
+        ReadOnly は、TextBox に置き換えます。
+        ReadOnlyLabel は、 Label に置き換えます。
+        DropDownStyle=DropDownList の時、BaseBackColor, BaseForeColor は機能しません。

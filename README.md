@@ -306,6 +306,7 @@ It is a library that helps to create WinForms application.
     |FocusForeColor      |Character color when focus is obtained.                            |
     |ReadOnlyLabel       |Whether to replace with Label.                            |
 
+        Replace ReadOnlyLabel with Label.
         BackColor, ForeColor is only available from logic.  
         However, due to focus transition, BaseBackColor, FocusBackColor, BaseForeColor, FocusForeColor takes precedence.
 
@@ -380,3 +381,23 @@ It is a library that helps to create WinForms application.
     |FocusForeColor      |Character color when focus is obtained.                            |
 
         Replace ReadOnly with TextBox.
+        Replace ReadOnlyLabel with Label.
+
+#### Extended ComboBox ####
+- MetComboBox  
+  I will help with some input of pulldown.
+  - Properties  
+
+    |Name                |Meaning                                                    |
+    |--------------------|--------------------------------------------------------|
+    |ReadOnly            |Whether to make it read-only.                            |
+    |ReadOnlyLabel       |Whether to replace with Label.                            |
+    |BaseBackColor       |Basic background color.                                          |
+    |BaseForeColor       |Basic character color.                                          |
+    |FocusBackColor      |Background color when you get focus.                            |
+    |FocusForeColor      |Character color when focus is obtained.                            |
+
+        Replace ReadOnly with TextBox.
+        Replace ReadOnlyLabel with Label.
+        When DropDownStyle=DropDownList, BaseBackColor, BaseForeColor will not work.
+

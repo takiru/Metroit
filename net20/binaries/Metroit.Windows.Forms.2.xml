@@ -653,6 +653,247 @@
             <param name="value">カテゴリ名。</param>
             <returns>ローカライズされたカテゴリ表示文字。</returns>
         </member>
+        <member name="T:Metroit.Windows.Forms.MetComboBox">
+            <summary>
+            Windows コンボ ボックス コントロールを表します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.#ctor">
+            <summary>
+            MetComboBox の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.MetComboBox_Enter(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを得た時、色の変更とテキストの反転を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.MetComboBox_Leave(System.Object,System.EventArgs)">
+            <summary>
+            フォーカスを失った時、色の変更を行う。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.Visible">
+            <summary>
+            コントロールとそのすべての子コントロールが表示されているかどうかを示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.BackColor">
+            <summary>
+            ComboBox コントロールの背景色を示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.ForeColor">
+            <summary>
+            ComboBox コントロールの文字色を示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.ReadOnly">
+            <summary>
+            TextBox による代替表示を行っているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.AddControl(System.Windows.Forms.Control)">
+            <summary>
+            代替用のTextBox, Labelを親コントロールへ追加する。
+            </summary>
+            <param name="control">Control オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.RemoveControl(System.Windows.Forms.Control)">
+            <summary>
+            代替用のコントロールを親コントロールから削除する。
+            </summary>
+            <param name="control">代替用Controlオブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.switchTextBox">
+            <summary>
+            表示状態に応じて、Visible、テキスト代替を切り替える。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.ReadOnlyLabel">
+            <summary>
+            Label による代替表示を行っているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.switchLabel">
+            <summary>
+            表示状態に応じて、Visible、ラベル代替を切り替える。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.SwitchControl">
+            <summary>
+            TextBoxまたはLabelへ切り替える。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.BaseBackColor">
+            <summary>
+            コントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ShouldSerializeBaseBackColor">
+            <summary>
+            BaseBackColor が既定値から変更されたかどうかを返却します。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ResetBaseBackColor">
+            <summary>
+            BaseBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.FocusBackColor">
+            <summary>
+            フォーカス時のコントロールの背景色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ShouldSerializeFocusBackColor">
+            <summary>
+            FocusBackColor が既定値から変更されたかどうかを返却します。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ResetFocusBackColor">
+            <summary>
+            FocusBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.BaseForeColor">
+            <summary>
+            コントロールの文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ShouldSerializeBaseForeColor">
+            <summary>
+            BaseBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ResetBaseForeColor">
+            <summary>
+            BaseBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.FocusForeColor">
+            <summary>
+            フォーカス時のコントロールの文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ShouldSerializeFocusForeColor">
+            <summary>
+            FocusBackColor が既定値から変更されたかどうかを返却する。
+            </summary>
+            <returns>true:変更された, false:変更されていない</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ResetFocusForeColor">
+            <summary>
+            FocusBackColor のリセット操作を行う。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.ChangeDisplayColor">
+            <summary>
+            コントロールのアクティブ状態に応じた表示色に変更します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.changeFocusColor">
+            <summary>
+            表示色をフォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.changeBaseColor">
+            <summary>
+            表示色を非フォーカス色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            ロールバック済みかどうかを取得します。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
+            <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.Rollback(System.Object,System.Windows.Forms.Control)">
+            <summary>
+            フォーカスを得た時の値にロールバックを行います。
+            </summary>
+            <param name="sender">ロールバック指示オブジェクト。</param>
+            <param name="control">ロールバック対象オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnCreateControl">
+            <summary>
+            コントロールの生成が完了したことを通知し、ReadOnly, ReadOnlyLabelの制御を行います。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            コントロールの表示文字が変更時、ラベル・テキスト代替をしていたらラベル・テキストの文字も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnParentChanged(System.EventArgs)">
+            <summary>
+            コントロールの配置元が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの配置元も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnLocationChanged(System.EventArgs)">
+            <summary>
+            コントロールの表示位置が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの表示位置も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnSizeChanged(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのサイズも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnResize(System.EventArgs)">
+            <summary>
+            コントロールのサイズが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのサイズも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnDockChanged(System.EventArgs)">
+            <summary>
+            コントロールのドッキングが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのドッキングも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnRightToLeftChanged(System.EventArgs)">
+            <summary>
+            コントロールの文字入力方向が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの文字入力方向も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnFontChanged(System.EventArgs)">
+            <summary>
+            コントロールのフォントが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのフォントも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnMarginChanged(System.EventArgs)">
+            <summary>
+            コントロールのマージンが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのマージンも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnCursorChanged(System.EventArgs)">
+            <summary>
+            コントロールのカーソルが変更時、ラベル・テキスト代替表示をしていたらラベル・テキストのカーソルも変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnEnabledChanged(System.EventArgs)">
+            <summary>
+            コントロールの活性状態が変更時、テキスト代替表示をしていたらテキストの活性状態も変更します。
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="T:Metroit.Windows.Forms.MetDateTimePicker">
             <summary>
             ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。
