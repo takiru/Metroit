@@ -1,5 +1,14 @@
 [English](README.md "English")
 
+|Module                 |NuGet                                                                                                                       |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------|
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+
 # Metroit #
 ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
 ターゲットフレームワークは.NET 2.0, 4.5です。  
