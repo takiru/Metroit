@@ -584,6 +584,13 @@
             <param name="allControls">取得したすべてのコントロールオブジェクト</param>
             <returns>コントロールリスト。</returns>
         </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.GetTextBox(System.Windows.Forms.Control)">
+            <summary>
+            対象コントロールから TextBox を見つけ出す。
+            </summary>
+            <param name="control">Control オブジェクト。</param>
+            <returns>TextBox オブジェクト。</returns>
+        </member>
         <member name="T:Metroit.Windows.Forms.FormEscapeBehavior">
             <summary>
             ESCキーが押された時の振る舞いを扱います。

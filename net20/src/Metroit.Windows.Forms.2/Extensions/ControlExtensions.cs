@@ -15,7 +15,6 @@ namespace Metroit.Windows.Forms.Extensions
         /// <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
         /// </summary>
         /// <returns>true:デザインモード中、false:実行中</returns>
-        //public static bool IsDesignMode(this Control control)
         public static bool IsDesignMode(Control control)
         {
             if (System.ComponentModel.LicenseManager.UsageMode
@@ -47,6 +46,21 @@ namespace Metroit.Windows.Forms.Extensions
         /// <remarks>TextBox の AcceptsTab が true の時、タブ文字が入力されます。</remarks>
         public static void MoveNextControl(Control control, bool forward = true)
         {
+            var textBox = GetTextBox(control);
+            if (textBox != null && textBox.Multiline && textBox.AcceptsTab)
+            {
+                if (forward)
+                {
+                    SendKeys.Send("^{TAB}");
+                }
+                else
+                {
+                    SendKeys.Send("^+{TAB}");
+                }
+                return;
+            }
+
+            // その他コントロール
             if (forward)
             {
                 SendKeys.Send("{TAB}");
@@ -117,6 +131,40 @@ namespace Metroit.Windows.Forms.Extensions
                 }
                 currentControl = nextControl;
             }
+        }
+
+        /// <summary>
+        /// 対象コントロールから TextBox を見つけ出す。
+        /// </summary>
+        /// <param name="control">Control オブジェクト。</param>
+        /// <returns>TextBox オブジェクト。</returns>
+        private static TextBox GetTextBox(Control control)
+        {
+            var targetControl = control as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            var form = control as Form;
+            if (form == null)
+            {
+                return null;
+            }
+            targetControl = form.ActiveControl as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            var splitContainer = form.ActiveControl as SplitContainer;
+            targetControl = splitContainer?.ActiveControl as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            return null;
         }
     }
 }

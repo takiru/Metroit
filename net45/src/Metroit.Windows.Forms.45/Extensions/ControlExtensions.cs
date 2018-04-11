@@ -43,9 +43,24 @@ namespace Metroit.Windows.Forms.Extensions
         /// </summary>
         /// <param name="control">対象Control オブジェクト。</param>
         /// <param name="forward">タブオーダー内を前方に移動する場合はtrue。後方に移動する場合はfalse。</param>
-        /// <remarks>TextBox の AcceptsTab が true の時、タブ文字が入力されます。</remarks>
+        /// <remarks></remarks>
         public static void MoveNextControl(this Control control, bool forward = true)
         {
+            var textBox = GetTextBox(control);
+            if (textBox != null && textBox.Multiline && textBox.AcceptsTab)
+            {
+                if (forward)
+                {
+                    SendKeys.Send("^{TAB}");
+                }
+                else
+                {
+                    SendKeys.Send("^+{TAB}");
+                }
+                return;
+            }
+
+            // その他コントロール
             if (forward)
             {
                 SendKeys.Send("{TAB}");
@@ -116,6 +131,40 @@ namespace Metroit.Windows.Forms.Extensions
                 }
                 currentControl = nextControl;
             }
+        }
+
+        /// <summary>
+        /// 対象コントロールから TextBox を見つけ出す。
+        /// </summary>
+        /// <param name="control">Control オブジェクト。</param>
+        /// <returns>TextBox オブジェクト。</returns>
+        private static TextBox GetTextBox(Control control)
+        {
+            var targetControl = control as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            var form = control as Form;
+            if (form == null)
+            {
+                return null;
+            }
+            targetControl = form.ActiveControl as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            var splitContainer = form.ActiveControl as SplitContainer;
+            targetControl = splitContainer?.ActiveControl as TextBox;
+            if (targetControl != null)
+            {
+                return targetControl;
+            }
+
+            return null;
         }
     }
 }

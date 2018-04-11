@@ -996,7 +996,7 @@
             </summary>
             <param name="control">対象Control オブジェクト。</param>
             <param name="forward">タブオーダー内を前方に移動する場合はtrue。後方に移動する場合はfalse。</param>
-            <remarks>TextBox の AcceptsTab が true の時、タブ文字が入力されます。</remarks>
+            <remarks></remarks>
         </member>
         <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.GetChildControls(System.Windows.Forms.Control,System.Boolean,System.Boolean)">
             <summary>
@@ -1017,6 +1017,13 @@
             <param name="excludeDisable">true:無効項目を取得しない, false:無効項目を取得する。</param>
             <param name="allControls">取得したすべてのコントロールオブジェクト</param>
             <returns>コントロールリスト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.GetTextBox(System.Windows.Forms.Control)">
+            <summary>
+            対象コントロールから TextBox を見つけ出す。
+            </summary>
+            <param name="control">Control オブジェクト。</param>
+            <returns>TextBox オブジェクト。</returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDateTimePicker">
             <summary>

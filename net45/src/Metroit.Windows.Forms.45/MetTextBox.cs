@@ -249,7 +249,7 @@ namespace Metroit.Windows.Forms
         {
             if (this.AutoFocus && this.Focused && this.CanAutoFocus())
             {
-                SendKeys.Send("{TAB}");
+                this.MoveNextControl();
             }
         }
 
