@@ -409,7 +409,7 @@ namespace Metroit.Windows.Forms
         /// </remarks>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [DefaultValue(0)]
+        [DefaultValue(typeof(decimal), "0")]
         [MetDescription("ControlValue")]
         public decimal? Value
         {
@@ -458,12 +458,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.mode = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 
@@ -599,7 +596,7 @@ namespace Metroit.Windows.Forms
                 }
             }
         }
-        
+
         /// <summary>
         /// NULLの入力を受け入れるかどうかを取得または設定します。
         /// </summary>
