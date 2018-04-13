@@ -21,9 +21,6 @@ namespace Metroit.Windows.Forms.ComponentModel
             // 文字をローカライズ
             CurrencyPatternLabel.Text = DesignResources.GetString("CurrencyPattern");
             PercentPatternLabel.Text = DesignResources.GetString("PercentPattern");
-
-            setCurrencyList();
-            setPercentList();
         }
 
         /// <summary>
@@ -34,14 +31,23 @@ namespace Metroit.Windows.Forms.ComponentModel
             : this()
         {
             NumericPositivePattern = npp;
-            comboCPattern.SelectedValue = npp.CurrencyPositivePattern;
-            comboPPattern.SelectedValue = npp.PercentPositivePattern;
+
+            // コンボボックスのリストを設定するとNumericNegativePatternオブジェクト内の設定値も
+            // 変わってしまうため、表示直後のパターンを保持して、リスト設定後に差し替える
+            var currentCurrencyPattern = npp.CurrencyPositivePattern;
+            var currentPpercentPattern = npp.PercentPositivePattern;
+
+            setCurrencyList();
+            setPercentList();
+
+            comboCPattern.SelectedValue = currentCurrencyPattern;
+            comboPPattern.SelectedValue = currentPpercentPattern;
         }
 
         /// <summary>
         /// プラス数値の記号表現を取得または設定します。
         /// </summary>
-        public NumericPositivePattern NumericPositivePattern { get; set; } = new NumericPositivePattern();
+        public NumericPositivePattern NumericPositivePattern { get; set; }
 
         /// <summary>
         /// 通貨時のプラス記号表現を決定する。
@@ -50,8 +56,7 @@ namespace Metroit.Windows.Forms.ComponentModel
         /// <param name="e">EventArgs オブジェクト。</param>
         private void comboCPattern_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NumericPositivePattern.CurrencyPositivePattern = ((KeyValuePair<string,
-                    CurrencyPositivePatternType>)comboCPattern.SelectedItem).Value;
+            NumericPositivePattern.CurrencyPositivePattern = (CurrencyPositivePatternType)comboCPattern.SelectedValue;
         }
 
         /// <summary>
@@ -61,8 +66,7 @@ namespace Metroit.Windows.Forms.ComponentModel
         /// <param name="e">EventArgs オブジェクト。</param>
         private void comboPPattern_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NumericPositivePattern.PercentPositivePattern = ((KeyValuePair<string, 
-                    PercentPositivePatternType>)comboPPattern.SelectedItem).Value;
+            NumericPositivePattern.PercentPositivePattern = (PercentPositivePatternType)comboPPattern.SelectedValue;
         }
 
         /// <summary>

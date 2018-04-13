@@ -696,12 +696,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.positivePattern = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 
@@ -718,12 +715,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.negativePattern = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 
