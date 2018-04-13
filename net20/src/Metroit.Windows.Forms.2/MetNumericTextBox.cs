@@ -409,7 +409,7 @@ namespace Metroit.Windows.Forms
         /// </remarks>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [DefaultValue(0)]
+        [DefaultValue(typeof(decimal), "0")]
         [MetDescription("ControlValue")]
         public decimal? Value
         {
@@ -458,12 +458,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.mode = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 
@@ -699,12 +696,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.positivePattern = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 
@@ -721,12 +715,9 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.negativePattern = value;
-                if (this.FindForm() != null)
-                {
-                    this.textFormatting = true;
-                    base.Text = this.createFormattedText(this.value);
-                    this.textFormatting = false;
-                }
+                this.textFormatting = true;
+                base.Text = this.createFormattedText(this.value);
+                this.textFormatting = false;
             }
         }
 

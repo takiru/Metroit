@@ -48,8 +48,23 @@ namespace Metroit.Windows.Forms.ComponentModel
             using (NumericPositivePatternControl nppc = new NumericPositivePatternControl(
                     (NumericPositivePattern)value))
             {
+                var currentCurrencyPattern = nppc.NumericPositivePattern.CurrencyPositivePattern;
+                var currentPercentPattern = nppc.NumericPositivePattern.PercentPositivePattern;
+
                 editorService.DropDownControl(nppc);
-                return nppc.NumericPositivePattern;
+
+                // 呼び出し前と値が変更なければそのまま返却
+                if (nppc.NumericPositivePattern.CurrencyPositivePattern == currentCurrencyPattern &&
+                        nppc.NumericPositivePattern.PercentPositivePattern == currentPercentPattern)
+                {
+                    return nppc.NumericPositivePattern;
+                }
+
+                // 呼び出し前と値の変更があった場合、新規オブジェクトとして返却
+                var result = new NumericPositivePattern();
+                result.CurrencyPositivePattern = nppc.NumericPositivePattern.CurrencyPositivePattern;
+                result.PercentPositivePattern = nppc.NumericPositivePattern.PercentPositivePattern;
+                return result;
             }
         }
     }

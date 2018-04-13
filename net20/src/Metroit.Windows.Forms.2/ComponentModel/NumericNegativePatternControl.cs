@@ -22,10 +22,6 @@ namespace Metroit.Windows.Forms.ComponentModel
             NumericPatternLabel.Text = DesignResources.GetString("NumericPattern");
             CurrencyPatternLabel.Text = DesignResources.GetString("CurrencyPattern");
             PercentPatternLabel.Text = DesignResources.GetString("PercentPattern");
-
-            setNumberList();
-            setCurrencyList();
-            setPercentList();
         }
 
         /// <summary>
@@ -36,15 +32,26 @@ namespace Metroit.Windows.Forms.ComponentModel
             : this()
         {
             NumericNegativePattern = nnp;
-            comboNPattern.SelectedValue = nnp.NumberNegativePattern;
-            comboCPattern.SelectedValue = nnp.CurrencyNegativePattern;
-            comboPPattern.SelectedValue = nnp.PercentNegativePattern;
+
+            // コンボボックスのリストを設定するとNumericNegativePatternオブジェクト内の設定値も
+            // 変わってしまうため、表示直後のパターンを保持して、リスト設定後に差し替える
+            var currentNumberPattern = nnp.NumberNegativePattern;
+            var currentCurrencyPattern = nnp.CurrencyNegativePattern;
+            var currentPpercentPattern = nnp.PercentNegativePattern;
+
+            setNumberList();
+            setCurrencyList();
+            setPercentList();
+
+            comboNPattern.SelectedValue = currentNumberPattern;
+            comboCPattern.SelectedValue = currentCurrencyPattern;
+            comboPPattern.SelectedValue = currentPpercentPattern;
         }
 
         /// <summary>
         /// マイナス数値の記号表現を取得または設定します。
         /// </summary>
-        public NumericNegativePattern NumericNegativePattern { get; set; } = new NumericNegativePattern();
+        public NumericNegativePattern NumericNegativePattern { get; set; }
 
         /// <summary>
         /// 数値時のマイナス記号表現を決定する。
@@ -53,8 +60,7 @@ namespace Metroit.Windows.Forms.ComponentModel
         /// <param name="e">EventArgs オブジェクト。</param>
         private void comboNPattern_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NumericNegativePattern.NumberNegativePattern =((KeyValuePair<string,
-                    NumericNegativePatternType>)comboNPattern.SelectedItem).Value;
+            NumericNegativePattern.NumberNegativePattern = (NumericNegativePatternType)comboNPattern.SelectedValue;
         }
 
         /// <summary>
@@ -64,8 +70,7 @@ namespace Metroit.Windows.Forms.ComponentModel
         /// <param name="e">EventArgs オブジェクト。</param>
         private void comboCPattern_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NumericNegativePattern.CurrencyNegativePattern = ((KeyValuePair<string,
-                    CurrencyNegativePatternType>)comboCPattern.SelectedItem).Value;
+            NumericNegativePattern.CurrencyNegativePattern = (CurrencyNegativePatternType)comboCPattern.SelectedValue;
         }
 
         /// <summary>
@@ -75,8 +80,7 @@ namespace Metroit.Windows.Forms.ComponentModel
         /// <param name="e">EventArgs オブジェクト。</param>
         private void comboPPattern_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NumericNegativePattern.PercentNegativePattern = ((KeyValuePair<string,
-                    PercentNegativePatternType>)comboPPattern.SelectedItem).Value;
+            NumericNegativePattern.PercentNegativePattern = (PercentNegativePatternType)comboPPattern.SelectedValue;
         }
 
         /// <summary>

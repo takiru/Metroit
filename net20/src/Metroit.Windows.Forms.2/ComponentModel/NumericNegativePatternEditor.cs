@@ -48,8 +48,26 @@ namespace Metroit.Windows.Forms.ComponentModel
             using (NumericNegativePatternControl nnpc = new NumericNegativePatternControl(
                     (NumericNegativePattern)value))
             {
+                var curentNumberPattern = nnpc.NumericNegativePattern.NumberNegativePattern;
+                var currentCurrencyPattern = nnpc.NumericNegativePattern.CurrencyNegativePattern;
+                var currentPercentPattern = nnpc.NumericNegativePattern.PercentNegativePattern;
+
                 editorService.DropDownControl(nnpc);
-                return nnpc.NumericNegativePattern;
+
+                // 呼び出し前と値が変更なければそのまま返却
+                if (nnpc.NumericNegativePattern.NumberNegativePattern == curentNumberPattern &&
+                        nnpc.NumericNegativePattern.CurrencyNegativePattern == currentCurrencyPattern &&
+                        nnpc.NumericNegativePattern.PercentNegativePattern == currentPercentPattern)
+                {
+                    return nnpc.NumericNegativePattern;
+                }
+
+                // 呼び出し前と値の変更があった場合、新規オブジェクトとして返却
+                var result = new NumericNegativePattern();
+                result.NumberNegativePattern = nnpc.NumericNegativePattern.NumberNegativePattern;
+                result.CurrencyNegativePattern = nnpc.NumericNegativePattern.CurrencyNegativePattern;
+                result.PercentNegativePattern = nnpc.NumericNegativePattern.PercentNegativePattern;
+                return result;
             }
         }
     }
