@@ -10,7 +10,7 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>In the MoveNextControl method, AcceptsTab is supported.</releaseNotes>
+    <releaseNotes>Fixed the rollback of the value of MetNumericTextBox.</releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>

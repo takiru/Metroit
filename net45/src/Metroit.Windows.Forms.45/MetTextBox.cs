@@ -786,7 +786,7 @@ namespace Metroit.Windows.Forms
         /// <param name="sender">ロールバック指示オブジェクト。</param>
         /// <param name="control">ロールバック対象オブジェクト。</param>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
-        public bool IsRollbacked(object sender, Control control)
+        public virtual bool IsRollbacked(object sender, Control control)
         {
             return this.Text == this.enterText;
         }
@@ -796,7 +796,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         /// <param name="sender">ロールバック指示オブジェクト。</param>
         /// <param name="control">ロールバック対象オブジェクト。</param>
-        public void Rollback(object sender, Control control)
+        public virtual void Rollback(object sender, Control control)
         {
             this.Text = this.enterText;
         }
