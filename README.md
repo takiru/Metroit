@@ -111,27 +111,42 @@ class TestFileConverter : FileConverterBase
 {
     public TestFileConverter() : base() { }
 
-    protected void ConvertFileType() {
+    protected override void ConvertFile(FileConvertParameter parameter)
         // I perform the conversion handling of file
-        File.Copy(this.Parameter.SourceFilePath, this.Parameter.ConvertingPath);
+        File.Copy(Parameter.SourceFilePath, Parameter.ConvertingPath);
     }
 }
 
 class Test
 {
-    var parameter = new FileConvertParameter()
+    public void Hoge()
     {
-        SourceFilePath = "C:\test.txt",
-        DestinationFilePath = "D:\test.dat",
-        UseTemporary = true,
-        Overwrite = true,
+        var parameter = new FileConvertParameter()
+        {
+            SourceFilePath = "C:\test.txt",
+            DestinationFilePath = "D:\test.dat",
+            UseTemporary = true,
+            Overwrite = true,
 
-    };
-    var converter = new TestFileConverter();
-    var result = converter.Convert();
-    if (result == ConvertResultType.Cancelled)
-    {
-        return;
+        };
+        var converter = new TestFileConverter();
+        converter.Prepare += (p, e) =>
+        {
+            var fp = p as FileConvertParameter;
+            e.Cancel = false;
+            Console.WriteLine("Convert prepare process.");
+        };
+        converter.ConvertCompleted += (p, e) =>
+        {
+            var fp = p as FileConvertParameter;
+            Console.WriteLine(e.Result.ToString() + e.Error.Message);
+            Console.WriteLine("Convert complete process.");
+        };
+        var result = converter.Convert(parameter);
+        if (result == ConvertResultType.Cancelled)
+        {
+            return;
+        }
     }
 }
 ```
