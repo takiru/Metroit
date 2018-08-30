@@ -684,6 +684,13 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.MetComboBox_DrawItem(System.Object,System.Windows.Forms.DrawItemEventArgs)">
+            <summary>
+            DrawModeがOwnerDrawFixed, OwnerDrawVariableの時、文字の色を変更してリスト描画する。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="P:Metroit.Windows.Forms.MetComboBox.Visible">
             <summary>
             コントロールとそのすべての子コントロールが表示されているかどうかを示す値を取得または設定します。

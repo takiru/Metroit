@@ -30,6 +30,7 @@ namespace Metroit.Windows.Forms
 
             this.Enter += MetComboBox_Enter;
             this.Leave += MetComboBox_Leave;
+            this.DrawItem += MetComboBox_DrawItem;
         }
 
         #region イベント
@@ -55,6 +56,25 @@ namespace Metroit.Windows.Forms
         private void MetComboBox_Leave(object sender, EventArgs e)
         {
             ChangeDisplayColor();
+        }
+
+        /// <summary>
+        /// DrawModeがOwnerDrawFixed, OwnerDrawVariableの時、文字の色を変更してリスト描画する。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            e.DrawBackground();
+
+            // 選択時は青い背景となるので、文字を白くする
+            bool selected = DrawItemState.Selected == (e.State & DrawItemState.Selected);
+            var brush = (selected) ? Brushes.White : new SolidBrush(this.ForeColor);
+
+            e.Graphics.DrawString(this.Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
+            e.DrawFocusRectangle();
         }
 
         #endregion
@@ -104,7 +124,6 @@ namespace Metroit.Windows.Forms
         public override Color ForeColor { get => base.ForeColor; set => base.ForeColor = value; }
 
         #endregion
-
 
         #region 追加プロパティ
 
