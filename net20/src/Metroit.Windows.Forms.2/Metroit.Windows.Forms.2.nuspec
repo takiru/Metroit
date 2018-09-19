@@ -10,11 +10,11 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Fixed that the color properties also works in MetComboBox of DropDownList.</releaseNotes>
+    <releaseNotes>We prepared a custom autocomplete command in MetTextBox.</releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.2" version="1.0" />
+      <dependency id="Metroit.2" version="1.0.1" />
     </dependencies>
   </metadata>
 </package>

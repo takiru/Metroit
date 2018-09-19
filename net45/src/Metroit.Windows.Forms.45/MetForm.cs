@@ -1,8 +1,8 @@
 ﻿using Metroit.Windows.Forms.Extensions;
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -11,10 +11,6 @@ namespace Metroit.Windows.Forms
     /// </summary>
     public partial class MetForm : Form
     {
-        // Closingイベントを発生させるための画面終了用のSendMessage
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
         /// <summary>
         /// MetForm の新しいインスタンスを初期化します。
         /// </summary>
@@ -276,18 +272,12 @@ namespace Metroit.Windows.Forms
         /// <returns>true:フォーム終了の実施, false:フォーム終了の未実施。</returns>
         private bool CloseForm()
         {
-            // システムメニューアイテム選択
-            const int WM_SYSCOMMAND = 0x0112;
-
-            // 画面を閉じる
-            const int SC_CLOSE = 0xF060;
-
             if (!this.EscPush.FormClose)
             {
                 return false;
             }
 
-            MetForm.SendMessage(this.Handle, WM_SYSCOMMAND, SC_CLOSE, 0);
+            User32.SendMessage(this.Handle, WindowMessage.WM_SYSCOMMAND, SystemCommand.SC_CLOSE, 0);
             return true;
         }
 

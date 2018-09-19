@@ -58,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Win32\SystemCommand.cs" />
+    <Compile Include="Api\Win32\User32.cs" />
+    <Compile Include="Api\Win32\VirtualKey.cs" />
+    <Compile Include="Api\Win32\WindowMessage.cs" />
     <Compile Include="Collections\Generic\LimitedList.cs" />
     <Compile Include="IO\ConvertCompleteEventArgs.cs" />
     <Compile Include="IO\ConverterBase.cs" />

@@ -47,7 +47,7 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+        ///   すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -165,6 +165,114 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string AcceptsSign_ja {
             get {
                 return ResourceManager.GetString("AcceptsSign.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the option to decide candidate narrowing down. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCompareOptions {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCompareOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   候補の絞込みに判断するオプションを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCompareOptions_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCompareOptions.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the data source including all data used for autocomplete. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDataSource {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDataSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   オートコンプリートに利用される全データを含むデータソースを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDataSource_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDataSource.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Indicates the properties to display for items in this control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDisplayMember {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDisplayMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   このコントロール内の項目に対して表示するプロパティを示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDisplayMember_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDisplayMember.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Get or set a pattern to narrow down candidates. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxMatchPattern {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxMatchPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   候補の絞込みを行うパターンを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxMatchPattern_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxMatchPattern.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set the number of items to display in Autocomplete. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxMaxDropDownItems {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxMaxDropDownItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   オートコンプリートの表示するアイテム数を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxMaxDropDownItems_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxMaxDropDownItems.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Indicates the property to use as the actual value for the item in the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxValueMember {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxValueMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxValueMember_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxValueMember.ja", resourceCulture);
             }
         }
         
@@ -961,6 +1069,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Metroit Extension Other に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetOther {
+            get {
+                return ResourceManager.GetString("MetOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metroit拡張 その他 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetOther_ja {
+            get {
+                return ResourceManager.GetString("MetOther.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Metroit Extension Property Changed に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetPropertyChange {
@@ -975,6 +1101,60 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetPropertyChange_ja {
             get {
                 return ResourceManager.GetString("MetPropertyChange.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteBox {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カスタムオートコンプリート情報を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteBox_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteBox.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set the key to display the custom autocomplete candidate pulldown. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteDisplayKeys {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteDisplayKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カスタムオートコンプリート候補プルダウンを表示するキーを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteDisplayKeys_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteDisplayKeys.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set whether to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteMode {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カスタムオートコンプリートを利用するか設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCustomAutoCompleteMode_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxCustomAutoCompleteMode.ja", resourceCulture);
             }
         }
         

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Metroit.Api.Win32;
 using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
@@ -19,6 +20,7 @@ namespace Metroit.Windows.Forms
     /// 　・フォーカス取得時の全選択。<br />
     /// 　・フォーカス取得時の背景色、文字色の変更。<br />
     /// 　・Multiline時、Ctrl+Aによるテキストの全選択。<br />
+    /// 　・部分一致可能な独自のオートコンプリート機能。<br />
     /// <br />
     /// TextChangeValidation イベントは、削除／切り取り／元に戻すなど、一度入力が許容された値に対しての操作や、オートコンプリートの候補値による値設定では発生しません。<br />
     /// そのため、TextChangeValidation イベント内で、状態変更・保持を行うべきではありません。<br />
@@ -36,11 +38,23 @@ namespace Metroit.Windows.Forms
     public class MetTextBox : TextBox, ISupportInitialize, IControlRollback
     {
         /// <summary>
+        /// Keys プロパティエディタにEnterなどが含まれないため、全キーを含めるためにKeysを生成し直します。
+        /// </summary>
+        static MetTextBox()
+        {
+            // ShortcutKeysEditor に Enter, Back, Home を追加する。
+            ShortcutKeysEditorHack.AddKeys(new Keys[] { Keys.Enter, Keys.Back, Keys.Home }, true);
+        }
+
+        /// <summary>
         /// MetTextBox の新しいインスタンスを初期化します。
         /// </summary>
         public MetTextBox()
             : base()
         {
+            // プロパティのデフォルト値の設定
+            this.CustomAutoCompleteKeys = this.defaultCustomAutoCompleteKeys;
+
             // デザイン時は制御しない
             if (ControlExtensions.IsDesignMode(this))
             {
@@ -54,7 +68,6 @@ namespace Metroit.Windows.Forms
             this.KeyPress += MetTextBox_KeyPress;
             this.KeyUp += MetTextBox_KeyUp;
             this.MouseDown += MetTextBox_MouseDown;
-            this.TextChanged += MetTextBox_TextChanged;
         }
 
         /// <summary>
@@ -74,6 +87,12 @@ namespace Metroit.Windows.Forms
         private bool isDenyImeKeyChar = false;
 
         private string enterText = "";
+
+        // 候補コンボボックスからリストを選択したかどうか
+        private bool candidateSelectedValueChanging = false;
+
+        // 候補コンボボックスが表示されている状態で、テキスト値の変更をかけているかどうか
+        private bool candidateTextChanging = false;
 
         /// <summary>
         /// フォーカスを得た時、色の変更とテキストの反転を行う。
@@ -107,6 +126,12 @@ namespace Metroit.Windows.Forms
         private void MetTextBox_Leave(object sender, EventArgs e)
         {
             this.changeBaseColor();
+
+            // リストから上下で選択後、Tabで遷移した時、リストを閉じる
+            if (this.CustomAutoCompleteBox.IsOpen && !this.CustomAutoCompleteBox.IsActive)
+            {
+                this.CustomAutoCompleteBox.Close();
+            }
         }
 
         /// <summary>
@@ -133,6 +158,43 @@ namespace Metroit.Windows.Forms
                 this.SelectAll();
                 e.SuppressKeyPress = true;
                 return;
+            }
+
+            // カスタムオートコンプリートを利用する場合
+            if (this.CustomAutoCompleteMode)
+            {
+                // 指定されたキーが押下された時、候補コンボボックスを表示する
+                var matchKey = Keys.None;
+                foreach (var key in CustomAutoCompleteKeys)
+                {
+                    if (key == e.KeyData)
+                    {
+                        matchKey = key;
+                        break;
+                    }
+                }
+                if (matchKey == Keys.None)
+                {
+                    return;
+                }
+                // 読み取り専用や操作不要な時は動作させない
+                if (this.ReadOnly || this.readOnlyLabel || !this.Enabled)
+                {
+                    return;
+                }
+                if (this.CustomAutoCompleteBox.IsOpen)
+                {
+                    // 既に表示済みの場合は閉じる
+                    this.CustomAutoCompleteBox.Close();
+                    e.SuppressKeyPress = true;
+                }
+                else
+                {
+                    // 候補コンボボックスを表示する
+                    //this.CustomAutoCompleteBox.Extract(this.Text);
+                    this.CustomAutoCompleteBox.Open();
+                    e.SuppressKeyPress = true;
+                }
             }
         }
 
@@ -201,25 +263,35 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// テキストが変更された時の動作
+        /// 候補コンボボックスから候補を選択した時、候補の値をテキストに表示する。
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MetTextBox_TextChanged(object sender, EventArgs e)
+        private void CandidateBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            // コードによるText変更は何も制御しない
-            if (this.isTextDirect)
+            // データソースの設定中は何もしない
+            if (this.CustomAutoCompleteBox.DataSourceChanging)
             {
-                this.isTextDirect = false;
                 return;
             }
 
-            // 貼り付けによるText変更は何も制御しない
-            if (this.isTextPate)
+            // プルダウン表示中は何もしない
+            if (this.CustomAutoCompleteBox.BoxOpening)
             {
-                this.isTextPate = false;
                 return;
             }
+
+            // テキストの直接入力によって候補が決定された(TextChanged)場合、処理しない
+            if (candidateTextChanging)
+            {
+                return;
+            }
+
+            // 選択された候補の値をテキストに表示する
+            candidateSelectedValueChanging = true;
+            this.Text = this.CustomAutoCompleteBox.CandidateBox.Text;
+            this.SelectionLength = this.Text.Length;
+            candidateSelectedValueChanging = false;
         }
 
         /// <summary>
@@ -438,6 +510,14 @@ namespace Metroit.Windows.Forms
         private Color? focusBackColor = null;
         private bool readOnlyLabel = false;
         private Label label = null;
+        private bool customAutoCompleteMode = false;
+        private Keys[] defaultCustomAutoCompleteKeys = new Keys[] {
+                Keys.Alt | Keys.Up,
+                Keys.Alt | Keys.Down,
+                Keys.F4,
+                Keys.Control | Keys.F4,
+                Keys.Shift | Keys.F4
+        };
 
         /// <summary>
         /// InitializeComponent() によってコントロールの準備が完了したかどうかを取得します。
@@ -611,6 +691,56 @@ namespace Metroit.Windows.Forms
         public bool AutoFocus { get; set; } = false;
 
         /// <summary>
+        /// カスタムオートコンプリートを利用するか設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetTextBoxCustomAutoCompleteMode")]
+        [DefaultValue(false)]
+        public bool CustomAutoCompleteMode
+        {
+            get
+            {
+                return this.customAutoCompleteMode;
+            }
+            set
+            {
+                if (value)
+                {
+                    this.AutoCompleteMode = AutoCompleteMode.None;
+                }
+                this.customAutoCompleteMode = value;
+            }
+        }
+
+        /// <summary>
+        /// オートコンプリート候補プルダウンを表示するキーを設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetTextBoxCustomAutoCompleteDisplayKeys")]
+        public Keys[] CustomAutoCompleteKeys { get; set; }
+
+        /// <summary>
+        /// CustomAutoCompleteKeys が既定値から変更されたかどうかを返却する。
+        /// </summary>
+        /// <returns>true:変更された, false:変更されていない</returns>
+        private bool ShouldSerializeCustomAutoCompleteKeys() => this.CustomAutoCompleteKeys != this.defaultCustomAutoCompleteKeys;
+
+        /// <summary>
+        /// CustomAutoCompleteKeys のリセット操作を行う。
+        /// </summary>
+        private void ResetCustomAutoCompleteKeys() => this.CustomAutoCompleteKeys = this.defaultCustomAutoCompleteKeys;
+
+        /// <summary>
+        /// カスタムオートコンプリート情報を設定または取得します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetTextBoxCustomAutoCompleteBox")]
+        public AutoCompleteBox CustomAutoCompleteBox { get; set; } = new AutoCompleteBox();
+
+        /// <summary>
         /// 表示色をフォーカス色に変更する。
         /// </summary>
         private void changeFocusColor()
@@ -752,9 +882,6 @@ namespace Metroit.Windows.Forms
 
         #region メソッド
 
-        private bool isTextPate = false;
-        private bool isTextDirect = false;
-
         /// <summary>
         /// InitializeComponent()でコントロールの初期化が完了していないことを通知します。
         /// </summary>
@@ -774,10 +901,17 @@ namespace Metroit.Windows.Forms
             {
                 return;
             }
+
             this.initialized = true;
 
-            this.switchLabel();
+            // オートコンプリート対象を自身に設定
+            this.CustomAutoCompleteBox.SetTarget(this);
 
+            // オートコンプリートのイベントを設定
+            this.CustomAutoCompleteBox.CandidateBox.SelectedValueChanged += CandidateBox_SelectedValueChanged;
+
+            // ラベルへの切り替えを実施
+            this.switchLabel();
         }
 
         /// <summary>
@@ -802,6 +936,36 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 低レベルフォーカスを得た時の動作。
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnGotFocus(EventArgs e)
+        {
+            // リストをクリックして候補が決まった時、イベント走行させない
+            if (this.CustomAutoCompleteBox.BoxClosing)
+            {
+                return;
+            }
+            base.OnGotFocus(e);
+        }
+
+        /// <summary>
+        /// フォーカスを得た時の動作。
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnEnter(EventArgs e)
+        {
+            // リストをクリックして候補が決まった時、Onメソッド、イベント走行させない
+            if (this.CustomAutoCompleteBox.BoxClosing)
+            {
+                // フォーカス色だけは変更する
+                this.changeFocusColor();
+                return;
+            }
+            base.OnEnter(e);
+        }
+
+        /// <summary>
         /// テキストが変更後、可能の場合にフォーカス遷移を行います。
         /// </summary>
         /// <param name="e">イベントオブジェクト。</param>
@@ -814,6 +978,39 @@ namespace Metroit.Windows.Forms
             {
                 return;
             }
+
+            // カスタムオートコンプリートを利用する場合
+            if (this.customAutoCompleteMode)
+            {
+                // 候補コンボボックスの上下選択によって候補が決定された(SelectedValueChanged)場合、処理しない
+                if (candidateSelectedValueChanging)
+                {
+                    return;
+                }
+
+                if (this.CustomAutoCompleteBox.IsOpen)
+                {
+                    candidateTextChanging = true;
+
+                    // 現在テキストで候補を絞り込み
+                    this.CustomAutoCompleteBox.Extract(this.Text);
+
+                    // 候補と合致する文字列がない場合は、候補の選択状態をリセットする
+                    if (!this.CustomAutoCompleteBox.Contains(this.Text))
+                    {
+                        this.CustomAutoCompleteBox.CandidateBox.SelectedIndex = -1;
+                    }
+                    this.CustomAutoCompleteBox.CandidateBox.Text = this.Text;
+                    candidateTextChanging = false;
+                    return;
+                }
+                else
+                {
+                    this.CustomAutoCompleteBox.CandidateBox.Text = this.Text;
+                }
+            }
+
+            // それ以外の場合はオートフォーカスする
             this.autoFocus();
         }
 
@@ -965,32 +1162,70 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// ウィンドウメッセージを捕捉し、コンボボックスへの制御を行います。
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // 候補コンボボックスが表示されている時の特定操作は、コンボボックスの制御を行う
+            if (this.CustomAutoCompleteBox.IsOpen && msg.Msg == WindowMessage.WM_KEYDOWN)
+            {
+                // Escキーはリストを閉じる
+                if (msg.WParam == new IntPtr(VirtualKey.VK_ESCAPE))
+                {
+                    this.CustomAutoCompleteBox.Close();
+                    return true;
+                }
+                // 下キーはリストの選択肢を下へずらす
+                if (msg.WParam == new IntPtr(VirtualKey.VK_DOWN))
+                {
+                    User32.SendMessage(this.CustomAutoCompleteBox.CandidateBox.Handle, WindowMessage.WM_KEYDOWN, VirtualKey.VK_DOWN, 0);
+                    return true;
+                }
+                // 上キーはリストの選択肢を上へずらす
+                if (msg.WParam == new IntPtr(VirtualKey.VK_UP))
+                {
+                    User32.SendMessage(this.CustomAutoCompleteBox.CandidateBox.Handle, WindowMessage.WM_KEYDOWN, VirtualKey.VK_UP, 0);
+                    return true;
+                }
+                // Enterキーは選択肢を確定する
+                if (msg.WParam == new IntPtr(VirtualKey.VK_RETURN))
+                {
+                    this.CustomAutoCompleteBox.Close();
+                    return true;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /// <summary>
         /// ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
         /// </summary>
         /// <param name="m">ウィンドウメッセージ。</param>
         protected override void WndProc(ref Message m)
         {
-            // ウィンドウタイトルやコントロールのテキストを設定
-            const int WM_SETTEXT = 0x000C;
-
-            // エディットボックスまたはコンボボックスの現在のキャレット位置にクリップボードのテキストを挿入する時のメッセージ。
-            const int WM_PASTE = 0x0302;
-
-            // コードによるText値変更
-            if (m.Msg == WM_SETTEXT)
+            // デザイン時は制御しない
+            if (ControlExtensions.IsDesignMode(this))
             {
-                this.isTextDirect = true;
+                base.WndProc(ref m);
+                return;
             }
 
-            // 貼り付け
-            if (m.Msg == WM_PASTE)
+            // 貼り付けが拒否された場合は貼り付けを行わない
+            if (m.Msg == WindowMessage.WM_PASTE && !this.canPaste())
             {
-                // 拒否されたら貼り付けを行わない
-                if (!this.canPaste())
-                {
-                    return;
-                }
-                this.isTextPate = true;
+                return;
+            }
+
+            // 候補コンボボックスが開いており、マウスホイールが操作された時、マウスホイール操作を候補コンボボックスに伝える
+            // (ProcessCmdKeyでは捕捉不可)
+            if (this.CustomAutoCompleteBox.IsOpen && m.Msg == WindowMessage.WM_MOUSEWHEEL)
+            {
+                User32.SendMessage(this.CustomAutoCompleteBox.CandidateBox.Handle, m.Msg, (uint)m.WParam.ToInt32(), m.LParam.ToInt32());
+                return;
             }
 
             base.WndProc(ref m);

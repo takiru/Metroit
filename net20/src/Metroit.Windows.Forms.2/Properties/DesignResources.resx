@@ -447,4 +447,64 @@
   <data name="ControlRollback.ja" xml:space="preserve">
     <value>このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。</value>
   </data>
+  <data name="MetTextBoxCustomAutoCompleteDisplayKeys" xml:space="preserve">
+    <value>Set the key to display the custom autocomplete candidate pulldown.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteDisplayKeys.ja" xml:space="preserve">
+    <value>カスタムオートコンプリート候補プルダウンを表示するキーを設定します。</value>
+  </data>
+  <data name="MetOther" xml:space="preserve">
+    <value>Metroit Extension Other</value>
+  </data>
+  <data name="MetOther.ja" xml:space="preserve">
+    <value>Metroit拡張 その他</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteBox" xml:space="preserve">
+    <value>Set custom autocomplete information.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteBox.ja" xml:space="preserve">
+    <value>カスタムオートコンプリート情報を設定します。</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteMode" xml:space="preserve">
+    <value>Set whether to use custom autocomplete.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteMode.ja" xml:space="preserve">
+    <value>カスタムオートコンプリートを利用するか設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxCompareOptions" xml:space="preserve">
+    <value>Gets or sets the option to decide candidate narrowing down.</value>
+  </data>
+  <data name="AutoCompleteBoxCompareOptions.ja" xml:space="preserve">
+    <value>候補の絞込みに判断するオプションを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxDataSource" xml:space="preserve">
+    <value>Gets or sets the data source including all data used for autocomplete.</value>
+  </data>
+  <data name="AutoCompleteBoxDataSource.ja" xml:space="preserve">
+    <value>オートコンプリートに利用される全データを含むデータソースを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxDisplayMember" xml:space="preserve">
+    <value>Indicates the properties to display for items in this control.</value>
+  </data>
+  <data name="AutoCompleteBoxDisplayMember.ja" xml:space="preserve">
+    <value>このコントロール内の項目に対して表示するプロパティを示します。</value>
+  </data>
+  <data name="AutoCompleteBoxMatchPattern" xml:space="preserve">
+    <value>Get or set a pattern to narrow down candidates.</value>
+  </data>
+  <data name="AutoCompleteBoxMatchPattern.ja" xml:space="preserve">
+    <value>候補の絞込みを行うパターンを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxMaxDropDownItems" xml:space="preserve">
+    <value>Set the number of items to display in Autocomplete.</value>
+  </data>
+  <data name="AutoCompleteBoxMaxDropDownItems.ja" xml:space="preserve">
+    <value>オートコンプリートの表示するアイテム数を設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxValueMember" xml:space="preserve">
+    <value>Indicates the property to use as the actual value for the item in the control.</value>
+  </data>
+  <data name="AutoCompleteBoxValueMember.ja" xml:space="preserve">
+    <value>コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。</value>
+  </data>
 </root>

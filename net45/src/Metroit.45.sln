@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.45", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Data.45", "Metroit.Data.45\Metroit.Data.45.csproj", "{D04BBEB3-143B-4709-BA3F-FB5FA6557DB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{AB7C0FC2-55CE-440C-8962-7D10406A1D2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D04BBEB3-143B-4709-BA3F-FB5FA6557DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D04BBEB3-143B-4709-BA3F-FB5FA6557DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D04BBEB3-143B-4709-BA3F-FB5FA6557DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB7C0FC2-55CE-440C-8962-7D10406A1D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7C0FC2-55CE-440C-8962-7D10406A1D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7C0FC2-55CE-440C-8962-7D10406A1D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7C0FC2-55CE-440C-8962-7D10406A1D2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

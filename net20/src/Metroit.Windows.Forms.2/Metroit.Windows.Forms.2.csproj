@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceptsCharType.cs" />
+    <Compile Include="AutoCompleteBox.cs" />
     <Compile Include="ComponentModel\AcceptsCharControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +92,7 @@
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="FormEscapeBehavior.cs" />
     <Compile Include="IControlRollback.cs" />
+    <Compile Include="MatchPatternType.cs" />
     <Compile Include="MetCategoryAttribute.cs" />
     <Compile Include="MetComboBox.cs">
       <SubType>Component</SubType>
@@ -130,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="ShortcutKeysEditorHack.cs" />
     <Compile Include="TextChangeValidationEventArgs.cs" />
     <Compile Include="TextChangeValidationEventHandler.cs" />
   </ItemGroup>

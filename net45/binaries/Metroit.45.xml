@@ -4,6 +4,96 @@
         <name>Metroit.45</name>
     </assembly>
     <members>
+        <member name="T:Metroit.Api.Win32.SystemCommand">
+            <summary>
+            システムコマンドを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.SystemCommand.SC_CLOSE">
+            <summary>
+            ウィンドウのクローズを定義します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Api.Win32.VirtualKey">
+            <summary>
+            仮想キーコードを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_UP">
+            <summary>
+            上キーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_DOWN">
+            <summary>
+            下キーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_ESCAPE">
+            <summary>
+            ESCキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_RETURN">
+            <summary>
+            Enterキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_BACK">
+            <summary>
+            BackSpaceキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_DELETE">
+            <summary>
+            Deleteキーを定義します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Api.Win32.WindowMessage">
+            <summary>
+            ウィンドウメッセージを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_KEYDOWN">
+            <summary>
+            キーの押下を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_KEYUP">
+            <summary>
+            キーのリリースを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_MOUSEWHEEL">
+            <summary>
+            マウスホイール操作を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_PASTE">
+            <summary>
+            貼り付けを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_SYSCOMMAND">
+            <summary>
+            システムコマンドを定義します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Api.Win32.User32">
+            <summary>
+            user32.dll を利用するWin32APIを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Api.Win32.User32.SendMessage(System.IntPtr,System.Int32,System.UInt32,System.Int32)">
+            <summary>
+            ウィンドウハンドルへメッセージを送信します。
+            </summary>
+            <param name="hWnd">ウィンドウハンドル。</param>
+            <param name="Msg">メッセージ。</param>
+            <param name="wParam">メッセージ特有の追加情報。</param>
+            <param name="lParam">メッセージ特有の追加情報。</param>
+            <returns>メッセージ処理の結果が返ります。この戻り値の意味は、送信されたメッセージにより異なります。</returns>
+        </member>
         <member name="T:Metroit.Collections.Generic.LimitedList`1">
             <summary>
             管理上限を有する List を提供します。
