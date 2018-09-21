@@ -36,8 +36,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
+            this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -112,11 +114,24 @@
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             // 
+            // metDateTimePicker1
+            // 
+            this.metDateTimePicker1.BackColor = System.Drawing.SystemColors.Window;
+            this.metDateTimePicker1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.metDateTimePicker1.CustomFormat = null;
+            this.metDateTimePicker1.FocusForeColor = System.Drawing.Color.Blue;
+            this.metDateTimePicker1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.metDateTimePicker1.Location = new System.Drawing.Point(67, 185);
+            this.metDateTimePicker1.Name = "metDateTimePicker1";
+            this.metDateTimePicker1.Size = new System.Drawing.Size(200, 19);
+            this.metDateTimePicker1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 341);
+            this.Controls.Add(this.metDateTimePicker1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.metTextBox2);
@@ -129,6 +144,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +158,6 @@
         private Metroit.Windows.Forms.MetTextBox metTextBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private Metroit.Windows.Forms.MetDateTimePicker metDateTimePicker1;
     }
 }

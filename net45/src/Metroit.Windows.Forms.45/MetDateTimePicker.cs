@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Metroit.Windows.Forms.Extensions;
+using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -1219,7 +1220,7 @@ namespace Metroit.Windows.Forms
         {
             base.WndProc(ref m);
 
-            // 背景色・文字色を描画する
+            // 背景色・文字色、外枠を描画する
             this.redrawColor(ref m);
         }
 
@@ -1228,10 +1229,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void redrawColor(ref Message m)
         {
-            // 描画が行われた際のメッセージ
-            int WM_PAINT = 0x000F;
-
-            if (m.Msg == WM_PAINT)
+            if (m.Msg == WindowMessage.WM_PAINT)
             {
                 // Bitmapを自分の上に描画して背景色を設定する
                 var bsz = SystemInformation.Border3DSize;
@@ -1266,17 +1264,86 @@ namespace Metroit.Windows.Forms
                 cm[1].OldColor = SystemColors.WindowText;
                 cm[1].NewColor = this.ForeColor;
 
+                // 背景色・文字色の変更
                 var ia = new System.Drawing.Imaging.ImageAttributes();
                 ia.SetRemapTable(cm);
                 var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
                 g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
                             0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
+
+                // 外枠の変更
+                var frameColor = this.Error ? this.ErrorBorderColor : this.BorderColor;
+
+                // 透明色の時、デザイン中は親コントロールの背景色とする
+                if (this.Parent != null && this.IsDesignMode() && frameColor == Color.Transparent)
+                {
+                    frameColor = this.Parent.BackColor;
+                }
+                g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
             }
 
             return bmp;
         }
 
         #endregion
+
+
+
+
+        #region 外枠
+
+        private Color defaultBorderColor => Color.Transparent;  // BorderColor の既定値
+        private Color defaultErrorBorderColor => Color.Red;  // ErrorBorderColor の既定値
+
+        /// <summary>
+        /// コントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlBorderColor")]
+        public Color BorderColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// BorderColor が既定値から変更されたかどうかを返却する。
+        /// </summary>
+        /// <returns>true:変更された, false:変更されていない</returns>
+        private bool ShouldSerializeBorderColor() => this.BorderColor != this.defaultBorderColor;
+
+        /// <summary>
+        /// BorderColor のリセット操作を行う。
+        /// </summary>
+        private void ResetBorderColor() => this.BorderColor = this.defaultBorderColor;
+
+        /// <summary>
+        /// コントロールのエラー時の枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlErrorBorderColor")]
+        public Color ErrorBorderColor { get; set; } = Color.Red;
+
+        /// <summary>
+        /// ErrorBorderColor が既定値から変更されたかどうかを返却する。
+        /// </summary>
+        /// <returns>true:変更された, false:変更されていない</returns>
+        private bool ShouldSerializeErrorBorderColor() => this.ErrorBorderColor != this.defaultErrorBorderColor;
+
+        /// <summary>
+        /// ErrorBorderColor のリセット操作を行う。
+        /// </summary>
+        private void ResetErrorBorderColor() => this.ErrorBorderColor = this.defaultErrorBorderColor;
+
+        /// <summary>
+        /// コントロールがエラーかどうかを取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlError")]
+        public bool Error { get; set; } = false;
+
+
+        #endregion  
 
     }
 }
