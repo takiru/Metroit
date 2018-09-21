@@ -504,7 +504,7 @@ namespace Metroit.Windows.Forms
         private Color defaultFocusBackColor => this.ReadOnly ? SystemColors.Control : SystemColors.Window;  // FocusBackColor の既定値
         private Color? focusBackColor = null;
         private bool readOnlyLabel = false;
-        private Label label = null;
+        private TextBoxLabel label = null;
         private bool customAutoCompleteMode = false;
         private Keys[] defaultCustomAutoCompleteKeys = new Keys[] {
                 Keys.Alt | Keys.Up,
@@ -817,7 +817,7 @@ namespace Metroit.Windows.Forms
             }
 
             // 表示でラベル代替あり
-            this.label = new Label();
+            this.label = new TextBoxLabel(this);
             this.label.Text = this.Text;
             this.label.Size = this.Size;
             this.label.Location = this.Location;
@@ -1196,12 +1196,32 @@ namespace Metroit.Windows.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        internal void drawBorder()
+        {
+            if (this.Parent == null)
+            {
+                return;
+            }
+
+            using (Graphics g = this.Parent.CreateGraphics())
+            {
+                Rectangle rct = new Rectangle(this.Location, this.Size);
+                rct.Inflate(1, 1);
+                ControlPaint.DrawBorder(g, rct, this.FocusForeColor, ButtonBorderStyle.Solid);
+            }
+        }
+
         /// <summary>
         /// ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
         /// </summary>
         /// <param name="m">ウィンドウメッセージ。</param>
         protected override void WndProc(ref Message m)
         {
+            if (m.Msg == WindowMessage.WM_NCPAINT)
+            {
+                this.drawBorder();
+            }
+
             // デザイン時は制御しない
             if (this.IsDesignMode())
             {

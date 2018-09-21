@@ -153,5 +153,10 @@ namespace Test
             metTextBox1.Width -= 10;
             //metTextBox2.Width -= 10;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.metTextBox1.ReadOnlyLabel = !this.metTextBox1.ReadOnlyLabel;
+        }
     }
 }

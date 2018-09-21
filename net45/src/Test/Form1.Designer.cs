@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
@@ -69,6 +70,16 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(297, 46);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // metTextBox2
             // 
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -81,6 +92,7 @@
             // 
             // metTextBox1
             // 
+            this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             autoCompleteBox2.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
@@ -97,7 +109,7 @@
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox1.Location = new System.Drawing.Point(12, 12);
             this.metTextBox1.Name = "metTextBox1";
-            this.metTextBox1.Size = new System.Drawing.Size(198, 31);
+            this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             // 
             // Form1
@@ -105,6 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 341);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.metTextBox2);
             this.Controls.Add(this.button2);
@@ -128,5 +141,6 @@
         private System.Windows.Forms.Button button2;
         private Metroit.Windows.Forms.MetTextBox metTextBox2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

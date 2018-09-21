@@ -36,5 +36,9 @@ namespace Metroit.Api.Win32
         /// </summary>
         public const int WM_SYSCOMMAND = 0x0112;
 
+        /// <summary>
+        /// ウインドウの非クライアント領域の描画を定義します。
+        /// </summary>
+        public const int WM_NCPAINT = 0x0085;
     }
 }

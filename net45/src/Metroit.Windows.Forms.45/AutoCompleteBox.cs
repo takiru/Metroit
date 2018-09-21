@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -349,9 +350,9 @@ namespace Metroit.Windows.Forms
             // WParam: -1 = コンボボックス自体の高さ
             // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
             var height = this.Target.Height - 6;
-            Metroit.Api.Win32.User32.SendMessage(this.CandidateBox.Handle, Metroit.Api.Win32.ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
+            User32.SendMessage(this.CandidateBox.Handle, ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
 
-            this.CandidateBox.Visible = true;
+            this.CandidateBox.Visible = false;
         }
        
         /// <summary>
