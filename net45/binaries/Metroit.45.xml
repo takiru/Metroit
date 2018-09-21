@@ -79,6 +79,11 @@
             システムコマンドを定義します。
             </summary>
         </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_PAINT">
+            <summary>
+            グラフィック描画を定義します。
+            </summary>
+        </member>
         <member name="T:Metroit.Api.Win32.User32">
             <summary>
             user32.dll を利用するWin32APIを提供します。

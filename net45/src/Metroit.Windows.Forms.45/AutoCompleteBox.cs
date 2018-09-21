@@ -192,6 +192,12 @@ namespace Metroit.Windows.Forms
         {
             this.BoxClosing = true;
 
+            // クリックによって選択した時、ドロップダウンが非表示されないので非表示とする
+            if (this.CandidateBox.Visible)
+            {
+                this.CandidateBox.Visible = false;
+            }
+
             // ドロップダウンを表示している状態で候補が表示されており、
             // クリックによって選択、またはテキスト値をリスト候補の文字列としてフォーカス遷移した時、
             // リスト候補にない場合は、テキスト値をリストのテキストとする
@@ -227,6 +233,8 @@ namespace Metroit.Windows.Forms
 
             this.BoxOpening = true;
 
+            this.CandidateBox.Visible = true;
+
             // プルダウンの表示件数初期化
             this.preItemCount = -1;
 
@@ -248,6 +256,7 @@ namespace Metroit.Windows.Forms
         public void Close()
         {
             this.CandidateBox.DroppedDown = false;
+            this.CandidateBox.Visible = false;
         }
 
         /// <summary>
@@ -334,8 +343,9 @@ namespace Metroit.Windows.Forms
             this.CandidateBox.FlatStyle = FlatStyle.Flat;
             this.CandidateBox.Font = this.Target.Font;
             this.CandidateBox.Location = this.Target.Location;
-            this.CandidateBox.Top = this.Target.Top;
             this.CandidateBox.Size = Target.Size;
+
+            this.CandidateBox.Visible = false;
         }
        
         /// <summary>
@@ -345,6 +355,7 @@ namespace Metroit.Windows.Forms
         {
             this.Close();
             this.BoxOpening = true;
+            this.CandidateBox.Visible = true;
             this.CandidateBox.DroppedDown = true;
             this.Target.Cursor = Cursors.Arrow;
             this.BoxOpening = false;

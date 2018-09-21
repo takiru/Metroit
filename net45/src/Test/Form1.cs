@@ -130,5 +130,28 @@ namespace Test
 
             metTextBox1.CustomAutoCompleteBox.DataSource = dt;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Console.WriteLine(metTextBox1.CustomAutoCompleteBox.SelectedValue.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Text = "bbb column2";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Width -= 10;
+            //metTextBox2.Width -= 10;
+        }
     }
 }
