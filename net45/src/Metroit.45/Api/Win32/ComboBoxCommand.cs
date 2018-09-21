@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Metroit.Api.Win32
 {
     /// <summary>
-    /// システムコマンドを提供します。
+    /// コンボボックス用のコマンドを提供します。
     /// </summary>
-    public static class SystemCommand
+    public static class ComboBoxCommand
     {
         /// <summary>
-        /// ウィンドウのクローズを定義します。
+        /// コンボボックスの高さ決定を定義します。
         /// </summary>
-        public const int SC_CLOSE = 0xF060;
+        public const int CB_SETITEMHEIGHT = 0x0153;
     }
 }

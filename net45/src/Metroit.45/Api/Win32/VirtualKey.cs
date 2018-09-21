@@ -9,7 +9,7 @@ namespace Metroit.Api.Win32
     /// <summary>
     /// 仮想キーコードを提供します。
     /// </summary>
-    public class VirtualKey
+    public static class VirtualKey
     {
         /// <summary>
         /// 上キーを定義します。

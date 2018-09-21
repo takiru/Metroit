@@ -1219,7 +1219,7 @@ namespace Metroit.Windows.Forms
             // (ProcessCmdKeyでは捕捉不可)
             if (this.CustomAutoCompleteBox.IsOpen && m.Msg == WindowMessage.WM_MOUSEWHEEL)
             {
-                User32.SendMessage(this.CustomAutoCompleteBox.CandidateBox.Handle, m.Msg, (uint)m.WParam.ToInt32(), m.LParam.ToInt32());
+                User32.SendMessage(this.CustomAutoCompleteBox.CandidateBox.Handle, m.Msg, m.WParam.ToInt32(), m.LParam.ToInt32());
                 return;
             }
 

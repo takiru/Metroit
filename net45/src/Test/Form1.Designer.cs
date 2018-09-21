@@ -81,7 +81,6 @@
             // 
             // metTextBox1
             // 
-            this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             autoCompleteBox2.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
@@ -98,7 +97,7 @@
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox1.Location = new System.Drawing.Point(12, 12);
             this.metTextBox1.Name = "metTextBox1";
-            this.metTextBox1.Size = new System.Drawing.Size(198, 24);
+            this.metTextBox1.Size = new System.Drawing.Size(198, 31);
             this.metTextBox1.TabIndex = 0;
             // 
             // Form1

@@ -9,7 +9,7 @@ namespace Metroit.Api.Win32
     /// <summary>
     /// ウィンドウメッセージを提供します。
     /// </summary>
-    public class WindowMessage
+    public static class WindowMessage
     {
         /// <summary>
         /// キーの押下を定義します。

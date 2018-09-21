@@ -345,7 +345,13 @@ namespace Metroit.Windows.Forms
             this.CandidateBox.Location = this.Target.Location;
             this.CandidateBox.Size = Target.Size;
 
-            this.CandidateBox.Visible = false;
+            // コンボボックス自体の高さを、テキストと一緒にする
+            // WParam: -1 = コンボボックス自体の高さ
+            // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
+            var height = this.Target.Height - 6;
+            Metroit.Api.Win32.User32.SendMessage(this.CandidateBox.Handle, Metroit.Api.Win32.ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
+
+            this.CandidateBox.Visible = true;
         }
        
         /// <summary>

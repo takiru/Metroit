@@ -10,7 +10,7 @@ namespace Metroit.Api.Win32
     /// <summary>
     /// user32.dll を利用するWin32APIを提供します。
     /// </summary>
-    public class User32
+    public static class User32
     {
         /// <summary>
         /// ウィンドウハンドルへメッセージを送信します。
@@ -21,6 +21,6 @@ namespace Metroit.Api.Win32
         /// <param name="lParam">メッセージ特有の追加情報。</param>
         /// <returns>メッセージ処理の結果が返ります。この戻り値の意味は、送信されたメッセージにより異なります。</returns>
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, uint wParam, int lParam);
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
     }
 }
