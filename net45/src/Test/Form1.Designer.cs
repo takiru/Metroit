@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox1 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -37,10 +37,11 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
@@ -116,6 +117,13 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(78, 266);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 19);
+            this.dateTimePicker1.TabIndex = 11;
+            // 
             // metDateTimePicker1
             // 
             this.metDateTimePicker1.BackColor = System.Drawing.SystemColors.Window;
@@ -134,7 +142,7 @@
             // metTextBox2
             // 
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox3;
+            this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox1;
             this.metTextBox2.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox2.Location = new System.Drawing.Point(47, 88);
             this.metTextBox2.Name = "metTextBox2";
@@ -145,14 +153,14 @@
             // 
             this.metTextBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
             this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            autoCompleteBox4.CompareOptions = new System.Globalization.CompareOptions[] {
+            autoCompleteBox2.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
         System.Globalization.CompareOptions.IgnoreWidth};
-            autoCompleteBox4.DisplayMember = "Column2";
-            autoCompleteBox4.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
-            autoCompleteBox4.ValueMember = "Column1";
-            this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox4;
+            autoCompleteBox2.DisplayMember = "Column2";
+            autoCompleteBox2.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
+            autoCompleteBox2.ValueMember = "Column1";
+            this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox2;
             this.metTextBox1.CustomAutoCompleteKeys = new System.Windows.Forms.Keys[] {
         ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Return)))};
             this.metTextBox1.CustomAutoCompleteMode = true;
@@ -165,18 +173,22 @@
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // button8
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(78, 266);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 19);
-            this.dateTimePicker1.TabIndex = 11;
+            this.button8.Location = new System.Drawing.Point(318, 222);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(70, 23);
+            this.button8.TabIndex = 12;
+            this.button8.Text = "Visible";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 341);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -213,5 +225,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button8;
     }
 }

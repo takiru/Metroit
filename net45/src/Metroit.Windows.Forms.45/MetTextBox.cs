@@ -400,6 +400,7 @@ namespace Metroit.Windows.Forms
                     return;
                 }
                 this.switchLabel();
+                this.drawOuterFrame();
             }
         }
 
@@ -1319,11 +1320,14 @@ namespace Metroit.Windows.Forms
                 Rectangle prevRct = new Rectangle(this.PrevLocation, this.PrevSize);
                 prevRct.Inflate(1, 1);
                 ControlPaint.DrawBorder(g, prevRct, this.Parent.BackColor, ButtonBorderStyle.Solid);
-                
+
                 // 今回の描画位置に枠を描画する
-                Rectangle rct = new Rectangle(this.Location, this.Size);
-                rct.Inflate(1, 1);
-                ControlPaint.DrawBorder(g, rct, frameColor, ButtonBorderStyle.Solid);
+                if (this.Visible)
+                {
+                    Rectangle rct = new Rectangle(this.Location, this.Size);
+                    rct.Inflate(1, 1);
+                    ControlPaint.DrawBorder(g, rct, frameColor, ButtonBorderStyle.Solid);
+                }
 
                 this.PrevLocation = this.Location;
                 this.PrevSize = this.Size;
