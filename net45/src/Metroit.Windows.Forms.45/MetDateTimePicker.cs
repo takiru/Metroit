@@ -535,6 +535,10 @@ namespace Metroit.Windows.Forms
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
             this.textBox.TabStop = this.TabStop;
+            this.textBox.BaseBackColor = this.BaseBackColor;
+            this.textBox.BaseForeColor = this.BaseForeColor;
+            this.textBox.FocusBackColor = this.FocusBackColor;
+            this.textBox.FocusForeColor = this.FocusForeColor;
             this.textBox.BaseOuterFrameColor = this.BaseOuterFrameColor;
             this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
             this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;

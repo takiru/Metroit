@@ -174,8 +174,8 @@ namespace Test
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
-            //metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
+            metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
+            metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
             metComboBox1.ReadOnly = !metComboBox1.ReadOnly;
         }
 
