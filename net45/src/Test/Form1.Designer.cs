@@ -38,10 +38,10 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button8 = new System.Windows.Forms.Button();
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
-            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
@@ -124,6 +124,16 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 19);
             this.dateTimePicker1.TabIndex = 11;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(318, 222);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(70, 23);
+            this.button8.TabIndex = 12;
+            this.button8.Text = "Visible";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // metDateTimePicker1
             // 
             this.metDateTimePicker1.BackColor = System.Drawing.SystemColors.Window;
@@ -172,16 +182,6 @@
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(318, 222);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(70, 23);
-            this.button8.TabIndex = 12;
-            this.button8.Text = "Visible";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
