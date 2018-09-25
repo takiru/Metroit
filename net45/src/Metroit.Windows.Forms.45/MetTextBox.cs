@@ -1319,6 +1319,8 @@ namespace Metroit.Windows.Forms
                 Rectangle prevRct = new Rectangle(this.PrevLocation.X - 1, this.PrevLocation.Y - 1, this.PrevSize.Width + 2, this.PrevSize.Height + 2);
                 ControlPaint.DrawBorder(g, prevRct, this.Parent.BackColor, ButtonBorderStyle.Solid);
 
+                Console.WriteLine("kita");
+
                 // 今回の描画位置に枠を描画する
                 Rectangle rct = new Rectangle(this.Location, this.Size);
                 rct.Inflate(1, 1);
