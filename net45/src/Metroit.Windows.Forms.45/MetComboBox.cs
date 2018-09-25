@@ -351,7 +351,7 @@ namespace Metroit.Windows.Forms
             this.label.Font = this.Font;
             this.label.Anchor = this.Anchor;
             this.label.RightToLeft = this.RightToLeft;
-            this.label.BorderStyle = BorderStyle.Fixed3D;
+            this.label.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.label.Cursor = this.Cursor;
             this.label.TextAlign = ContentAlignment.MiddleLeft;
             this.ChangeDisplayColor();

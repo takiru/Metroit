@@ -170,6 +170,7 @@ namespace Test
         {
             metTextBox1.ReadOnlyLabel = !metTextBox1.ReadOnlyLabel;
             metDateTimePicker1.ReadOnlyLabel = !metDateTimePicker1.ReadOnlyLabel;
+            metComboBox1.ReadOnlyLabel = !metComboBox1.ReadOnlyLabel;
         }
 
         private void button7_Click(object sender, EventArgs e)
