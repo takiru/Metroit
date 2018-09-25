@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Metroit.Windows.Forms.Extensions;
+using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -11,7 +11,7 @@ namespace Metroit.Windows.Forms
     /// ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。
     /// </summary>
     [ToolboxItem(true)]
-    public class MetDateTimePicker : DateTimePicker, ISupportInitialize, IControlRollback
+    public class MetDateTimePicker : DateTimePicker, ISupportInitialize, IControlRollback, IOuterFrame
     {
         /// <summary>
         /// MetDateTimePicker の新しいインスタンスを初期化します。
@@ -374,7 +374,7 @@ namespace Metroit.Windows.Forms
         #region 追加プロパティ
 
         private bool acceptNull = false;
-        private TextBox textBox = null;
+        private MetTextBox textBox = null;
         private bool readOnlyText = false;
         private Label label = null;
         private bool readOnlyLabel = false;
@@ -469,6 +469,7 @@ namespace Metroit.Windows.Forms
                 // テキストを一旦削除する
                 if (this.textBox != null)
                 {
+                    this.textBox.Visible = false;
                     this.textBox.Parent.Controls.Remove(this.textBox);
                     this.textBox.Dispose();
                     this.textBox = null;
@@ -483,6 +484,7 @@ namespace Metroit.Windows.Forms
             {
                 if (this.textBox != null)
                 {
+                    this.textBox.Visible = false;
                     this.textBox.Parent.Controls.Remove(this.textBox);
                     this.textBox.Dispose();
                     this.textBox = null;
@@ -505,13 +507,15 @@ namespace Metroit.Windows.Forms
             // ReadOnly=trueで既にテキストが存在する場合、一旦テキストを削除する
             if (this.textBox != null)
             {
+                this.textBox.Visible = false;
                 this.textBox.Parent.Controls.Remove(this.textBox);
                 this.textBox.Dispose();
                 this.textBox = null;
             }
 
             // 表示でテキスト代替あり
-            this.textBox = new TextBox();
+            this.textBox = new MetTextBox();
+            this.textBox.BeginInit();
             this.textBox.ReadOnly = true;
             this.textBox.Text = this.Text;
             this.textBox.Size = this.Size;
@@ -526,11 +530,20 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = BorderStyle.Fixed3D;
+            this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
             this.textBox.TabStop = this.TabStop;
+            this.textBox.BaseBackColor = this.BaseBackColor;
+            this.textBox.BaseForeColor = this.BaseForeColor;
+            this.textBox.FocusBackColor = this.FocusBackColor;
+            this.textBox.FocusForeColor = this.FocusForeColor;
+            this.textBox.BaseOuterFrameColor = this.BaseOuterFrameColor;
+            this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
+            this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;
+            this.textBox.Error = this.Error;
+            this.textBox.EndInit();
             this.ChangeDisplayColor();
 
             this.textBox.Enter += MetDateTimePicker_Enter;
@@ -670,7 +683,7 @@ namespace Metroit.Windows.Forms
             this.label.Font = this.Font;
             this.label.Anchor = this.Anchor;
             this.label.RightToLeft = this.RightToLeft;
-            this.label.BorderStyle = BorderStyle.Fixed3D;
+            this.label.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.label.Cursor = this.Cursor;
             this.label.TextAlign = ContentAlignment.MiddleLeft;
             this.ChangeDisplayColor();
@@ -962,6 +975,60 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        #region コントロールの外枠の色
+
+        /// <summary>
+        /// コントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlBaseOuterFrameColor")]
+        public Color BaseOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// フォーカス時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlFocusOuterFrameColor")]
+        public Color FocusOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// エラー時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Red")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlErrorOuterFrameColor")]
+        public Color ErrorOuterFrameColor { get; set; } = Color.Red;
+
+        private bool error = false;
+
+        /// <summary>
+        /// コントロールがエラーかどうかを取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlError")]
+        public bool Error
+        {
+            get => this.error;
+            set
+            {
+                this.error = value;
+                this.redrawColor();
+                if (this.ReadOnly)
+                {
+                    this.textBox.Error = value;
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region メソッド
@@ -1220,27 +1287,24 @@ namespace Metroit.Windows.Forms
         {
             base.WndProc(ref m);
 
-            // 背景色・文字色を描画する
-            this.redrawColor(ref m);
+            // 背景色・文字色、外枠を描画する
+            if (m.Msg == WindowMessage.WM_PAINT)
+            {
+                this.redrawColor();
+            }
         }
 
         /// <summary>
         /// 背景色・文字色の描画し直します。
         /// </summary>
-        private void redrawColor(ref Message m)
+        private void redrawColor()
         {
-            // 描画が行われた際のメッセージ
-            int WM_PAINT = 0x000F;
-
-            if (m.Msg == WM_PAINT)
+            // Bitmapを自分の上に描画して背景色を設定する
+            var bsz = SystemInformation.Border3DSize;
+            using (var g = this.CreateGraphics())
+            using (var bmp = this.getControlImage())
             {
-                // Bitmapを自分の上に描画して背景色を設定する
-                var bsz = SystemInformation.Border3DSize;
-                using (var g = this.CreateGraphics())
-                using (var bmp = this.getControlImage())
-                {
-                    g.DrawImage(bmp, -bsz.Width + 2, -bsz.Height + 2);
-                }
+                g.DrawImage(bmp, -bsz.Width + 2, -bsz.Height + 2);
             }
         }
 
@@ -1267,17 +1331,31 @@ namespace Metroit.Windows.Forms
                 cm[1].OldColor = SystemColors.WindowText;
                 cm[1].NewColor = this.ForeColor;
 
+                // 背景色・文字色の変更
                 var ia = new System.Drawing.Imaging.ImageAttributes();
                 ia.SetRemapTable(cm);
                 var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
                 g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
                             0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
+
+                // 外枠の変更
+                var frameColor = this.BaseOuterFrameColor;
+                var form = this.FindForm();
+                if (form != null && form.ActiveControl == this)
+                {
+                    frameColor = this.FocusOuterFrameColor;
+                }
+                if (this.Error)
+                {
+                    frameColor = this.ErrorOuterFrameColor;
+                }
+
+                g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
             }
 
             return bmp;
         }
 
         #endregion
-
     }
 }

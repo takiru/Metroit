@@ -904,9 +904,6 @@ namespace Metroit.Windows.Forms
             base.OnEnabledChanged(e);
         }
 
-
-
-
         /// <summary>
         /// 背景色の変更を行います。
         /// </summary>

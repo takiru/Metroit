@@ -874,7 +874,6 @@ namespace Metroit.Windows.Forms
             }
         }
 
-
         #region コントロールの外枠の色
 
         /// <summary>

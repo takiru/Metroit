@@ -2,12 +2,12 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.4-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.4-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
 # Metroit #
 ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
@@ -332,6 +332,10 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |CustomAutoCompleteBox   |カスタムオートコンプリートの設定。                      |
     |CustomAutoCompleteKeys  |カスタムオートコンプリートを表示するキー。              |
     |CustomAutoCompleteMode  |カスタムオートコンプリートを利用するかどうか。          |
+    |BaseOuterFrameColor     |基本の外枠色。                                          |
+    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |Error                   |エラーかどうか。                                        |
 
         ReadOnlyLabel は、 Label に置き換えます。
         BackColor, ForeColor は、ロジックからのみ利用可能です。  
@@ -405,6 +409,10 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |BaseForeColor       |基本の文字色。                                          |
     |FocusBackColor      |フォーカスを得た時の背景色。                            |
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
+    |BaseOuterFrameColor     |基本の外枠色。                                          |
+    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |Error                   |エラーかどうか。                                        |
 
         ReadOnly は、TextBox に置き換えます。
         ReadOnlyLabel は、 Label に置き換えます。
@@ -422,7 +430,11 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |BaseForeColor       |基本の文字色。                                          |
     |FocusBackColor      |フォーカスを得た時の背景色。                            |
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
-
+    |BaseOuterFrameColor     |基本の外枠色。                                          |
+    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |Error                   |エラーかどうか。                                        |
+    
         ReadOnly は、TextBox に置き換えます。
         ReadOnlyLabel は、 Label に置き換えます。
         DropDownStyle=DropDownList の時、DrawModeはOwnerDrawFixedまたはOwnerDrawVariableでなければなりません。

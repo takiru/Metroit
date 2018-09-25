@@ -130,5 +130,61 @@ namespace Test
 
             metTextBox1.CustomAutoCompleteBox.DataSource = dt;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Console.WriteLine(metTextBox1.CustomAutoCompleteBox.SelectedValue.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Text = "bbb column2";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Width -= 10;
+            //metTextBox2.Width -= 10;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.metTextBox1.ReadOnlyLabel = !this.metTextBox1.ReadOnlyLabel;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Error = !metTextBox1.Error;
+            metDateTimePicker1.Error = !metDateTimePicker1.Error;
+            metComboBox1.Error = !metComboBox1.Error;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            metTextBox1.ReadOnlyLabel = !metTextBox1.ReadOnlyLabel;
+            metDateTimePicker1.ReadOnlyLabel = !metDateTimePicker1.ReadOnlyLabel;
+            metComboBox1.ReadOnlyLabel = !metComboBox1.ReadOnlyLabel;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
+            metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
+            metComboBox1.ReadOnly = !metComboBox1.ReadOnly;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Visible = !metTextBox1.Visible;
+            metDateTimePicker1.Visible = !metDateTimePicker1.Visible;
+            metComboBox1.Visible = !metComboBox1.Visible;
+        }
     }
 }

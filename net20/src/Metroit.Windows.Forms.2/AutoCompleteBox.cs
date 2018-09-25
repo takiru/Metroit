@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -190,6 +191,12 @@ namespace Metroit.Windows.Forms
         {
             this.BoxClosing = true;
 
+            // クリックによって選択した時、ドロップダウンが非表示されないので非表示とする
+            if (this.CandidateBox.Visible)
+            {
+                this.CandidateBox.Visible = false;
+            }
+
             // ドロップダウンを表示している状態で候補が表示されており、
             // クリックによって選択、またはテキスト値をリスト候補の文字列としてフォーカス遷移した時、
             // リスト候補にない場合は、テキスト値をリストのテキストとする
@@ -225,6 +232,8 @@ namespace Metroit.Windows.Forms
 
             this.BoxOpening = true;
 
+            this.CandidateBox.Visible = true;
+
             // プルダウンの表示件数初期化
             this.preItemCount = -1;
 
@@ -246,6 +255,7 @@ namespace Metroit.Windows.Forms
         public void Close()
         {
             this.CandidateBox.DroppedDown = false;
+            this.CandidateBox.Visible = false;
         }
 
         /// <summary>
@@ -255,6 +265,12 @@ namespace Metroit.Windows.Forms
         internal void SetTarget(Control target)
         {
             this.Target = target;
+
+            if (this.Target.Parent == null)
+            {
+                return;
+            }
+
             this.SetupControlProperties();
             this.Target.Parent.Controls.Add(this.CandidateBox);
         }
@@ -332,10 +348,17 @@ namespace Metroit.Windows.Forms
             this.CandidateBox.FlatStyle = FlatStyle.Flat;
             this.CandidateBox.Font = this.Target.Font;
             this.CandidateBox.Location = this.Target.Location;
-            this.CandidateBox.Top = this.Target.Top;
             this.CandidateBox.Size = Target.Size;
+
+            // コンボボックス自体の高さを、テキストと一緒にする
+            // WParam: -1 = コンボボックス自体の高さ
+            // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
+            var height = this.Target.Height - 6;
+            User32.SendMessage(this.CandidateBox.Handle, ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
+
+            this.CandidateBox.Visible = false;
         }
-       
+
         /// <summary>
         /// オートコンプリートのボックス内容を再描画する。
         /// </summary>
@@ -343,6 +366,7 @@ namespace Metroit.Windows.Forms
         {
             this.Close();
             this.BoxOpening = true;
+            this.CandidateBox.Visible = true;
             this.CandidateBox.DroppedDown = true;
             this.Target.Cursor = Cursors.Arrow;
             this.BoxOpening = false;

@@ -7,7 +7,7 @@ namespace Metroit.Api.Win32
     /// <summary>
     /// システムコマンドを提供します。
     /// </summary>
-    public class SystemCommand
+    public static class SystemCommand
     {
         /// <summary>
         /// ウィンドウのクローズを定義します。

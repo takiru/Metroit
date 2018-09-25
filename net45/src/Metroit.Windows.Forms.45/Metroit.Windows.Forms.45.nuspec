@@ -10,11 +10,11 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>We prepared a custom autocomplete command in MetTextBox.</releaseNotes>
+    <releaseNotes>Added OuterFrame relation property to the control.</releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.0.1" />
+      <dependency id="Metroit.45" version="1.0.2" />
     </dependencies>
   </metadata>
 </package>

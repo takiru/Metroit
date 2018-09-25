@@ -727,6 +727,31 @@
             <param name="sender">指示したオブジェクト。</param>
             <param name="control">コントロール。</param>
         </member>
+        <member name="T:Metroit.Windows.Forms.IOuterFrame">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.IOuterFrame.BaseOuterFrameColor">
+            <summary>
+            コントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.IOuterFrame.FocusOuterFrameColor">
+            <summary>
+            フォーカス時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.IOuterFrame.ErrorOuterFrameColor">
+            <summary>
+            エラー時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.IOuterFrame.Error">
+            <summary>
+            コントロールがエラーかどうかを取得または設定します。
+            </summary>
+        </member>
         <member name="T:Metroit.Windows.Forms.MatchPatternType">
             <summary>
             マッチパターン種類を定義します。
@@ -914,6 +939,26 @@
             表示色を非フォーカス色に変更する。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.BaseOuterFrameColor">
+            <summary>
+            コントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.FocusOuterFrameColor">
+            <summary>
+            フォーカス時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.ErrorOuterFrameColor">
+            <summary>
+            エラー時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.Error">
+            <summary>
+            コントロールがエラーかどうかを取得または設定します。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetComboBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
             <summary>
             ロールバック済みかどうかを取得します。
@@ -999,6 +1044,23 @@
             コントロールの活性状態が変更時、テキスト代替表示をしていたらテキストの活性状態も変更します。
             </summary>
             <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            背景色の変更を行います。
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.redrawColor">
+            <summary>
+            背景色・文字色の描画し直します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.getControlImage">
+            <summary>
+            背景色・文字色描画用のBitmapオブジェクトを取得する。
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>
@@ -1444,6 +1506,26 @@
             表示色を非フォーカス色に変更する。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BaseOuterFrameColor">
+            <summary>
+            コントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.FocusOuterFrameColor">
+            <summary>
+            フォーカス時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ErrorOuterFrameColor">
+            <summary>
+            エラー時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.Error">
+            <summary>
+            コントロールがエラーかどうかを取得または設定します。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BeginInit">
             <summary>
             InitializeComponent()でコントロールの生成が完了していないことを通知します。
@@ -1546,7 +1628,7 @@
             </summary>
             <param name="m"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.redrawColor(System.Windows.Forms.Message@)">
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.redrawColor">
             <summary>
             背景色・文字色の描画し直します。
             </summary>
@@ -2201,6 +2283,16 @@
               コントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseOuterFrameColor">
+            <summary>
+              Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseOuterFrameColor_ja">
+            <summary>
+              コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlByteEncoding">
             <summary>
               Specify the character encoding that implements the maximum byte limit. に類似しているローカライズされた文字列を検索します。
@@ -2271,6 +2363,26 @@
               Enterキーが押された時にフォーカスを遷移するかを設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlError">
+            <summary>
+              Gets or sets whether the control is error. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlError_ja">
+            <summary>
+              コントロールがエラーかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorOuterFrameColor">
+            <summary>
+              Gets or sets the frame color of control at error. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorOuterFrameColor_ja">
+            <summary>
+              エラー時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlEscPush">
             <summary>
               Set the behavior when the ESC key is pressed. に類似しているローカライズされた文字列を検索します。
@@ -2309,6 +2421,16 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusForeColor_ja">
             <summary>
               フォーカス時のコントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusOuterFrameColor">
+            <summary>
+              Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusOuterFrameColor_ja">
+            <summary>
+              フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusSelect">
@@ -3367,6 +3489,26 @@
             表示状態に応じて、Visible、ラベル代替を切り替える。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.BaseOuterFrameColor">
+            <summary>
+            コントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusOuterFrameColor">
+            <summary>
+            フォーカス時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.ErrorOuterFrameColor">
+            <summary>
+            エラー時のコントロールの枠色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Error">
+            <summary>
+            コントロールがエラーかどうかを取得または設定します。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.BeginInit">
             <summary>
             InitializeComponent()でコントロールの初期化が完了していないことを通知します。
@@ -3483,6 +3625,11 @@
             ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
             </summary>
             <param name="m">ウィンドウメッセージ。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawOuterFrame">
+            <summary>
+            コントロールの外枠の色を描画する。
+            </summary>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.canPaste">
             <summary>

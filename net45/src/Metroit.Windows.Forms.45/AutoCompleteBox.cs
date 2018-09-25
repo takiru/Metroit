@@ -360,7 +360,7 @@ namespace Metroit.Windows.Forms
 
             this.CandidateBox.Visible = false;
         }
-       
+
         /// <summary>
         /// オートコンプリートのボックス内容を再描画する。
         /// </summary>

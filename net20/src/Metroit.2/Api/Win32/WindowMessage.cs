@@ -7,7 +7,7 @@ namespace Metroit.Api.Win32
     /// <summary>
     /// ウィンドウメッセージを提供します。
     /// </summary>
-    public class WindowMessage
+    public static class WindowMessage
     {
         /// <summary>
         /// キーの押下を定義します。
@@ -34,5 +34,14 @@ namespace Metroit.Api.Win32
         /// </summary>
         public const int WM_SYSCOMMAND = 0x0112;
 
+        /// <summary>
+        /// ウィンドウのクライアント領域の描画を定義します。
+        /// </summary>
+        public const int WM_PAINT = 0x000F;
+
+        /// <summary>
+        /// ウインドウの非クライアント領域の描画を定義します。
+        /// </summary>
+        public const int WM_NCPAINT = 0x0085;
     }
 }
