@@ -38,7 +38,7 @@ namespace Metroit.Windows.Forms
     /// Textプロパティをコード上で書き換え、入力値が拒否された場合に発生します。
     /// </exception>
     [ToolboxItem(true)]
-    public class MetTextBox : TextBox, ISupportInitialize, IControlRollback
+    public class MetTextBox : TextBox, ISupportInitialize, IControlRollback, IOuterFrame
     {
         /// <summary>
         /// Keys プロパティエディタにEnterなどが含まれないため、全キーを含めるためにKeysを生成し直します。
@@ -504,7 +504,7 @@ namespace Metroit.Windows.Forms
         private Color defaultFocusBackColor => this.ReadOnly ? SystemColors.Control : SystemColors.Window;  // FocusBackColor の既定値
         private Color? focusBackColor = null;
         private bool readOnlyLabel = false;
-        private TextBoxLabel label = null;
+        private Label label = null;
         private bool customAutoCompleteMode = false;
         private Keys[] defaultCustomAutoCompleteKeys = new Keys[] {
                 Keys.Alt | Keys.Up,
@@ -817,7 +817,7 @@ namespace Metroit.Windows.Forms
             }
 
             // 表示でラベル代替あり
-            this.label = new TextBoxLabel(this);
+            this.label = new Label();
             this.label.Text = this.Text;
             this.label.Size = this.Size;
             this.label.Location = this.Location;
@@ -872,6 +872,57 @@ namespace Metroit.Windows.Forms
                 this.Parent.Controls.Add(this.label);
             }
         }
+
+
+        #region コントロールの外枠の色
+
+        /// <summary>
+        /// コントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlBaseOuterFrameColor")]
+        public Color BaseOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// フォーカス時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlFocusOuterFrameColor")]
+        public Color FocusOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// エラー時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Red")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlErrorOuterFrameColor")]
+        public Color ErrorOuterFrameColor { get; set; } = Color.Red;
+
+        private bool error = false;
+
+        /// <summary>
+        /// コントロールがエラーかどうかを取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlError")]
+        public bool Error
+        {
+            get => this.error;
+            set
+            {
+                this.error = value;
+                this.drawOuterFrame();
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -1196,30 +1247,15 @@ namespace Metroit.Windows.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        internal void drawBorder()
-        {
-            if (this.Parent == null)
-            {
-                return;
-            }
-
-            using (Graphics g = this.Parent.CreateGraphics())
-            {
-                Rectangle rct = new Rectangle(this.Location, this.Size);
-                rct.Inflate(1, 1);
-                ControlPaint.DrawBorder(g, rct, this.FocusForeColor, ButtonBorderStyle.Solid);
-            }
-        }
-
         /// <summary>
         /// ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
         /// </summary>
         /// <param name="m">ウィンドウメッセージ。</param>
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WindowMessage.WM_NCPAINT)
+            if (m.Msg == WindowMessage.WM_PAINT)
             {
-                this.drawBorder();
+                this.drawOuterFrame();
             }
 
             // デザイン時は制御しない
@@ -1244,6 +1280,42 @@ namespace Metroit.Windows.Forms
             }
 
             base.WndProc(ref m);
+        }
+
+        /// <summary>
+        /// コントロールの外枠の色を描画する。
+        /// </summary>
+        private void drawOuterFrame()
+        {
+            if (this.Parent == null)
+            {
+                return;
+            }
+
+            using (Graphics g = this.Parent.CreateGraphics())
+            {
+                // 外枠の変更
+                var frameColor = this.BaseOuterFrameColor;
+                var form = this.FindForm();
+                if (form != null && form.ActiveControl == this)
+                {
+                    frameColor = this.FocusOuterFrameColor;
+                }
+                if (this.Error)
+                {
+                    frameColor = this.ErrorOuterFrameColor;
+                }
+
+                // ラベル読み取り専用時は親コントロールの背景色とする
+                if (this.ReadOnlyLabel)
+                {
+                    frameColor = this.Parent.BackColor;
+                }
+
+                Rectangle rct = new Rectangle(this.Location, this.Size);
+                rct.Inflate(1, 1);
+                ControlPaint.DrawBorder(g, rct, frameColor, ButtonBorderStyle.Solid);
+            }
         }
 
         /// <summary>

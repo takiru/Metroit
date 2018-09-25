@@ -158,5 +158,23 @@ namespace Test
         {
             this.metTextBox1.ReadOnlyLabel = !this.metTextBox1.ReadOnlyLabel;
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Error = !metTextBox1.Error;
+            metDateTimePicker1.Error = !metDateTimePicker1.Error;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            metTextBox1.ReadOnlyLabel = !metTextBox1.ReadOnlyLabel;
+            metDateTimePicker1.ReadOnlyLabel = !metDateTimePicker1.ReadOnlyLabel;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
+            metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
+        }
     }
 }

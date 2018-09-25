@@ -79,6 +79,7 @@
     <Compile Include="CurrencyPositivePatternType.cs" />
     <Compile Include="ExceptionResources.cs" />
     <Compile Include="IControlRollback.cs" />
+    <Compile Include="IOuterFrame.cs" />
     <Compile Include="MatchPatternType.cs" />
     <Compile Include="MetComboBox.cs">
       <SubType>Component</SubType>
@@ -129,9 +130,6 @@
       <DependentUpon>ExceptionResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="TextBoxLabel.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ShortcutKeysEditorHack.cs" />
     <Compile Include="TextChangeValidationEventHandler.cs" />
