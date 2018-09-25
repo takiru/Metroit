@@ -530,8 +530,7 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            //this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
-            this.textBox.BorderStyle = BorderStyle.Fixed3D;
+            this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
@@ -1017,6 +1016,10 @@ namespace Metroit.Windows.Forms
             {
                 this.error = value;
                 this.redrawColor();
+                if (this.ReadOnly)
+                {
+                    this.textBox.Error = value;
+                }
             }
         }
 
