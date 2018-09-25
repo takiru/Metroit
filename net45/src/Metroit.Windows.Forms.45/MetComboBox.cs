@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Metroit.Api.Win32;
 using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
@@ -14,7 +15,7 @@ namespace Metroit.Windows.Forms
     /// Windows コンボ ボックス コントロールを表します。
     /// </summary>
     [ToolboxItem(true)]
-    public class MetComboBox : ComboBox, IControlRollback
+    public class MetComboBox : ComboBox, IControlRollback, IOuterFrame
     {
         /// <summary>
         /// MetComboBox の新しいインスタンスを初期化します。
@@ -127,7 +128,7 @@ namespace Metroit.Windows.Forms
 
         #region 追加プロパティ
 
-        private TextBox textBox = null;
+        private MetTextBox textBox = null;
         private bool readOnlyText = false;
         private Label label = null;
         private bool readOnlyLabel = false;
@@ -221,6 +222,7 @@ namespace Metroit.Windows.Forms
             // 非表示の時はTextBoxを親コントロールから削除する
             if (!this.Visible)
             {
+                this.textBox.Visible = false;
                 this.RemoveControl(this.textBox);
                 this.ChangeDisplayColor();
                 return;
@@ -230,6 +232,7 @@ namespace Metroit.Windows.Forms
             if (!this.ReadOnly)
             {
                 base.Visible = true;
+                this.textBox.Visible = false;
                 this.RemoveControl(this.textBox);
                 this.ChangeDisplayColor();
                 return;
@@ -250,11 +253,15 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = BorderStyle.Fixed3D;
+            this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
             this.textBox.TabStop = this.TabStop;
+            this.textBox.BaseOuterFrameColor = this.BaseOuterFrameColor;
+            this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
+            this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;
+            this.textBox.Error = this.Error;
             this.ChangeDisplayColor();
 
             this.textBox.Enter += MetComboBox_Enter;
@@ -609,6 +616,60 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        #region コントロールの外枠の色
+
+        /// <summary>
+        /// コントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlBaseOuterFrameColor")]
+        public Color BaseOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// フォーカス時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Transparent")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlFocusOuterFrameColor")]
+        public Color FocusOuterFrameColor { get; set; } = Color.Transparent;
+
+        /// <summary>
+        /// エラー時のコントロールの枠色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "Red")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlErrorOuterFrameColor")]
+        public Color ErrorOuterFrameColor { get; set; } = Color.Red;
+
+        private bool error = false;
+
+        /// <summary>
+        /// コントロールがエラーかどうかを取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(false)]
+        [MetCategory("MetAppearance")]
+        [MetDescription("ControlError")]
+        public bool Error
+        {
+            get => this.error;
+            set
+            {
+                this.error = value;
+                this.redrawColor();
+                if (this.ReadOnly)
+                {
+                    this.textBox.Error = value;
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region メソッド
@@ -649,7 +710,9 @@ namespace Metroit.Windows.Forms
             }
 
             this.controlCreated = true;
-            this.textBox = new TextBox();
+            this.textBox = new MetTextBox();
+            this.textBox.BeginInit();
+            this.textBox.EndInit();
             this.label = new Label();
             SwitchControl();
         }
@@ -835,6 +898,86 @@ namespace Metroit.Windows.Forms
                 this.textBox.Enabled = this.Enabled;
             }
             base.OnEnabledChanged(e);
+        }
+
+
+
+
+        /// <summary>
+        /// 背景色の変更を行います。
+        /// </summary>
+        /// <param name="m"></param>
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            // 背景色・文字色、外枠を描画する
+            if (m.Msg == WindowMessage.WM_PAINT)
+            {
+                this.redrawColor();
+            }
+        }
+
+        /// <summary>
+        /// 背景色・文字色の描画し直します。
+        /// </summary>
+        private void redrawColor()
+        {
+            // Bitmapを自分の上に描画して背景色を設定する
+            var bsz = SystemInformation.Border3DSize;
+            using (var g = this.CreateGraphics())
+            using (var bmp = this.getControlImage())
+            {
+                g.DrawImage(bmp, -bsz.Width + 2, -bsz.Height + 2);
+            }
+        }
+
+        /// <summary>
+        /// 背景色・文字色描画用のBitmapオブジェクトを取得する。
+        /// </summary>
+        /// <returns></returns>
+        private Bitmap getControlImage()
+        {
+            // 自分自身の画像をBitmapにコピー
+            var bmp = new Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+
+            // Bitmapの背景色をMe.BackColorに変更する
+            using (var g = Graphics.FromImage(bmp))
+            {
+                System.Drawing.Imaging.ColorMap[] cm = { new System.Drawing.Imaging.ColorMap(), new System.Drawing.Imaging.ColorMap() };
+
+                // 背景色のマッピング
+                cm[0].OldColor = SystemColors.Window;
+                cm[0].NewColor = this.BackColor;
+
+                // 文字色のマッピング
+                cm[1].OldColor = SystemColors.WindowText;
+                cm[1].NewColor = this.ForeColor;
+
+                // 背景色・文字色の変更
+                var ia = new System.Drawing.Imaging.ImageAttributes();
+                ia.SetRemapTable(cm);
+                var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
+                g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
+                            0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
+
+                // 外枠の変更
+                var frameColor = this.BaseOuterFrameColor;
+                var form = this.FindForm();
+                if (form != null && form.ActiveControl == this)
+                {
+                    frameColor = this.FocusOuterFrameColor;
+                }
+                if (this.Error)
+                {
+                    frameColor = this.ErrorOuterFrameColor;
+                }
+
+                g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
+            }
+
+            return bmp;
         }
 
         #endregion

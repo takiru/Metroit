@@ -163,6 +163,7 @@ namespace Test
         {
             metTextBox1.Error = !metTextBox1.Error;
             metDateTimePicker1.Error = !metDateTimePicker1.Error;
+            metComboBox1.Error = !metComboBox1.Error;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -173,14 +174,16 @@ namespace Test
 
         private void button7_Click(object sender, EventArgs e)
         {
-            metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
-            metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
+            //metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
+            //metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
+            metComboBox1.ReadOnly = !metComboBox1.ReadOnly;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             metTextBox1.Visible = !metTextBox1.Visible;
             metDateTimePicker1.Visible = !metDateTimePicker1.Visible;
+            metComboBox1.Visible = !metComboBox1.Visible;
         }
     }
 }
