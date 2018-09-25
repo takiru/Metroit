@@ -173,13 +173,14 @@ namespace Test
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
+            metTextBox1.ReadOnly = !metTextBox1.ReadOnly;
             metDateTimePicker1.ReadOnly = !metDateTimePicker1.ReadOnly;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             metTextBox1.Visible = !metTextBox1.Visible;
+            metDateTimePicker1.Visible = !metDateTimePicker1.Visible;
         }
     }
 }

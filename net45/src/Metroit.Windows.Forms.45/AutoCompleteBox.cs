@@ -267,6 +267,12 @@ namespace Metroit.Windows.Forms
         internal void SetTarget(Control target)
         {
             this.Target = target;
+
+            if (this.Target.Parent == null)
+            {
+                return;
+            }
+
             this.SetupControlProperties();
             this.Target.Parent.Controls.Add(this.CandidateBox);
         }

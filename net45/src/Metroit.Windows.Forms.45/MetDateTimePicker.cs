@@ -469,6 +469,7 @@ namespace Metroit.Windows.Forms
                 // テキストを一旦削除する
                 if (this.textBox != null)
                 {
+                    this.textBox.Visible = false;
                     this.textBox.Parent.Controls.Remove(this.textBox);
                     this.textBox.Dispose();
                     this.textBox = null;
@@ -483,6 +484,7 @@ namespace Metroit.Windows.Forms
             {
                 if (this.textBox != null)
                 {
+                    this.textBox.Visible = false;
                     this.textBox.Parent.Controls.Remove(this.textBox);
                     this.textBox.Dispose();
                     this.textBox = null;
@@ -505,6 +507,7 @@ namespace Metroit.Windows.Forms
             // ReadOnly=trueで既にテキストが存在する場合、一旦テキストを削除する
             if (this.textBox != null)
             {
+                this.textBox.Visible = false;
                 this.textBox.Parent.Controls.Remove(this.textBox);
                 this.textBox.Dispose();
                 this.textBox = null;
@@ -512,6 +515,7 @@ namespace Metroit.Windows.Forms
 
             // 表示でテキスト代替あり
             this.textBox = new MetTextBox();
+            this.textBox.BeginInit();
             this.textBox.ReadOnly = true;
             this.textBox.Text = this.Text;
             this.textBox.Size = this.Size;
@@ -536,6 +540,7 @@ namespace Metroit.Windows.Forms
             this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
             this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;
             this.textBox.Error = this.Error;
+            this.textBox.EndInit();
             this.ChangeDisplayColor();
 
             this.textBox.Enter += MetDateTimePicker_Enter;
