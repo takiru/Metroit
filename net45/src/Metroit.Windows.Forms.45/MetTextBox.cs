@@ -1316,7 +1316,8 @@ namespace Metroit.Windows.Forms
                 }
 
                 // 前の描画位置を親コントロールの背景色に戻す
-                Rectangle prevRct = new Rectangle(this.PrevLocation.X - 1, this.PrevLocation.Y - 1, this.PrevSize.Width + 2, this.PrevSize.Height + 2);
+                Rectangle prevRct = new Rectangle(this.PrevLocation, this.PrevSize);
+                prevRct.Inflate(1, 1);
                 ControlPaint.DrawBorder(g, prevRct, this.Parent.BackColor, ButtonBorderStyle.Solid);
 
                 Console.WriteLine("kita");
