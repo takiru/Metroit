@@ -526,7 +526,8 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            //this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.textBox.BorderStyle = BorderStyle.Fixed3D;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
@@ -534,6 +535,7 @@ namespace Metroit.Windows.Forms
             this.textBox.BaseOuterFrameColor = this.BaseOuterFrameColor;
             this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
             this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;
+            this.textBox.Error = this.Error;
             this.ChangeDisplayColor();
 
             this.textBox.Enter += MetDateTimePicker_Enter;
