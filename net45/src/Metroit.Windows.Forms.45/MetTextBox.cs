@@ -68,6 +68,7 @@ namespace Metroit.Windows.Forms
             this.Enter += MetTextBox_Enter;
             this.Leave += MetTextBox_Leave;
             this.KeyDown += MetTextBox_KeyDown;
+            this.PreviewKeyDown += MetTextBox_PreviewKeyDown;
             this.KeyPress += MetTextBox_KeyPress;
             this.KeyUp += MetTextBox_KeyUp;
             this.MouseDown += MetTextBox_MouseDown;
@@ -186,9 +187,34 @@ namespace Metroit.Windows.Forms
                 else
                 {
                     // 候補コンボボックスを表示する
-                    //this.CustomAutoCompleteBox.Extract(this.Text);
                     this.CustomAutoCompleteBox.Open();
                     e.SuppressKeyPress = true;
+                }
+            }
+        }
+
+        private void MetTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                var inputText = "";
+
+                // 入力後のテキストを取得
+                var afterText = this.createTextAfterInput(null);
+
+                // TextChangingイベントの発行
+                var args = new TextChangeValidationEventArgs();
+                args.Cancel = false;
+                args.Before = base.Text;
+                args.Input = inputText;
+                args.After = afterText;
+                this.OnTextChangeValidation(args);
+
+                // キャンセルされたら入力を拒否する
+                if (args.Cancel)
+                {
+                    this.isDenyImeKeyChar = true;
+                    e.IsInputKey = true;
                 }
             }
         }
@@ -201,8 +227,10 @@ namespace Metroit.Windows.Forms
         private void MetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 文字キー押下時、TextChangingを走行させる。
-            // BackSpace, Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
-            if (e.KeyChar == '\b' || e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
+            //// BackSpace, Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
+            //if (e.KeyChar == '\b' || e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
+            // Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
+            if (e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
             {
                 return;
             }
@@ -299,6 +327,11 @@ namespace Metroit.Windows.Forms
             var headText = (this.SelectionStart == 0 ? "" : base.Text.Substring(0, SelectionStart));
             var footText = base.Text.Substring(SelectionStart + SelectionLength);
 
+            if (e == null)
+            {
+                return headText + footText;
+            }
+
             // Enterが押されたらCRLFに変換
             var inputText = this.createInputString(e.KeyChar.ToString());
 
@@ -306,6 +339,13 @@ namespace Metroit.Windows.Forms
             {
                 inputText = Environment.NewLine;
             }
+
+            // Backspace
+            if (e.KeyChar == '\b')
+            {
+                return headText + footText;
+            }
+
             return headText + inputText + footText;
         }
 
@@ -1265,6 +1305,12 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
+            // 切り取りが拒否された場合は切り取りを行わない
+            if (m.Msg == WindowMessage.WM_CUT && !this.canCut())
+            {
+                return;
+            }
+
             // 貼り付けが拒否された場合は貼り付けを行わない
             if (m.Msg == WindowMessage.WM_PASTE && !this.canPaste())
             {
@@ -1331,6 +1377,32 @@ namespace Metroit.Windows.Forms
                 this.PrevLocation = this.Location;
                 this.PrevSize = this.Size;
             }
+        }
+
+        /// <summary>
+        /// 切り取りが可能かどうかを取得する。
+        /// </summary>
+        /// <returns>true:切り取り成功, false:切り取り失敗</returns>
+        private bool canCut()
+        {
+            var inputText = "";
+
+            // 入力後のテキストを取得
+            var afterText = this.createTextAfterInput(null);
+            var e = new TextChangeValidationEventArgs();
+            e.Cancel = false;
+            e.Before = base.Text;
+            e.Input = inputText;
+            e.After = afterText;
+            this.OnTextChangeValidation(e);
+
+            // 入力を拒否された場合は処理しない
+            if (e.Cancel)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

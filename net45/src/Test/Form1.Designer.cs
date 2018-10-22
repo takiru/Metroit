@@ -30,6 +30,7 @@
         {
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox1 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -42,9 +43,11 @@
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
+            this.metTextBox3 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -194,11 +197,22 @@
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             // 
+            // metTextBox3
+            // 
+            this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox3;
+            this.metTextBox3.Location = new System.Drawing.Point(272, 119);
+            this.metTextBox3.Name = "metTextBox3";
+            this.metTextBox3.Size = new System.Drawing.Size(100, 19);
+            this.metTextBox3.TabIndex = 14;
+            this.metTextBox3.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox3_TextChangeValidation);
+            this.metTextBox3.TextChanged += new System.EventHandler(this.metTextBox3_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 341);
+            this.Controls.Add(this.metTextBox3);
             this.Controls.Add(this.metComboBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -218,6 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +252,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private Metroit.Windows.Forms.MetComboBox metComboBox1;
+        private Metroit.Windows.Forms.MetTextBox metTextBox3;
     }
 }

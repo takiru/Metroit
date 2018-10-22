@@ -32,6 +32,11 @@ namespace Metroit.Api.Win32
         public const int WM_PASTE = 0x0302;
 
         /// <summary>
+        /// 切り取りを定義します。
+        /// </summary>
+        public const int WM_CUT = 0x0300;
+
+        /// <summary>
         /// システムコマンドを定義します。
         /// </summary>
         public const int WM_SYSCOMMAND = 0x0112;

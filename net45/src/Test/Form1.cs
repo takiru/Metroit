@@ -186,5 +186,15 @@ namespace Test
             metDateTimePicker1.Visible = !metDateTimePicker1.Visible;
             metComboBox1.Visible = !metComboBox1.Visible;
         }
+
+        private void metTextBox3_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("changed");
+        }
+
+        private void metTextBox3_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
+        {
+            Console.WriteLine("validtion:" + e.After);
+        }
     }
 }
