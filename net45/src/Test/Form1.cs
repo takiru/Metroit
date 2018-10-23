@@ -203,6 +203,7 @@ namespace Test
 
         private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
+            Console.WriteLine("kita");
             //if (e.After == "aa")
             //{
             //    e.Cancel = true;

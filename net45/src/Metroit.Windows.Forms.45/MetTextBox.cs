@@ -30,8 +30,6 @@ namespace Metroit.Windows.Forms
     /// 状態変更・保持などを行う場合はTextChanged イベント、またはValidated イベントで行うべきです。<br />
     /// TextChangeValidation イベントが発生しない操作<br />
     /// 　・AutoCompleteMode プロパティによって、入力値の補完が行われた時<br />
-    /// 　・BackSpace、Deleteキーなどによって、入力値が削除された時<br />
-    /// 　・切り取り、Ctrl+Xによって、入力値が切り取られた時<br />
     /// 　・元に戻す、Ctrl+Zによって、入力値が直前の内容に戻された時<br />
     /// </remarks>
     /// <exception cref="Metroit.Windows.Forms.DeniedTextException">
