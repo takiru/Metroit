@@ -1115,6 +1115,12 @@ namespace Metroit.Windows.Forms
                     // 現在テキストで候補を絞り込み
                     this.CustomAutoCompleteBox.Extract(this.Text);
 
+                    // 候補が1件もなくなった場合は候補ボックスを閉じる
+                    if (this.CustomAutoCompleteBox.CandidateBox.Items.Count == 0)
+                    {
+                        this.CustomAutoCompleteBox.Close();
+                    }
+
                     // 候補と合致する文字列がない場合は、候補の選択状態をリセットする
                     if (!this.CustomAutoCompleteBox.Contains(this.Text))
                     {

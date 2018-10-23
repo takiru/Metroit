@@ -203,10 +203,10 @@ namespace Test
 
         private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
-            if (e.After == "aa")
-            {
-                e.Cancel = true;
-            }
+            //if (e.After == "aa")
+            //{
+            //    e.Cancel = true;
+            //}
         }
     }
 }
