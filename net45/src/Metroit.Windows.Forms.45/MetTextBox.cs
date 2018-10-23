@@ -75,7 +75,6 @@ namespace Metroit.Windows.Forms
             this.Enter += MetTextBox_Enter;
             this.Leave += MetTextBox_Leave;
             this.KeyDown += MetTextBox_KeyDown;
-            this.PreviewKeyDown += MetTextBox_PreviewKeyDown;
             this.KeyPress += MetTextBox_KeyPress;
             this.KeyUp += MetTextBox_KeyUp;
             this.MouseDown += MetTextBox_MouseDown;
@@ -154,35 +153,6 @@ namespace Metroit.Windows.Forms
         {
             // 入力文字確定時は入力文字拒否フラグは初期化する
             this.isDenyImeKeyChar = false;
-        }
-
-        /// <summary>
-        /// キーが押された時の動作
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MetTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Delete)
-            //{
-            //    // 入力後のテキストを取得
-            //    var afterText = this.createTextAfterInput(TypingKeyType.Delete, null);
-
-            //    // TextChangingイベントの発行
-            //    var args = new TextChangeValidationEventArgs();
-            //    args.Cancel = false;
-            //    args.Before = base.Text;
-            //    args.Input = "";
-            //    args.After = afterText;
-            //    this.OnTextChangeValidation(args);
-
-            //    // キャンセルされたら入力を拒否する
-            //    if (args.Cancel)
-            //    {
-            //        this.isDenyImeKeyChar = true;
-            //        e.IsInputKey = true;
-            //    }
-            //}
         }
 
         /// <summary>
