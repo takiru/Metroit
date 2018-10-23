@@ -784,6 +784,15 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// カスタムオートコンプリート時にサジェストを利用するか設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetTextBoxCustomAutoCompleteSuggest")]
+        [DefaultValue(false)]
+        public bool CustomAutoCompleteSuggest { get; set; } = false;
+
+        /// <summary>
         /// オートコンプリート候補プルダウンを表示するキーを設定します。
         /// </summary>
         [Browsable(true)]
@@ -1105,6 +1114,20 @@ namespace Metroit.Windows.Forms
                 // 候補コンボボックスの上下選択によって候補が決定された(SelectedValueChanged)場合、処理しない
                 if (candidateSelectedValueChanging)
                 {
+                    return;
+                }
+
+                // 候補ボックスが開いており、テキストが空になった場合は候補ボックスを閉じる
+                if (this.CustomAutoCompleteBox.IsOpen && this.Text == "")
+                {
+                    this.CustomAutoCompleteBox.Close();
+                    return;
+                }
+
+                // 候補ボックスが開いておらず、サジェスト利用時は候補ボックスを開く
+                if (!this.CustomAutoCompleteBox.IsOpen && this.Text != "" && this.CustomAutoCompleteSuggest)
+                {
+                    this.CustomAutoCompleteBox.Open();
                     return;
                 }
 
