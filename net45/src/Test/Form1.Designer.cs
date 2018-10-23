@@ -196,6 +196,7 @@
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
+            this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
             // 
             // metTextBox3
             // 

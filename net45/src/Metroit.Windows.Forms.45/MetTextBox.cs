@@ -11,6 +11,13 @@ using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
 {
+    public enum TypingKeyType
+    {
+        Default,
+        Delete,
+        Cut
+    }
+
     /// <summary>
     /// 標準TextBoxを拡張し、新たにいくつかの機能を設けたテキストエリアを提供します。
     /// </summary>
@@ -154,6 +161,35 @@ namespace Metroit.Windows.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void MetTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Delete)
+            //{
+            //    // 入力後のテキストを取得
+            //    var afterText = this.createTextAfterInput(TypingKeyType.Delete, null);
+
+            //    // TextChangingイベントの発行
+            //    var args = new TextChangeValidationEventArgs();
+            //    args.Cancel = false;
+            //    args.Before = base.Text;
+            //    args.Input = "";
+            //    args.After = afterText;
+            //    this.OnTextChangeValidation(args);
+
+            //    // キャンセルされたら入力を拒否する
+            //    if (args.Cancel)
+            //    {
+            //        this.isDenyImeKeyChar = true;
+            //        e.IsInputKey = true;
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// キーが押された時の動作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MetTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             // Multiline時のCtrl+A
@@ -162,6 +198,40 @@ namespace Metroit.Windows.Forms
                 this.SelectAll();
                 e.SuppressKeyPress = true;
                 return;
+            }
+
+            // 複数選択時のShift+Deleteは切り取りとして動作するので、ここでは制御しない
+            if (e.KeyCode == Keys.Delete && !(e.Shift && this.SelectionLength > 0))
+            {
+                // 入力後のテキストを取得
+                // Shift+Deleteは、Backspaceになる
+                var afterText = "";
+                if (e.Shift)
+                {
+                    afterText = this.createTextAfterInput(TypingKeyType.Default, '\b');
+                }
+                else
+                {
+                    afterText = this.createTextAfterInput(TypingKeyType.Delete, null);
+                }
+
+                if (base.Text != afterText)
+                {
+                    // TextChangingイベントの発行
+                    var args = new TextChangeValidationEventArgs();
+                    args.Cancel = false;
+                    args.Before = base.Text;
+                    args.Input = "";
+                    args.After = afterText;
+                    this.OnTextChangeValidation(args);
+
+                    // キャンセルされたら入力を拒否する
+                    if (args.Cancel)
+                    {
+                        this.isDenyImeKeyChar = true;
+                        e.SuppressKeyPress = true;
+                    }
+                }
             }
 
             // カスタムオートコンプリートを利用する場合
@@ -189,32 +259,6 @@ namespace Metroit.Windows.Forms
                     // 候補コンボボックスを表示する
                     this.CustomAutoCompleteBox.Open();
                     e.SuppressKeyPress = true;
-                }
-            }
-        }
-
-        private void MetTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                var inputText = "";
-
-                // 入力後のテキストを取得
-                var afterText = this.createTextAfterInput(null);
-
-                // TextChangingイベントの発行
-                var args = new TextChangeValidationEventArgs();
-                args.Cancel = false;
-                args.Before = base.Text;
-                args.Input = inputText;
-                args.After = afterText;
-                this.OnTextChangeValidation(args);
-
-                // キャンセルされたら入力を拒否する
-                if (args.Cancel)
-                {
-                    this.isDenyImeKeyChar = true;
-                    e.IsInputKey = true;
                 }
             }
         }
@@ -252,7 +296,11 @@ namespace Metroit.Windows.Forms
             var inputText = this.createInputString(e.KeyChar.ToString());
 
             // 入力後のテキストを取得
-            var afterText = this.createTextAfterInput(e);
+            var afterText = this.createTextAfterInput(TypingKeyType.Default, e.KeyChar);
+            if (base.Text == afterText)
+            {
+                return;
+            }
 
             // TextChangingイベントの発行
             var args = new TextChangeValidationEventArgs();
@@ -320,33 +368,49 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// 文字キーによってテキスト入力が行われた際の、入力後テキストを取得する。
         /// </summary>
-        /// <param name="e">キーイベント</param>
+        /// <param name="typingKeyType"></param>
+        /// <param name="keyChar">入力されたキー値。</param>
         /// <returns>入力後テキスト</returns>
-        private string createTextAfterInput(KeyPressEventArgs e)
+        private string createTextAfterInput(TypingKeyType typingKeyType, char? keyChar)
         {
             var headText = (this.SelectionStart == 0 ? "" : base.Text.Substring(0, SelectionStart));
             var footText = base.Text.Substring(SelectionStart + SelectionLength);
 
-            if (e == null)
+            switch (typingKeyType)
             {
-                return headText + footText;
+                case TypingKeyType.Cut:
+                    return headText + footText;
+
+                case TypingKeyType.Delete:
+                    // カーソルより後に文字があってドラッグしていない時は、カーソルより後の文字を1文字カット
+                    if (footText != "" && this.SelectionLength == 0)
+                    {
+                        footText = footText.Substring(1, footText.Length - 1);
+                    }
+                    return headText + footText;
+
+                default:
+                    // Enterが押されたらCRLFに変換
+                    var inputText = this.createInputString(keyChar.ToString());
+
+                    if (keyChar == '\r' || keyChar == '\n')
+                    {
+                        inputText = Environment.NewLine;
+                    }
+
+                    // Backspace
+                    if (keyChar == '\b')
+                    {
+                        // カーソルより前に文字があってドラッグしていない時は、カーソルより前の文字を1文字カット
+                        if (headText != "" && this.SelectionLength == 0)
+                        {
+                            headText = headText.Substring(0, headText.Length - 1);
+                        }
+                        return headText + footText;
+                    }
+
+                    return headText + inputText + footText;
             }
-
-            // Enterが押されたらCRLFに変換
-            var inputText = this.createInputString(e.KeyChar.ToString());
-
-            if (e.KeyChar == '\r' || e.KeyChar == '\n')
-            {
-                inputText = Environment.NewLine;
-            }
-
-            // Backspace
-            if (e.KeyChar == '\b')
-            {
-                return headText + footText;
-            }
-
-            return headText + inputText + footText;
         }
 
         /// <summary>
@@ -1385,14 +1449,12 @@ namespace Metroit.Windows.Forms
         /// <returns>true:切り取り成功, false:切り取り失敗</returns>
         private bool canCut()
         {
-            var inputText = "";
-
             // 入力後のテキストを取得
-            var afterText = this.createTextAfterInput(null);
+            var afterText = this.createTextAfterInput(TypingKeyType.Cut, null);
             var e = new TextChangeValidationEventArgs();
             e.Cancel = false;
             e.Before = base.Text;
-            e.Input = inputText;
+            e.Input = "";
             e.After = afterText;
             this.OnTextChangeValidation(e);
 

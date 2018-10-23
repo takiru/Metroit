@@ -195,6 +195,18 @@ namespace Test
         private void metTextBox3_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
             Console.WriteLine("validtion:" + e.After);
+            if (e.After == "test")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
+        {
+            if (e.After == "aa")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
