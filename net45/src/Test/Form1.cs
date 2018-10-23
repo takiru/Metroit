@@ -73,6 +73,11 @@ namespace Test
             row["Column3"] = "文字かなAB column3B";
             dt.Rows.Add(row);
             row = dt.NewRow();
+            row["Column1"] = "文字かなAC column1B";
+            row["Column2"] = "文字かなAC column2B";
+            row["Column3"] = "文字かなAC column3B";
+            dt.Rows.Add(row);
+            row = dt.NewRow();
             row["Column1"] = "ccc column1";
             row["Column2"] = "ccc column2";
             row["Column3"] = "ccc column3";
@@ -208,10 +213,11 @@ namespace Test
         private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
             Console.WriteLine("kita");
-            //if (e.After == "aa")
-            //{
-            //    e.Cancel = true;
-            //}
+            //if (e.After == "かなac")
+            if (e.After == "かなa")
+            {
+                e.Cancel = true;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

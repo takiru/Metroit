@@ -144,6 +144,7 @@ namespace Metroit.Windows.Forms
         {
             // 入力文字確定時は入力文字拒否フラグは初期化する
             this.isImeComposition = false;
+            //this.isImeStartComposition = false;
             this.isImeEndComposition = false;
             this.isDenyImeKeyChar = false;
         }
@@ -192,7 +193,7 @@ namespace Metroit.Windows.Forms
                     }
                 }
             }
-            
+
             // Deleteキー
             if (!e.Shift && e.KeyCode == Keys.Delete)
             {
@@ -247,6 +248,23 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        private void OpenSuggest()
+        {
+            // 候補ボックスが開いておらず、サジェスト利用時は候補ボックスを開く
+            if ((this.CustomAutoCompleteMode == CustomAutoCompleteMode.Suggest ||
+                 this.CustomAutoCompleteMode == CustomAutoCompleteMode.KeysSuggest) &&
+                 !this.CustomAutoCompleteBox.IsOpen && this.Text != "")
+            {
+                if (endCompositionCharCount == fixedImeCharCount)
+                {
+                    this.CustomAutoCompleteBox.Open();
+                }
+            }
+        }
+
+        private StringBuilder endCompositionString = null;
+        private int endCompositionCharCount = 0;
+
         /// <summary>
         /// キーが押された時の動作
         /// </summary>
@@ -254,6 +272,73 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // IMEが決定された時
+            if (isImeEndComposition)
+            {
+                endCompositionString.Append(e.KeyChar);
+                endCompositionCharCount++;
+
+
+
+                // IME確定した1つずつの文字の検証でNGだった場合、後続する文字の検証は行わない
+                if (isDenyImeKeyChar)
+                {
+                    Console.WriteLine("途中で文字を拒否した:" + e.KeyChar);
+                    e.Handled = true;
+
+                    this.OpenSuggest();
+                    return;
+                }
+
+                var inputText = this.createInputString(e.KeyChar.ToString());
+
+                // 入力後のテキストを取得
+                var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, e.KeyChar);
+                if (base.Text == afterText)
+                {
+                    return;
+                }
+
+                // TextChangingイベントの発行
+                var args = new TextChangeValidationEventArgs();
+                args.Cancel = false;
+                args.Before = base.Text;
+                args.Input = inputText;
+                args.After = afterText;
+                this.OnTextChangeValidation(args);
+
+                // キャンセルされたら入力を拒否する
+                if (args.Cancel)
+                {
+                    Console.WriteLine("最後の文字を拒否した:" + e.KeyChar);
+                    this.isDenyImeKeyChar = true;
+                    e.Handled = true;
+
+                    this.OpenSuggest();
+                    return;
+                }
+                return;
+            }
+
+
+            // IME入力で決定された文字列とその文字数を保持する
+            if (isImeStartComposition)
+            {
+                Console.WriteLine(e.KeyChar);
+                fixedImeString.Append(e.KeyChar);
+                fixedImeCharCount++;
+                return;
+            }
+
+            fixedImeString = null;
+            fixedImeCharCount = 0;
+            endCompositionString = null;
+            endCompositionCharCount = 0;
+
+
+
+
+
             // IMEの入力でない時に走行
             if (!isImeComposition)
             {
@@ -267,17 +352,9 @@ namespace Metroit.Windows.Forms
                 {
                     return;
                 }
-            }
 
-            // IMEの入力でない時、またはIMEの入力が確定された時に走行
-            if (!isImeComposition || isImeEndComposition)
-            {
-                // IME確定した1つずつの文字の検証でNGだった場合、後続する文字の検証は行わない
-                if (isDenyImeKeyChar)
-                {
-                    e.Handled = true;
-                    return;
-                }
+
+
 
                 var inputText = this.createInputString(e.KeyChar.ToString());
 
@@ -303,7 +380,47 @@ namespace Metroit.Windows.Forms
                     e.Handled = true;
                     return;
                 }
+                return;
             }
+
+
+
+
+            //// IMEの入力でない時、またはIMEの入力が確定された時に走行
+            //if (!isImeComposition || isImeEndComposition)
+            //{
+            //    // IME確定した1つずつの文字の検証でNGだった場合、後続する文字の検証は行わない
+            //    if (isDenyImeKeyChar)
+            //    {
+            //        e.Handled = true;
+            //        return;
+            //    }
+
+            //    var inputText = this.createInputString(e.KeyChar.ToString());
+
+            //    // 入力後のテキストを取得
+            //    var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, e.KeyChar);
+            //    if (base.Text == afterText)
+            //    {
+            //        return;
+            //    }
+
+            //    // TextChangingイベントの発行
+            //    var args = new TextChangeValidationEventArgs();
+            //    args.Cancel = false;
+            //    args.Before = base.Text;
+            //    args.Input = inputText;
+            //    args.After = afterText;
+            //    this.OnTextChangeValidation(args);
+
+            //    // キャンセルされたら入力を拒否する
+            //    if (args.Cancel)
+            //    {
+            //        this.isDenyImeKeyChar = true;
+            //        e.Handled = true;
+            //        return;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -363,7 +480,7 @@ namespace Metroit.Windows.Forms
         {
             var headText = (this.SelectionStart == 0 ? "" : base.Text.Substring(0, SelectionStart));
             var footText = base.Text.Substring(SelectionStart + SelectionLength);
-            
+
             switch (typingKeyType)
             {
                 case TypingKeyType.Cut:
@@ -1142,7 +1259,11 @@ namespace Metroit.Windows.Forms
                     this.CustomAutoCompleteMode == CustomAutoCompleteMode.KeysSuggest) &&
                     !this.CustomAutoCompleteBox.IsOpen && this.Text != "")
                 {
-                    this.CustomAutoCompleteBox.Open();
+                    if (endCompositionCharCount == fixedImeCharCount)
+                    {
+                        // TODO 1件もなければ候補リストを出したくない
+                        this.CustomAutoCompleteBox.Open();
+                    }
                     return;
                 }
 
@@ -1366,6 +1487,9 @@ namespace Metroit.Windows.Forms
         }
 
         private bool isImeComposition = false;
+        private bool isImeStartComposition = false;
+        private StringBuilder fixedImeString = null;
+        private int fixedImeCharCount = 0;
         private bool isImeEndComposition = false;
 
         /// <summary>
@@ -1374,15 +1498,6 @@ namespace Metroit.Windows.Forms
         /// <param name="m">ウィンドウメッセージ。</param>
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WindowMessage.WM_IME_COMPOSITION)
-            {
-                isImeComposition = true;
-            }
-            if (m.Msg == WindowMessage.WM_IME_ENDCOMPOSITION)
-            {
-                isImeEndComposition = true;
-            }
-
             if (m.Msg == WindowMessage.WM_PAINT)
             {
                 this.drawOuterFrame();
@@ -1393,6 +1508,32 @@ namespace Metroit.Windows.Forms
             {
                 base.WndProc(ref m);
                 return;
+            }
+
+            if (m.Msg == WindowMessage.WM_IME_COMPOSITION)
+            {
+                Console.WriteLine("WM_IME_COMPOSITION");
+                isImeComposition = true;
+            }
+            if (m.Msg == WindowMessage.WM_IME_STARTCOMPOSITION)
+            {
+                Console.WriteLine("WM_IME_STARTCOMPOSITION");
+                isImeStartComposition = true;
+                fixedImeString = new StringBuilder();
+                fixedImeCharCount = 0;
+            }
+            if (m.Msg == WindowMessage.WM_IME_ENDCOMPOSITION)
+            {
+                Console.WriteLine("WM_IME_ENDCOMPOSITION");
+                isImeEndComposition = true;
+                // WM_IME_ENDCOMPOSITIONが発生した1文字目の場合はWM_IME_STARTCOMPOSITION、WM_IME_COMPOSITION用のフラグが立っているはず
+                if (isImeStartComposition)
+                {
+                    endCompositionString = new StringBuilder();
+                    endCompositionCharCount = 0;
+                    isImeStartComposition = false;
+                    isImeComposition = false;
+                }
             }
 
             // 切り取りが拒否された場合は切り取りを行わない
