@@ -163,6 +163,12 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
+            // 文字選択時のShift+DeleteはCtrl+Xと同じで、Ctrl+Xの動作として処理済みのため、処理しない
+            if (this.SelectionLength > 0 && e.Shift && e.KeyCode == Keys.Delete)
+            {
+                return;
+            }
+
             // Backspace, Ctrl+H, 文字選択なし時のShift+Deleteは同じ
             if (e.KeyCode == Keys.Back ||
                 (e.Control && e.KeyCode == Keys.H) ||
@@ -186,13 +192,7 @@ namespace Metroit.Windows.Forms
                     }
                 }
             }
-
-            // 文字選択時のShift+DeleteはCtrl+Xと同じで、Ctrl+Xの動作として処理済みのため、処理しない
-            if (this.SelectionLength > 0 && e.Shift && e.KeyCode == Keys.Delete)
-            {
-                return;
-            }
-
+            
             // Deleteキー
             if (!e.Shift && e.KeyCode == Keys.Delete)
             {
@@ -363,13 +363,15 @@ namespace Metroit.Windows.Forms
         {
             var headText = (this.SelectionStart == 0 ? "" : base.Text.Substring(0, SelectionStart));
             var footText = base.Text.Substring(SelectionStart + SelectionLength);
-
+            
             switch (typingKeyType)
             {
                 case TypingKeyType.Cut:
+                    // 切り取り時
                     return headText + footText;
 
                 case TypingKeyType.DeleteKey:
+                    // Deleteキー時
                     // カーソルより後に文字があってドラッグしていない時は、カーソルより後の文字を1文字カット
                     if (footText != "" && this.SelectionLength == 0)
                     {
@@ -378,9 +380,10 @@ namespace Metroit.Windows.Forms
                     return headText + footText;
 
                 default:
-                    // Enterが押されたらCRLFに変換
+                    // 他キー時
                     var inputText = this.createInputString(keyChar.ToString());
 
+                    // Enterが押されたらCRLFに変換
                     if (keyChar == '\r' || keyChar == '\n')
                     {
                         inputText = Environment.NewLine;

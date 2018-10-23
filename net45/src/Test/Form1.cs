@@ -218,5 +218,15 @@ namespace Test
         {
             Console.WriteLine("kita:" + textBox1.Text);
         }
+
+        private void metTextBox4_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
+        {
+            Console.WriteLine("Validtin:" + e.After);
+        }
+
+        private void metTextBox4_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Changed:" + metTextBox4.Text);
+        }
     }
 }
