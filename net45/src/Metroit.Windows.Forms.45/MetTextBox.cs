@@ -232,11 +232,8 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 文字キー押下時、TextChangingを走行させる。
-            //// BackSpace, Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
-            //if (e.KeyChar == '\b' || e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
-            // Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
-            if (e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
+            // Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
+            if (e.KeyChar == '\u0001' || e.KeyChar == '\u0003' || e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
             {
                 return;
             }

@@ -39,12 +39,12 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.metTextBox3 = new Metroit.Windows.Forms.MetTextBox();
             this.metComboBox1 = new Metroit.Windows.Forms.MetComboBox();
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
@@ -131,6 +131,21 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "aaa",
+            "aab",
+            "aac",
+            "aad"});
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox1.Location = new System.Drawing.Point(272, 156);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 19);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // metTextBox3
             // 
             this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox1;
@@ -209,20 +224,6 @@
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
-            // 
-            // textBox1
-            // 
-            this.textBox1.AutoCompleteCustomSource.AddRange(new string[] {
-            "aaa",
-            "aab",
-            "aac",
-            "aad"});
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.Location = new System.Drawing.Point(272, 156);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 19);
-            this.textBox1.TabIndex = 15;
             // 
             // Form1
             // 

@@ -209,5 +209,10 @@ namespace Test
             //    e.Cancel = true;
             //}
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("kita");
+        }
     }
 }
