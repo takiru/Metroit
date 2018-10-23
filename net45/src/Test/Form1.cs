@@ -189,13 +189,17 @@ namespace Test
 
         private void metTextBox3_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("changed");
+            Console.WriteLine("changed:" + metTextBox3.Text);
         }
 
         private void metTextBox3_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
             Console.WriteLine("validtion:" + e.After);
             if (e.After == "test")
+            {
+                e.Cancel = true;
+            }
+            if (e.After == "あ")
             {
                 e.Cancel = true;
             }
@@ -212,7 +216,7 @@ namespace Test
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("kita");
+            Console.WriteLine("kita:" + textBox1.Text);
         }
     }
 }

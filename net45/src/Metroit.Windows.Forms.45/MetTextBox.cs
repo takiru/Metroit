@@ -143,6 +143,8 @@ namespace Metroit.Windows.Forms
         private void MetTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             // 入力文字確定時は入力文字拒否フラグは初期化する
+            this.isImeComposition = false;
+            this.isImeEndComposition = false;
             this.isDenyImeKeyChar = false;
         }
 
@@ -161,20 +163,41 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
-            // 複数選択時のShift+Deleteは切り取りとして動作するので、ここでは制御しない
-            if (e.KeyCode == Keys.Delete && !(e.Shift && this.SelectionLength > 0))
+            // Backspace, Ctrl+H, 文字選択なし時のShift+Deleteは同じ
+            if (e.KeyCode == Keys.Back ||
+                (e.Control && e.KeyCode == Keys.H) ||
+                (this.SelectionLength == 0 && e.Shift && e.KeyCode == Keys.Delete))
+            {
+                var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, (char)Keys.Back);
+                if (base.Text != afterText)
+                {
+                    // TextChangingイベントの発行
+                    var args = new TextChangeValidationEventArgs();
+                    args.Cancel = false;
+                    args.Before = base.Text;
+                    args.Input = "";
+                    args.After = afterText;
+                    this.OnTextChangeValidation(args);
+
+                    // キャンセルされたら入力を拒否する
+                    if (args.Cancel)
+                    {
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
+
+            // 文字選択時のShift+DeleteはCtrl+Xと同じで、Ctrl+Xの動作として処理済みのため、処理しない
+            if (this.SelectionLength > 0 && e.Shift && e.KeyCode == Keys.Delete)
+            {
+                return;
+            }
+
+            // Deleteキー
+            if (!e.Shift && e.KeyCode == Keys.Delete)
             {
                 // 入力後のテキストを取得
-                // Shift+Deleteは、Backspaceになる
-                var afterText = "";
-                if (e.Shift)
-                {
-                    afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, '\b');
-                }
-                else
-                {
-                    afterText = this.createTextAfterInput(TypingKeyType.DeleteKey, null);
-                }
+                var afterText = this.createTextAfterInput(TypingKeyType.DeleteKey, null);
 
                 if (base.Text != afterText)
                 {
@@ -189,7 +212,6 @@ namespace Metroit.Windows.Forms
                     // キャンセルされたら入力を拒否する
                     if (args.Cancel)
                     {
-                        this.isDenyImeKeyChar = true;
                         e.SuppressKeyPress = true;
                     }
                 }
@@ -232,48 +254,55 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+Z, Ctrl+Vは何もしない
-            if (e.KeyChar == '\u0001' || e.KeyChar == '\u0003' || e.KeyChar == '\u0018' || e.KeyChar == '\u001a' || e.KeyChar == '\u0016')
+            // IMEの入力でない時に走行
+            if (!isImeComposition)
             {
-                return;
+                // Controlキーが押されたキー操作は処理しない
+                if (ModifierKeys == Keys.Control)
+                {
+                    return;
+                }
+                // BackspaceはKeyDownで制御済みのため処理しない
+                if ((Keys)e.KeyChar == Keys.Back)
+                {
+                    return;
+                }
             }
 
-            // Multiline でない時にEnter, Ctrl+Enter, Shift+Enter押下時は何もしない
-            if (!this.Multiline && (e.KeyChar == '\r' || e.KeyChar == '\n'))
+            // IMEの入力でない時、またはIMEの入力が確定された時に走行
+            if (!isImeComposition || isImeEndComposition)
             {
-                return;
-            }
+                // IME確定した1つずつの文字の検証でNGだった場合、後続する文字の検証は行わない
+                if (isDenyImeKeyChar)
+                {
+                    e.Handled = true;
+                    return;
+                }
 
-            // IME入力時、WM_CHAR, WM_IME_ENDCOMPOSITIONあたりでそれぞれ1文字ずつKeyPressが走行する
-            // いずれかの文字が拒否されたら無条件に全文字を拒否する
-            if (this.isDenyImeKeyChar)
-            {
-                e.Handled = true;
-                return;
-            }
+                var inputText = this.createInputString(e.KeyChar.ToString());
 
-            var inputText = this.createInputString(e.KeyChar.ToString());
+                // 入力後のテキストを取得
+                var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, e.KeyChar);
+                if (base.Text == afterText)
+                {
+                    return;
+                }
 
-            // 入力後のテキストを取得
-            var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, e.KeyChar);
-            if (base.Text == afterText)
-            {
-                return;
-            }
+                // TextChangingイベントの発行
+                var args = new TextChangeValidationEventArgs();
+                args.Cancel = false;
+                args.Before = base.Text;
+                args.Input = inputText;
+                args.After = afterText;
+                this.OnTextChangeValidation(args);
 
-            // TextChangingイベントの発行
-            var args = new TextChangeValidationEventArgs();
-            args.Cancel = false;
-            args.Before = base.Text;
-            args.Input = inputText;
-            args.After = afterText;
-            this.OnTextChangeValidation(args);
-
-            // キャンセルされたら入力を拒否する
-            if (args.Cancel)
-            {
-                this.isDenyImeKeyChar = true;
-                e.Handled = true;
+                // キャンセルされたら入力を拒否する
+                if (args.Cancel)
+                {
+                    this.isDenyImeKeyChar = true;
+                    e.Handled = true;
+                    return;
+                }
             }
         }
 
@@ -1106,7 +1135,7 @@ namespace Metroit.Windows.Forms
                 }
 
                 // 候補ボックスが開いておらず、サジェスト利用時は候補ボックスを開く
-                if ((this.CustomAutoCompleteMode  == CustomAutoCompleteMode.Suggest ||
+                if ((this.CustomAutoCompleteMode == CustomAutoCompleteMode.Suggest ||
                     this.CustomAutoCompleteMode == CustomAutoCompleteMode.KeysSuggest) &&
                     !this.CustomAutoCompleteBox.IsOpen && this.Text != "")
                 {
@@ -1333,12 +1362,24 @@ namespace Metroit.Windows.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private bool isImeComposition = false;
+        private bool isImeEndComposition = false;
+
         /// <summary>
         /// ウィンドウメッセージを捕捉し、コードによる値の設定および貼り付け時の制御を行います。
         /// </summary>
         /// <param name="m">ウィンドウメッセージ。</param>
         protected override void WndProc(ref Message m)
         {
+            if (m.Msg == WindowMessage.WM_IME_COMPOSITION)
+            {
+                isImeComposition = true;
+            }
+            if (m.Msg == WindowMessage.WM_IME_ENDCOMPOSITION)
+            {
+                isImeEndComposition = true;
+            }
+
             if (m.Msg == WindowMessage.WM_PAINT)
             {
                 this.drawOuterFrame();

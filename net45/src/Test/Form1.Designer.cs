@@ -204,10 +204,7 @@
             // 
             this.metTextBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
             this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            autoCompleteBox3.CompareOptions = new System.Globalization.CompareOptions[] {
-        System.Globalization.CompareOptions.IgnoreCase,
-        System.Globalization.CompareOptions.IgnoreKanaType,
-        System.Globalization.CompareOptions.IgnoreWidth};
+            autoCompleteBox3.CompareOptions = new System.Globalization.CompareOptions[0];
             autoCompleteBox3.DisplayMember = "Column2";
             autoCompleteBox3.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
             autoCompleteBox3.ValueMember = "Column1";
