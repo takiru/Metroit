@@ -11,13 +11,6 @@ using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
 {
-    public enum TypingKeyType
-    {
-        Default,
-        Delete,
-        Cut
-    }
-
     /// <summary>
     /// 標準TextBoxを拡張し、新たにいくつかの機能を設けたテキストエリアを提供します。
     /// </summary>
@@ -178,11 +171,11 @@ namespace Metroit.Windows.Forms
                 var afterText = "";
                 if (e.Shift)
                 {
-                    afterText = this.createTextAfterInput(TypingKeyType.Default, '\b');
+                    afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, '\b');
                 }
                 else
                 {
-                    afterText = this.createTextAfterInput(TypingKeyType.Delete, null);
+                    afterText = this.createTextAfterInput(TypingKeyType.DeleteKey, null);
                 }
 
                 if (base.Text != afterText)
@@ -205,7 +198,8 @@ namespace Metroit.Windows.Forms
             }
 
             // カスタムオートコンプリートを利用する場合
-            if (this.CustomAutoCompleteMode)
+            if (this.CustomAutoCompleteMode == CustomAutoCompleteMode.Keys ||
+                this.CustomAutoCompleteMode == CustomAutoCompleteMode.KeysSuggest)
             {
                 // 指定されたキーが押下された時、候補コンボボックスを表示する
                 var matchKey = CustomAutoCompleteKeys.FirstOrDefault((value) => value == e.KeyData);
@@ -266,7 +260,7 @@ namespace Metroit.Windows.Forms
             var inputText = this.createInputString(e.KeyChar.ToString());
 
             // 入力後のテキストを取得
-            var afterText = this.createTextAfterInput(TypingKeyType.Default, e.KeyChar);
+            var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, e.KeyChar);
             if (base.Text == afterText)
             {
                 return;
@@ -351,7 +345,7 @@ namespace Metroit.Windows.Forms
                 case TypingKeyType.Cut:
                     return headText + footText;
 
-                case TypingKeyType.Delete:
+                case TypingKeyType.DeleteKey:
                     // カーソルより後に文字があってドラッグしていない時は、カーソルより後の文字を1文字カット
                     if (footText != "" && this.SelectionLength == 0)
                     {
@@ -580,7 +574,7 @@ namespace Metroit.Windows.Forms
         private Color? focusBackColor = null;
         private bool readOnlyLabel = false;
         private Label label = null;
-        private bool customAutoCompleteMode = false;
+        private CustomAutoCompleteMode customAutoCompleteMode = CustomAutoCompleteMode.None;
         private Keys[] defaultCustomAutoCompleteKeys = new Keys[] {
                 Keys.Alt | Keys.Up,
                 Keys.Alt | Keys.Down,
@@ -761,13 +755,13 @@ namespace Metroit.Windows.Forms
         public bool AutoFocus { get; set; } = false;
 
         /// <summary>
-        /// カスタムオートコンプリートを利用するか設定します。
+        /// カスタムオートコンプリートの利用方法を設定します。
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetOther")]
         [MetDescription("MetTextBoxCustomAutoCompleteMode")]
-        [DefaultValue(false)]
-        public bool CustomAutoCompleteMode
+        [DefaultValue(typeof(CustomAutoCompleteMode), "None")]
+        public CustomAutoCompleteMode CustomAutoCompleteMode
         {
             get
             {
@@ -775,22 +769,13 @@ namespace Metroit.Windows.Forms
             }
             set
             {
-                if (value)
+                if (value != CustomAutoCompleteMode.None)
                 {
                     this.AutoCompleteMode = AutoCompleteMode.None;
                 }
                 this.customAutoCompleteMode = value;
             }
         }
-
-        /// <summary>
-        /// カスタムオートコンプリート時にサジェストを利用するか設定します。
-        /// </summary>
-        [Browsable(true)]
-        [MetCategory("MetOther")]
-        [MetDescription("MetTextBoxCustomAutoCompleteSuggest")]
-        [DefaultValue(false)]
-        public bool CustomAutoCompleteSuggest { get; set; } = false;
 
         /// <summary>
         /// オートコンプリート候補プルダウンを表示するキーを設定します。
@@ -1109,7 +1094,7 @@ namespace Metroit.Windows.Forms
             }
 
             // カスタムオートコンプリートを利用する場合
-            if (this.customAutoCompleteMode)
+            if (this.CustomAutoCompleteMode != CustomAutoCompleteMode.None)
             {
                 // 候補コンボボックスの上下選択によって候補が決定された(SelectedValueChanged)場合、処理しない
                 if (candidateSelectedValueChanging)
@@ -1118,14 +1103,17 @@ namespace Metroit.Windows.Forms
                 }
 
                 // 候補ボックスが開いており、テキストが空になった場合は候補ボックスを閉じる
-                if (this.CustomAutoCompleteBox.IsOpen && this.Text == "")
+                if (this.CustomAutoCompleteMode == CustomAutoCompleteMode.Suggest &&
+                    this.CustomAutoCompleteBox.IsOpen && this.Text == "")
                 {
                     this.CustomAutoCompleteBox.Close();
                     return;
                 }
 
                 // 候補ボックスが開いておらず、サジェスト利用時は候補ボックスを開く
-                if (!this.CustomAutoCompleteBox.IsOpen && this.Text != "" && this.CustomAutoCompleteSuggest)
+                if ((this.CustomAutoCompleteMode  == CustomAutoCompleteMode.Suggest ||
+                    this.CustomAutoCompleteMode == CustomAutoCompleteMode.KeysSuggest) &&
+                    !this.CustomAutoCompleteBox.IsOpen && this.Text != "")
                 {
                     this.CustomAutoCompleteBox.Open();
                     return;

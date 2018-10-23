@@ -1213,7 +1213,7 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   Set whether to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
+        ///   Set up how to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteMode {
             get {
@@ -1222,7 +1222,7 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   カスタムオートコンプリートを利用するか設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   カスタムオートコンプリートの利用方法を設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteMode_ja {
             get {

@@ -134,6 +134,7 @@
             // metTextBox3
             // 
             this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox1;
+            this.metTextBox3.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
             this.metTextBox3.Location = new System.Drawing.Point(272, 119);
             this.metTextBox3.Name = "metTextBox3";
             this.metTextBox3.Size = new System.Drawing.Size(100, 19);
@@ -198,8 +199,7 @@
             this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox3;
             this.metTextBox1.CustomAutoCompleteKeys = new System.Windows.Forms.Keys[] {
         ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Return)))};
-            this.metTextBox1.CustomAutoCompleteMode = true;
-            this.metTextBox1.CustomAutoCompleteSuggest = true;
+            this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
             this.metTextBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
             this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Blue;

@@ -466,10 +466,10 @@
     <value>カスタムオートコンプリート情報を設定します。</value>
   </data>
   <data name="MetTextBoxCustomAutoCompleteMode" xml:space="preserve">
-    <value>Set whether to use custom autocomplete.</value>
+    <value>Set up how to use custom autocomplete.</value>
   </data>
   <data name="MetTextBoxCustomAutoCompleteMode.ja" xml:space="preserve">
-    <value>カスタムオートコンプリートを利用するか設定します。</value>
+    <value>カスタムオートコンプリートの利用方法を設定します。</value>
   </data>
   <data name="AutoCompleteBoxCompareOptions" xml:space="preserve">
     <value>Gets or sets the option to decide candidate narrowing down.</value>
