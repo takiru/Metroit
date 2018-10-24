@@ -2,12 +2,12 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
 # Metroit #
 Several classes to support logic, and WinForms extension control. Target framework is .NET 2.0, 4.5.  
@@ -331,7 +331,7 @@ It is a library that helps to create WinForms application.
     |ReadOnlyLabel       |Whether to replace with Label.                            |
     |CustomAutoCompleteBox   |Setting up custom autocomplete.                      |
     |CustomAutoCompleteKeys  |Key to display custom autocomplete.              |
-    |CustomAutoCompleteMode  |Whether to use custom autocomplete.          |
+    |CustomAutoCompleteMode  |How to use custom autocomplete.          |
     |BaseOuterFrameColor     |Basic outer frame color.                                          |
     |FocusOuterFrameColor    |Outer frame color when you get focus.                            |
     |ErrorOuterFrameColor    |Outer frame color when error.                                      |
@@ -349,8 +349,6 @@ It is a library that helps to create WinForms application.
     
         TextChangeValidation does not occur with the following operations.
         - AutoComplete
-        - Delete (Backspace, Delete key, etc.)
-        - Cut (context menu, Ctrl+X)
         - Undo (context menu, Ctrl+Z)
 
 

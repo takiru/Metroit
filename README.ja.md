@@ -2,12 +2,12 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
 # Metroit #
 ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
@@ -349,8 +349,6 @@ WinForms アプリケーションの作成を助けるライブラリです。
     
         TextChangeValidationは、以下の操作では発生しません。
         - AutoComplete  
-        - 削除(Backspace, Deleteキーなど)  
-        - 切り取り(コンテキストメニュー, Ctrl+X)  
         - 元に戻す(コンテキストメニュー, Ctrl+Z)  
 
 - MetLimitedTextBox  
