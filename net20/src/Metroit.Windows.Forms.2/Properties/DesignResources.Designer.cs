@@ -385,6 +385,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlBaseOuterFrameColor {
+            get {
+                return ResourceManager.GetString("ControlBaseOuterFrameColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlBaseOuterFrameColor_ja {
+            get {
+                return ResourceManager.GetString("ControlBaseOuterFrameColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Specify the character encoding that implements the maximum byte limit. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlByteEncoding {
@@ -511,6 +529,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets whether the control is error. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlError {
+            get {
+                return ResourceManager.GetString("ControlError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロールがエラーかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlError_ja {
+            get {
+                return ResourceManager.GetString("ControlError.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the frame color of control at error. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlErrorOuterFrameColor {
+            get {
+                return ResourceManager.GetString("ControlErrorOuterFrameColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   エラー時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlErrorOuterFrameColor_ja {
+            get {
+                return ResourceManager.GetString("ControlErrorOuterFrameColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Set the behavior when the ESC key is pressed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlEscPush {
@@ -579,6 +633,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlFocusForeColor_ja {
             get {
                 return ResourceManager.GetString("ControlFocusForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFocusOuterFrameColor {
+            get {
+                return ResourceManager.GetString("ControlFocusOuterFrameColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFocusOuterFrameColor_ja {
+            get {
+                return ResourceManager.GetString("ControlFocusOuterFrameColor.ja", resourceCulture);
             }
         }
         
@@ -1141,7 +1213,7 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   Set whether to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
+        ///   Set up how to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteMode {
             get {
@@ -1150,7 +1222,7 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   カスタムオートコンプリートを利用するか設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   カスタムオートコンプリートの利用方法を設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteMode_ja {
             get {

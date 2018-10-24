@@ -10,6 +10,8 @@ namespace Metroit.Windows.Forms.Extensions
     /// </summary>
     public static class ControlExtensions
     {
+        private static string processName = Process.GetCurrentProcess().ProcessName.ToUpper();
+
         /// <summary>
         /// <para>Control が現在デザイン モードかどうかを示す値を取得します。</para>
         /// <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
@@ -23,7 +25,6 @@ namespace Metroit.Windows.Forms.Extensions
                 return true;
             }
 
-            var processName = Process.GetCurrentProcess().ProcessName.ToUpper();
             if (processName == "DEVENV" || processName == "VCSEXPRESS")
             {
                 return true;

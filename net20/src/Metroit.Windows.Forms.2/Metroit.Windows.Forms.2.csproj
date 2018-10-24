@@ -86,6 +86,7 @@
     <Compile Include="ComponentModel\NumericPositivePatternEditor.cs" />
     <Compile Include="CurrencyNegativePatternType.cs" />
     <Compile Include="CurrencyPositivePatternType.cs" />
+    <Compile Include="CustomAutoCompleteMode.cs" />
     <Compile Include="DeniedTextException.cs" />
     <Compile Include="DesignResources.cs" />
     <Compile Include="ExceptionResources.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="ShortcutKeysEditorHack.cs" />
     <Compile Include="TextChangeValidationEventArgs.cs" />
     <Compile Include="TextChangeValidationEventHandler.cs" />
+    <Compile Include="TypingKeyType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metroit.2\Metroit.2.csproj">

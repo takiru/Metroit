@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 using System.Text;
-using Metroit.Windows.Forms.Extensions;
 using Metroit.Windows.Forms.ComponentModel;
 
 namespace Metroit.Windows.Forms

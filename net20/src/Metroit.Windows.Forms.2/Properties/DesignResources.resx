@@ -466,10 +466,10 @@
     <value>カスタムオートコンプリート情報を設定します。</value>
   </data>
   <data name="MetTextBoxCustomAutoCompleteMode" xml:space="preserve">
-    <value>Set whether to use custom autocomplete.</value>
+    <value>Set up how to use custom autocomplete.</value>
   </data>
   <data name="MetTextBoxCustomAutoCompleteMode.ja" xml:space="preserve">
-    <value>カスタムオートコンプリートを利用するか設定します。</value>
+    <value>カスタムオートコンプリートの利用方法を設定します。</value>
   </data>
   <data name="AutoCompleteBoxCompareOptions" xml:space="preserve">
     <value>Gets or sets the option to decide candidate narrowing down.</value>
@@ -506,5 +506,29 @@
   </data>
   <data name="AutoCompleteBoxValueMember.ja" xml:space="preserve">
     <value>コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。</value>
+  </data>
+  <data name="ControlBaseOuterFrameColor" xml:space="preserve">
+    <value>Gets or sets the frame color of the control.</value>
+  </data>
+  <data name="ControlBaseOuterFrameColor.ja" xml:space="preserve">
+    <value>コントロールの枠色を取得または設定します。</value>
+  </data>
+  <data name="ControlError" xml:space="preserve">
+    <value>Gets or sets whether the control is error.</value>
+  </data>
+  <data name="ControlError.ja" xml:space="preserve">
+    <value>コントロールがエラーかどうかを取得または設定します。</value>
+  </data>
+  <data name="ControlErrorOuterFrameColor" xml:space="preserve">
+    <value>Gets or sets the frame color of control at error.</value>
+  </data>
+  <data name="ControlErrorOuterFrameColor.ja" xml:space="preserve">
+    <value>エラー時のコントロールの枠色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusOuterFrameColor" xml:space="preserve">
+    <value>Gets or sets the frame color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusOuterFrameColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの枠色を取得または設定します。</value>
   </data>
 </root>

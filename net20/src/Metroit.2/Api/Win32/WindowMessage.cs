@@ -30,6 +30,11 @@ namespace Metroit.Api.Win32
         public const int WM_PASTE = 0x0302;
 
         /// <summary>
+        /// 切り取りを定義します。
+        /// </summary>
+        public const int WM_CUT = 0x0300;
+
+        /// <summary>
         /// システムコマンドを定義します。
         /// </summary>
         public const int WM_SYSCOMMAND = 0x0112;
@@ -43,5 +48,20 @@ namespace Metroit.Api.Win32
         /// ウインドウの非クライアント領域の描画を定義します。
         /// </summary>
         public const int WM_NCPAINT = 0x0085;
+
+        /// <summary>
+        /// IMEがキーストロークの結果としてコンポジション文字列を生成する直前に送信されるメッセージを定義します。
+        /// </summary>
+        public const int WM_IME_STARTCOMPOSITION = 0x010D;
+
+        /// <summary>
+        /// IMEが合成を終了すると送信されるメッセージを定義します。
+        /// </summary>
+        public const int WM_IME_ENDCOMPOSITION = 0x010E;
+
+        /// <summary>
+        /// IMEがキーストロークの結果として構成ステータスを変更すると送信されるメッセージを定義します。
+        /// </summary>
+        public const int WM_IME_COMPOSITION = 0x010F;
     }
 }

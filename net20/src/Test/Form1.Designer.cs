@@ -30,6 +30,8 @@
         {
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox1 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -38,10 +40,15 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.metTextBox4 = new Metroit.Windows.Forms.MetTextBox();
+            this.metTextBox3 = new Metroit.Windows.Forms.MetTextBox();
             this.metComboBox1 = new Metroit.Windows.Forms.MetComboBox();
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
@@ -127,6 +134,45 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "aaa",
+            "aab",
+            "aac",
+            "aad"});
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox1.Location = new System.Drawing.Point(272, 156);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 19);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // metTextBox4
+            // 
+            this.metTextBox4.CustomAutoCompleteBox = autoCompleteBox1;
+            this.metTextBox4.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
+            this.metTextBox4.Location = new System.Drawing.Point(162, 119);
+            this.metTextBox4.Multiline = true;
+            this.metTextBox4.MultilineSelectAll = true;
+            this.metTextBox4.Name = "metTextBox4";
+            this.metTextBox4.Size = new System.Drawing.Size(100, 56);
+            this.metTextBox4.TabIndex = 16;
+            this.metTextBox4.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox4_TextChangeValidation);
+            this.metTextBox4.TextChanged += new System.EventHandler(this.metTextBox4_TextChanged);
+            // 
+            // metTextBox3
+            // 
+            this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox2;
+            this.metTextBox3.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
+            this.metTextBox3.Location = new System.Drawing.Point(272, 119);
+            this.metTextBox3.Name = "metTextBox3";
+            this.metTextBox3.Size = new System.Drawing.Size(100, 19);
+            this.metTextBox3.TabIndex = 14;
+            this.metTextBox3.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox3_TextChangeValidation);
+            this.metTextBox3.TextChanged += new System.EventHandler(this.metTextBox3_TextChanged);
+            // 
             // metComboBox1
             // 
             this.metComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -163,7 +209,7 @@
             // metTextBox2
             // 
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox1;
+            this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox3;
             this.metTextBox2.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox2.Location = new System.Drawing.Point(47, 88);
             this.metTextBox2.Name = "metTextBox2";
@@ -174,17 +220,17 @@
             // 
             this.metTextBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
             this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            autoCompleteBox2.CompareOptions = new System.Globalization.CompareOptions[] {
+            autoCompleteBox4.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
         System.Globalization.CompareOptions.IgnoreWidth};
-            autoCompleteBox2.DisplayMember = "Column2";
-            autoCompleteBox2.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
-            autoCompleteBox2.ValueMember = "Column1";
-            this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox2;
+            autoCompleteBox4.DisplayMember = "Column2";
+            autoCompleteBox4.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
+            autoCompleteBox4.ValueMember = "Column1";
+            this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox4;
             this.metTextBox1.CustomAutoCompleteKeys = new System.Windows.Forms.Keys[] {
         ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Return)))};
-            this.metTextBox1.CustomAutoCompleteMode = true;
+            this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
             this.metTextBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
             this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Blue;
@@ -193,12 +239,16 @@
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
+            this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 341);
+            this.Controls.Add(this.metTextBox4);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.metTextBox3);
             this.Controls.Add(this.metComboBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -215,6 +265,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
@@ -237,5 +289,8 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private Metroit.Windows.Forms.MetComboBox metComboBox1;
+        private Metroit.Windows.Forms.MetTextBox metTextBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private Metroit.Windows.Forms.MetTextBox metTextBox4;
     }
 }
