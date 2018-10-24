@@ -54,6 +54,11 @@
             下キーを定義します。
             </summary>
         </member>
+        <member name="F:Metroit.Api.Win32.VirtualKey.VK_TAB">
+            <summary>
+            Tabキーを定義します。
+            </summary>
+        </member>
         <member name="F:Metroit.Api.Win32.VirtualKey.VK_ESCAPE">
             <summary>
             ESCキーを定義します。

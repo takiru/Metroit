@@ -20,6 +20,11 @@ namespace Metroit.Api.Win32
         public const int VK_DOWN = 0x28;
 
         /// <summary>
+        /// Tabキーを定義します。
+        /// </summary>
+        public const int VK_TAB = 0x09;
+
+        /// <summary>
         /// ESCキーを定義します。
         /// </summary>
         public const int VK_ESCAPE = 0x1B;

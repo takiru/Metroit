@@ -1388,6 +1388,12 @@ namespace Metroit.Windows.Forms
                     this.CustomAutoCompleteBox.Close();
                     return true;
                 }
+                // Tabキーはリストを閉じる
+                if (msg.WParam == new IntPtr(VirtualKey.VK_TAB))
+                {
+                    this.CustomAutoCompleteBox.Close();
+                    return base.ProcessCmdKey(ref msg, keyData);
+                }
                 // 下キーはリストの選択肢を下へずらす
                 if (msg.WParam == new IntPtr(VirtualKey.VK_DOWN))
                 {
