@@ -95,6 +95,8 @@ namespace Metroit.Windows.Forms
         // 候補コンボボックスが表示されている状態で、テキスト値の変更をかけているかどうか
         private bool candidateTextChanging = false;
 
+        private int endCompositionCharCount = 0;
+
         /// <summary>
         /// フォーカスを得た時、色の変更とテキストの反転を行う。
         /// </summary>
@@ -244,10 +246,6 @@ namespace Metroit.Windows.Forms
                 }
             }
         }
-
-
-
-        private int endCompositionCharCount = 0;
 
         /// <summary>
         /// キーが押された時の動作
