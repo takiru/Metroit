@@ -196,6 +196,8 @@ namespace Metroit.Windows.Forms
             // クリックによって選択した時、ドロップダウンが非表示されないので非表示とする
             if (this.CandidateBox.Visible)
             {
+                // ドロップダウンのVisible = false で次のコントロールへフォーカスが遷移してしまうため、自身に留まる
+                this.Target.Focus();
                 this.CandidateBox.Visible = false;
             }
 
@@ -208,12 +210,6 @@ namespace Metroit.Windows.Forms
                 this.CandidateBox.Text = this.Target.Text;
             }
 
-            // マウスクリックで選択してリストが閉じられた時は元コントロールへフォーカスを戻す
-            var activeControl = this.Target.FindForm().ActiveControl;
-            if (activeControl == this.CandidateBox)
-            {
-                this.Target.Focus();
-            }
             this.Target.Cursor = Cursors.IBeam;
 
             this.BoxClosing = false;

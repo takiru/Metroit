@@ -271,5 +271,10 @@ namespace Test
         {
             Console.WriteLine("Changed:" + metTextBox4.Text);
         }
+
+        private void metTextBox1_Enter(object sender, EventArgs e)
+        {
+            Console.WriteLine("Enter");
+        }
     }
 }

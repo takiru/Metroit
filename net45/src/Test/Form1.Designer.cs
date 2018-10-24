@@ -51,17 +51,21 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(216, 17);
+            this.button1.Location = new System.Drawing.Point(242, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -72,7 +76,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(297, 17);
+            this.button2.Location = new System.Drawing.Point(323, 21);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -83,7 +87,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(216, 46);
+            this.button3.Location = new System.Drawing.Point(242, 50);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
@@ -94,7 +98,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(297, 46);
+            this.button4.Location = new System.Drawing.Point(323, 50);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 6;
@@ -105,7 +109,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(62, 222);
+            this.button5.Location = new System.Drawing.Point(41, 160);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 8;
@@ -116,7 +120,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(143, 222);
+            this.button6.Location = new System.Drawing.Point(122, 160);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(93, 23);
             this.button6.TabIndex = 9;
@@ -127,7 +131,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(242, 222);
+            this.button7.Location = new System.Drawing.Point(221, 160);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(70, 23);
             this.button7.TabIndex = 10;
@@ -138,7 +142,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(318, 222);
+            this.button8.Location = new System.Drawing.Point(297, 160);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(70, 23);
             this.button8.TabIndex = 12;
@@ -156,7 +160,7 @@
             "aad"});
             this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.Location = new System.Drawing.Point(272, 156);
+            this.textBox1.Location = new System.Drawing.Point(251, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 19);
             this.textBox1.TabIndex = 15;
@@ -166,7 +170,7 @@
             // 
             this.metTextBox4.CustomAutoCompleteBox = autoCompleteBox1;
             this.metTextBox4.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
-            this.metTextBox4.Location = new System.Drawing.Point(162, 119);
+            this.metTextBox4.Location = new System.Drawing.Point(141, 57);
             this.metTextBox4.Multiline = true;
             this.metTextBox4.MultilineSelectAll = true;
             this.metTextBox4.Name = "metTextBox4";
@@ -179,7 +183,7 @@
             // 
             this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox2;
             this.metTextBox3.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
-            this.metTextBox3.Location = new System.Drawing.Point(272, 119);
+            this.metTextBox3.Location = new System.Drawing.Point(251, 57);
             this.metTextBox3.Name = "metTextBox3";
             this.metTextBox3.Size = new System.Drawing.Size(100, 19);
             this.metTextBox3.TabIndex = 14;
@@ -197,7 +201,7 @@
             this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metComboBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.metComboBox1.FormattingEnabled = true;
-            this.metComboBox1.Location = new System.Drawing.Point(89, 251);
+            this.metComboBox1.Location = new System.Drawing.Point(68, 189);
             this.metComboBox1.Name = "metComboBox1";
             this.metComboBox1.Size = new System.Drawing.Size(121, 32);
             this.metComboBox1.TabIndex = 13;
@@ -214,7 +218,7 @@
             this.metDateTimePicker1.FocusOuterFrameColor = System.Drawing.Color.Blue;
             this.metDateTimePicker1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.metDateTimePicker1.Location = new System.Drawing.Point(62, 185);
+            this.metDateTimePicker1.Location = new System.Drawing.Point(41, 123);
             this.metDateTimePicker1.Name = "metDateTimePicker1";
             this.metDateTimePicker1.Size = new System.Drawing.Size(200, 31);
             this.metDateTimePicker1.TabIndex = 7;
@@ -224,7 +228,7 @@
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox3;
             this.metTextBox2.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox2.Location = new System.Drawing.Point(47, 88);
+            this.metTextBox2.Location = new System.Drawing.Point(26, 26);
             this.metTextBox2.Name = "metTextBox2";
             this.metTextBox2.Size = new System.Drawing.Size(100, 24);
             this.metTextBox2.TabIndex = 3;
@@ -248,11 +252,12 @@
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
             this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Blue;
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox1.Location = new System.Drawing.Point(12, 12);
+            this.metTextBox1.Location = new System.Drawing.Point(20, 18);
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
+            this.metTextBox1.Enter += new System.EventHandler(this.metTextBox1_Enter);
             // 
             // dataGridView1
             // 
@@ -260,7 +265,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(242, 278);
+            this.dataGridView1.Location = new System.Drawing.Point(440, 154);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(285, 150);
@@ -276,27 +281,47 @@
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.metTextBox1);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Location = new System.Drawing.Point(399, 11);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(550, 113);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.metTextBox4);
+            this.groupBox2.Controls.Add(this.metTextBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.metDateTimePicker1);
+            this.groupBox2.Controls.Add(this.metTextBox3);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.metComboBox1);
+            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Location = new System.Drawing.Point(129, 145);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(831, 310);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 467);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.metTextBox4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.metTextBox3);
-            this.Controls.Add(this.metComboBox1);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.metDateTimePicker1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.metTextBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.metTextBox1);
+            this.ClientSize = new System.Drawing.Size(1013, 467);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.EnterFocus = true;
             formEscapeBehavior1.ControlLeave = true;
             formEscapeBehavior1.ControlRollback = true;
@@ -314,8 +339,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -339,5 +367,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
