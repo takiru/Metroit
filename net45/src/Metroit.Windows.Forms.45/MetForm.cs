@@ -20,6 +20,24 @@ namespace Metroit.Windows.Forms
             InitializeComponent();
         }
 
+        #region 追加イベント
+
+        /// <summary>
+        /// ESCキーによってロールバックを行う時に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetBehavior")]
+        [MetDescription("MetFormControlRollbacking")]
+        public event CancelEventHandler ControlRollbacking;
+
+        /// <summary>
+        /// ESCキーによってフォーカスを失う時に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetBehavior")]
+        [MetDescription("MetFormControlLeaving")]
+        public event CancelEventHandler ControlLeaving;
+
+        #endregion
+
         #region 追加プロパティ
 
         /// <summary>
@@ -60,15 +78,17 @@ namespace Metroit.Windows.Forms
             this.EscPush.ControlLeave = false;
             this.EscPush.FormClose = false;
         }
-        
+
         /// <summary>
         /// 呼び元からのリクエストパラメータを取得または設定します。
         /// </summary>
+        [Browsable(false)]
         protected object Request { get; private set; } = null;
 
         /// <summary>
         /// 呼び元へのレスポンスパラメータを設定し、呼び元で取得可能にします。
         /// </summary>
+        [Browsable(false)]
         public object Response { get; protected set; } = null;
 
         #endregion
@@ -133,7 +153,7 @@ namespace Metroit.Windows.Forms
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             // Enter
-            if (EnterFocus && keyData == Keys.Return)
+            if (EnterFocus && (keyData == Keys.Return || keyData == (Keys.Shift | Keys.Return)))
             {
                 // 対象がボタンの時は通常制御とする
                 if (this.ActiveControl is Button)
@@ -147,18 +167,32 @@ namespace Metroit.Windows.Forms
             // ESC
             if (keyData == Keys.Escape)
             {
-                var rollback = GetLeaveRollbackObject();
+                var rollback = GetControlRollbackObject();
                 var isRollbacked = IsRollbacked(rollback);
 
                 // ControlRollback
-                if (this.RollbackControl(rollback, isRollbacked))
+                if (this.IsRollbackControl(rollback, isRollbacked))
                 {
+                    var e = new CancelEventArgs();
+                    this.OnControlRollbacking(e);
+                    if (e.Cancel)
+                    {
+                        return false;
+                    }
+                    rollback.Rollback(this, this.ActiveControl);
                     return true;
                 }
 
                 // ControlLeave
-                if (this.LeaveControl(isRollbacked))
+                if (this.IsLeaveControl(isRollbacked))
                 {
+                    var e = new CancelEventArgs();
+                    this.OnControlLeaving(e);
+                    if (e.Cancel)
+                    {
+                        return false;
+                    }
+                    this.LeaveControl();
                     return true;
                 }
 
@@ -173,12 +207,12 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// ILeaveRollback オブジェクトを取得する。
+        /// IControlRollback オブジェクトを取得する。
         /// </summary>
-        /// <returns>ILeaveRollback オブジェクト。</returns>
-        private IControlRollback GetLeaveRollbackObject()
+        /// <returns>IControlRollback オブジェクト。</returns>
+        private IControlRollback GetControlRollbackObject()
         {
-            // 対象コントロールにILeaveRollback が実装されていない場合は、フォームに実装されているかまで見る
+            // 対象コントロールにIControlRollback が実装されていない場合は、フォームに実装されているかまで見る
             var rollback = this.ActiveControl as IControlRollback;
             if (rollback == null)
             {
@@ -204,53 +238,85 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// コントロールのロールバックを行う。
+        /// ロールバック対象かどうかを取得する。
         /// </summary>
         /// <param name="leaveRollback">ILeaveRollback オブジェクト。</param>
         /// <param name="isRollbacked">ロールバック済みかどうか。</param>
-        /// <returns>true:ロールバックの実施, false:ロールバックの未実施。</returns>
-        private bool RollbackControl(IControlRollback leaveRollback, bool isRollbacked)
+        /// <returns>true:対象, false:対象外。</returns>
+        private bool IsRollbackControl(IControlRollback leaveRollback, bool isRollbacked)
         {
+            // ロールバックを実施しない場合は対象外
             if (!this.EscPush.ControlRollback)
             {
                 return false;
             }
+
+            // コントロールを有していない場合は対象外
             if (this.ActiveControl == null)
             {
                 return false;
             }
 
-            // ロールバック済みなら処理しない
+            // ロールバック済みの場合は対象外
             if (isRollbacked)
             {
                 return false;
             }
-            leaveRollback.Rollback(this, this.ActiveControl);
+
             return true;
         }
 
         /// <summary>
-        /// コントロールのフォーカスアウトを行う。
+        /// コントロールのロールバックを行う前のイベントを発生させます。
+        /// </summary>
+        /// <param name="e">CancelEventArgs オブジェクト。</param>
+        protected virtual void OnControlRollbacking(CancelEventArgs e)
+        {
+            this.ControlRollbacking?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// フォーカスアウト対象かどうかを取得する。
         /// </summary>
         /// <param name="isRollbacked">ロールバック済みかどうか。</param>
-        /// <returns>true:フォーカスアウトの実施, false:フォーカスアウトの未実施。</returns>
-        private bool LeaveControl(bool isRollbacked)
+        /// <returns>true:対象, false:対象外。</returns>
+        private bool IsLeaveControl(bool isRollbacked)
         {
+            // フォーカスアウトを実施しない場合は対象外
             if (!this.EscPush.ControlLeave)
             {
                 return false;
             }
+
+            // コントロールを有していない場合は対象外
             if (this.ActiveControl == null)
             {
                 return false;
             }
 
-            // ロールバック済みでない場合は処理しない
+            // ロールバック済みでない場合は対象外
             if (this.EscPush.ControlRollback && !isRollbacked)
             {
                 return false;
             }
 
+            return true;
+        }
+
+        /// <summary>
+        /// コントロールのフォーカスを行う前のイベントを発生させます。
+        /// </summary>
+        /// <param name="e">CancelEventArgs オブジェクト。</param>
+        protected virtual void OnControlLeaving(CancelEventArgs e)
+        {
+            this.ControlLeaving?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// コントロールのフォーカスアウトを行う。
+        /// </summary>
+        private void LeaveControl()
+        {
             // 一時的にボタンを用意して、ボタンにフォーカス遷移させる
             using (var hiddenButton = new Button())
             {
@@ -262,8 +328,8 @@ namespace Metroit.Windows.Forms
 
                 this.ActiveControl = null;
                 this.Controls.Remove(hiddenButton);
+                hiddenButton.Dispose();
             }
-            return true;
         }
 
         /// <summary>

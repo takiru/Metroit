@@ -1571,6 +1571,16 @@
             MetForm の新しいインスタンスを初期化します。
             </summary>
         </member>
+        <member name="E:Metroit.Windows.Forms.MetForm.ControlRollbacking">
+            <summary>
+            ESCキーによってロールバックを行う時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetForm.ControlLeaving">
+            <summary>
+            ESCキーによってフォーカスを失う時に発生するイベントです。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.MetForm.EnterFocus">
             <summary>
             Enterキーが押された時にフォーカスを遷移するかを取得または設定します。
@@ -1642,11 +1652,11 @@
             <param name="keyData">Keysオブジェクト</param>
             <returns>true:以降のイベントハンドラを制御しない, false:以降のイベントハンドラを制御する</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetForm.GetLeaveRollbackObject">
+        <member name="M:Metroit.Windows.Forms.MetForm.GetControlRollbackObject">
             <summary>
-            ILeaveRollback オブジェクトを取得する。
+            IControlRollback オブジェクトを取得する。
             </summary>
-            <returns>ILeaveRollback オブジェクト。</returns>
+            <returns>IControlRollback オブジェクト。</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.MetForm.IsRollbacked(Metroit.Windows.Forms.IControlRollback)">
             <summary>
@@ -1655,20 +1665,37 @@
             <param name="leaveRollback">ILeaveRollback オブジェクト</param>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetForm.RollbackControl(Metroit.Windows.Forms.IControlRollback,System.Boolean)">
+        <member name="M:Metroit.Windows.Forms.MetForm.IsRollbackControl(Metroit.Windows.Forms.IControlRollback,System.Boolean)">
             <summary>
-            コントロールのロールバックを行う。
+            ロールバック対象かどうかを取得する。
             </summary>
             <param name="leaveRollback">ILeaveRollback オブジェクト。</param>
             <param name="isRollbacked">ロールバック済みかどうか。</param>
-            <returns>true:ロールバックの実施, false:ロールバックの未実施。</returns>
+            <returns>true:対象, false:対象外。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetForm.LeaveControl(System.Boolean)">
+        <member name="M:Metroit.Windows.Forms.MetForm.OnControlRollbacking(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            コントロールのロールバックを行う前のイベントを発生させます。
+            </summary>
+            <param name="e">CancelEventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.IsLeaveControl(System.Boolean)">
+            <summary>
+            フォーカスアウト対象かどうかを取得する。
+            </summary>
+            <param name="isRollbacked">ロールバック済みかどうか。</param>
+            <returns>true:対象, false:対象外。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.OnControlLeaving(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            コントロールのフォーカスを行う前のイベントを発生させます。
+            </summary>
+            <param name="e">CancelEventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetForm.LeaveControl">
             <summary>
             コントロールのフォーカスアウトを行う。
             </summary>
-            <param name="isRollbacked">ロールバック済みかどうか。</param>
-            <returns>true:フォーカスアウトの実施, false:フォーカスアウトの未実施。</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.MetForm.CloseForm">
             <summary>
@@ -3461,6 +3488,26 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetDateTimePicker_ja">
             <summary>
               ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetFormControlLeaving">
+            <summary>
+              This event occurs when ESC key loses focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetFormControlLeaving_ja">
+            <summary>
+              ESCキーによってフォーカスを失う時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetFormControlRollbacking">
+            <summary>
+              This event occurs when rollback is performed by the ESC key. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetFormControlRollbacking_ja">
+            <summary>
+              ESCキーによってロールバックを行う時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetLimitedTextBox">

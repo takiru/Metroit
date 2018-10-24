@@ -10,7 +10,11 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Changed TextChangeValidation to work.Suggest function added to CustomAutoComplete.</releaseNotes>
+    <releaseNotes>
+      The behavior of EnterFocus corresponds to Shift + Enter.
+      Added ControlRollbacking, ControlLeaving event.
+      For example, you can control ControlLeave actions during grid manipulation.
+    </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>

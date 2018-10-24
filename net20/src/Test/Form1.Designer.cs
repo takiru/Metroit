@@ -32,6 +32,7 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -47,11 +48,15 @@
             this.metDateTimePicker1 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metTextBox2 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -60,6 +65,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
+            this.button1.TabStop = false;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -70,6 +76,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
+            this.button2.TabStop = false;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -80,6 +87,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
+            this.button3.TabStop = false;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -90,6 +98,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 6;
+            this.button4.TabStop = false;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -100,6 +109,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 8;
+            this.button5.TabStop = false;
             this.button5.Text = "Error";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -110,6 +120,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(93, 23);
             this.button6.TabIndex = 9;
+            this.button6.TabStop = false;
             this.button6.Text = "ReadOnlyLabel";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -120,6 +131,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(70, 23);
             this.button7.TabIndex = 10;
+            this.button7.TabStop = false;
             this.button7.Text = "ReadOnly";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -130,6 +142,7 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(70, 23);
             this.button8.TabIndex = 12;
+            this.button8.TabStop = false;
             this.button8.Text = "Visible";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
@@ -241,11 +254,34 @@
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView1.Location = new System.Drawing.Point(242, 278);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 21;
+            this.dataGridView1.Size = new System.Drawing.Size(285, 150);
+            this.dataGridView1.TabIndex = 17;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 341);
+            this.ClientSize = new System.Drawing.Size(564, 467);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.metTextBox4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.metTextBox3);
@@ -261,15 +297,23 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metTextBox1);
+            this.EnterFocus = true;
+            formEscapeBehavior1.ControlLeave = true;
+            formEscapeBehavior1.ControlRollback = true;
+            formEscapeBehavior1.FormClose = true;
+            this.EscPush = formEscapeBehavior1;
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.ControlRollbacking += new System.ComponentModel.CancelEventHandler(this.Form1_ControlRollbacking);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +336,8 @@
         private Metroit.Windows.Forms.MetTextBox metTextBox3;
         private System.Windows.Forms.TextBox textBox1;
         private Metroit.Windows.Forms.MetTextBox metTextBox4;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

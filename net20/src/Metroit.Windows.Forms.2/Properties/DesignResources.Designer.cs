@@ -1105,6 +1105,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   This event occurs when ESC key loses focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormControlLeaving {
+            get {
+                return ResourceManager.GetString("MetFormControlLeaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ESCキーによってフォーカスを失う時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormControlLeaving_ja {
+            get {
+                return ResourceManager.GetString("MetFormControlLeaving.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This event occurs when rollback is performed by the ESC key. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormControlRollbacking {
+            get {
+                return ResourceManager.GetString("MetFormControlRollbacking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ESCキーによってロールバックを行う時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormControlRollbacking_ja {
+            get {
+                return ResourceManager.GetString("MetFormControlRollbacking.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Provides a text area with input character type and input byte count limiting function. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetLimitedTextBox {

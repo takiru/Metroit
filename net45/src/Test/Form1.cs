@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Metroit.Windows.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +11,44 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetForm, IControlRollback
     {
+        public bool IsRollbacked(object sender, Control control)
+        {
+            if (this.ActiveControl is DataGridViewTextBoxEditingControl)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void Rollback(object sender, Control control)
+        {
+            var c = this.ActiveControl as DataGridViewTextBoxEditingControl;
+            c.Text = "ddd";
+        }
+
+        private void Form1_ControlRollbacking(object sender, CancelEventArgs e)
+        {
+            if (this.ActiveControl is DataGridViewTextBoxEditingControl)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        protected override void OnControlLeaving(CancelEventArgs e)
+        {
+            base.OnControlLeaving(e);
+
+            // グリッドのテキストエリアはLeave対象外
+            if (this.ActiveControl is DataGridViewTextBoxEditingControl)
+            {
+                Console.WriteLine("Cancel!");
+                e.Cancel = true;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();

@@ -531,4 +531,16 @@
   <data name="ControlFocusOuterFrameColor.ja" xml:space="preserve">
     <value>フォーカス時のコントロールの枠色を取得または設定します。</value>
   </data>
+  <data name="MetFormControlLeaving" xml:space="preserve">
+    <value>This event occurs when ESC key loses focus.</value>
+  </data>
+  <data name="MetFormControlLeaving.ja" xml:space="preserve">
+    <value>ESCキーによってフォーカスを失う時に発生するイベントです。</value>
+  </data>
+  <data name="MetFormControlRollbacking" xml:space="preserve">
+    <value>This event occurs when rollback is performed by the ESC key.</value>
+  </data>
+  <data name="MetFormControlRollbacking.ja" xml:space="preserve">
+    <value>ESCキーによってロールバックを行う時に発生するイベントです。</value>
+  </data>
 </root>
