@@ -84,6 +84,11 @@
             貼り付けを定義します。
             </summary>
         </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_CUT">
+            <summary>
+            切り取りを定義します。
+            </summary>
+        </member>
         <member name="F:Metroit.Api.Win32.WindowMessage.WM_SYSCOMMAND">
             <summary>
             システムコマンドを定義します。
@@ -97,6 +102,21 @@
         <member name="F:Metroit.Api.Win32.WindowMessage.WM_NCPAINT">
             <summary>
             ウインドウの非クライアント領域の描画を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_STARTCOMPOSITION">
+            <summary>
+            IMEがキーストロークの結果としてコンポジション文字列を生成する直前に送信されるメッセージを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_ENDCOMPOSITION">
+            <summary>
+            IMEが合成を終了すると送信されるメッセージを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_COMPOSITION">
+            <summary>
+            IMEがキーストロークの結果として構成ステータスを変更すると送信されるメッセージを定義します。
             </summary>
         </member>
         <member name="T:Metroit.Api.Win32.User32">

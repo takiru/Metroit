@@ -212,7 +212,7 @@ namespace Test
 
         private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
         {
-            Console.WriteLine("kita");
+            //Console.WriteLine("kita");
             //if (e.After == "かなac")
             if (e.After == "かなa")
             {

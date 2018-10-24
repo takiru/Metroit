@@ -242,8 +242,12 @@ namespace Metroit.Windows.Forms
             // 既に入力されている値での絞り込み
             this.Extract(this.Target.Text);
 
-            Cursor.Current = Cursors.Arrow;
-            this.CandidateBox.DroppedDown = true;
+            // 候補がある時だけ表示する
+            if (this.CandidateBox.Items.Count > 0)
+            {
+                Cursor.Current = Cursors.Arrow;
+                this.CandidateBox.DroppedDown = true;
+            }
 
             // TextBoxのテキストに差し替える
             this.CandidateBox.Text = this.Target.Text;

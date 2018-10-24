@@ -702,6 +702,31 @@
             n $ を示します。
             </summary>
         </member>
+        <member name="T:Metroit.Windows.Forms.CustomAutoCompleteMode">
+            <summary>
+            カスタムオートコンプリートのモードを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CustomAutoCompleteMode.None">
+            <summary>
+            利用しない。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CustomAutoCompleteMode.Keys">
+            <summary>
+            キーによる利用。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CustomAutoCompleteMode.Suggest">
+            <summary>
+            サジェストによる利用。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest">
+            <summary>
+            キーとサジェストによる利用。
+            </summary>
+        </member>
         <member name="T:Metroit.Windows.Forms.ExceptionResources">
             <summary>
             例外メッセージのリソース取得を提供します。
@@ -2745,12 +2770,12 @@
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCustomAutoCompleteMode">
             <summary>
-              Set whether to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
+              Set up how to use custom autocomplete. に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCustomAutoCompleteMode_ja">
             <summary>
-              カスタムオートコンプリートを利用するか設定します。 に類似しているローカライズされた文字列を検索します。
+              カスタムオートコンプリートの利用方法を設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxMultilineSelectAll">
@@ -3242,8 +3267,6 @@
             状態変更・保持などを行う場合はTextChanged イベント、またはValidated イベントで行うべきです。<br />
             TextChangeValidation イベントが発生しない操作<br />
             　・AutoCompleteMode プロパティによって、入力値の補完が行われた時<br />
-            　・BackSpace、Deleteキーなどによって、入力値が削除された時<br />
-            　・切り取り、Ctrl+Xによって、入力値が切り取られた時<br />
             　・元に戻す、Ctrl+Zによって、入力値が直前の内容に戻された時<br />
             </remarks>
             <exception cref="T:Metroit.Windows.Forms.DeniedTextException">
@@ -3314,11 +3337,12 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.createTextAfterInput(System.Windows.Forms.KeyPressEventArgs)">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.createTextAfterInput(Metroit.Windows.Forms.TypingKeyType,System.Nullable{System.Char})">
             <summary>
             文字キーによってテキスト入力が行われた際の、入力後テキストを取得する。
             </summary>
-            <param name="e">キーイベント</param>
+            <param name="typingKeyType"></param>
+            <param name="keyChar">入力されたキー値。</param>
             <returns>入力後テキスト</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.autoFocus">
@@ -3445,7 +3469,7 @@
         </member>
         <member name="P:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteMode">
             <summary>
-            カスタムオートコンプリートを利用するか設定します。
+            カスタムオートコンプリートの利用方法を設定します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteKeys">
@@ -3631,6 +3655,12 @@
             コントロールの外枠の色を描画する。
             </summary>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.canCut">
+            <summary>
+            切り取りが可能かどうかを取得する。
+            </summary>
+            <returns>true:切り取り成功, false:切り取り失敗</returns>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.canPaste">
             <summary>
             貼り付けが可能かどうかを取得する。
@@ -3650,6 +3680,11 @@
             </summary>
             <param name="pasteText">ペースト文字列</param>
             <returns>ペースト後テキスト</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OpenSuggest">
+            <summary>
+            サジェストによる候補ボックスを表示する。
+            </summary>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.Dispose(System.Boolean)">
             <summary>
@@ -3675,6 +3710,26 @@
         <member name="P:Metroit.Windows.Forms.TextChangeValidationEventArgs.After">
             <summary>
             入力値を許可した時の値です。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.TypingKeyType">
+            <summary>
+            押されたキー種類を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.TypingKeyType.DefaultKeys">
+            <summary>
+            通常キー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.TypingKeyType.DeleteKey">
+            <summary>
+            Deleteキー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.TypingKeyType.Cut">
+            <summary>
+            Ctrl+X, SelectionLength > 0 時のShift+Delete による切り取り。
             </summary>
         </member>
     </members>
