@@ -614,7 +614,6 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(false)]
         [ReadOnly(true)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Color ForeColor
         {
@@ -622,13 +621,13 @@ namespace Metroit.Windows.Forms
             set => base.ForeColor = value;
         }
 
+        // FIXED: 例えば特定条件下で色を変えるなどのユーザー実装が行えなくなるため、コード実装は可能とする。
         /// <summary>
         /// コントロールの背景色を取得または特定のプロパティによって強制的に背景色を設定します。
         /// 意図的に背景色の変更が必要な場合のみ利用してください。
         /// </summary>
         [Browsable(false)]
         [ReadOnly(true)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Color BackColor
         {

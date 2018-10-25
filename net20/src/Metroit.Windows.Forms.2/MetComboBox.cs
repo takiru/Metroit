@@ -110,16 +110,24 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        // FIXED: 例えば特定条件下で色を変えるなどのユーザー実装が行えなくなるため、コード実装は可能とする。
         /// <summary>
-        /// ComboBox コントロールの背景色を示す値を取得または設定します。
+        /// コントロールの背景色を取得または特定のプロパティによって強制的に背景色を設定します。
+        /// 意図的に背景色の変更が必要な場合のみ利用してください。
         /// </summary>
         [Browsable(false)]
+        [ReadOnly(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override Color BackColor { get => base.BackColor; set => base.BackColor = value; }
 
+        // FIXED: 例えば特定条件下で色を変えるなどのユーザー実装が行えなくなるため、コード実装は可能とする。
         /// <summary>
-        /// ComboBox コントロールの文字色を示す値を取得または設定します。
+        /// コントロールの前景色を取得または特定のプロパティによって強制的に前景色を設定します。
+        /// 意図的に前景色の変更が必要な場合のみ利用してください。
         /// </summary>
         [Browsable(false)]
+        [ReadOnly(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override Color ForeColor { get => base.ForeColor; set => base.ForeColor = value; }
 
         #endregion
@@ -543,7 +551,7 @@ namespace Metroit.Windows.Forms
         {
             // アクティブの時にアクティブ色に変更
             var form = this.FindForm();
-            if (form != null && (form.ActiveControl == this || form.ActiveControl == this.textBox))
+            if (!ControlExtensions.IsDesignMode(this) && form != null && (form.ActiveControl == this || form.ActiveControl == this.textBox))
             {
                 this.changeFocusColor();
             }
