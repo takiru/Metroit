@@ -1,8 +1,3 @@
-# bug
-MetNumericText
- - AutoFocus=true, DecimalDigits=0 の時、1文字いれたらフォーカス遷移してしまう
-
-
 [English](TUTORIAL.md "English")
 
 # チュートリアル
