@@ -1,5 +1,7 @@
 [Japanese](README.ja.md "Japanese")
 
+[Tutorial](Tutorial/TUTORIAL.md "Tutorial")
+
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
 |Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.4-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
