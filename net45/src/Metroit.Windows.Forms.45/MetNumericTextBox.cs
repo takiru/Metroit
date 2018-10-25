@@ -950,6 +950,13 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
+            // 小数桁を許可しない場合は許可しない
+            if (this.DecimalDigits == 0 && e.Input == ".")
+            {
+                e.Cancel = true;
+                return;
+            }
+
             // 数値チェック
             if (!this.isNumeric(e.After))
             {
@@ -1009,10 +1016,44 @@ namespace Metroit.Windows.Forms
                 return true;
             }
 
+            var valueIntLength = value.ToString("+###0;-###0;").Length;
+            var maxValueIntLength = this.MaxValue.ToString("+###0;-###0;").Length;
+            var minValueIntLength = this.MinValue.ToString("+###0;-###0;").Length;
+
+            // 小数桁数が0の時、MaxValueと整数桁が同じ、またはMinValueと整数桁が同じだったらOK
+            if (this.DecimalDigits == 0)
+            {
+                if (maxValueIntLength == valueIntLength ||
+                    minValueIntLength == valueIntLength)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
             // MaxValueより整数桁が少ない場合は、小数がフル桁入ったらOK
             // MaxValueと整数桁が同じだが、値が小さい場合は、小数がフル桁入ったらOK
-            if ((this.MaxValue.ToString("###0").Length > value.ToString("###0").Length) ||
-                (this.MaxValue.ToString("###0").Length == value.ToString("###0").Length && this.MaxValue > value))
+            if ((maxValueIntLength > valueIntLength) ||
+                (maxValueIntLength == valueIntLength && this.MaxValue > value))
+            {
+                int valueDigits = decimal.GetBits(value)[3] >> 16 & 0x00FF;
+                if (this.DecimalDigits == valueDigits)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // MinValueより整数桁が少ない場合は、小数がフル桁入ったらOK
+            // MinValueと整数桁が同じだが、値が大きい場合は、小数がフル桁入ったらOK
+            if ((minValueIntLength > valueIntLength) ||
+                (minValueIntLength == valueIntLength && this.MinValue < value))
             {
                 int valueDigits = decimal.GetBits(value)[3] >> 16 & 0x00FF;
                 if (this.DecimalDigits == valueDigits)

@@ -11,9 +11,8 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>bugfix:
-      BackColor, ForeColor will be edited on the designer.
-      - MetComboBox
-      - MetDateTimePicker
+      When AutoFocus = true, DecimalDisits = 0, focus moves instantly.
+      - MetNumericTextBox
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
