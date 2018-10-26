@@ -16,14 +16,5 @@ namespace Tutorial
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            metTextBox1.Error = !metTextBox1.Error;
-            metLimitedTextBox1.Error = !metLimitedTextBox1.Error;
-            metNumericTextBox1.Error = !metNumericTextBox1.Error;
-            metComboBox1.Error = !metComboBox1.Error;
-            metDateTimePicker1.Error = !metDateTimePicker1.Error;
-        }
     }
 }

@@ -1,6 +1,6 @@
 [Japanese](README.ja.md "Japanese")
 
-[Tutorial](Tutorial/TUTORIAL.md "Tutorial")
+[Tutorial](Tutorial/TUTORIAL.ja.md "Tutorial")
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
