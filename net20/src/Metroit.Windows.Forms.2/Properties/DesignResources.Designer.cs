@@ -1213,6 +1213,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   This event occurs when opened a candidate box. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCompleteBoxOpened {
+            get {
+                return ResourceManager.GetString("MetTextBoxCompleteBoxOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   候補ボックスを開いたときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCompleteBoxOpened_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxCompleteBoxOpened.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This event occurs when opening a candidate box. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCompleteBoxOpening {
+            get {
+                return ResourceManager.GetString("MetTextBoxCompleteBoxOpening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   候補ボックスを開くときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxCompleteBoxOpening_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxCompleteBoxOpening.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteBox {

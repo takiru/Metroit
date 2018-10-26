@@ -2799,6 +2799,26 @@
               Metroit拡張 プロパティ変更 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpened">
+            <summary>
+              This event occurs when opened a candidate box. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpened_ja">
+            <summary>
+              候補ボックスを開いたときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpening">
+            <summary>
+              This event occurs when opening a candidate box. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpening_ja">
+            <summary>
+              候補ボックスを開くときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCustomAutoCompleteBox">
             <summary>
               Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
@@ -3418,6 +3438,28 @@
             入力値を変更しているときに走行します。
             </summary>
             <param name="e">入力値許可イベントオブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CompleteBoxOpening">
+            <summary>
+            候補ボックスを開くときに発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCompleteBoxOpening(System.EventArgs)">
+            <summary>
+            候補ボックスを開くときに走行します。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CompleteBoxOpened">
+            <summary>
+            候補ボックスを開いたときに発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCompleteBoxOpened(System.EventArgs)">
+            <summary>
+            候補ボックスを開いたときに走行します。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
         </member>
         <member name="P:Metroit.Windows.Forms.MetTextBox.Anchor">
             <summary>

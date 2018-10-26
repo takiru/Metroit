@@ -276,5 +276,26 @@ namespace Test
         {
             Console.WriteLine("Enter");
         }
+
+        private void metTextBox1_CompleteBoxOpening(object sender, EventArgs e)
+        {
+            //var dt = new System.Data.DataTable();
+            //dt.Columns.Add("Column1");
+            //dt.Columns.Add("Column2");
+            //dt.Columns.Add("Column3");
+
+            //var row = dt.NewRow();
+            //row["Column1"] = "aaa column1";
+            //row["Column2"] = "aaa column2";
+            //row["Column3"] = "aaa column3";
+            //dt.Rows.Add(row);
+
+            //metTextBox1.CustomAutoCompleteBox.DataSource = dt;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
+        }
     }
 }

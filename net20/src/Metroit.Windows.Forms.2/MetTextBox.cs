@@ -248,7 +248,9 @@ namespace Metroit.Windows.Forms
                 else
                 {
                     // 候補コンボボックスを表示する
+                    this.OnCompleteBoxOpening(EventArgs.Empty);
                     this.CustomAutoCompleteBox.Open();
+                    this.OnCompleteBoxOpened(EventArgs.Empty);
                     e.SuppressKeyPress = true;
                 }
             }
@@ -506,6 +508,38 @@ namespace Metroit.Windows.Forms
             {
                 this.TextChangeValidation(this, e);
             }
+        }
+
+        /// <summary>
+        /// 候補ボックスを開くときに発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("MetTextBoxCompleteBoxOpening")]
+        public event EventHandler CompleteBoxOpening;
+
+        /// <summary>
+        /// 候補ボックスを開くときに走行します。
+        /// </summary>
+        /// <param name="e">EventArgs オブジェクト。</param>
+        protected virtual void OnCompleteBoxOpening(EventArgs e)
+        {
+            CompleteBoxOpening?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 候補ボックスを開いたときに発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("MetTextBoxCompleteBoxOpened")]
+        public event EventHandler CompleteBoxOpened;
+
+        /// <summary>
+        /// 候補ボックスを開いたときに走行します。
+        /// </summary>
+        /// <param name="e">EventArgs オブジェクト。</param>
+        protected virtual void OnCompleteBoxOpened(EventArgs e)
+        {
+            CompleteBoxOpened?.Invoke(this, e);
         }
 
         #endregion
@@ -1173,6 +1207,18 @@ namespace Metroit.Windows.Forms
         {
             base.OnTextChanged(e);
 
+            // デザイン時には何もしない
+            if (ControlExtensions.IsDesignMode(this))
+            {
+                return;
+            }
+
+            // 初期化が完了していない時は何もしない
+            if (!this.initialized)
+            {
+                return;
+            }
+
             // オートコンプリート指定がある場合はオートフォーカスしない
             if (this.AutoCompleteMode != AutoCompleteMode.None)
             {
@@ -1665,7 +1711,9 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
+            this.OnCompleteBoxOpening(EventArgs.Empty);
             this.CustomAutoCompleteBox.Open();
+            this.OnCompleteBoxOpened(EventArgs.Empty);
         }
 
         /// <summary>

@@ -543,4 +543,16 @@
   <data name="MetFormControlRollbacking.ja" xml:space="preserve">
     <value>ESCキーによってロールバックを行う時に発生するイベントです。</value>
   </data>
+  <data name="MetTextBoxCompleteBoxOpened" xml:space="preserve">
+    <value>This event occurs when opened a candidate box.</value>
+  </data>
+  <data name="MetTextBoxCompleteBoxOpened.ja" xml:space="preserve">
+    <value>候補ボックスを開いたときに発生するイベントです。</value>
+  </data>
+  <data name="MetTextBoxCompleteBoxOpening" xml:space="preserve">
+    <value>This event occurs when opening a candidate box.</value>
+  </data>
+  <data name="MetTextBoxCompleteBoxOpening.ja" xml:space="preserve">
+    <value>候補ボックスを開くときに発生するイベントです。</value>
+  </data>
 </root>
