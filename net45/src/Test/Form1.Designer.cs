@@ -180,6 +180,7 @@
             this.metTextBox4.Name = "metTextBox4";
             this.metTextBox4.Size = new System.Drawing.Size(100, 56);
             this.metTextBox4.TabIndex = 16;
+            this.metTextBox4.Watermark = null;
             this.metTextBox4.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox4_TextChangeValidation);
             this.metTextBox4.TextChanged += new System.EventHandler(this.metTextBox4_TextChanged);
             // 
@@ -191,6 +192,7 @@
             this.metTextBox3.Name = "metTextBox3";
             this.metTextBox3.Size = new System.Drawing.Size(100, 19);
             this.metTextBox3.TabIndex = 14;
+            this.metTextBox3.Watermark = null;
             this.metTextBox3.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox3_TextChangeValidation);
             this.metTextBox3.TextChanged += new System.EventHandler(this.metTextBox3_TextChanged);
             // 
@@ -232,6 +234,7 @@
             this.metTextBox2.Name = "metTextBox2";
             this.metTextBox2.Size = new System.Drawing.Size(100, 24);
             this.metTextBox2.TabIndex = 3;
+            this.metTextBox2.Watermark = null;
             // 
             // metTextBox1
             // 
@@ -250,12 +253,13 @@
             this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
             this.metTextBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
-            this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Red;
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox1.Location = new System.Drawing.Point(20, 18);
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
+            this.metTextBox1.Watermark = "入力してください";
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
             this.metTextBox1.CompleteBoxOpening += new System.EventHandler(this.metTextBox1_CompleteBoxOpening);
             this.metTextBox1.Enter += new System.EventHandler(this.metTextBox1_Enter);
@@ -331,14 +335,16 @@
             // metTextBox5
             // 
             this.metTextBox5.BaseOuterFrameColor = System.Drawing.Color.Blue;
-            this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox5.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox5.FocusOuterFrameColor = System.Drawing.Color.Lime;
             this.metTextBox5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox5.Location = new System.Drawing.Point(593, 56);
             this.metTextBox5.Name = "metTextBox5";
-            this.metTextBox5.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox5.Size = new System.Drawing.Size(132, 18);
             this.metTextBox5.TabIndex = 18;
+            this.metTextBox5.Watermark = "入力してください";
             // 
             // Form1
             // 

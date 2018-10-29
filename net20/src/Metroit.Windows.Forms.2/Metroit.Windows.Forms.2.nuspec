@@ -10,9 +10,13 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>bugfix:
+    <releaseNotes>
+      bugfix:
       MetTextBox
-      When BorderStyle = FixedSingle, OuterFrameColor is set, the default border is also drawn.
+        When BorderStyle = None, the border disappears by clicking the area.
+      add:
+      MetTextBox
+        Added Watermark, Watermark Color.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

@@ -555,4 +555,16 @@
   <data name="MetTextBoxCompleteBoxOpening.ja" xml:space="preserve">
     <value>候補ボックスを開くときに発生するイベントです。</value>
   </data>
+  <data name="MetTextBoxWatermark" xml:space="preserve">
+    <value>Get or set watermark.</value>
+  </data>
+  <data name="MetTextBoxWatermark.ja" xml:space="preserve">
+    <value>ウォーターマークの取得または設定します。</value>
+  </data>
+  <data name="MetTextBoxWatermarkColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the watermark.</value>
+  </data>
+  <data name="MetTextBoxWatermarkColor.ja" xml:space="preserve">
+    <value>ウォーターマークの前景色を取得または設定します。</value>
+  </data>
 </root>

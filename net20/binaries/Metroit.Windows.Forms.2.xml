@@ -2556,6 +2556,16 @@
             コントロールがエラーかどうかを取得または設定します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Watermark">
+            <summary>
+            ウォーターマークの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.WatermarkColor">
+            <summary>
+            ウォーターマークの前景色を取得または設定します。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.BeginInit">
             <summary>
             InitializeComponent()でコントロールの初期化が完了していないことを通知します。
@@ -2676,6 +2686,11 @@
         <member name="M:Metroit.Windows.Forms.MetTextBox.drawOuterFrame">
             <summary>
             コントロールの外枠の色を描画する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawWatermark">
+            <summary>
+            ウォーターマークを描画する。
             </summary>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.canCut">
@@ -3644,6 +3659,26 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidationEventHandler_ja">
             <summary>
               Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxWatermark">
+            <summary>
+              Get or set watermark. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxWatermark_ja">
+            <summary>
+              ウォーターマークの取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxWatermarkColor">
+            <summary>
+              Gets or sets the foreground color of the watermark. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxWatermarkColor_ja">
+            <summary>
+              ウォーターマークの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.NumericPattern">

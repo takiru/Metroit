@@ -697,6 +697,8 @@ namespace Metroit.Windows.Forms
                 Keys.Control | Keys.F4,
                 Keys.Shift | Keys.F4
         };
+        private string watermark = "";
+        private Color watermarkColor = Color.LightGray;
 
         /// <summary>
         /// InitializeComponent() によってコントロールの準備が完了したかどうかを取得します。
@@ -1086,6 +1088,8 @@ namespace Metroit.Windows.Forms
         [MetDescription("ControlErrorOuterFrameColor")]
         public Color ErrorOuterFrameColor { get; set; } = Color.Red;
 
+        #endregion
+
         private bool error = false;
 
         /// <summary>
@@ -1105,7 +1109,40 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        #endregion
+        /// <summary>
+        /// ウォーターマークの取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetAppearance")]
+        [DefaultValue("")]
+        [MetDescription("MetTextBoxWatermark")]
+        public string Watermark
+        {
+            get => this.watermark;
+            set
+            {
+                this.watermark = value;
+                this.drawWatermark();
+            }
+        }
+
+        /// <summary>
+        /// ウォーターマークの前景色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetAppearance")]
+        [DefaultValue(typeof(Color), "LightGray")]
+        [MetDescription("MetTextBoxWatermarkColor")]
+        public Color WatermarkColor
+        {
+            get { return this.watermarkColor; }
+            set
+            {
+                this.watermarkColor = value;
+                this.drawWatermark();
+            }
+
+        }
 
         #endregion
 
@@ -1206,6 +1243,9 @@ namespace Metroit.Windows.Forms
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
+
+            // ウォーターマークの表示
+            this.drawWatermark();
 
             // デザイン時には何もしない
             if (ControlExtensions.IsDesignMode(this))
@@ -1479,6 +1519,7 @@ namespace Metroit.Windows.Forms
             {
                 base.WndProc(ref m);
                 this.drawOuterFrame();
+                this.drawWatermark();
                 return;
             }
 
@@ -1565,8 +1606,8 @@ namespace Metroit.Windows.Forms
                 frameColor = this.Parent.BackColor;
             }
 
-            // 3D以外は罫線を上書きする
-            if (this.BorderStyle != BorderStyle.Fixed3D)
+            // FixedSingleは罫線を上書きする
+            if (this.BorderStyle == BorderStyle.FixedSingle)
             {
                 using (var g = this.CreateGraphics())
                 using (var pen = new Pen(frameColor))
@@ -1597,6 +1638,23 @@ namespace Metroit.Windows.Forms
                     this.PrevLocation = this.Location;
                     this.PrevSize = this.Size;
                 }
+            }
+        }
+
+        /// <summary>
+        /// ウォーターマークを描画する。
+        /// </summary>
+        private void drawWatermark()
+        {
+            if (this.Text != "")
+            {
+                return;
+            }
+
+            using (var g = this.CreateGraphics())
+            {
+                var rect = this.ClientRectangle;
+                g.DrawString(this.Watermark, this.Font, new SolidBrush(this.WatermarkColor), rect.X, rect.Y, StringFormat.GenericTypographic);
             }
         }
 

@@ -1339,6 +1339,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Get or set watermark. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxWatermark {
+            get {
+                return ResourceManager.GetString("MetTextBoxWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ウォーターマークの取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxWatermark_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxWatermark.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color of the watermark. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxWatermarkColor {
+            get {
+                return ResourceManager.GetString("MetTextBoxWatermarkColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ウォーターマークの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetTextBoxWatermarkColor_ja {
+            get {
+                return ResourceManager.GetString("MetTextBoxWatermarkColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Numeric Pattern に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NumericPattern {
