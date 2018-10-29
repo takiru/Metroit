@@ -32,6 +32,7 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox5 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metTextBox5 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -62,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -306,6 +309,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metTextBox5);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.metTextBox4);
             this.groupBox2.Controls.Add(this.metTextBox2);
@@ -323,6 +327,18 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // metTextBox5
+            // 
+            this.metTextBox5.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox5.FocusOuterFrameColor = System.Drawing.Color.Lime;
+            this.metTextBox5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox5.Location = new System.Drawing.Point(593, 56);
+            this.metTextBox5.Name = "metTextBox5";
+            this.metTextBox5.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox5.TabIndex = 18;
             // 
             // Form1
             // 
@@ -352,6 +368,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -379,5 +396,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button9;
+        private Metroit.Windows.Forms.MetTextBox metTextBox5;
     }
 }

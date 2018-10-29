@@ -32,6 +32,7 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox5 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -52,7 +53,9 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metTextBox5 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -61,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -192,14 +196,12 @@
             // 
             // metComboBox1
             // 
-            this.metComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metComboBox1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metComboBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
             this.metComboBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metComboBox1.FocusForeColor = System.Drawing.Color.Red;
             this.metComboBox1.FocusOuterFrameColor = System.Drawing.Color.Fuchsia;
             this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metComboBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.metComboBox1.FormattingEnabled = true;
             this.metComboBox1.Location = new System.Drawing.Point(68, 189);
             this.metComboBox1.Name = "metComboBox1";
@@ -208,7 +210,6 @@
             // 
             // metDateTimePicker1
             // 
-            this.metDateTimePicker1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metDateTimePicker1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metDateTimePicker1.BaseOuterFrameColor = System.Drawing.Color.Lime;
             this.metDateTimePicker1.CalendarFont = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -217,7 +218,6 @@
             this.metDateTimePicker1.FocusForeColor = System.Drawing.Color.Red;
             this.metDateTimePicker1.FocusOuterFrameColor = System.Drawing.Color.Blue;
             this.metDateTimePicker1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metDateTimePicker1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.metDateTimePicker1.Location = new System.Drawing.Point(41, 123);
             this.metDateTimePicker1.Name = "metDateTimePicker1";
             this.metDateTimePicker1.Size = new System.Drawing.Size(200, 31);
@@ -257,6 +257,7 @@
             this.metTextBox1.Size = new System.Drawing.Size(198, 24);
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
+            this.metTextBox1.CompleteBoxOpening += new System.EventHandler(this.metTextBox1_CompleteBoxOpening);
             this.metTextBox1.Enter += new System.EventHandler(this.metTextBox1_Enter);
             // 
             // dataGridView1
@@ -283,6 +284,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.metTextBox1);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button1);
@@ -295,8 +297,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(404, 20);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "Value取得";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metTextBox5);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.metTextBox4);
             this.groupBox2.Controls.Add(this.metTextBox2);
@@ -314,6 +327,18 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // metTextBox5
+            // 
+            this.metTextBox5.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox5.FocusOuterFrameColor = System.Drawing.Color.Lime;
+            this.metTextBox5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox5.Location = new System.Drawing.Point(593, 56);
+            this.metTextBox5.Name = "metTextBox5";
+            this.metTextBox5.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox5.TabIndex = 18;
             // 
             // Form1
             // 
@@ -343,6 +368,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,5 +395,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button9;
+        private Metroit.Windows.Forms.MetTextBox metTextBox5;
     }
 }

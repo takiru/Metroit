@@ -11,11 +11,8 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>bugfix:
-      When using CustomAutoComplete, Text property can not be changed in designer.
-      - MetTextBox
-      change:
-      CompleteBoxOpening, CompleteBoxOpened event added.
-      - MetTextBox
+      MetTextBox
+      When BorderStyle = FixedSingle, OuterFrameColor is set, the default border is also drawn.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
