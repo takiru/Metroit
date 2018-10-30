@@ -1122,7 +1122,7 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.watermark = value;
-                this.drawWatermark();
+                this.Invalidate();
             }
         }
 
@@ -1139,7 +1139,7 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.watermarkColor = value;
-                this.drawWatermark();
+                this.Invalidate();
             }
 
         }
@@ -1245,7 +1245,7 @@ namespace Metroit.Windows.Forms
             base.OnTextChanged(e);
 
             // ウォーターマークの表示
-            this.drawWatermark();
+            this.Invalidate();
 
             // デザイン時には何もしない
             if (ControlExtensions.IsDesignMode(this))

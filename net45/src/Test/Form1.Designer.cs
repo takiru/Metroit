@@ -33,6 +33,8 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox5 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox6 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox7 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,6 +57,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metTextBox7 = new Metroit.Windows.Forms.MetTextBox();
+            this.metTextBox6 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox5 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
@@ -64,6 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -313,6 +319,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metTextBox7);
+            this.groupBox2.Controls.Add(this.metTextBox6);
             this.groupBox2.Controls.Add(this.metTextBox5);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.metTextBox4);
@@ -332,15 +340,42 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
+            // metTextBox7
+            // 
+            this.metTextBox7.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox7.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox7.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.metTextBox7.FocusOuterFrameColor = System.Drawing.Color.Lime;
+            this.metTextBox7.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox7.Location = new System.Drawing.Point(583, 88);
+            this.metTextBox7.Name = "metTextBox7";
+            this.metTextBox7.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox7.TabIndex = 20;
+            this.metTextBox7.Watermark = "入力してください";
+            // 
+            // metTextBox6
+            // 
+            this.metTextBox6.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metTextBox6.CustomAutoCompleteBox = autoCompleteBox6;
+            this.metTextBox6.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.metTextBox6.FocusOuterFrameColor = System.Drawing.Color.Lime;
+            this.metTextBox6.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox6.Location = new System.Drawing.Point(583, 57);
+            this.metTextBox6.Name = "metTextBox6";
+            this.metTextBox6.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox6.TabIndex = 19;
+            this.metTextBox6.Watermark = "入力してください";
+            // 
             // metTextBox5
             // 
             this.metTextBox5.BaseOuterFrameColor = System.Drawing.Color.Blue;
             this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox7;
             this.metTextBox5.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox5.FocusOuterFrameColor = System.Drawing.Color.Lime;
             this.metTextBox5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox5.Location = new System.Drawing.Point(593, 56);
+            this.metTextBox5.Location = new System.Drawing.Point(583, 30);
             this.metTextBox5.Name = "metTextBox5";
             this.metTextBox5.Size = new System.Drawing.Size(132, 18);
             this.metTextBox5.TabIndex = 18;
@@ -374,6 +409,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).EndInit();
             this.ResumeLayout(false);
 
@@ -403,5 +440,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button9;
         private Metroit.Windows.Forms.MetTextBox metTextBox5;
+        private Metroit.Windows.Forms.MetTextBox metTextBox7;
+        private Metroit.Windows.Forms.MetTextBox metTextBox6;
     }
 }
