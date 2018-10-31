@@ -1644,6 +1644,14 @@ namespace Metroit.Windows.Forms
             {
                 return;
             }
+            if (!this.Enabled)
+            {
+                return;
+            }
+            if (this.ReadOnly)
+            {
+                return;
+            }
 
             using (var g = this.CreateGraphics())
             {
