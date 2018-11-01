@@ -1666,7 +1666,6 @@ namespace Metroit.Windows.Forms
         {
             if (this.BorderStyle == BorderStyle.FixedSingle)
             {
-
                 g.DrawRectangle(new Pen(borderCoor), 0, 0, Width - 1, Height - 1);
             }
         }
