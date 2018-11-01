@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Metroit.Api.Win32;
@@ -36,8 +37,43 @@ namespace Metroit.Windows.Forms
     /// Textプロパティをコード上で書き換え、入力値が拒否された場合に発生します。
     /// </exception>
     [ToolboxItem(true)]
-    public class MetTextBox : TextBox, ISupportInitialize, IControlRollback, IOuterFrame
+    public class MetTextBox : TextBox, ISupportInitialize, IControlRollback, IBorder
     {
+        #region Win32Api
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetWindowDC(IntPtr hwnd);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr BeginPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
+
+        [DllImport("user32.dll")]
+        private static extern bool EndPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct PAINTSTRUCT
+        {
+            public IntPtr hdc;
+            public bool fErase;
+            public int rcPaint_left;
+            public int rcPaint_top;
+            public int rcPaint_right;
+            public int rcPaint_bottom;
+            public bool fRestore;
+            public bool fIncUpdate;
+            public int reserved1;
+            public int reserved2;
+            public int reserved3;
+            public int reserved4;
+            public int reserved5;
+            public int reserved6;
+            public int reserved7;
+            public int reserved8;
+        }
+
+        #endregion
+
+
         /// <summary>
         /// Keys プロパティエディタにEnterなどが含まれないため、全キーを含めるためにKeysを生成し直します。
         /// </summary>
@@ -577,7 +613,7 @@ namespace Metroit.Windows.Forms
                     return;
                 }
                 this.switchLabel();
-                this.drawOuterFrame();
+                this.Invalidate();
             }
         }
 
@@ -1060,8 +1096,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlBaseOuterFrameColor")]
-        public Color BaseOuterFrameColor { get; set; } = Color.Transparent;
+        [MetDescription("ControlBaseBorderColor")]
+        public Color BaseBorderColor { get; set; } = Color.Transparent;
 
         /// <summary>
         /// フォーカス時のコントロールの枠色を取得または設定します。
@@ -1069,8 +1105,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlFocusOuterFrameColor")]
-        public Color FocusOuterFrameColor { get; set; } = Color.Transparent;
+        [MetDescription("ControlFocusBorderColor")]
+        public Color FocusBorderColor { get; set; } = Color.Transparent;
 
         /// <summary>
         /// エラー時のコントロールの枠色を取得または設定します。
@@ -1078,8 +1114,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Red")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlErrorOuterFrameColor")]
-        public Color ErrorOuterFrameColor { get; set; } = Color.Red;
+        [MetDescription("ControlErrorBorderColor")]
+        public Color ErrorBorderColor { get; set; } = Color.Red;
 
         #endregion
 
@@ -1098,7 +1134,7 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.error = value;
-                this.drawOuterFrame();
+                this.Invalidate();
             }
         }
 
@@ -1511,9 +1547,7 @@ namespace Metroit.Windows.Forms
         {
             if (m.Msg == WindowMessage.WM_PAINT)
             {
-                base.WndProc(ref m);
-                this.drawOuterFrame();
-                this.drawWatermark();
+                this.drawPaint(ref m);
                 return;
             }
 
@@ -1569,76 +1603,78 @@ namespace Metroit.Windows.Forms
             base.WndProc(ref m);
         }
 
-        private Point PrevLocation = new Point(0, 0);   // 前回の枠描画位置
-        private Size PrevSize = new Size(0, 0);         // 前回の枠描画サイズ
-
         /// <summary>
-        /// コントロールの外枠の色を描画する。
+        /// プロパティ設定された情報を描画する。
         /// </summary>
-        private void drawOuterFrame()
+        private void drawPaint(ref Message m)
         {
             if (this.Parent == null)
             {
                 return;
             }
 
-            // 外枠の変更
-            var frameColor = this.BaseOuterFrameColor;
+            // 外枠の色決定
+            var borderColor = this.BaseBorderColor;
             var form = this.FindForm();
             if (form != null && form.ActiveControl == this)
             {
-                frameColor = this.FocusOuterFrameColor;
+                borderColor = this.FocusBorderColor;
             }
             if (this.Error)
             {
-                frameColor = this.ErrorOuterFrameColor;
+                borderColor = this.ErrorBorderColor;
             }
 
             // ラベル読み取り専用時は親コントロールの背景色とする
             if (this.ReadOnlyLabel)
             {
-                frameColor = this.Parent.BackColor;
+                borderColor = this.Parent.BackColor;
             }
 
-            // FixedSingleは罫線を上書きする
+
+            using (var bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height))
+            using (var bmpGraphics = Graphics.FromImage(bmp))
+            {
+                // bitmap に描画してもらう
+                var bmphdc = bmpGraphics.GetHdc();
+                var msg = Message.Create(m.HWnd, WindowMessage.WM_PAINT, bmphdc, IntPtr.Zero);
+                base.WndProc(ref msg);
+                bmpGraphics.ReleaseHdc();
+
+                // bmpGraphics に対して必要情報を描画
+                this.drawBorder(bmpGraphics, borderColor);
+                this.drawWatermark(bmpGraphics);
+
+                // コントロールへ描画
+                var hWnd = new HandleRef(this, m.HWnd);
+                var ps = new PAINTSTRUCT();
+                var controlHdc = BeginPaint(hWnd, ref ps);
+                using (var controlGraphics = Graphics.FromHdc(controlHdc))
+                {
+                    controlGraphics.DrawImage(bmp, 0, 0);
+                }
+                EndPaint(hWnd, ref ps);
+            }
+        }
+
+        /// <summary>
+        /// 外枠を描画する。
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="borderCoor"></param>
+        private void drawBorder(Graphics g, Color borderCoor)
+        {
             if (this.BorderStyle == BorderStyle.FixedSingle)
             {
-                using (var g = this.CreateGraphics())
-                using (var pen = new Pen(frameColor))
-                {
-                    var rect = this.ClientRectangle;
-                    g.DrawRectangle(pen, rect.X, rect.Y, rect.Width - 1, rect.Height - 1);
-                    pen.Dispose();
-                }
-            }
-            else
-            {
-                // 3Dは外側に罫線を記す
-                using (Graphics g = this.Parent.CreateGraphics())
-                {
-                    // 前の描画位置を親コントロールの背景色に戻す
-                    Rectangle prevRct = new Rectangle(this.PrevLocation, this.PrevSize);
-                    prevRct.Inflate(1, 1);
-                    ControlPaint.DrawBorder(g, prevRct, this.Parent.BackColor, ButtonBorderStyle.Solid);
 
-                    // 今回の描画位置に枠を描画する
-                    if (this.Visible)
-                    {
-                        Rectangle rct = new Rectangle(this.Location, this.Size);
-                        rct.Inflate(1, 1);
-                        ControlPaint.DrawBorder(g, rct, frameColor, ButtonBorderStyle.Solid);
-                    }
-
-                    this.PrevLocation = this.Location;
-                    this.PrevSize = this.Size;
-                }
+                g.DrawRectangle(new Pen(borderCoor), 0, 0, Width - 1, Height - 1);
             }
         }
 
         /// <summary>
         /// ウォーターマークを描画する。
         /// </summary>
-        private void drawWatermark()
+        private void drawWatermark(Graphics g)
         {
             if (this.Text != "")
             {
@@ -1653,11 +1689,24 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
-            using (var g = this.CreateGraphics())
+            // BorderStyleによって描画位置を調整
+            var x = 0;
+            var y = 0;
+            if (this.BorderStyle == BorderStyle.None)
             {
-                var rect = this.ClientRectangle;
-                g.DrawString(this.Watermark, this.Font, new SolidBrush(this.WatermarkColor), rect.X, rect.Y, StringFormat.GenericTypographic);
+                x -= 2;
             }
+            if (this.BorderStyle == BorderStyle.FixedSingle)
+            {
+                y += 2;
+            }
+            if (this.BorderStyle == BorderStyle.Fixed3D)
+            {
+                x -= 1;
+                y += 1;
+            }
+
+            g.DrawString(this.Watermark, this.Font, new SolidBrush(this.WatermarkColor), x, y);
         }
 
         /// <summary>

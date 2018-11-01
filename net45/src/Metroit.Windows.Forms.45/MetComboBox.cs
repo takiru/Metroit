@@ -15,7 +15,7 @@ namespace Metroit.Windows.Forms
     /// Windows コンボ ボックス コントロールを表します。
     /// </summary>
     [ToolboxItem(true)]
-    public class MetComboBox : ComboBox, IControlRollback, IOuterFrame
+    public class MetComboBox : ComboBox, IControlRollback, IBorder
     {
         /// <summary>
         /// MetComboBox の新しいインスタンスを初期化します。
@@ -261,7 +261,7 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.textBox.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
@@ -270,9 +270,9 @@ namespace Metroit.Windows.Forms
             this.textBox.BaseForeColor = this.BaseForeColor;
             this.textBox.FocusBackColor = this.FocusBackColor;
             this.textBox.FocusForeColor = this.FocusForeColor;
-            this.textBox.BaseOuterFrameColor = this.BaseOuterFrameColor;
-            this.textBox.FocusOuterFrameColor = this.FocusOuterFrameColor;
-            this.textBox.ErrorOuterFrameColor = this.ErrorOuterFrameColor;
+            this.textBox.BaseBorderColor = this.BaseBorderColor;
+            this.textBox.FocusBorderColor = this.FocusBorderColor;
+            this.textBox.ErrorBorderColor = this.ErrorBorderColor;
             this.textBox.Error = this.Error;
             this.ChangeDisplayColor();
 
@@ -359,7 +359,7 @@ namespace Metroit.Windows.Forms
             this.label.Font = this.Font;
             this.label.Anchor = this.Anchor;
             this.label.RightToLeft = this.RightToLeft;
-            this.label.BorderStyle = this.BaseOuterFrameColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.label.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
             this.label.Cursor = this.Cursor;
             this.label.TextAlign = ContentAlignment.MiddleLeft;
             this.ChangeDisplayColor();
@@ -636,8 +636,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlBaseOuterFrameColor")]
-        public Color BaseOuterFrameColor { get; set; } = Color.Transparent;
+        [MetDescription("ControlBaseBorderColor")]
+        public Color BaseBorderColor { get; set; } = Color.Transparent;
 
         /// <summary>
         /// フォーカス時のコントロールの枠色を取得または設定します。
@@ -645,8 +645,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlFocusOuterFrameColor")]
-        public Color FocusOuterFrameColor { get; set; } = Color.Transparent;
+        [MetDescription("ControlFocusBorderColor")]
+        public Color FocusBorderColor { get; set; } = Color.Transparent;
 
         /// <summary>
         /// エラー時のコントロールの枠色を取得または設定します。
@@ -654,8 +654,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Red")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlErrorOuterFrameColor")]
-        public Color ErrorOuterFrameColor { get; set; } = Color.Red;
+        [MetDescription("ControlErrorBorderColor")]
+        public Color ErrorBorderColor { get; set; } = Color.Red;
 
         private bool error = false;
 
@@ -972,15 +972,15 @@ namespace Metroit.Windows.Forms
                             0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
 
                 // 外枠の変更
-                var frameColor = this.BaseOuterFrameColor;
+                var frameColor = this.BaseBorderColor;
                 var form = this.FindForm();
                 if (form != null && form.ActiveControl == this)
                 {
-                    frameColor = this.FocusOuterFrameColor;
+                    frameColor = this.FocusBorderColor;
                 }
                 if (this.Error)
                 {
-                    frameColor = this.ErrorOuterFrameColor;
+                    frameColor = this.ErrorBorderColor;
                 }
 
                 g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));

@@ -80,7 +80,7 @@
     <Compile Include="CustomAutoCompleteMode.cs" />
     <Compile Include="ExceptionResources.cs" />
     <Compile Include="IControlRollback.cs" />
-    <Compile Include="IOuterFrame.cs" />
+    <Compile Include="IBorder.cs" />
     <Compile Include="MatchPatternType.cs" />
     <Compile Include="MetComboBox.cs">
       <SubType>Component</SubType>

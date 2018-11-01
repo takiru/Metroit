@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Metroit.Windows.Forms
 {
     /// <summary>
-    /// 
+    /// 枠線に関わるインターフェース。
     /// </summary>
-    interface IOuterFrame
+    interface IBorder
     {
         /// <summary>
         /// コントロールの枠色を取得または設定します。
@@ -19,8 +19,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlBaseOuterFrameColor")]
-        Color BaseOuterFrameColor { get; set; }
+        [MetDescription("ControlBaseBorderColor")]
+        Color BaseBorderColor { get; set; }
 
         /// <summary>
         /// フォーカス時のコントロールの枠色を取得または設定します。
@@ -28,8 +28,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Transparent")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlFocusOuterFrameColor")]
-        Color FocusOuterFrameColor { get; set; }
+        [MetDescription("ControlFocusBorderColor")]
+        Color FocusBorderColor { get; set; }
 
         /// <summary>
         /// エラー時のコントロールの枠色を取得または設定します。
@@ -37,8 +37,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Red")]
         [MetCategory("MetAppearance")]
-        [MetDescription("ControlErrorOuterFrameColor")]
-        Color ErrorOuterFrameColor { get; set; }
+        [MetDescription("ControlErrorBorderColor")]
+        Color ErrorBorderColor { get; set; }
 
         /// <summary>
         /// コントロールがエラーかどうかを取得または設定します。

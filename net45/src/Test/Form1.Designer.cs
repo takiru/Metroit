@@ -35,6 +35,7 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox5 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox6 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox7 = new Metroit.Windows.Forms.AutoCompleteBox();
+            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox8 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -57,6 +58,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metTextBox8 = new Metroit.Windows.Forms.MetTextBox();
+            this.metDateTimePicker2 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -64,9 +67,9 @@
             this.metTextBox7 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox6 = new Metroit.Windows.Forms.MetTextBox();
             this.metTextBox5 = new Metroit.Windows.Forms.MetTextBox();
-            this.textBoxEx1 = new Test.TextBoxEx();
-            this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
+            this.textBoxEx2 = new Test.TextBoxEx();
+            this.textBoxEx1 = new Test.TextBoxEx();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -75,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).BeginInit();
@@ -212,10 +217,10 @@
             // metComboBox1
             // 
             this.metComboBox1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.metComboBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
+            this.metComboBox1.BaseBorderColor = System.Drawing.Color.Lime;
             this.metComboBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.metComboBox1.FocusBorderColor = System.Drawing.Color.Fuchsia;
             this.metComboBox1.FocusForeColor = System.Drawing.Color.Red;
-            this.metComboBox1.FocusOuterFrameColor = System.Drawing.Color.Fuchsia;
             this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metComboBox1.FormattingEnabled = true;
             this.metComboBox1.Location = new System.Drawing.Point(68, 189);
@@ -226,12 +231,12 @@
             // metDateTimePicker1
             // 
             this.metDateTimePicker1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.metDateTimePicker1.BaseOuterFrameColor = System.Drawing.Color.Lime;
+            this.metDateTimePicker1.BaseBorderColor = System.Drawing.Color.Lime;
             this.metDateTimePicker1.CalendarFont = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker1.CustomFormat = null;
             this.metDateTimePicker1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.metDateTimePicker1.FocusBorderColor = System.Drawing.Color.Blue;
             this.metDateTimePicker1.FocusForeColor = System.Drawing.Color.Red;
-            this.metDateTimePicker1.FocusOuterFrameColor = System.Drawing.Color.Blue;
             this.metDateTimePicker1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker1.Location = new System.Drawing.Point(41, 123);
             this.metDateTimePicker1.Name = "metDateTimePicker1";
@@ -251,7 +256,7 @@
             // 
             // metTextBox1
             // 
-            this.metTextBox1.BaseOuterFrameColor = System.Drawing.Color.Lime;
+            this.metTextBox1.BaseBorderColor = System.Drawing.Color.Lime;
             this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             autoCompleteBox4.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
@@ -265,8 +270,8 @@
         ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Return)))};
             this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
             this.metTextBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.metTextBox1.FocusBorderColor = System.Drawing.Color.Red;
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
-            this.metTextBox1.FocusOuterFrameColor = System.Drawing.Color.Red;
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox1.Location = new System.Drawing.Point(20, 18);
             this.metTextBox1.Name = "metTextBox1";
@@ -326,6 +331,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metTextBox8);
+            this.groupBox2.Controls.Add(this.metDateTimePicker2);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.button12);
             this.groupBox2.Controls.Add(this.button11);
@@ -350,6 +357,29 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // metTextBox8
+            // 
+            this.metTextBox8.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox8.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.metTextBox8.FocusBorderColor = System.Drawing.Color.Lime;
+            this.metTextBox8.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox8.Location = new System.Drawing.Point(290, 251);
+            this.metTextBox8.Name = "metTextBox8";
+            this.metTextBox8.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox8.TabIndex = 26;
+            this.metTextBox8.Watermark = "入力してください";
+            // 
+            // metDateTimePicker2
+            // 
+            this.metDateTimePicker2.BaseBorderColor = System.Drawing.Color.Blue;
+            this.metDateTimePicker2.CalendarFont = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metDateTimePicker2.CustomFormat = null;
+            this.metDateTimePicker2.FocusBorderColor = System.Drawing.Color.Lime;
+            this.metDateTimePicker2.Location = new System.Drawing.Point(391, 31);
+            this.metDateTimePicker2.Name = "metDateTimePicker2";
+            this.metDateTimePicker2.Size = new System.Drawing.Size(121, 19);
+            this.metDateTimePicker2.TabIndex = 25;
             // 
             // textBox2
             // 
@@ -393,54 +423,53 @@
             // 
             // metTextBox7
             // 
-            this.metTextBox7.BaseOuterFrameColor = System.Drawing.Color.Blue;
-            this.metTextBox7.CustomAutoCompleteBox = autoCompleteBox5;
+            this.metTextBox7.BaseBorderColor = System.Drawing.Color.Blue;
+            this.metTextBox7.CustomAutoCompleteBox = autoCompleteBox6;
             this.metTextBox7.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.metTextBox7.FocusOuterFrameColor = System.Drawing.Color.Lime;
-            this.metTextBox7.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox7.Location = new System.Drawing.Point(583, 88);
+            this.metTextBox7.FocusBorderColor = System.Drawing.Color.Lime;
+            this.metTextBox7.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox7.Location = new System.Drawing.Point(583, 86);
             this.metTextBox7.Name = "metTextBox7";
-            this.metTextBox7.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox7.Size = new System.Drawing.Size(132, 19);
             this.metTextBox7.TabIndex = 20;
             this.metTextBox7.Watermark = "入力してください";
             this.metTextBox7.WatermarkColor = System.Drawing.Color.Purple;
             // 
             // metTextBox6
             // 
-            this.metTextBox6.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox6.BaseBorderColor = System.Drawing.Color.Blue;
             this.metTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metTextBox6.CustomAutoCompleteBox = autoCompleteBox6;
+            this.metTextBox6.CustomAutoCompleteBox = autoCompleteBox7;
             this.metTextBox6.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.metTextBox6.FocusOuterFrameColor = System.Drawing.Color.Lime;
-            this.metTextBox6.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox6.Location = new System.Drawing.Point(583, 57);
+            this.metTextBox6.FocusBorderColor = System.Drawing.Color.Lime;
+            this.metTextBox6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox6.Location = new System.Drawing.Point(584, 55);
             this.metTextBox6.Name = "metTextBox6";
-            this.metTextBox6.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox6.Size = new System.Drawing.Size(132, 19);
             this.metTextBox6.TabIndex = 19;
             this.metTextBox6.Watermark = "入力してください";
             // 
             // metTextBox5
             // 
-            this.metTextBox5.BaseOuterFrameColor = System.Drawing.Color.Blue;
+            this.metTextBox5.BaseBorderColor = System.Drawing.Color.Blue;
             this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox7;
+            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox8;
             this.metTextBox5.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.metTextBox5.FocusOuterFrameColor = System.Drawing.Color.Lime;
-            this.metTextBox5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metTextBox5.FocusBorderColor = System.Drawing.Color.Lime;
+            this.metTextBox5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox5.Location = new System.Drawing.Point(583, 30);
             this.metTextBox5.Name = "metTextBox5";
-            this.metTextBox5.Size = new System.Drawing.Size(132, 18);
+            this.metTextBox5.Size = new System.Drawing.Size(132, 12);
             this.metTextBox5.TabIndex = 18;
             this.metTextBox5.Watermark = "入力してください";
             // 
-            // textBoxEx1
+            // textBoxEx3
             // 
-            this.textBoxEx1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEx1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBoxEx1.Location = new System.Drawing.Point(12, 12);
-            this.textBoxEx1.Name = "textBoxEx1";
-            this.textBoxEx1.Size = new System.Drawing.Size(100, 18);
-            this.textBoxEx1.TabIndex = 20;
+            this.textBoxEx3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBoxEx3.Location = new System.Drawing.Point(12, 68);
+            this.textBoxEx3.Name = "textBoxEx3";
+            this.textBoxEx3.Size = new System.Drawing.Size(100, 25);
+            this.textBoxEx3.TabIndex = 22;
             // 
             // textBoxEx2
             // 
@@ -451,13 +480,14 @@
             this.textBoxEx2.Size = new System.Drawing.Size(100, 25);
             this.textBoxEx2.TabIndex = 21;
             // 
-            // textBoxEx3
+            // textBoxEx1
             // 
-            this.textBoxEx3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBoxEx3.Location = new System.Drawing.Point(12, 68);
-            this.textBoxEx3.Name = "textBoxEx3";
-            this.textBoxEx3.Size = new System.Drawing.Size(100, 25);
-            this.textBoxEx3.TabIndex = 22;
+            this.textBoxEx1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxEx1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBoxEx1.Location = new System.Drawing.Point(12, 12);
+            this.textBoxEx1.Name = "textBoxEx1";
+            this.textBoxEx1.Size = new System.Drawing.Size(100, 18);
+            this.textBoxEx1.TabIndex = 20;
             // 
             // Form1
             // 
@@ -490,6 +520,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).EndInit();
@@ -531,5 +563,7 @@
         private TextBoxEx textBoxEx1;
         private TextBoxEx textBoxEx2;
         private TextBoxEx textBoxEx3;
+        private Metroit.Windows.Forms.MetDateTimePicker metDateTimePicker2;
+        private Metroit.Windows.Forms.MetTextBox metTextBox8;
     }
 }
