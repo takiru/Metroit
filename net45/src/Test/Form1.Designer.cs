@@ -237,13 +237,12 @@
             // 
             // metDateTimePicker1
             // 
-            this.metDateTimePicker1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.metDateTimePicker1.AcceptNull = true;
             this.metDateTimePicker1.BaseBorderColor = System.Drawing.Color.Lime;
             this.metDateTimePicker1.CalendarFont = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker1.CustomFormat = null;
-            this.metDateTimePicker1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.metDateTimePicker1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metDateTimePicker1.FocusBorderColor = System.Drawing.Color.Blue;
-            this.metDateTimePicker1.FocusForeColor = System.Drawing.Color.Red;
             this.metDateTimePicker1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker1.Location = new System.Drawing.Point(41, 123);
             this.metDateTimePicker1.Name = "metDateTimePicker1";
