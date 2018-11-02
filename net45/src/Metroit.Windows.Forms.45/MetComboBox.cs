@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -261,7 +262,7 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.textBox.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
@@ -274,11 +275,10 @@ namespace Metroit.Windows.Forms
             this.textBox.FocusBorderColor = this.FocusBorderColor;
             this.textBox.ErrorBorderColor = this.ErrorBorderColor;
             this.textBox.Error = this.Error;
-            this.ChangeDisplayColor();
-
+            
             this.textBox.Enter += MetComboBox_Enter;
             this.textBox.Leave += MetComboBox_Leave;
-            
+
             // ComboBox自体を非表示にし、ComboBoxが存在する位置に配置する
             base.Visible = false;
             this.AddControl(this.textBox);
@@ -359,10 +359,9 @@ namespace Metroit.Windows.Forms
             this.label.Font = this.Font;
             this.label.Anchor = this.Anchor;
             this.label.RightToLeft = this.RightToLeft;
-            this.label.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.label.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
             this.label.Cursor = this.Cursor;
             this.label.TextAlign = ContentAlignment.MiddleLeft;
-            this.ChangeDisplayColor();
 
             // ComboBox自体を非表示にし、ComboBoxが存在する位置に配置する
             base.Visible = false;
@@ -672,7 +671,7 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.error = value;
-                this.redrawColor();
+                this.Invalidate();
                 if (this.ReadOnly)
                 {
                     this.textBox.Error = value;
@@ -912,81 +911,115 @@ namespace Metroit.Windows.Forms
             base.OnEnabledChanged(e);
         }
 
+        #region Win32Api
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetWindowDC(IntPtr hwnd);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr BeginPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
+
+        [DllImport("user32.dll")]
+        private static extern bool EndPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct PAINTSTRUCT
+        {
+            public IntPtr hdc;
+            public bool fErase;
+            public int rcPaint_left;
+            public int rcPaint_top;
+            public int rcPaint_right;
+            public int rcPaint_bottom;
+            public bool fRestore;
+            public bool fIncUpdate;
+            public int reserved1;
+            public int reserved2;
+            public int reserved3;
+            public int reserved4;
+            public int reserved5;
+            public int reserved6;
+            public int reserved7;
+            public int reserved8;
+        }
+
+        #endregion
+
         /// <summary>
         /// 背景色の変更を行います。
         /// </summary>
         /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
-
             // 背景色・文字色、外枠を描画する
             if (m.Msg == WindowMessage.WM_PAINT)
             {
-                this.redrawColor();
-            }
-        }
+                using (var bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height))
+                using (var bmpGraphics = Graphics.FromImage(bmp))
+                {
+                    // bitmap に描画してもらう
+                    var bmphdc = bmpGraphics.GetHdc();
+                    var msg = Message.Create(m.HWnd, WindowMessage.WM_PAINT, bmphdc, IntPtr.Zero);
+                    base.WndProc(ref msg);
+                    bmpGraphics.ReleaseHdc();
 
-        /// <summary>
-        /// 背景色・文字色の描画し直します。
-        /// </summary>
-        private void redrawColor()
-        {
-            // Bitmapを自分の上に描画して背景色を設定する
-            var bsz = SystemInformation.Border3DSize;
-            using (var g = this.CreateGraphics())
-            using (var bmp = this.getControlImage())
+                    this.drawBitmap(bmp, bmpGraphics);
+
+                    // コントロールへ描画
+                    var hWnd = new HandleRef(this, m.HWnd);
+                    var ps = new PAINTSTRUCT();
+                    var controlHdc = BeginPaint(hWnd, ref ps);
+                    using (var controlGraphics = Graphics.FromHdc(controlHdc))
+                    {
+                        controlGraphics.DrawImage(bmp, 0, 0);
+                    }
+                    EndPaint(hWnd, ref ps);
+                }
+            }
+            else
             {
-                g.DrawImage(bmp, -bsz.Width + 2, -bsz.Height + 2);
+                base.WndProc(ref m);
             }
         }
 
         /// <summary>
-        /// 背景色・文字色描画用のBitmapオブジェクトを取得する。
+        /// Bitmapオブジェクトにコントロール描画を行う。
         /// </summary>
-        /// <returns></returns>
-        private Bitmap getControlImage()
+        private void drawBitmap(Bitmap bmp, Graphics bmpGraphics)
         {
-            // 自分自身の画像をBitmapにコピー
-            var bmp = new Bitmap(this.Width, this.Height);
+            // 現状のコントロール描画をBitmapにコピー
             this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
 
-            // Bitmapの背景色をMe.BackColorに変更する
-            using (var g = Graphics.FromImage(bmp))
+            System.Drawing.Imaging.ColorMap[] cm = { new System.Drawing.Imaging.ColorMap(), new System.Drawing.Imaging.ColorMap() };
+
+            // 背景色のマッピング
+            cm[0].OldColor = SystemColors.Window;
+            cm[0].NewColor = this.BackColor;
+
+            // 文字色のマッピング
+            cm[1].OldColor = SystemColors.WindowText;
+            cm[1].NewColor = this.ForeColor;
+
+            // 背景色・文字色の変更
+            var ia = new System.Drawing.Imaging.ImageAttributes();
+            ia.SetRemapTable(cm);
+            var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            bmpGraphics.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
+                        0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
+
+            // 外枠の変更
+            var frameColor = this.BaseBorderColor;
+            var form = this.FindForm();
+            if (form != null && form.ActiveControl == this)
             {
-                System.Drawing.Imaging.ColorMap[] cm = { new System.Drawing.Imaging.ColorMap(), new System.Drawing.Imaging.ColorMap() };
-
-                // 背景色のマッピング
-                cm[0].OldColor = SystemColors.Window;
-                cm[0].NewColor = this.BackColor;
-
-                // 文字色のマッピング
-                cm[1].OldColor = SystemColors.WindowText;
-                cm[1].NewColor = this.ForeColor;
-
-                // 背景色・文字色の変更
-                var ia = new System.Drawing.Imaging.ImageAttributes();
-                ia.SetRemapTable(cm);
-                var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
-                g.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
-                            0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
-
-                // 外枠の変更
-                var frameColor = this.BaseBorderColor;
-                var form = this.FindForm();
-                if (form != null && form.ActiveControl == this)
-                {
-                    frameColor = this.FocusBorderColor;
-                }
-                if (this.Error)
-                {
-                    frameColor = this.ErrorBorderColor;
-                }
-
-                g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
+                frameColor = this.FocusBorderColor;
+            }
+            if (this.Error)
+            {
+                frameColor = this.ErrorBorderColor;
             }
 
-            return bmp;
+            bmpGraphics.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
         }
 
         #endregion

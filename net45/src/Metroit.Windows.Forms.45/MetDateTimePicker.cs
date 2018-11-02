@@ -538,7 +538,7 @@ namespace Metroit.Windows.Forms
             this.textBox.Font = this.Font;
             this.textBox.Anchor = this.Anchor;
             this.textBox.RightToLeft = this.RightToLeft;
-            this.textBox.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.textBox.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
             this.textBox.Cursor = this.Cursor;
             this.textBox.TextAlign = HorizontalAlignment.Left;
             this.textBox.TabIndex = this.TabIndex;
@@ -691,7 +691,7 @@ namespace Metroit.Windows.Forms
             this.label.Font = this.Font;
             this.label.Anchor = this.Anchor;
             this.label.RightToLeft = this.RightToLeft;
-            this.label.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.None;
+            this.label.BorderStyle = this.BaseBorderColor == Color.Transparent ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
             this.label.Cursor = this.Cursor;
             this.label.TextAlign = ContentAlignment.MiddleLeft;
             this.ChangeDisplayColor();

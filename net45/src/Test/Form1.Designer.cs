@@ -218,11 +218,18 @@
             // 
             this.metComboBox1.BaseBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metComboBox1.BaseBorderColor = System.Drawing.Color.Lime;
+            this.metComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.metComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.metComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.metComboBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metComboBox1.FocusBorderColor = System.Drawing.Color.Fuchsia;
-            this.metComboBox1.FocusForeColor = System.Drawing.Color.Red;
+            this.metComboBox1.FocusForeColor = System.Drawing.Color.Blue;
             this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metComboBox1.FormattingEnabled = true;
+            this.metComboBox1.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc"});
             this.metComboBox1.Location = new System.Drawing.Point(68, 189);
             this.metComboBox1.Name = "metComboBox1";
             this.metComboBox1.Size = new System.Drawing.Size(121, 32);
@@ -257,7 +264,7 @@
             // metTextBox1
             // 
             this.metTextBox1.BaseBorderColor = System.Drawing.Color.Lime;
-            this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             autoCompleteBox4.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
@@ -275,7 +282,7 @@
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox1.Location = new System.Drawing.Point(20, 18);
             this.metTextBox1.Name = "metTextBox1";
-            this.metTextBox1.Size = new System.Drawing.Size(198, 24);
+            this.metTextBox1.Size = new System.Drawing.Size(198, 31);
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.Watermark = "入力してください";
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
