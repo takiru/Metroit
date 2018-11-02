@@ -358,7 +358,7 @@ namespace Metroit.Windows.Forms
             // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
             var height = this.Target.Height - 6;
             User32.SendMessage(this.CandidateBox.Handle, ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
-
+            
             this.CandidateBox.Visible = false;
         }
 

@@ -24,7 +24,7 @@
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.0.4" />
+      <dependency id="Metroit.45" version="1.0.5" />
     </dependencies>
   </metadata>
 </package>

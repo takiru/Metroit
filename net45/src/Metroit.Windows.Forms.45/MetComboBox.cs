@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Metroit.Api.Win32;
+using Metroit.Api.Win32.Structures;
 using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
@@ -18,40 +19,6 @@ namespace Metroit.Windows.Forms
     [ToolboxItem(true)]
     public class MetComboBox : ComboBox, IControlRollback, IBorder
     {
-        #region Win32Api
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetWindowDC(IntPtr hwnd);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr BeginPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
-
-        [DllImport("user32.dll")]
-        private static extern bool EndPaint(HandleRef hWnd, ref PAINTSTRUCT lpPaint);
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct PAINTSTRUCT
-        {
-            public IntPtr hdc;
-            public bool fErase;
-            public int rcPaint_left;
-            public int rcPaint_top;
-            public int rcPaint_right;
-            public int rcPaint_bottom;
-            public bool fRestore;
-            public bool fIncUpdate;
-            public int reserved1;
-            public int reserved2;
-            public int reserved3;
-            public int reserved4;
-            public int reserved5;
-            public int reserved6;
-            public int reserved7;
-            public int reserved8;
-        }
-
-        #endregion
-
         /// <summary>
         /// MetComboBox の新しいインスタンスを初期化します。
         /// </summary>
@@ -968,12 +935,12 @@ namespace Metroit.Windows.Forms
                     // コントロールへ描画
                     var hWnd = new HandleRef(this, m.HWnd);
                     var ps = new PAINTSTRUCT();
-                    var controlHdc = BeginPaint(hWnd, ref ps);
+                    var controlHdc = User32.BeginPaint(hWnd, ref ps);
                     using (var controlGraphics = Graphics.FromHdc(controlHdc))
                     {
                         controlGraphics.DrawImage(bmp, 0, 0);
                     }
-                    EndPaint(hWnd, ref ps);
+                    User32.EndPaint(hWnd, ref ps);
                 }
             }
             else

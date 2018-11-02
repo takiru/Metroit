@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Win32\ComboBoxCommand.cs" />
+    <Compile Include="Api\Win32\Structures\PAINTSTRUCT.cs" />
+    <Compile Include="Api\Win32\Structures\RECT.cs" />
     <Compile Include="Api\Win32\SystemCommand.cs" />
     <Compile Include="Api\Win32\VirtualKey.cs" />
     <Compile Include="Api\Win32\WindowMessage.cs" />
