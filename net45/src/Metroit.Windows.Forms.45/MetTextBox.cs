@@ -1608,7 +1608,46 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void drawPaint(ref Message m)
         {
-            if (this.Parent == null)
+            using (var bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height))
+            using (var bmpGraphics = Graphics.FromImage(bmp))
+            {
+                // bitmap に描画してもらう
+                var bmphdc = bmpGraphics.GetHdc();
+                var msg = Message.Create(m.HWnd, WindowMessage.WM_PAINT, bmphdc, IntPtr.Zero);
+                base.WndProc(ref msg);
+                bmpGraphics.ReleaseHdc();
+
+                this.drawBitmap(bmp, bmpGraphics);
+
+                // コントロールへ描画
+                var hWnd = new HandleRef(this, m.HWnd);
+                var ps = new PAINTSTRUCT();
+                var controlHdc = BeginPaint(hWnd, ref ps);
+                using (var controlGraphics = Graphics.FromHdc(controlHdc))
+                {
+                    controlGraphics.DrawImage(bmp, 0, 0);
+                }
+                EndPaint(hWnd, ref ps);
+            }
+        }
+
+        /// <summary>
+        /// Bitmapオブジェクトにコントロール描画を行う。
+        /// </summary>
+        private void drawBitmap(Bitmap bmp, Graphics bmpGraphics)
+        {
+            this.drawBorder(bmpGraphics);
+            this.drawWatermark(bmpGraphics);
+        }
+
+        /// <summary>
+        /// 外枠を描画する。
+        /// </summary>
+        /// <param name="g"></param>
+        private void drawBorder(Graphics g)
+        {
+            // FixedSingle の時のみボーダーを描画する
+            if (this.BorderStyle != BorderStyle.FixedSingle)
             {
                 return;
             }
@@ -1631,43 +1670,7 @@ namespace Metroit.Windows.Forms
                 borderColor = this.Parent.BackColor;
             }
 
-
-            using (var bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height))
-            using (var bmpGraphics = Graphics.FromImage(bmp))
-            {
-                // bitmap に描画してもらう
-                var bmphdc = bmpGraphics.GetHdc();
-                var msg = Message.Create(m.HWnd, WindowMessage.WM_PAINT, bmphdc, IntPtr.Zero);
-                base.WndProc(ref msg);
-                bmpGraphics.ReleaseHdc();
-
-                // bmpGraphics に対して必要情報を描画
-                this.drawBorder(bmpGraphics, borderColor);
-                this.drawWatermark(bmpGraphics);
-
-                // コントロールへ描画
-                var hWnd = new HandleRef(this, m.HWnd);
-                var ps = new PAINTSTRUCT();
-                var controlHdc = BeginPaint(hWnd, ref ps);
-                using (var controlGraphics = Graphics.FromHdc(controlHdc))
-                {
-                    controlGraphics.DrawImage(bmp, 0, 0);
-                }
-                EndPaint(hWnd, ref ps);
-            }
-        }
-
-        /// <summary>
-        /// 外枠を描画する。
-        /// </summary>
-        /// <param name="g"></param>
-        /// <param name="borderCoor"></param>
-        private void drawBorder(Graphics g, Color borderCoor)
-        {
-            if (this.BorderStyle == BorderStyle.FixedSingle)
-            {
-                g.DrawRectangle(new Pen(borderCoor), 0, 0, Width - 1, Height - 1);
-            }
+            g.DrawRectangle(new Pen(borderColor), 0, 0, Width - 1, Height - 1);
         }
 
         /// <summary>
