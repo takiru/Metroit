@@ -297,5 +297,20 @@ namespace Test
         {
             MessageBox.Show(metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            metTextBox5.Enabled = !metTextBox5.Enabled;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            metTextBox5.ReadOnly = !metTextBox5.ReadOnly;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            metTextBox5.ReadOnlyLabel = !metTextBox5.ReadOnlyLabel;
+        }
     }
 }

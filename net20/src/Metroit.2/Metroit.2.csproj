@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Win32\ComboBoxCommand.cs" />
+    <Compile Include="Api\Win32\Structures\PaintStruct.cs" />
+    <Compile Include="Api\Win32\Structures\Rect.cs" />
     <Compile Include="Api\Win32\SystemCommand.cs" />
     <Compile Include="Api\Win32\User32.cs" />
     <Compile Include="Api\Win32\VirtualKey.cs" />
