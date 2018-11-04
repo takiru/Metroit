@@ -104,7 +104,7 @@ namespace Metroit.Windows.Forms
             }
 
             // 入力値を保存し、フォーマットされた値で描画しなおす
-            if (string.IsNullOrWhiteSpace(base.Text))
+            if (string.IsNullOrEmpty(base.Text))
             {
                 if (this.AcceptNull)
                 {
@@ -930,7 +930,7 @@ namespace Metroit.Windows.Forms
             }
 
             // AcceptNull中は許可する
-            if (this.AcceptNull && string.IsNullOrWhiteSpace(e.After))
+            if (this.AcceptNull && string.IsNullOrEmpty(e.After))
             {
                 base.OnTextChangeValidation(e);
                 return;

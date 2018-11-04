@@ -1139,7 +1139,6 @@ namespace Metroit.Windows.Forms
 
         }
 
-
         #endregion
 
         #region メソッド
@@ -1709,7 +1708,7 @@ namespace Metroit.Windows.Forms
         {
             // 貼り付け可能なクリップボードが存在しない場合は処理しない
             var inputText = Clipboard.GetText();
-            if (string.IsNullOrWhiteSpace(inputText))
+            if (string.IsNullOrEmpty(inputText))
             {
                 return false;
             }

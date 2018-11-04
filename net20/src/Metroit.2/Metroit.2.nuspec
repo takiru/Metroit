@@ -10,7 +10,12 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Add WindowMessage WM_CUT, WM_IME_STARTCOMPOSITION, WM_IME_ENDCOMPOSITION, WM_IME_COMPOSITION</releaseNotes>
+    <releaseNotes>
+    Add user32:
+      GetWindowDC, BeginPaint, EndPaint
+    Add structores:
+      RECT, PAINTSTRUCT
+    </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
   </metadata>

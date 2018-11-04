@@ -277,7 +277,7 @@ namespace Metroit.Windows.Forms
 
             this.textBox.Enter += MetComboBox_Enter;
             this.textBox.Leave += MetComboBox_Leave;
-            
+
             // ComboBox自体を非表示にし、ComboBoxが存在する位置に配置する
             base.Visible = false;
             this.AddControl(this.textBox);

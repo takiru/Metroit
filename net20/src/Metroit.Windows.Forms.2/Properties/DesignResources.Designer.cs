@@ -367,6 +367,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlBaseBorderColor {
+            get {
+                return ResourceManager.GetString("ControlBaseBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlBaseBorderColor_ja {
+            get {
+                return ResourceManager.GetString("ControlBaseBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the foreground color of the control. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlBaseForeColor {
@@ -381,24 +399,6 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlBaseForeColor_ja {
             get {
                 return ResourceManager.GetString("ControlBaseForeColor.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlBaseOuterFrameColor {
-            get {
-                return ResourceManager.GetString("ControlBaseOuterFrameColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlBaseOuterFrameColor_ja {
-            get {
-                return ResourceManager.GetString("ControlBaseOuterFrameColor.ja", resourceCulture);
             }
         }
         
@@ -549,18 +549,18 @@ namespace Metroit.Windows.Forms.Properties {
         /// <summary>
         ///   Gets or sets the frame color of control at error. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ControlErrorOuterFrameColor {
+        internal static string ControlErrorBorderColor {
             get {
-                return ResourceManager.GetString("ControlErrorOuterFrameColor", resourceCulture);
+                return ResourceManager.GetString("ControlErrorBorderColor", resourceCulture);
             }
         }
         
         /// <summary>
         ///   エラー時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ControlErrorOuterFrameColor_ja {
+        internal static string ControlErrorBorderColor_ja {
             get {
-                return ResourceManager.GetString("ControlErrorOuterFrameColor.ja", resourceCulture);
+                return ResourceManager.GetString("ControlErrorBorderColor.ja", resourceCulture);
             }
         }
         
@@ -619,6 +619,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFocusBorderColor {
+            get {
+                return ResourceManager.GetString("ControlFocusBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFocusBorderColor_ja {
+            get {
+                return ResourceManager.GetString("ControlFocusBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the foreground color of the control at focus. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlFocusForeColor {
@@ -633,24 +651,6 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlFocusForeColor_ja {
             get {
                 return ResourceManager.GetString("ControlFocusForeColor.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlFocusOuterFrameColor {
-            get {
-                return ResourceManager.GetString("ControlFocusOuterFrameColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlFocusOuterFrameColor_ja {
-            get {
-                return ResourceManager.GetString("ControlFocusOuterFrameColor.ja", resourceCulture);
             }
         }
         

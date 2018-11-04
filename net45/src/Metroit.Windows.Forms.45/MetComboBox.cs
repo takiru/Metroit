@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Metroit.Api.Win32;
 using Metroit.Api.Win32.Structures;
@@ -276,7 +274,7 @@ namespace Metroit.Windows.Forms
             this.textBox.FocusBorderColor = this.FocusBorderColor;
             this.textBox.ErrorBorderColor = this.ErrorBorderColor;
             this.textBox.Error = this.Error;
-            
+
             this.textBox.Enter += MetComboBox_Enter;
             this.textBox.Leave += MetComboBox_Leave;
 

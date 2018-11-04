@@ -78,8 +78,8 @@ namespace Metroit.IO
                 ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(Parameter.SourceFilePath) ||
-                    string.IsNullOrWhiteSpace(Parameter.DestinationFilePath))
+            if (string.IsNullOrEmpty(Parameter.SourceFilePath) ||
+                    string.IsNullOrEmpty(Parameter.DestinationFilePath))
             {
                 ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
@@ -127,7 +127,7 @@ namespace Metroit.IO
             }
 
             // 一時ディレクトリが未指定時はWindows標準の一時ディレクトリを使用
-            if (string.IsNullOrWhiteSpace(Parameter.TemporaryDirectory))
+            if (string.IsNullOrEmpty(Parameter.TemporaryDirectory))
             {
                 return Path.GetTempPath();
             }

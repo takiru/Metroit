@@ -87,9 +87,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(242, 21);
+            this.button1.Location = new System.Drawing.Point(282, 32);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(87, 34);
             this.button1.TabIndex = 1;
             this.button1.TabStop = false;
             this.button1.Text = "button1";
@@ -98,9 +99,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(323, 21);
+            this.button2.Location = new System.Drawing.Point(377, 32);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(87, 34);
             this.button2.TabIndex = 2;
             this.button2.TabStop = false;
             this.button2.Text = "button2";
@@ -109,9 +111,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(242, 50);
+            this.button3.Location = new System.Drawing.Point(282, 75);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(87, 34);
             this.button3.TabIndex = 5;
             this.button3.TabStop = false;
             this.button3.Text = "button3";
@@ -120,9 +123,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(323, 50);
+            this.button4.Location = new System.Drawing.Point(377, 75);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(87, 34);
             this.button4.TabIndex = 6;
             this.button4.TabStop = false;
             this.button4.Text = "button4";
@@ -131,9 +135,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(41, 160);
+            this.button5.Location = new System.Drawing.Point(48, 240);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(87, 34);
             this.button5.TabIndex = 8;
             this.button5.TabStop = false;
             this.button5.Text = "Error";
@@ -142,9 +147,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(122, 160);
+            this.button6.Location = new System.Drawing.Point(142, 240);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(93, 23);
+            this.button6.Size = new System.Drawing.Size(108, 34);
             this.button6.TabIndex = 9;
             this.button6.TabStop = false;
             this.button6.Text = "ReadOnlyLabel";
@@ -153,9 +159,10 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(221, 160);
+            this.button7.Location = new System.Drawing.Point(258, 240);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(70, 23);
+            this.button7.Size = new System.Drawing.Size(82, 34);
             this.button7.TabIndex = 10;
             this.button7.TabStop = false;
             this.button7.Text = "ReadOnly";
@@ -164,9 +171,10 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(297, 160);
+            this.button8.Location = new System.Drawing.Point(346, 240);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(70, 23);
+            this.button8.Size = new System.Drawing.Size(82, 34);
             this.button8.TabIndex = 12;
             this.button8.TabStop = false;
             this.button8.Text = "Visible";
@@ -182,9 +190,10 @@
             "aad"});
             this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.Location = new System.Drawing.Point(251, 94);
+            this.textBox1.Location = new System.Drawing.Point(293, 141);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 19);
+            this.textBox1.Size = new System.Drawing.Size(116, 25);
             this.textBox1.TabIndex = 15;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -192,11 +201,12 @@
             // 
             this.metTextBox4.CustomAutoCompleteBox = autoCompleteBox1;
             this.metTextBox4.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
-            this.metTextBox4.Location = new System.Drawing.Point(141, 57);
+            this.metTextBox4.Location = new System.Drawing.Point(164, 86);
+            this.metTextBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox4.Multiline = true;
             this.metTextBox4.MultilineSelectAll = true;
             this.metTextBox4.Name = "metTextBox4";
-            this.metTextBox4.Size = new System.Drawing.Size(100, 56);
+            this.metTextBox4.Size = new System.Drawing.Size(116, 82);
             this.metTextBox4.TabIndex = 16;
             this.metTextBox4.Watermark = "watermark";
             this.metTextBox4.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox4_TextChangeValidation);
@@ -206,9 +216,10 @@
             // 
             this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox2;
             this.metTextBox3.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
-            this.metTextBox3.Location = new System.Drawing.Point(251, 57);
+            this.metTextBox3.Location = new System.Drawing.Point(293, 86);
+            this.metTextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox3.Name = "metTextBox3";
-            this.metTextBox3.Size = new System.Drawing.Size(100, 19);
+            this.metTextBox3.Size = new System.Drawing.Size(116, 25);
             this.metTextBox3.TabIndex = 14;
             this.metTextBox3.Watermark = "watermark";
             this.metTextBox3.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox3_TextChangeValidation);
@@ -230,9 +241,10 @@
             "aaa",
             "bbb",
             "ccc"});
-            this.metComboBox1.Location = new System.Drawing.Point(68, 189);
+            this.metComboBox1.Location = new System.Drawing.Point(79, 284);
+            this.metComboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metComboBox1.Name = "metComboBox1";
-            this.metComboBox1.Size = new System.Drawing.Size(121, 32);
+            this.metComboBox1.Size = new System.Drawing.Size(140, 32);
             this.metComboBox1.TabIndex = 13;
             // 
             // metDateTimePicker1
@@ -244,9 +256,10 @@
             this.metDateTimePicker1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metDateTimePicker1.FocusBorderColor = System.Drawing.Color.Blue;
             this.metDateTimePicker1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metDateTimePicker1.Location = new System.Drawing.Point(41, 123);
+            this.metDateTimePicker1.Location = new System.Drawing.Point(48, 184);
+            this.metDateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metDateTimePicker1.Name = "metDateTimePicker1";
-            this.metDateTimePicker1.Size = new System.Drawing.Size(200, 31);
+            this.metDateTimePicker1.Size = new System.Drawing.Size(233, 31);
             this.metDateTimePicker1.TabIndex = 7;
             // 
             // metTextBox2
@@ -254,9 +267,10 @@
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox3;
             this.metTextBox2.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox2.Location = new System.Drawing.Point(26, 26);
+            this.metTextBox2.Location = new System.Drawing.Point(30, 39);
+            this.metTextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox2.Name = "metTextBox2";
-            this.metTextBox2.Size = new System.Drawing.Size(100, 24);
+            this.metTextBox2.Size = new System.Drawing.Size(117, 24);
             this.metTextBox2.TabIndex = 3;
             this.metTextBox2.Watermark = "watermark";
             // 
@@ -279,9 +293,10 @@
             this.metTextBox1.FocusBorderColor = System.Drawing.Color.Red;
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
             this.metTextBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox1.Location = new System.Drawing.Point(20, 18);
+            this.metTextBox1.Location = new System.Drawing.Point(23, 27);
+            this.metTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox1.Name = "metTextBox1";
-            this.metTextBox1.Size = new System.Drawing.Size(198, 31);
+            this.metTextBox1.Size = new System.Drawing.Size(231, 31);
             this.metTextBox1.TabIndex = 0;
             this.metTextBox1.Watermark = "入力してください";
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
@@ -294,10 +309,11 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(440, 154);
+            this.dataGridView1.Location = new System.Drawing.Point(513, 231);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(285, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(332, 225);
             this.dataGridView1.TabIndex = 17;
             // 
             // Column1
@@ -318,18 +334,21 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Location = new System.Drawing.Point(399, 11);
+            this.groupBox1.Location = new System.Drawing.Point(465, 16);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(550, 113);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(642, 170);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(404, 20);
+            this.button9.Location = new System.Drawing.Point(471, 30);
+            this.button9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.Size = new System.Drawing.Size(87, 34);
             this.button9.TabIndex = 7;
             this.button9.Text = "Value取得";
             this.button9.UseVisualStyleBackColor = true;
@@ -357,9 +376,11 @@
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Location = new System.Drawing.Point(129, 145);
+            this.groupBox2.Location = new System.Drawing.Point(150, 218);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(831, 310);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(969, 465);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -370,9 +391,10 @@
             this.metTextBox8.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox8.FocusBorderColor = System.Drawing.Color.Lime;
             this.metTextBox8.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox8.Location = new System.Drawing.Point(290, 251);
+            this.metTextBox8.Location = new System.Drawing.Point(338, 376);
+            this.metTextBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox8.Name = "metTextBox8";
-            this.metTextBox8.Size = new System.Drawing.Size(132, 25);
+            this.metTextBox8.Size = new System.Drawing.Size(153, 25);
             this.metTextBox8.TabIndex = 26;
             this.metTextBox8.Watermark = "入力してください";
             // 
@@ -382,26 +404,29 @@
             this.metDateTimePicker2.CalendarFont = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metDateTimePicker2.CustomFormat = null;
             this.metDateTimePicker2.FocusBorderColor = System.Drawing.Color.Lime;
-            this.metDateTimePicker2.Location = new System.Drawing.Point(391, 31);
+            this.metDateTimePicker2.Location = new System.Drawing.Point(456, 46);
+            this.metDateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metDateTimePicker2.Name = "metDateTimePicker2";
-            this.metDateTimePicker2.Size = new System.Drawing.Size(121, 19);
+            this.metDateTimePicker2.Size = new System.Drawing.Size(140, 25);
             this.metDateTimePicker2.TabIndex = 25;
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox2.ForeColor = System.Drawing.Color.LightGray;
-            this.textBox2.Location = new System.Drawing.Point(451, 84);
+            this.textBox2.Location = new System.Drawing.Point(526, 126);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 25);
+            this.textBox2.Size = new System.Drawing.Size(116, 25);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "ただのTextBox";
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(722, 84);
+            this.button12.Location = new System.Drawing.Point(842, 126);
+            this.button12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(98, 23);
+            this.button12.Size = new System.Drawing.Size(114, 34);
             this.button12.TabIndex = 23;
             this.button12.Text = "ReadOnlyLabel";
             this.button12.UseVisualStyleBackColor = true;
@@ -409,9 +434,10 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(722, 55);
+            this.button11.Location = new System.Drawing.Point(842, 82);
+            this.button11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(98, 23);
+            this.button11.Size = new System.Drawing.Size(114, 34);
             this.button11.TabIndex = 22;
             this.button11.Text = "ReadOnly";
             this.button11.UseVisualStyleBackColor = true;
@@ -419,9 +445,14 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(722, 26);
+            this.button10.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(228)))), ((int)(((byte)(247)))));
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(241)))), ((int)(((byte)(251)))));
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Location = new System.Drawing.Point(842, 39);
+            this.button10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(98, 23);
+            this.button10.Size = new System.Drawing.Size(114, 34);
             this.button10.TabIndex = 21;
             this.button10.Text = "Enabled";
             this.button10.UseVisualStyleBackColor = true;
@@ -433,10 +464,10 @@
             this.metTextBox7.CustomAutoCompleteBox = autoCompleteBox6;
             this.metTextBox7.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox7.FocusBorderColor = System.Drawing.Color.Lime;
-            this.metTextBox7.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox7.Location = new System.Drawing.Point(583, 86);
+            this.metTextBox7.Location = new System.Drawing.Point(680, 129);
+            this.metTextBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox7.Name = "metTextBox7";
-            this.metTextBox7.Size = new System.Drawing.Size(132, 19);
+            this.metTextBox7.Size = new System.Drawing.Size(153, 25);
             this.metTextBox7.TabIndex = 20;
             this.metTextBox7.Watermark = "入力してください";
             this.metTextBox7.WatermarkColor = System.Drawing.Color.Purple;
@@ -448,10 +479,10 @@
             this.metTextBox6.CustomAutoCompleteBox = autoCompleteBox7;
             this.metTextBox6.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox6.FocusBorderColor = System.Drawing.Color.Lime;
-            this.metTextBox6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox6.Location = new System.Drawing.Point(584, 55);
+            this.metTextBox6.Location = new System.Drawing.Point(681, 82);
+            this.metTextBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox6.Name = "metTextBox6";
-            this.metTextBox6.Size = new System.Drawing.Size(132, 19);
+            this.metTextBox6.Size = new System.Drawing.Size(154, 25);
             this.metTextBox6.TabIndex = 19;
             this.metTextBox6.Watermark = "入力してください";
             // 
@@ -462,44 +493,48 @@
             this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox8;
             this.metTextBox5.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox5.FocusBorderColor = System.Drawing.Color.Lime;
-            this.metTextBox5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.metTextBox5.Location = new System.Drawing.Point(583, 30);
+            this.metTextBox5.Location = new System.Drawing.Point(680, 45);
+            this.metTextBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metTextBox5.Name = "metTextBox5";
-            this.metTextBox5.Size = new System.Drawing.Size(132, 12);
+            this.metTextBox5.Size = new System.Drawing.Size(154, 18);
             this.metTextBox5.TabIndex = 18;
             this.metTextBox5.Watermark = "入力してください";
             // 
             // textBoxEx3
             // 
             this.textBoxEx3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBoxEx3.Location = new System.Drawing.Point(12, 68);
+            this.textBoxEx3.Location = new System.Drawing.Point(14, 102);
+            this.textBoxEx3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxEx3.Name = "textBoxEx3";
-            this.textBoxEx3.Size = new System.Drawing.Size(100, 25);
+            this.textBoxEx3.Size = new System.Drawing.Size(116, 25);
             this.textBoxEx3.TabIndex = 22;
             // 
             // textBoxEx2
             // 
             this.textBoxEx2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxEx2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBoxEx2.Location = new System.Drawing.Point(12, 37);
+            this.textBoxEx2.Location = new System.Drawing.Point(14, 56);
+            this.textBoxEx2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxEx2.Name = "textBoxEx2";
-            this.textBoxEx2.Size = new System.Drawing.Size(100, 25);
+            this.textBoxEx2.Size = new System.Drawing.Size(116, 25);
             this.textBoxEx2.TabIndex = 21;
             // 
             // textBoxEx1
             // 
             this.textBoxEx1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEx1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBoxEx1.Location = new System.Drawing.Point(12, 12);
+            this.textBoxEx1.Location = new System.Drawing.Point(14, 18);
+            this.textBoxEx1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxEx1.Name = "textBoxEx1";
-            this.textBoxEx1.Size = new System.Drawing.Size(100, 18);
+            this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 467);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1182, 700);
             this.Controls.Add(this.textBoxEx3);
             this.Controls.Add(this.textBoxEx2);
             this.Controls.Add(this.textBoxEx1);
@@ -510,7 +545,9 @@
             formEscapeBehavior1.ControlRollback = true;
             formEscapeBehavior1.FormClose = true;
             this.EscPush = formEscapeBehavior1;
+            this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

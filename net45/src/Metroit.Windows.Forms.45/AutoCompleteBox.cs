@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using Metroit.Api.Win32;
@@ -307,7 +305,7 @@ namespace Metroit.Windows.Forms
                 var sourceDt = (this.CandidateBox.DataSource as DataTable) ?? (this.CandidateBox.DataSource as DataSet).Tables[0];
 
                 // 対象列に入っている文字列が合致する行を候補とする
-                foreach (var row in sourceDt.AsEnumerable())
+                foreach (DataRow row in sourceDt.Rows)
                 {
                     var displayText = row[DisplayMember].ToString();
                     if (displayText == value)
@@ -358,7 +356,7 @@ namespace Metroit.Windows.Forms
             // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
             var height = this.Target.Height - 6;
             User32.SendMessage(this.CandidateBox.Handle, ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
-            
+
             this.CandidateBox.Visible = false;
         }
 
@@ -429,7 +427,7 @@ namespace Metroit.Windows.Forms
             var destDt = sourceDt.Clone();
 
             // 対象列に入っている文字列が合致する行を候補とする
-            foreach (var row in sourceDt.AsEnumerable())
+            foreach (DataRow row in sourceDt.Rows)
             {
                 var displayText = row[DisplayMember].ToString();
                 if (!IsMatch(displayText, value, compareOptions))
@@ -456,7 +454,7 @@ namespace Metroit.Windows.Forms
             var destDt = sourceDt.Clone();
 
             // 対象列に入っている文字列が合致する行を候補とする
-            foreach (var row in sourceDt.AsEnumerable())
+            foreach (DataRow row in sourceDt.Rows)
             {
                 var displayText = row[DisplayMember].ToString();
                 if (!IsMatch(displayText, value, compareOptions))

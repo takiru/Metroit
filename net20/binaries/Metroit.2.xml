@@ -14,6 +14,165 @@
             コンボボックスの高さ決定を定義します。
             </summary>
         </member>
+        <member name="T:Metroit.Api.Win32.Structures.PAINTSTRUCT">
+            <summary>
+            ウィンドウのクライアント領域の描画に使用できる情報が含まれています。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.hdc">
+            <summary>
+            描画に使用するディスプレイ コンテキストを識別します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fErase">
+            <summary>
+            バックグラウンドが再描画されるようにする必要があるかどうかを指定します。 
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.rcPaint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fRestore">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fIncUpdate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.rgbReserved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Metroit.Api.Win32.Structures.RECT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.RECT.Left">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.RECT.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.RECT.Right">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Api.Win32.Structures.RECT.Bottom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="top"></param>
+            <param name="right"></param>
+            <param name="bottom"></param>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.Location">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Api.Win32.Structures.RECT.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Implicit(Metroit.Api.Win32.Structures.RECT)~System.Drawing.Rectangle">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Implicit(System.Drawing.Rectangle)~Metroit.Api.Win32.Structures.RECT">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Equality(Metroit.Api.Win32.Structures.RECT,Metroit.Api.Win32.Structures.RECT)">
+            <summary>
+            
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Inequality(Metroit.Api.Win32.Structures.RECT,Metroit.Api.Win32.Structures.RECT)">
+            <summary>
+            
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.Equals(Metroit.Api.Win32.Structures.RECT)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.Structures.RECT.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Metroit.Api.Win32.SystemCommand">
             <summary>
             システムコマンドを提供します。
@@ -38,6 +197,29 @@
             <param name="wParam">メッセージ特有の追加情報。</param>
             <param name="lParam">メッセージ特有の追加情報。</param>
             <returns>メッセージ処理の結果が返ります。この戻り値の意味は、送信されたメッセージにより異なります。</returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.User32.GetWindowDC(System.IntPtr)">
+            <summary>
+            タイトルバー、メニュー、スクロールバーを含む、ウィンドウ全体のデバイスコンテキスト（DC）を取得します。
+            </summary>
+            <param name="hwnd">ウィンドウのハンドル。</param>
+            <returns>null以外:ウィンドウのデバイスコンテキストのハンドル, null:取得エラー。</returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.User32.BeginPaint(System.Runtime.InteropServices.HandleRef,Metroit.Api.Win32.Structures.PAINTSTRUCT@)">
+            <summary>
+            指定されたウィンドウに対して描画の準備をします。
+            </summary>
+            <param name="hWnd">ウィンドウのハンドル。</param>
+            <param name="lpPaint">描画情報を持つ構造体へのポインタ。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Api.Win32.User32.EndPaint(System.Runtime.InteropServices.HandleRef,Metroit.Api.Win32.Structures.PAINTSTRUCT@)">
+            <summary>
+            指定されたウィンドウ内の描画の終わりを示します。
+            </summary>
+            <param name="hWnd">ウィンドウのハンドル。</param>
+            <param name="lpPaint">描画データ。</param>
+            <returns></returns>
         </member>
         <member name="T:Metroit.Api.Win32.VirtualKey">
             <summary>

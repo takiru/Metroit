@@ -752,27 +752,27 @@
             <param name="sender">指示したオブジェクト。</param>
             <param name="control">コントロール。</param>
         </member>
-        <member name="T:Metroit.Windows.Forms.IOuterFrame">
+        <member name="T:Metroit.Windows.Forms.IBorder">
             <summary>
-            
+            枠線に関わるインターフェース。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.IOuterFrame.BaseOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.IBorder.BaseBorderColor">
             <summary>
             コントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.IOuterFrame.FocusOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.IBorder.FocusBorderColor">
             <summary>
             フォーカス時のコントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.IOuterFrame.ErrorOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.IBorder.ErrorBorderColor">
             <summary>
             エラー時のコントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.IOuterFrame.Error">
+        <member name="P:Metroit.Windows.Forms.IBorder.Error">
             <summary>
             コントロールがエラーかどうかを取得または設定します。
             </summary>
@@ -966,17 +966,17 @@
             表示色を非フォーカス色に変更する。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetComboBox.BaseOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetComboBox.BaseBorderColor">
             <summary>
             コントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetComboBox.FocusOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetComboBox.FocusBorderColor">
             <summary>
             フォーカス時のコントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetComboBox.ErrorOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetComboBox.ErrorBorderColor">
             <summary>
             エラー時のコントロールの枠色を取得または設定します。
             </summary>
@@ -1078,16 +1078,10 @@
             </summary>
             <param name="m"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetComboBox.redrawColor">
+        <member name="M:Metroit.Windows.Forms.MetComboBox.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
             <summary>
-            背景色・文字色の描画し直します。
+            Bitmapオブジェクトにコントロール描画を行う。
             </summary>
-        </member>
-        <member name="M:Metroit.Windows.Forms.MetComboBox.getControlImage">
-            <summary>
-            背景色・文字色描画用のBitmapオブジェクトを取得する。
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>
@@ -1535,17 +1529,17 @@
             表示色を非フォーカス色に変更する。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BaseOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.BaseBorderColor">
             <summary>
             コントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.FocusOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.FocusBorderColor">
             <summary>
             フォーカス時のコントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ErrorOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ErrorBorderColor">
             <summary>
             エラー時のコントロールの枠色を取得または設定します。
             </summary>
@@ -1657,16 +1651,10 @@
             </summary>
             <param name="m"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.redrawColor">
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
             <summary>
-            背景色・文字色の描画し直します。
+            Bitmapオブジェクトにコントロール描画を行う。
             </summary>
-        </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.getControlImage">
-            <summary>
-            背景色・文字色描画用のBitmapオブジェクトを取得する。
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetForm">
             <summary>
@@ -2329,6 +2317,16 @@
               コントロールの背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseBorderColor">
+            <summary>
+              Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseBorderColor_ja">
+            <summary>
+              コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseForeColor">
             <summary>
               Gets or sets the foreground color of the control. に類似しているローカライズされた文字列を検索します。
@@ -2337,16 +2335,6 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseForeColor_ja">
             <summary>
               コントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseOuterFrameColor">
-            <summary>
-              Gets or sets the frame color of the control. に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlBaseOuterFrameColor_ja">
-            <summary>
-              コントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlByteEncoding">
@@ -2429,12 +2417,12 @@
               コントロールがエラーかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorBorderColor">
             <summary>
               Gets or sets the frame color of control at error. に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorOuterFrameColor_ja">
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlErrorBorderColor_ja">
             <summary>
               エラー時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
@@ -2469,6 +2457,16 @@
               フォーカス時のコントロールの背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusBorderColor">
+            <summary>
+              Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusBorderColor_ja">
+            <summary>
+              フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusForeColor">
             <summary>
               Gets or sets the foreground color of the control at focus. に類似しているローカライズされた文字列を検索します。
@@ -2477,16 +2475,6 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusForeColor_ja">
             <summary>
               フォーカス時のコントロールの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusOuterFrameColor">
-            <summary>
-              Gets or sets the frame color of the control at focus. に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusOuterFrameColor_ja">
-            <summary>
-              フォーカス時のコントロールの枠色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlFocusSelect">
@@ -3626,17 +3614,17 @@
             表示状態に応じて、Visible、ラベル代替を切り替える。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetTextBox.BaseOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetTextBox.BaseBorderColor">
             <summary>
             コントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetTextBox.FocusBorderColor">
             <summary>
             フォーカス時のコントロールの枠色を取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.MetTextBox.ErrorOuterFrameColor">
+        <member name="P:Metroit.Windows.Forms.MetTextBox.ErrorBorderColor">
             <summary>
             エラー時のコントロールの枠色を取得または設定します。
             </summary>
@@ -3773,12 +3761,23 @@
             </summary>
             <param name="m">ウィンドウメッセージ。</param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.drawOuterFrame">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawPaint(System.Windows.Forms.Message@)">
             <summary>
-            コントロールの外枠の色を描画する。
+            プロパティ設定された情報を描画する。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.drawWatermark">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
+            <summary>
+            Bitmapオブジェクトにコントロール描画を行う。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawBorder(System.Drawing.Graphics)">
+            <summary>
+            外枠を描画する。
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.drawWatermark(System.Drawing.Graphics)">
             <summary>
             ウォーターマークを描画する。
             </summary>
