@@ -33,6 +33,7 @@
             Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.NumericNegativePattern numericNegativePattern1 = new Metroit.Windows.Forms.NumericNegativePattern();
             Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern1 = new Metroit.Windows.Forms.NumericPositivePattern();
+            Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
             this.metLimitedTextBox1 = new Metroit.Windows.Forms.MetLimitedTextBox();
             this.metNumericTextBox1 = new Metroit.Windows.Forms.MetNumericTextBox();
@@ -51,6 +52,7 @@
             // 
             // metTextBox1
             // 
+            this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             autoCompleteBox1.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
@@ -65,10 +67,11 @@
             this.metTextBox1.Name = "metTextBox1";
             this.metTextBox1.Size = new System.Drawing.Size(149, 19);
             this.metTextBox1.TabIndex = 0;
-            this.metTextBox1.Visible = false;
+            this.metTextBox1.Text = "Sample";
             // 
             // metLimitedTextBox1
             // 
+            this.metLimitedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.metLimitedTextBox1.CustomAutoCompleteBox = autoCompleteBox2;
             this.metLimitedTextBox1.CustomChars = new string[0];
             this.metLimitedTextBox1.ExcludeChars = new string[0];
@@ -78,12 +81,13 @@
             this.metLimitedTextBox1.Name = "metLimitedTextBox1";
             this.metLimitedTextBox1.Size = new System.Drawing.Size(149, 19);
             this.metLimitedTextBox1.TabIndex = 1;
-            this.metLimitedTextBox1.Visible = false;
+            this.metLimitedTextBox1.Text = "Sample";
             // 
             // metNumericTextBox1
             // 
             this.metNumericTextBox1.AcceptNegative = false;
             this.metNumericTextBox1.AcceptNull = true;
+            this.metNumericTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             autoCompleteBox3.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
@@ -93,12 +97,11 @@
             autoCompleteBox3.ValueMember = "Column1";
             this.metNumericTextBox1.CustomAutoCompleteBox = autoCompleteBox3;
             this.metNumericTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
-            this.metNumericTextBox1.DecimalDigits = 2;
             this.metNumericTextBox1.GroupSizes = new int[] {
         3};
             this.metNumericTextBox1.Location = new System.Drawing.Point(135, 87);
             this.metNumericTextBox1.MaxValue = new decimal(new int[] {
-            100,
+            9999,
             0,
             0,
             0});
@@ -107,14 +110,16 @@
             0,
             0,
             0});
-            this.metNumericTextBox1.Mode = Metroit.Windows.Forms.NumericFormatMode.Percent;
             this.metNumericTextBox1.Name = "metNumericTextBox1";
             this.metNumericTextBox1.NegativePattern = numericNegativePattern1;
             this.metNumericTextBox1.PositivePattern = numericPositivePattern1;
             this.metNumericTextBox1.Size = new System.Drawing.Size(149, 19);
             this.metNumericTextBox1.TabIndex = 2;
-            this.metNumericTextBox1.Value = null;
-            this.metNumericTextBox1.Visible = false;
+            this.metNumericTextBox1.Value = new decimal(new int[] {
+            1234,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
@@ -124,7 +129,6 @@
             this.label1.Size = new System.Drawing.Size(67, 12);
             this.label1.TabIndex = 5;
             this.label1.Text = "MetTextBox";
-            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -134,7 +138,6 @@
             this.label2.Size = new System.Drawing.Size(104, 12);
             this.label2.TabIndex = 6;
             this.label2.Text = "MetLimitedTextBox";
-            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -144,7 +147,6 @@
             this.label3.Size = new System.Drawing.Size(109, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "MetNumericTextBox";
-            this.label3.Visible = false;
             // 
             // label4
             // 
@@ -154,7 +156,6 @@
             this.label4.Size = new System.Drawing.Size(79, 12);
             this.label4.TabIndex = 8;
             this.label4.Text = "MetComboBox";
-            this.label4.Visible = false;
             // 
             // label5
             // 
@@ -168,12 +169,15 @@
             // metComboBox1
             // 
             this.metComboBox1.FormattingEnabled = true;
+            this.metComboBox1.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc"});
             this.metComboBox1.Location = new System.Drawing.Point(135, 112);
             this.metComboBox1.Name = "metComboBox1";
             this.metComboBox1.Size = new System.Drawing.Size(149, 20);
             this.metComboBox1.TabIndex = 10;
-            this.metComboBox1.Text = "test";
-            this.metComboBox1.Visible = false;
+            this.metComboBox1.Text = "aaa";
             // 
             // metDateTimePicker1
             // 
@@ -199,10 +203,13 @@
             this.Controls.Add(this.metNumericTextBox1);
             this.Controls.Add(this.metLimitedTextBox1);
             this.Controls.Add(this.metTextBox1);
+            formEscapeBehavior1.FormClose = true;
+            this.EscPush = formEscapeBehavior1;
             this.KeyPreview = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.ControlLeaving += new System.ComponentModel.CancelEventHandler(this.Form1_ControlLeaving);
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metLimitedTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metNumericTextBox1)).EndInit();
