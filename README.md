@@ -341,9 +341,9 @@ It is a library that helps to create WinForms application.
     |CustomAutoCompleteBox   |Setting up custom autocomplete.                      |
     |CustomAutoCompleteKeys  |Key to display custom autocomplete.              |
     |CustomAutoCompleteMode  |How to use custom autocomplete.          |
-    |BaseOuterFrameColor     |Basic outer frame color.                                          |
-    |FocusOuterFrameColor    |Outer frame color when you get focus.                            |
-    |ErrorOuterFrameColor    |Outer frame color when error.                                      |
+    |BaseBorderColor     |Basic outer frame color.                                          |
+    |FocusBorderColor    |Outer frame color when you get focus.                            |
+    |ErrorBorderColor    |Outer frame color when error.                                      |
     |Error                   |Whether it is an error.                                        |
 
         Replace ReadOnlyLabel with Label.
@@ -417,9 +417,9 @@ It is a library that helps to create WinForms application.
     |BaseForeColor       |Basic character color.                                          |
     |FocusBackColor      |Background color when you get focus.                            |
     |FocusForeColor      |Character color when focus is obtained.                            |
-    |BaseOuterFrameColor     |Basic outer frame color.                                          |
-    |FocusOuterFrameColor    |Outer frame color when you get focus.                            |
-    |ErrorOuterFrameColor    |Outer frame color when error.                                      |
+    |BaseBorderColor     |Basic outer frame color.                                          |
+    |FocusBorderColor    |Outer frame color when you get focus.                            |
+    |ErrorBorderColor    |Outer frame color when error.                                      |
     |Error                   |Whether it is an error.                                        |
 
         Replace ReadOnly with TextBox.
@@ -438,9 +438,9 @@ It is a library that helps to create WinForms application.
     |BaseForeColor       |Basic character color.                                          |
     |FocusBackColor      |Background color when you get focus.                            |
     |FocusForeColor      |Character color when focus is obtained.                            |
-    |BaseOuterFrameColor     |Basic outer frame color.                                          |
-    |FocusOuterFrameColor    |Outer frame color when you get focus.                            |
-    |ErrorOuterFrameColor    |Outer frame color when error.                                      |
+    |BaseBorderColor     |Basic outer frame color.                                          |
+    |FocusBorderColor    |Outer frame color when you get focus.                            |
+    |ErrorBorderColor    |Outer frame color when error.                                      |
     |Error                   |Whether it is an error.                                        |
     
         Replace ReadOnly with TextBox.

@@ -341,9 +341,9 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |CustomAutoCompleteBox   |カスタムオートコンプリートの設定。                      |
     |CustomAutoCompleteKeys  |カスタムオートコンプリートを表示するキー。              |
     |CustomAutoCompleteMode  |カスタムオートコンプリートを利用する方法。              |
-    |BaseOuterFrameColor     |基本の外枠色。                                          |
-    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
-    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |BaseBorderColor     |基本の外枠色。                                          |
+    |FocusBorderColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorBorderColor    |エラー時の外枠色。                                      |
     |Error                   |エラーかどうか。                                        |
 
         ReadOnlyLabel は、 Label に置き換えます。
@@ -416,9 +416,9 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |BaseForeColor       |基本の文字色。                                          |
     |FocusBackColor      |フォーカスを得た時の背景色。                            |
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
-    |BaseOuterFrameColor     |基本の外枠色。                                          |
-    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
-    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |BaseBorderColor     |基本の外枠色。                                          |
+    |FocusBorderColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorBorderColor    |エラー時の外枠色。                                      |
     |Error                   |エラーかどうか。                                        |
 
         ReadOnly は、TextBox に置き換えます。
@@ -437,9 +437,9 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |BaseForeColor       |基本の文字色。                                          |
     |FocusBackColor      |フォーカスを得た時の背景色。                            |
     |FocusForeColor      |フォーカスを得た時の文字色。                            |
-    |BaseOuterFrameColor     |基本の外枠色。                                          |
-    |FocusOuterFrameColor    |フォーカスを得た時の外枠色。                            |
-    |ErrorOuterFrameColor    |エラー時の外枠色。                                      |
+    |BaseBorderColor     |基本の外枠色。                                          |
+    |FocusBorderColor    |フォーカスを得た時の外枠色。                            |
+    |ErrorBorderColor    |エラー時の外枠色。                                      |
     |Error                   |エラーかどうか。                                        |
     
         ReadOnly は、TextBox に置き換えます。
