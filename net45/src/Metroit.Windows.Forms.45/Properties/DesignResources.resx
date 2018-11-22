@@ -567,4 +567,10 @@
   <data name="MetTextBoxWatermarkColor.ja" xml:space="preserve">
     <value>ウォーターマークの前景色を取得または設定します。</value>
   </data>
+  <data name="AutoCompleteBoxDataBindings" xml:space="preserve">
+    <value>Data binding of the control. You can bind a DataSource.</value>
+  </data>
+  <data name="AutoCompleteBoxDataBindings.ja" xml:space="preserve">
+    <value>コントロールのデータバインドです。DataSource をバインドすることができます。</value>
+  </data>
 </root>

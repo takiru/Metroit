@@ -13,8 +13,10 @@ namespace Metroit.Windows.Forms
     /// <summary>
     /// オートコンプリートのボックスを表示する命令を提供します。
     /// </summary>
+    [ToolboxItem(false)]
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class AutoCompleteBox
+    [DefaultBindingProperty("DataSource")]
+    public class AutoCompleteBox : IBindableComponent
     {
         // 全データを含むデータソースを管理するためのコンボボックス
         private MetComboBox innerCandidateBox = new MetComboBox();
@@ -46,6 +48,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(null)]
+        [Bindable(true)]
         [RefreshProperties(RefreshProperties.Repaint)]
         [AttributeProvider(typeof(IListSource))]
         [MetDescription("AutoCompleteBoxDataSource")]
@@ -138,12 +141,19 @@ namespace Metroit.Windows.Forms
         {
             get
             {
-                // テキスト値に合致する値がない場合はnullとする
-                if (!this.Contains(this.Target.Text))
-                {
-                    return null;
-                }
-                return this.CandidateBox.SelectedValue;
+                return this.innerCandidateBox.SelectedIndex == -1 ? this.CandidateBox.SelectedValue : this.innerCandidateBox.SelectedValue;
+            }
+        }
+
+        /// <summary>
+        /// 現在選択中のアイテムを取得します。
+        /// </summary>
+        [Browsable(false)]
+        public object SelectedItem
+        {
+            get
+            {
+                return this.innerCandidateBox.SelectedIndex == -1 ? this.CandidateBox.SelectedItem : this.innerCandidateBox.SelectedItem;
             }
         }
 
@@ -260,6 +270,52 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 全候補の選択状態をリセットします。（候補から値を変更した時用）
+        /// </summary>
+        public void ResetAllItemSelected()
+        {
+            // 全体候補の選択状態をリセットする
+            // なぜか2回実行することでSelectedIndex=-1になる
+            this.innerCandidateBox.SelectedIndex = -1;
+            this.innerCandidateBox.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// 入力値から全候補に合致するアイテムを選択状態にします。
+        /// </summary>
+        /// <param name="text">入力値。</param>
+        public void AssignItemForManualInput(string text)
+        {
+            // 入力値が全体候補に存在するかどうか
+            var index = this.IndexOf(text.ToString());
+            if (index > -1)
+            {
+                // 候補の選択状態をリセットする
+                // なぜか2回実行することでSelectedIndex=-1になる
+                this.CandidateBox.SelectedIndex = -1;
+                this.CandidateBox.SelectedIndex = -1;
+
+                // 全体候補から選択状態にする
+                this.innerCandidateBox.SelectedIndex = index;
+            }
+            else
+            {
+                // 候補の選択状態をリセットする
+                // なぜか2回実行することでSelectedIndex=-1になる
+                this.CandidateBox.SelectedIndex = -1;
+                this.CandidateBox.SelectedIndex = -1;
+
+                // 全体候補の選択状態をリセットする
+                // なぜか2回実行することでSelectedIndex=-1になる
+                this.innerCandidateBox.SelectedIndex = -1;
+                this.innerCandidateBox.SelectedIndex = -1;
+
+                // 入力値はそのまま生かす
+                this.CandidateBox.Text = text;
+            }
+        }
+
+        /// <summary>
         /// オートコンプリートを利用するコントロールを設定します。
         /// </summary>
         /// <param name="target">オートコンプリートを利用するコントロール。</param>
@@ -274,6 +330,10 @@ namespace Metroit.Windows.Forms
 
             this.SetupControlProperties();
             this.Target.Parent.Controls.Add(this.CandidateBox);
+
+            // DataSource の Items プロパティを有効にするため、Target 内部のコントロールとして追加する
+            this.innerCandidateBox.Visible = false;
+            this.Target.Controls.Add(this.innerCandidateBox);
         }
 
         /// <summary>
@@ -337,6 +397,54 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// すべての入力候補より、指定した値のアイテムインデックスを取得します。
+        /// </summary>
+        /// <param name="value">検索する文字列。</param>
+        /// <returns>アイテムインデックス。</returns>
+        internal int IndexOf(string value)
+        {
+            // DataSet または DataTable の場合
+            if (this.innerCandidateBox.DataSource is DataSet || this.innerCandidateBox.DataSource is DataTable)
+            {
+                var sourceDt = (this.innerCandidateBox.DataSource as DataTable) ?? (this.innerCandidateBox.DataSource as DataSet).Tables[0];
+
+                // 対象列に入っている文字列が合致する行を候補とする
+                var i = 0;
+                foreach (DataRow row in sourceDt.Rows)
+                {
+                    var displayText = row[DisplayMember].ToString();
+                    if (displayText == value)
+                    {
+                        return i;
+                    }
+                    i++;
+                }
+                return -1;
+            }
+
+            // IList(List<T>)の場合の処理
+            if (this.innerCandidateBox.DataSource is IList)
+            {
+                var sourceList = this.innerCandidateBox.DataSource as IList;
+
+                // 対象プロパティに入っている文字列が合致する行を候補とする
+                var i = 0;
+                foreach (var sourceItem in sourceList)
+                {
+                    PropertyDescriptor descriptor = TypeDescriptor.GetProperties(sourceItem).Find(DisplayMember, true);
+                    var displayText = descriptor.GetValue(sourceItem).ToString();
+                    if (displayText == value)
+                    {
+                        return i;
+                    }
+                    i++;
+                }
+                return -1;
+            }
+            return -1;
+        }
+
+        /// <summary>
         /// コンボボックスのプロパティを設定する。
         /// </summary>
         private void SetupControlProperties()
@@ -383,19 +491,42 @@ namespace Metroit.Windows.Forms
         {
             var compareOptions = this.GetExecuteCompareOptions();
 
-            if (this.DataSource is DataSet)
+            var dataSource = this.DataSource;
+
+            // DataBindings に DataSource が設定されている場合、そちらを優先する
+            Binding dataSourceBinding = null;
+            foreach (Binding binding in this.DataBindings)
             {
-                return this.ExtractDataSet(value, compareOptions);
+                if (binding.PropertyName == "DataSource")
+                {
+                    dataSourceBinding = binding;
+                    break;
+                }
+            }
+            if (dataSourceBinding != null)
+            {
+                var bindingFieldProperty = dataSourceBinding.DataSource.GetType().GetProperty(dataSourceBinding.BindingMemberInfo.BindingField);
+                if (bindingFieldProperty != null)
+                {
+                    dataSource = bindingFieldProperty.GetValue(dataSourceBinding.DataSource, null);
+                    CandidateBox.DisplayMember = innerCandidateBox.DisplayMember;
+                    CandidateBox.ValueMember = innerCandidateBox.ValueMember;
+                }
             }
 
-            if (this.DataSource is DataTable)
+            if (dataSource is DataSet)
             {
-                return this.ExtractDataTable(value, compareOptions);
+                return this.ExtractDataSet(dataSource, value, compareOptions);
             }
 
-            if (this.DataSource is IList)
+            if (dataSource is DataTable)
             {
-                return this.ExtractList(value, compareOptions);
+                return this.ExtractDataTable(dataSource, value, compareOptions);
+            }
+
+            if (dataSource is IList)
+            {
+                return this.ExtractList(dataSource, value, compareOptions);
             }
 
             return null;
@@ -418,12 +549,13 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// DataSet オブジェクトのリストデータを取得する。
         /// </summary>
+        /// <param name="dataSource">処理対象のデータソース。</param>
         /// <param name="value">絞り込み文字列。</param>
         /// <param name="compareOptions">絞り込み条件。</param>
         /// <returns>DataSet オブジェクト。</returns>
-        private DataSet ExtractDataSet(string value, CompareOptions compareOptions)
+        private DataSet ExtractDataSet(object dataSource, string value, CompareOptions compareOptions)
         {
-            var sourceDt = (this.DataSource as DataSet).Tables[0];
+            var sourceDt = (dataSource as DataSet).Tables[0];
             var destDt = sourceDt.Clone();
 
             // 対象列に入っている文字列が合致する行を候補とする
@@ -445,12 +577,13 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// DataTable オブジェクトのリストデータを取得する。
         /// </summary>
+        /// <param name="dataSource">処理対象のデータソース。</param>
         /// <param name="value">絞り込み文字列。</param>
         /// <param name="compareOptions">絞り込み条件。</param>
         /// <returns>DataTable オブジェクト。</returns>
-        private DataTable ExtractDataTable(string value, CompareOptions compareOptions)
+        private DataTable ExtractDataTable(object dataSource, string value, CompareOptions compareOptions)
         {
-            var sourceDt = (this.DataSource as DataTable);
+            var sourceDt = (dataSource as DataTable);
             var destDt = sourceDt.Clone();
 
             // 対象列に入っている文字列が合致する行を候補とする
@@ -470,13 +603,14 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// IList オブジェクトのリストデータを取得する。
         /// </summary>
+        /// <param name="dataSource">処理対象のデータソース。</param>
         /// <param name="value">絞り込み文字列。</param>
         /// <param name="compareOptions">絞り込み条件。</param>
         /// <returns>IList オブジェクト。</returns>
-        private IList ExtractList(string value, CompareOptions compareOptions)
+        private IList ExtractList(object dataSource, string value, CompareOptions compareOptions)
         {
-            var sourceList = this.DataSource as IList;
-            var destList = Activator.CreateInstance(this.DataSource.GetType()) as IList;
+            var sourceList = dataSource as IList;
+            var destList = Activator.CreateInstance(dataSource.GetType()) as IList;
 
             // 対象プロパティに入っている文字列が合致する行を候補とする
             foreach (var sourceItem in sourceList)
@@ -547,6 +681,73 @@ namespace Metroit.Windows.Forms
             {
                 this.CandidateBox.SelectedIndex = -1;
             }
+        }
+
+        #endregion
+
+        #region IBindableComponent 実装
+
+        private BindingContext bindingContext;
+        private ControlBindingsCollection dataBindings;
+
+        /// <summary>
+        /// 使わない。
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Disposed;
+
+        /// <summary>
+        /// 使わない。
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public BindingContext BindingContext
+        {
+            get
+            {
+                if (bindingContext == null)
+                    bindingContext = new BindingContext();
+                return bindingContext;
+            }
+            set
+            {
+                bindingContext = value;
+            }
+        }
+
+        /// <summary>
+        /// コントロールのデータバインドです。DataSource をバインドすることができます。
+        /// </summary>
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [MetDescription("AutoCompleteBoxDataBindings")]
+        public ControlBindingsCollection DataBindings
+        {
+            get
+            {
+                if (dataBindings == null)
+                    dataBindings = new ControlBindingsCollection(this);
+                return dataBindings;
+            }
+        }
+
+        /// <summary>
+        /// 使わない。
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ISite Site { get; set; }
+
+        /// <summary>
+        /// 使わない。
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            this.Disposed?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion

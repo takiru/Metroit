@@ -44,7 +44,7 @@ namespace Metroit.Windows.Forms.Extensions
         /// </summary>
         /// <param name="control">対象Control オブジェクト。</param>
         /// <param name="forward">タブオーダー内を前方に移動する場合はtrue。後方に移動する場合はfalse。</param>
-        /// <remarks>TextBox の AcceptsTab が true の時、タブ文字が入力されます。</remarks>
+        /// <remarks></remarks>
         public static void MoveNextControl(Control control, bool forward = true)
         {
             var textBox = GetTextBox(control);

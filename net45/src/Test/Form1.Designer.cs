@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox1 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox2 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox3 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox4 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox5 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox6 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox7 = new Metroit.Windows.Forms.AutoCompleteBox();
-            Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox8 = new Metroit.Windows.Forms.AutoCompleteBox();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -199,7 +191,6 @@
             // 
             // metTextBox4
             // 
-            this.metTextBox4.CustomAutoCompleteBox = autoCompleteBox1;
             this.metTextBox4.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
             this.metTextBox4.Location = new System.Drawing.Point(164, 86);
             this.metTextBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -214,7 +205,6 @@
             // 
             // metTextBox3
             // 
-            this.metTextBox3.CustomAutoCompleteBox = autoCompleteBox2;
             this.metTextBox3.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
             this.metTextBox3.Location = new System.Drawing.Point(293, 86);
             this.metTextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -265,7 +255,6 @@
             // metTextBox2
             // 
             this.metTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox2.CustomAutoCompleteBox = autoCompleteBox3;
             this.metTextBox2.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metTextBox2.Location = new System.Drawing.Point(30, 39);
             this.metTextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -278,17 +267,17 @@
             // 
             this.metTextBox1.BaseBorderColor = System.Drawing.Color.Lime;
             this.metTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            autoCompleteBox4.CompareOptions = new System.Globalization.CompareOptions[] {
+            // 
+            // 
+            // 
+            this.metTextBox1.CustomAutoCompleteBox.CompareOptions = new System.Globalization.CompareOptions[] {
         System.Globalization.CompareOptions.IgnoreCase,
         System.Globalization.CompareOptions.IgnoreKanaType,
         System.Globalization.CompareOptions.IgnoreWidth};
-            autoCompleteBox4.DisplayMember = "Column2";
-            autoCompleteBox4.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
-            autoCompleteBox4.ValueMember = "Column1";
-            this.metTextBox1.CustomAutoCompleteBox = autoCompleteBox4;
-            this.metTextBox1.CustomAutoCompleteKeys = new System.Windows.Forms.Keys[] {
-        ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Return)))};
-            this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.KeysSuggest;
+            this.metTextBox1.CustomAutoCompleteBox.DisplayMember = "Column2";
+            this.metTextBox1.CustomAutoCompleteBox.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
+            this.metTextBox1.CustomAutoCompleteBox.ValueMember = "Column1";
+            this.metTextBox1.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
             this.metTextBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metTextBox1.FocusBorderColor = System.Drawing.Color.Red;
             this.metTextBox1.FocusForeColor = System.Drawing.Color.Blue;
@@ -301,6 +290,7 @@
             this.metTextBox1.Watermark = "入力してください";
             this.metTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox1_TextChangeValidation);
             this.metTextBox1.CompleteBoxOpening += new System.EventHandler(this.metTextBox1_CompleteBoxOpening);
+            this.metTextBox1.TextChanged += new System.EventHandler(this.metTextBox1_TextChanged);
             this.metTextBox1.Enter += new System.EventHandler(this.metTextBox1_Enter);
             // 
             // dataGridView1
@@ -387,7 +377,6 @@
             // 
             // metTextBox8
             // 
-            this.metTextBox8.CustomAutoCompleteBox = autoCompleteBox5;
             this.metTextBox8.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox8.FocusBorderColor = System.Drawing.Color.Lime;
             this.metTextBox8.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -461,7 +450,6 @@
             // metTextBox7
             // 
             this.metTextBox7.BaseBorderColor = System.Drawing.Color.Blue;
-            this.metTextBox7.CustomAutoCompleteBox = autoCompleteBox6;
             this.metTextBox7.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox7.FocusBorderColor = System.Drawing.Color.Lime;
             this.metTextBox7.Location = new System.Drawing.Point(680, 129);
@@ -476,7 +464,6 @@
             // 
             this.metTextBox6.BaseBorderColor = System.Drawing.Color.Blue;
             this.metTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metTextBox6.CustomAutoCompleteBox = autoCompleteBox7;
             this.metTextBox6.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox6.FocusBorderColor = System.Drawing.Color.Lime;
             this.metTextBox6.Location = new System.Drawing.Point(681, 82);
@@ -490,7 +477,6 @@
             // 
             this.metTextBox5.BaseBorderColor = System.Drawing.Color.Blue;
             this.metTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metTextBox5.CustomAutoCompleteBox = autoCompleteBox8;
             this.metTextBox5.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.metTextBox5.FocusBorderColor = System.Drawing.Color.Lime;
             this.metTextBox5.Location = new System.Drawing.Point(680, 45);

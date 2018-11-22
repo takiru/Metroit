@@ -187,6 +187,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Data binding of the control. You can bind a DataSource. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDataBindings {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDataBindings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コントロールのデータバインドです。DataSource をバインドすることができます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxDataBindings_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxDataBindings.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the data source including all data used for autocomplete. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string AutoCompleteBoxDataSource {

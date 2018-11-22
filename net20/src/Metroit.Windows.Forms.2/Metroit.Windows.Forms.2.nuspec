@@ -11,15 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugfix:
-        MetTextBox
-        MetComboBox
-        MetDatetimePicker
-          Suppressed flicker.
       modify:
         MetTextBox
-          Draw a border only when BorderStyle = FixedSingle.
-          Change from BaseOuterFrameColor, ForeOuterFrameColor, ErrorOuterFrameColor to BaseBorderColor, ForeBorderColor, ErrorBorderColor.
+          Changed DataSource so that it can be specified from DataBindings.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

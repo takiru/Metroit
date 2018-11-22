@@ -919,6 +919,7 @@ namespace Metroit.Windows.Forms
         /// カスタムオートコンプリート情報を設定または取得します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetOther")]
         [MetDescription("MetTextBoxCustomAutoCompleteBox")]
         public AutoCompleteBox CustomAutoCompleteBox { get; set; } = new AutoCompleteBox();
@@ -1244,6 +1245,23 @@ namespace Metroit.Windows.Forms
         /// <param name="e">イベントオブジェクト。</param>
         protected override void OnTextChanged(EventArgs e)
         {
+            // 手入力もしくは候補コンボボックスの上下選択で決定された値で SelectedValue を確定させる
+            if (this.CustomAutoCompleteMode != CustomAutoCompleteMode.None)
+            {
+                candidateTextChanging = true;
+                // 手入力の場合のみ、入力値を反映させる
+                if (!candidateSelectedValueChanging)
+                {
+                    this.CustomAutoCompleteBox.AssignItemForManualInput(this.Text);
+                }
+                else
+                {
+                    this.CustomAutoCompleteBox.ResetAllItemSelected();
+                }
+
+                candidateTextChanging = false;
+            }
+
             base.OnTextChanged(e);
 
             // ウォーターマークの表示
@@ -1297,7 +1315,7 @@ namespace Metroit.Windows.Forms
                         this.CustomAutoCompleteBox.Close();
                     }
 
-                    // 候補と合致する文字列がない場合は、候補の選択状態をリセットする
+                    // 候補と完全一致しない場合は、候補の選択状態をリセットする
                     if (!this.CustomAutoCompleteBox.Contains(this.Text))
                     {
                         this.CustomAutoCompleteBox.CandidateBox.SelectedIndex = -1;
@@ -1310,7 +1328,6 @@ namespace Metroit.Windows.Forms
                 {
                     // 候補ボックスが開いておらず、サジェスト利用時は候補ボックスを開く
                     this.OpenSuggest();
-                    this.CustomAutoCompleteBox.CandidateBox.Text = this.Text;
                 }
             }
 

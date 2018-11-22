@@ -4,11 +4,6 @@
 
 ## 目次
 - コントロール
-  - [Enterでフォーカス移動したい](#Enterでフォーカス移動したい)
-  - [Escで入力値をロールバックしたい](#Escで入力値をロールバックしたい)
-  - [Escでフォーカスを外したい](#Escでフォーカスを外したい)
-  - [Escでフォームを閉じたい](#Escでフォームを閉じたい)
-  - [Escの動作を組み合わせたい](#Escの動作を組み合わせたい)
   - [背景色を変更したい](#背景色を変更したい)
   - [文字色を変更したい](#文字色を変更したい)
   - [枠色を変更したい](#枠色を変更したい)
@@ -24,159 +19,6 @@
   - [日付項目にNullを許可したい](#日付項目にNullを許可したい)
 
 ## コントロール
-
-## Enterでフォーカス移動したい
-
-対象コントロール
-- MetForm
-
-EnterFocus を利用します。  
-Shift+Enter でフォーカスを戻します。  
-ボタンはフォーカス移動しません。
-
-![prop](./images/EnterFocus/prop.gif "prop")
-
-![anime](./images/EnterFocus/anime.gif "anime")
-
-## Escで入力値をロールバックしたい
-
-対象コントロール
-- MetForm
-
-EscPush を利用します。  
-ControlRollback を有効にすると、入力値をロールバックできます。
-コードしない場合にロールバックできるコントロールは以下です。
-  - MetTextBox
-  - MetLimitedTextBox
-  - MetNumericTextBox
-  - MetComboBox
-  - MetDateTimePicker
-
-![prop](./images/ControlRollback/prop.gif "prop")
-
-![anime](./images/ControlRollback/anime.gif "anime")
-
-自分でコードする場合は、どんなコントロールにも対応できます。  
-また、DataGridViewTextBoxEditingControl などのように、この動作を嫌うオブジェクトの場合は動作させないこともできます。
-
-ControllRollbacking イベントでロールバック動作を嫌うオブジェクトを拒否し、IControlRollback インターフェースでロールバックの値を制御します。
-
-```C#:SampleCode
-public partial class Form1 : MetForm, IControlRollback
-{
-    public Form1()
-    {
-        InitializeComponent();
-    }
-
-    private CheckState prevCheckState;
-
-    private void checkBox1_Enter(object sender, EventArgs e)
-    {
-        // 変更前の状態を保持しておく
-        this.prevCheckState = checkBox1.CheckState;
-    }
-
-    private void Form1_ControlRollbacking(object sender, CancelEventArgs e)
-    {
-        // DataGridView のオブジェクトは、標準動作でロールバックさせる
-        var control = this.ActiveControl;
-        if (control is DataGridViewTextBoxEditingControl || control is DataGridViewComboBoxEditingControl)
-        {
-            e.Cancel = true;
-        }
-    }
-
-    public bool IsRollbacked(object sender, Control control)
-    {
-        // チェックボックスのステートが変化していない時はロールバック済みとする
-        if (control is CheckBox && checkBox1.CheckState == this.prevCheckState)
-        {
-            return true;
-        }
-
-        //// ControlRollbacking の記述をここで行い、ロールバックされたものみなしてもよい
-        //// DataGridView のオブジェクトは、標準動作でロールバックさせる
-        //if (control is DataGridViewTextBoxEditingControl || control is DataGridViewComboBoxEditingControl)
-        //{
-        //    return true;
-        //}
-
-        return false;   
-    }
-
-    public void Rollback(object sender, Control control)
-    {
-        // チェックボックスのステートをロールバックする
-        if (control is CheckBox)
-        {
-            checkBox1.CheckState = this.prevCheckState;
-        }
-    }
-}
-```
-
-![anime_code](./images/ControlRollback/anime_code.gif "anime_code")
-
-## Escでフォーカスを外したい
-
-対象コントロール
-- MetForm
-
-EscPush を利用します。  
-ControlLeave を有効にすると、フォーカスを外すことができます。
-コードしない場合にフォーカスを外すことができるコントロールは以下です。
-  - MetTextBox
-  - MetLimitedTextBox
-  - MetNumericTextBox
-  - MetComboBox
-  - MetDateTimePicker
-
-![prop](./images/ControlLeave/prop.gif "prop")
-
-![anime](./images/ControlLeave/anime.gif "anime")
-
-自分でコードする場合は、どんなコントロールにも対応できます。  
-また、DataGridViewTextBoxEditingControl などのように、この動作を嫌うオブジェクトの場合は動作させないこともできます。
-
-ControllLeaving イベントでロールバック動作を嫌うオブジェクトを拒否します。
-
-```C#:SampleCode
-private void Form1_ControlLeaving(object sender, CancelEventArgs e)
-{
-    // DataGridView のオブジェクトは、標準動作でフォーカスアウトさせる
-    var control = this.ActiveControl;
-    if (control is DataGridViewTextBoxEditingControl || control is DataGridViewComboBoxEditingControl)
-    {
-        e.Cancel = true;
-    }
-}
-```
-
-![anime_code](./images/ControlLeave/anime_code.gif "anime_code")
-
-## Escでフォームを閉じたい
-
-対象コントロール
-- MetForm
-
-EscPush を利用します。  
-FormClose を有効にすると、フォームを閉じることができます。
-
-![prop](./images/FormClose/prop.gif "prop")
-
-![anime](./images/FormClose/anime.gif "anime")
-
-## Escの動作を組み合わせたい
-
-対象コントロール
-  - MetForm
-
-EscPush の値を組み合わせて利用します。  
-発生順序は以下のようになります。
-  1. ControlRollback
-  1. ControlLeave
-  1. FormClose
 
 ## 背景色を変更したい
 
@@ -217,12 +59,11 @@ BaseForeColor, FocusForeColor を利用します。
 - MetComboBox
 - MetDateTimePicker
 
-BaseBorderColor, FocusBorderColor を利用します。  
-TexBox系の各コントロールは、BorderStyle=FixedSingle でないと動作しません。
+BaseOuterFrameColor, FocusOuterFrameColor を利用します。
 
-![prop](./images/BorderColor/prop.gif "prop")
+![prop](./images/OuterFrameColor/prop.gif "prop")
 
-![anime](./images/BorderColor/anime.gif "anime")
+![anime](./images/OuterFrameColor/anime.gif "anime")
 
 ## エラー時の枠色を変更したい
 
@@ -233,8 +74,7 @@ TexBox系の各コントロールは、BorderStyle=FixedSingle でないと動�
 - MetComboBox
 - MetDateTimePicker
 
-ErrorBorderColor を利用します。  
-TexBox系の各コントロールは、BorderStyle=FixedSingle でないと動作しません。
+ErrorOuterFrameColor を利用します。
 
 ```C#:SampleCode
 private void button1_Click(object sender, EventArgs e)
@@ -247,9 +87,9 @@ private void button1_Click(object sender, EventArgs e)
 }
 ```
 
-![prop](./images/ErrorBorderColor/prop.gif "prop")
+![prop](./images/ErrorOuterFrameColor/prop.gif "prop")
 
-![anime](./images/ErrorBorderColor/anime.gif "anime")
+![anime](./images/ErrorOuterFrameColor/anime.gif "anime")
 
 ## Labelによる読取専用に切り替えたい
 

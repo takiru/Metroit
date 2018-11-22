@@ -115,9 +115,9 @@ namespace Test
             row["Column3"] = "文字かなAC column3B";
             dt.Rows.Add(row);
             row = dt.NewRow();
-            row["Column1"] = "ccc column1";
-            row["Column2"] = "ccc column2";
-            row["Column3"] = "ccc column3";
+            row["Column1"] = "ＣＣＣ column1";
+            row["Column2"] = "ＣＣＣ column2";
+            row["Column3"] = "ＣＣＣ column3";
             dt.Rows.Add(row);
             row = dt.NewRow();
             row["Column1"] = "ccc column1";
@@ -311,6 +311,18 @@ namespace Test
         private void button12_Click(object sender, EventArgs e)
         {
             metTextBox5.ReadOnlyLabel = !metTextBox5.ReadOnlyLabel;
+        }
+
+        private void metTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("TextChanged");
+            Console.WriteLine("value:" + metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
+            Console.WriteLine("item:" + metTextBox1.CustomAutoCompleteBox.SelectedItem?.ToString());
+            var row = metTextBox1.CustomAutoCompleteBox.SelectedItem as DataRowView;
+            if (row != null)
+            {
+                Console.WriteLine(row["Column3"].ToString());
+            }
         }
     }
 }

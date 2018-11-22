@@ -76,6 +76,11 @@
             ValueMember プロパティで指定したメンバー プロパティの値を取得します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.SelectedItem">
+            <summary>
+            現在選択中のアイテムを取得します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.AutoCompleteBox.DataSourceChanging">
             <summary>
             DataSource プロパティを変更中かどうかを取得します。
@@ -119,6 +124,17 @@
             オートコンプリートのボックスを閉じます。
             </summary>
         </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ResetAllItemSelected">
+            <summary>
+            全候補の選択状態をリセットします。（候補から値を変更した時用）
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.AssignItemForManualInput(System.String)">
+            <summary>
+            入力値から全候補に合致するアイテムを選択状態にします。
+            </summary>
+            <param name="text">入力値。</param>
+        </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.SetTarget(System.Windows.Forms.Control)">
             <summary>
             オートコンプリートを利用するコントロールを設定します。
@@ -136,6 +152,13 @@
             現在の入力候補より、指定した値が存在するかどうかを取得します。
             </summary>
             <param name="value">検索する文字列。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOf(System.String)">
+            <summary>
+            すべての入力候補より、指定した値のアイテムインデックスを取得します。
+            </summary>
+            <param name="value">検索する文字列。</param>
+            <returns>アイテムインデックス。</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.SetupControlProperties">
             <summary>
@@ -160,26 +183,29 @@
             </summary>
             <returns>CompareOptions オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataSet(System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataSet(System.Object,System.String,System.Globalization.CompareOptions)">
             <summary>
             DataSet オブジェクトのリストデータを取得する。
             </summary>
+            <param name="dataSource">処理対象のデータソース。</param>
             <param name="value">絞り込み文字列。</param>
             <param name="compareOptions">絞り込み条件。</param>
             <returns>DataSet オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataTable(System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataTable(System.Object,System.String,System.Globalization.CompareOptions)">
             <summary>
             DataTable オブジェクトのリストデータを取得する。
             </summary>
+            <param name="dataSource">処理対象のデータソース。</param>
             <param name="value">絞り込み文字列。</param>
             <param name="compareOptions">絞り込み条件。</param>
             <returns>DataTable オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractList(System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractList(System.Object,System.String,System.Globalization.CompareOptions)">
             <summary>
             IList オブジェクトのリストデータを取得する。
             </summary>
+            <param name="dataSource">処理対象のデータソース。</param>
             <param name="value">絞り込み文字列。</param>
             <param name="compareOptions">絞り込み条件。</param>
             <returns>IList オブジェクト。</returns>
@@ -196,6 +222,31 @@
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ResetSelectedIndex">
             <summary>
             リストのテキスト値とターゲットのテキスト値が異なる時、リストの選択状態を初期化する。
+            </summary>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.Disposed">
+            <summary>
+            使わない。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.BindingContext">
+            <summary>
+            使わない。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.DataBindings">
+            <summary>
+            コントロールのデータバインドです。DataSource をバインドすることができます。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.Site">
+            <summary>
+            使わない。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Dispose">
+            <summary>
+            使わない。
             </summary>
         </member>
         <member name="T:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl">
@@ -2215,6 +2266,16 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCompareOptions_ja">
             <summary>
               候補の絞込みに判断するオプションを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxDataBindings">
+            <summary>
+              Data binding of the control. You can bind a DataSource. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxDataBindings_ja">
+            <summary>
+              コントロールのデータバインドです。DataSource をバインドすることができます。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxDataSource">
