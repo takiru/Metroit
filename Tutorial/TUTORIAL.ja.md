@@ -59,11 +59,11 @@ BaseForeColor, FocusForeColor を利用します。
 - MetComboBox
 - MetDateTimePicker
 
-BaseOuterFrameColor, FocusOuterFrameColor を利用します。
+BaseBorderColor, FocusBorderColor を利用します。
 
-![prop](./images/OuterFrameColor/prop.gif "prop")
+![prop](./images/BorderColor/prop.gif "prop")
 
-![anime](./images/OuterFrameColor/anime.gif "anime")
+![anime](./images/BorderColor/anime.gif "anime")
 
 ## エラー時の枠色を変更したい
 
@@ -74,7 +74,7 @@ BaseOuterFrameColor, FocusOuterFrameColor を利用します。
 - MetComboBox
 - MetDateTimePicker
 
-ErrorOuterFrameColor を利用します。
+ErrorBorderColor を利用します。
 
 ```C#:SampleCode
 private void button1_Click(object sender, EventArgs e)
@@ -87,9 +87,9 @@ private void button1_Click(object sender, EventArgs e)
 }
 ```
 
-![prop](./images/ErrorOuterFrameColor/prop.gif "prop")
+![prop](./images/ErrorBorderColor/prop.gif "prop")
 
-![anime](./images/ErrorOuterFrameColor/anime.gif "anime")
+![anime](./images/ErrorBorderColor/anime.gif "anime")
 
 ## Labelによる読取専用に切り替えたい
 
