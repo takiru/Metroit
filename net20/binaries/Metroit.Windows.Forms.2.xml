@@ -65,6 +65,75 @@
             </summary>
             <param name="control">利用するコントロール。</param>
         </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.CandidateBox_CandidateBoxOpened(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンを開いた時のイベントを発生させる。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.CandidateBox_CandidateBoxClosed(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンを閉じた時のイベントを発生させる。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.CandidateBox_SelectedValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンを選択した時に選択値を設定してイベントを発生させる。
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.CandidateBoxOpening">
+            <summary>
+            候補ドロップダウンを開く前に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.OnCandidateBoxOpening(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンを開く前に発生します。
+            </summary>
+            <param name="sender">呼出元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.CandidateBoxOpened">
+            <summary>
+            候補ドロップダウンを開いた時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.OnCandidateBoxOpened(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンを開いた時に発生します。
+            </summary>
+            <param name="sender">呼出元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.CandidateBoxClosed">
+            <summary>
+            候補ドロップダウンを閉じた時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.OnCandidateBoxClosed(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンを閉じた時に発生します。
+            </summary>
+            <param name="sender">呼出元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.CandidateSelected">
+            <summary>
+            候補の値が選択された時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.OnCandidateSelected(System.Object,Metroit.Windows.Forms.CandidateSelectedEventArgs)">
+            <summary>
+            候補の値が選択された時に発生します。
+            </summary>
+            <param name="sender">呼出元オブジェクト。</param>
+            <param name="e">CandidateSelectedEventArgs オブジェクト。</param>
+        </member>
         <member name="P:Metroit.Windows.Forms.AutoCompleteBox.DataSource">
             <summary>
             オートコンプリートに利用される全データを含むデータソースを取得または設定します。
@@ -97,182 +166,200 @@
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ShouldSerializeCompareOptions">
             <summary>
-            BaseBackColor が既定値から変更されたかどうかを返却する。
+            CompareOptions が既定値から変更されたかどうかを返却する。
             </summary>
             <returns>true:変更された, false:変更されていない</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ResetCompareOptions">
             <summary>
-            BaseBackColor のリセット操作を行う。
+            CompareOptions のリセット操作を行う。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.Target">
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.TargetControl">
             <summary>
             オートコンプリートの利用を行うコントロールを取得します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.CandidateBox">
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.candidateBox">
             <summary>
             実際に画面に表示するコンボボックスの取得を行います。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.SelectedIndex">
+            <summary>
+            現在選択中の候補インデックスを取得します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.AutoCompleteBox.SelectedValue">
             <summary>
-            ValueMember プロパティで指定したメンバー プロパティの値を取得します。
+            現在選択中の ValueMember プロパティで指定したメンバー プロパティの値を取得します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.AutoCompleteBox.SelectedItem">
             <summary>
-            現在選択中のアイテムを取得します。
+            現在選択中の候補アイテムを取得します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.DataSourceChanging">
-            <summary>
-            DataSource プロパティを変更中かどうかを取得します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.BoxClosing">
-            <summary>
-            オートコンプリートのボックスを閉じようとしているかどうかを取得します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.BoxOpening">
-            <summary>
-            オートコンプリートのボックスを開こうとしているかどうかを取得します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.IsOpen">
+        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.IsOpened">
             <summary>
             オートコンプリートのボックスが開かれているかどうかを取得します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.IsActive">
-            <summary>
-            オートコンプリートのボックスがアクティブフォーカスかどうかを取得します。
-            </summary>
-        </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.CandidateBox_DropDownClosed(System.Object,System.EventArgs)">
-            <summary>
-            候補をマウスクリックで選択してコンボボックスが閉じられた時、正しく終了させ、
-            利用コントロールをフォーカスする。
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Open">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Open(System.String)">
             <summary>
             オートコンプリートのボックスを開きます。
             </summary>
+            <param name="text">候補の検索に利用するテキスト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Close">
             <summary>
             オートコンプリートのボックスを閉じます。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ResetAllItemSelected">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetItem(System.Int32)">
             <summary>
-            全候補の選択状態をリセットします。（候補から値を変更した時用）
+            対象インデックスからデータソースのアイテムを取得する。
             </summary>
+            <param name="index">インデックス。</param>
+            <returns>アイテム。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.AssignItemForManualInput(System.String)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetDisplay(System.Object)">
             <summary>
-            入力値から全候補に合致するアイテムを選択状態にします。
+            アイテムの値を取得する。
             </summary>
-            <param name="text">入力値。</param>
+            <param name="item">アイテム。</param>
+            <returns>実際の値。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.SetTarget(System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetValue(System.Object)">
             <summary>
-            オートコンプリートを利用するコントロールを設定します。
+            アイテムの実際の値を取得する。
             </summary>
-            <param name="target">オートコンプリートを利用するコントロール。</param>
+            <param name="item">アイテム。</param>
+            <returns>実際の値。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.DecideItemForText(System.String)">
+            <summary>
+            <para>テキストからデータソースのアイテムを決定します。</para>
+            <para>主に、TargetControl のテキストが入力されたタイミングで利用します。</para>
+            </summary>
+            <param name="text">テキスト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Extract(System.String)">
             <summary>
             全体の入力候補より絞り込みを行います。
             </summary>
-            <param name="value">候補を絞り込む文字列。</param>
+            <param name="text">候補を絞り込む文字列。</param>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Contains(System.String)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.DecideItem(System.Object,System.String)">
             <summary>
-            現在の入力候補より、指定した値が存在するかどうかを取得します。
+            ドロップダウンからアイテムを決定する。
             </summary>
-            <param name="value">検索する文字列。</param>
+            <param name="preItem">直前の選択アイテムオブジェクト。</param>
+            <param name="text">テキスト。</param>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOf(System.String)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.DecideItemForDataTable(System.Data.DataRow,System.String)">
             <summary>
-            すべての入力候補より、指定した値のアイテムインデックスを取得します。
+            データソースが DataSet または DataTable だった時に、ドロップダウンからアイテムを決定する。
             </summary>
-            <param name="value">検索する文字列。</param>
+            <param name="preItem">直前の選択アイテムオブジェクト。</param>
+            <param name="text">テキスト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.DecideItemForLIst(System.Object,System.String)">
+            <summary>
+            データソースが IList だった時に、ドロップダウンからアイテムを決定する。
+            </summary>
+            <param name="preItem">直前の選択アイテムオブジェクト。</param>
+            <param name="text">テキスト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ReOpenDropdown">
+            <summary>
+            ドロップダウンを開き直す必要がある場合に開き直す。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetCandidateCount">
+            <summary>
+            現在のドロップダウン候補数を取得します。
+            </summary>
+            <returns>ドロップダウン候補数。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOfAllItem(System.String)">
+            <summary>
+            データソースからテキストを検索し、アイテムインデックスを取得する。
+            </summary>
+            <param name="text">検索する文字列。</param>
             <returns>アイテムインデックス。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.SetupControlProperties">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOfCandidate(System.String)">
             <summary>
-            コンボボックスのプロパティを設定する。
+            現在の候補からテキストを検索し、アイテムインデックスを取得する。
             </summary>
+            <param name="text">検索するテキスト。</param>
+            <returns>現在の入力候補アイテムのインデックス。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Redraw">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOfItemForIList(System.Collections.IList,System.String)">
             <summary>
-            オートコンプリートのボックス内容を再描画する。
+            IList オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
             </summary>
+            <param name="list">IList オブジェクト。</param>
+            <param name="text">検索するテキスト。</param>
+            <returns>アイテムのインデックス。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IndexOfItemForDataTable(System.Data.DataTable,System.String)">
+            <summary>
+            DataTable オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
+            </summary>
+            <param name="dt">DataTable オブジェクト。</param>
+            <param name="text">検索するテキスト。</param>
+            <returns>アイテムのインデックス。</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractObject(System.String)">
             <summary>
-            ボックス候補の絞り込みを行う。
+            候補の絞り込みを行う。
             </summary>
-            <param name="value">絞り込み文字列。</param>
-            <returns>絞り込みデータ。</returns>
+            <param name="text">テキスト。</param>
+            <returns>絞り込みデータオブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetExecuteCompareOptions">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.GetCompareOptions">
             <summary>
-            判断実行を行うオプションを取得する。
+            候補判断を行うオプションを取得する。
             </summary>
             <returns>CompareOptions オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataSet(System.Object,System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataSet(System.Data.DataSet,System.String,System.Globalization.CompareOptions)">
             <summary>
             DataSet オブジェクトのリストデータを取得する。
             </summary>
             <param name="dataSource">処理対象のデータソース。</param>
-            <param name="value">絞り込み文字列。</param>
-            <param name="compareOptions">絞り込み条件。</param>
-            <returns>DataSet オブジェクト。</returns>
+            <param name="text">テキスト。</param>
+            <param name="compareOptions">候補判断。</param>
+            <returns>DataView オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataTable(System.Object,System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractDataTable(System.Data.DataTable,System.String,System.Globalization.CompareOptions)">
             <summary>
             DataTable オブジェクトのリストデータを取得する。
             </summary>
             <param name="dataSource">処理対象のデータソース。</param>
-            <param name="value">絞り込み文字列。</param>
-            <param name="compareOptions">絞り込み条件。</param>
-            <returns>DataTable オブジェクト。</returns>
+            <param name="text">テキスト。</param>
+            <param name="compareOptions">候補判断。</param>
+            <returns>DataView オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractList(System.Object,System.String,System.Globalization.CompareOptions)">
+        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ExtractList(System.Collections.IList,System.String,System.Globalization.CompareOptions)">
             <summary>
             IList オブジェクトのリストデータを取得する。
             </summary>
             <param name="dataSource">処理対象のデータソース。</param>
-            <param name="value">絞り込み文字列。</param>
-            <param name="compareOptions">絞り込み条件。</param>
+            <param name="text">テキスト。</param>
+            <param name="compareOptions">候補判断。</param>
             <returns>IList オブジェクト。</returns>
         </member>
         <member name="M:Metroit.Windows.Forms.AutoCompleteBox.IsMatch(System.String,System.String,System.Globalization.CompareOptions)">
             <summary>
             対象のテキストが候補対象となるかを確認する。
             </summary>
-            <param name="sourceText">候補文字列。</param>
-            <param name="destText">検索文字列。</param>
+            <param name="candidateText">候補文字列。</param>
+            <param name="searchText">検索文字列。</param>
             <param name="compareOptions">CompareOptions オブジェクト。</param>
             <returns>true:候補対象, false:候補対象でない。</returns>
-        </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.ResetSelectedIndex">
-            <summary>
-            リストのテキスト値とターゲットのテキスト値が異なる時、リストの選択状態を初期化する。
-            </summary>
-        </member>
-        <member name="E:Metroit.Windows.Forms.AutoCompleteBox.Disposed">
-            <summary>
-            使わない。
-            </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.AutoCompleteBox.BindingContext">
             <summary>
@@ -284,15 +371,188 @@
             コントロールのデータバインドです。DataSource をバインドすることができます。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.AutoCompleteBox.Site">
+        <member name="T:Metroit.Windows.Forms.AutoCompleteCandidateBox">
             <summary>
-            使わない。
+            オートコンプリートの実際に表示するドロップダウンを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.AutoCompleteBox.Dispose">
+        <member name="E:Metroit.Windows.Forms.AutoCompleteCandidateBox.CandidateBoxOpened">
             <summary>
-            使わない。
+            ドロップダウンが開いた時に発生するイベントです。
             </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnCandidateBoxOpened(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンが開いた時に走行します。
+            </summary>
+            <param name="sender">発生元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.AutoCompleteCandidateBox.CandidateBoxClosed">
+            <summary>
+            ドロップダウンが閉じた時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnCandidateBoxClosed(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンが閉じた時に走行します。
+            </summary>
+            <param name="sender">発生元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteCandidateBox.DataSource">
+            <summary>
+            データ ソースを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteCandidateBox.DisplayMember">
+            <summary>
+            表示するプロパティを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteCandidateBox.ValueMember">
+            <summary>
+            項目の実際の値として使用するプロパティのパスを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteCandidateBox.TargetControl">
+            <summary>
+            オートコンプリートを利用するコントロールを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.AutoCompleteCandidateBox.IsOpened">
+            <summary>
+            ドロップダウンが開いているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.InitializeControl(System.Windows.Forms.Control)">
+            <summary>
+            ドロップダウンコントロールの初期化を行います。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.InitializeMessageFiliter">
+            <summary>
+            ウィンドウメッセージフィルタを初期化する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.Open">
+            <summary>
+            <para>ドロップダウンを開きます。</para>
+            <para>事前に InitializeControl() を実施している必要があります。</para>
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.AddMessageFilter">
+            <summary>
+            ウィンドウメッセージフィルタを追加する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OpenDropdown">
+            <summary>
+            ドロップダウンを開く。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.Close">
+            <summary>
+            ドロップダウンを閉じます。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.RemoveMessageFilter">
+            <summary>
+            ウィンドウメッセージフィルタを削除する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.CloseDropdown">
+            <summary>
+            ドロップダウンを閉じる。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.ReOpen">
+            <summary>
+            <para>ドロップダウンを開きなおします。</para>
+            <para>ドロップダウンのアイテム量が変化した時に有効です。</para>
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.ResetSelectedIndex">
+            <summary>
+            ドロップダウンの選択状態をリセットします。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnGotFocus(System.EventArgs)">
+            <summary>
+            フォーカスを得たことを認識させません。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnEnter(System.EventArgs)">
+            <summary>
+            フォーカスを得たことを認識させません。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnDropDownClosed(System.EventArgs)">
+            <summary>
+            ドロップダウンが閉じた時に、明示的に終了処理を行います。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnSelectionChangeCommitted(System.EventArgs)">
+            <summary>
+            ドロップダウンのアイテムをクリックで決定したことを保持します。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnSelectedIndexChanged(System.EventArgs)">
+            <summary>
+            アイテムが選択された時の動作を行います。
+            </summary>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.AutoCompleteCandidateBox.OnSelectedValueChanged(System.EventArgs)">
+            <summary>
+            DisplayMember, ValueMember の設定中に値が変更された時は処理しないようにします。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Metroit.Windows.Forms.CandidateSelectedEventArgs">
+            <summary>
+            候補が選択された時のデータを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.CandidateSelectedEventArgs.#ctor(System.Object,System.Object,System.String,System.Int32)">
+            <summary>
+            新しい CandidateSelectedEventArgs インスタンスを生成します。
+            </summary>
+            <param name="selectedItem">選択アイテムオブジェクト。</param>
+            <param name="selectedValue">選択値オブジェクト。</param>
+            <param name="selectedText">選択値テキスト。</param>
+            <param name="selectedIndex">選択値インデックス。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.CandidateSelectedEventArgs.SelectedItem">
+            <summary>
+            選択したアイテムを取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.CandidateSelectedEventArgs.SelectedValue">
+            <summary>
+            選択したアイテムの実際の値を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.CandidateSelectedEventArgs.SelectedText">
+            <summary>
+            選択したアイテムの入力値を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.CandidateSelectedEventArgs.SelectedIndex">
+            <summary>
+            選択したアイテムのインデックスを取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.CandidateSelectedEventHandler">
+            <summary>
+            CandidateSelected イベントを発生させる為のデリゲート
+            </summary>
+            <param name="sender">実行発生オブジェクト</param>
+            <param name="e">値変更イベントデータ</param>
         </member>
         <member name="T:Metroit.Windows.Forms.ComponentModel.AcceptsCharControl">
             <summary>
@@ -813,6 +1073,18 @@
             例外メッセージのリソース取得を提供します。
             </summary>
         </member>
+        <member name="T:Metroit.Windows.Forms.Extensions.ComponentExtensions">
+            <summary>
+            Component クラスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.Extensions.ComponentExtensions.IsDesignMode(System.ComponentModel.Component)">
+            <summary>
+            <para>Component が現在デザイン モードかどうかを示す値を取得します。</para>
+            <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
+            </summary>
+            <returns>true:デザインモード中、false:実行中</returns>
+        </member>
         <member name="T:Metroit.Windows.Forms.Extensions.ControlExtensions">
             <summary>
             Control クラスの拡張メソッドを提供します。
@@ -955,6 +1227,95 @@
         <member name="F:Metroit.Windows.Forms.MatchPatternType.Equal">
             <summary>
             すべてが合致することを示します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MessageFilter">
+            <summary>
+            ウィンドウメッセージのフィルタリングを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MessageFilter.#ctor(Metroit.Windows.Forms.MessageFilterParams)">
+            <summary>
+            新しい MessageFilter インスタンスを生成します。
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MessageFilter.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            指定した条件でフィルタリングを実施します。
+            </summary>
+            <param name="m">Message オブジェクト。</param>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MessageFilterAction">
+            <summary>
+            ウィンドウメッセージフィルタで動作させるデリゲートを提供します。
+            </summary>
+            <param name="e">MessageFilterActionParams オブジェクト。</param>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MessageFilterActionParams">
+            <summary>
+            MessageFilterAction を実行するパラメーターを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MessageFilterActionParams.#ctor(System.Windows.Forms.Message)">
+            <summary>
+            新しい MessageFilterActionParams インスタンスを生成します。
+            </summary>
+            <param name="m">Message オブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterActionParams.StopMessage">
+            <summary>
+            ウィンドウメッセージの通知を停止するかどうかを指定します。
+            指定しない場合、ウィンドウメッセージの通知を停止しません。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterActionParams.Message">
+            <summary>
+            通知されたウィンドウメッセージを取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MessageFilterParams">
+            <summary>
+            ウィンドウメッセージフィルタを実施するパラメーターを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MessageFilterParams.#ctor">
+            <summary>
+            新しい MessageFilterParams インスタンスを生成します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MessageFilterParams.#ctor(System.Int32[])">
+            <summary>
+            新しい MessageFilterParams インスタンスを生成します。
+            </summary>
+            <param name="messages">ウィンドウメッセージ。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterParams.Controls">
+            <summary>
+            ウィンドウメッセージフィルタを動作させるコントロールを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterParams.Messages">
+            <summary>
+            ウィンドウメッセージフィルタを動作させるウィンドウメッセージを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterParams.WParam">
+            <summary>
+            ウィンドウメッセージフィルタを動作させるWParamを取得または設定します。
+            設定しなかった場合、すべてのWParamが動作対象となります。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterParams.LParam">
+            <summary>
+            ウィンドウメッセージフィルタを動作させるLParamを取得または設定します。
+            設定しなかった場合、すべてのLParamが動作対象となります。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MessageFilterParams.Action">
+            <summary>
+            ウィンドウメッセージフィルタで制御したい制御を取得または設定します。
             </summary>
         </member>
         <member name="T:Metroit.Windows.Forms.MetCategoryAttribute">
@@ -2370,13 +2731,6 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.CandidateBox_SelectedValueChanged(System.Object,System.EventArgs)">
-            <summary>
-            候補コンボボックスから候補を選択した時、候補の値をテキストに表示する。
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.createTextAfterInput(Metroit.Windows.Forms.TypingKeyType,System.Nullable{System.Char})">
             <summary>
             文字キーによってテキスト入力が行われた際の、入力後テキストを取得する。
@@ -2396,6 +2750,34 @@
             </summary>
             <returns>true:実行可能, false:実行不可能</returns>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteBox_CandidateBoxOpening(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンが開く前の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteBox_CandidateBoxOpened(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンが開かれた時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteBox_CandidateBoxClosed(System.Object,System.EventArgs)">
+            <summary>
+            候補ドロップダウンが閉じられた時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.CustomAutoCompleteBox_CandidateSelected(System.Object,Metroit.Windows.Forms.CandidateSelectedEventArgs)">
+            <summary>
+            候補ドロップダウンから値が選択された時の動作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="E:Metroit.Windows.Forms.MetTextBox.TextChangeValidation">
             <summary>
             <para>Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。</para>
@@ -2408,27 +2790,53 @@
             </summary>
             <param name="e">入力値許可イベントオブジェクト。</param>
         </member>
-        <member name="E:Metroit.Windows.Forms.MetTextBox.CompleteBoxOpening">
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CandidateBoxOpening">
             <summary>
-            候補ボックスを開くときに発生するイベントです。
+            ドロップダウンが開く前に発生するイベントです。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCompleteBoxOpening(System.EventArgs)">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCandidateBoxOpening(System.Object,System.EventArgs)">
             <summary>
-            候補ボックスを開くときに走行します。
+            ドロップダウンが開く前に走行します。
             </summary>
+            <param name="sender">発生元オブジェクト。</param>
             <param name="e">EventArgs オブジェクト。</param>
         </member>
-        <member name="E:Metroit.Windows.Forms.MetTextBox.CompleteBoxOpened">
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CandidateBoxOpened">
             <summary>
-            候補ボックスを開いたときに発生するイベントです。
+            ドロップダウンが開いた時に発生するイベントです。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCompleteBoxOpened(System.EventArgs)">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCandidateBoxOpened(System.Object,System.EventArgs)">
             <summary>
-            候補ボックスを開いたときに走行します。
+            ドロップダウンが開いた時に走行します。
             </summary>
+            <param name="sender">発生元オブジェクト。</param>
             <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CandidateBoxClosed">
+            <summary>
+            ドロップダウンが閉じた時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCandidateBoxClosed(System.Object,System.EventArgs)">
+            <summary>
+            ドロップダウンが閉じた時に走行します。
+            </summary>
+            <param name="sender">発生元オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetTextBox.CandidateSelected">
+            <summary>
+            候補の値が選択された時に発生するイベントです。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnCandidateSelected(System.Object,Metroit.Windows.Forms.CandidateSelectedEventArgs)">
+            <summary>
+            候補の値が選択された時に発生します。
+            </summary>
+            <param name="sender">呼出元オブジェクト。</param>
+            <param name="e">CandidateSelectedEventArgs オブジェクト。</param>
         </member>
         <member name="P:Metroit.Windows.Forms.MetTextBox.Anchor">
             <summary>
@@ -2642,6 +3050,30 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnLostFocus(System.EventArgs)">
+            <summary>
+            低レベルフォーカスを失った時の動作。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnLeave(System.EventArgs)">
+            <summary>
+            フォーカスを失った時の動作。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnValidating(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            値検証を行っている時の動作。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetTextBox.OnValidated(System.EventArgs)">
+            <summary>
+            値の検証を行った後の動作。
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.OnTextChanged(System.EventArgs)">
             <summary>
             テキストが変更後、可能の場合にフォーカス遷移を行います。
@@ -2707,14 +3139,6 @@
             コントロールの文字表示位置が変更時、ラベル代替表示をしていたらラベルの文字表示位置も変更します。
             </summary>
             <param name="e">イベントオブジェクト。</param>
-        </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
-            <summary>
-            ウィンドウメッセージを捕捉し、コンボボックスへの制御を行います。
-            </summary>
-            <param name="msg"></param>
-            <param name="keyData"></param>
-            <returns></returns>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.WndProc(System.Windows.Forms.Message@)">
             <summary>

@@ -61,7 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceptsCharType.cs" />
-    <Compile Include="AutoCompleteBox.cs" />
+    <Compile Include="AutoCompleteBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AutoCompleteCandidateBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CandidateSelectedEventArgs.cs" />
+    <Compile Include="CandidateSelectedEventHandler.cs" />
     <Compile Include="ComponentModel\AcceptsCharControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,11 +97,16 @@
     <Compile Include="DeniedTextException.cs" />
     <Compile Include="DesignResources.cs" />
     <Compile Include="ExceptionResources.cs" />
+    <Compile Include="Extensions\ComponentExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="FormEscapeBehavior.cs" />
     <Compile Include="IBorder.cs" />
     <Compile Include="IControlRollback.cs" />
     <Compile Include="MatchPatternType.cs" />
+    <Compile Include="MessageFilter.cs" />
+    <Compile Include="MessageFilterAction.cs" />
+    <Compile Include="MessageFilterActionParams.cs" />
+    <Compile Include="MessageFilterParams.cs" />
     <Compile Include="MetCategoryAttribute.cs" />
     <Compile Include="MetComboBox.cs">
       <SubType>Component</SubType>

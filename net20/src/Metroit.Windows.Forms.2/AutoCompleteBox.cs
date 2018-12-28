@@ -6,43 +6,216 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-using Metroit.Api.Win32;
+using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
 {
     /// <summary>
     /// オートコンプリートのボックスを表示する命令を提供します。
     /// </summary>
-    [ToolboxItem(false)]
+    [ToolboxItem(true)]
     [TypeConverter(typeof(ExpandableObjectConverter))]
     [DefaultBindingProperty("DataSource")]
-    public class AutoCompleteBox : IBindableComponent
+    public class AutoCompleteBox : Component, IBindableComponent
     {
-        // 全データを含むデータソースを管理するためのコンボボックス
-        private MetComboBox innerCandidateBox = new MetComboBox();
+        private bool isAssociatedControl = false;    // Controlを指定したインスタンス化を実施したかどうか
 
+        // FIXED
         /// <summary>
         /// 新しい AutoCompleteBox インスタンスを生成します。
         /// </summary>
         public AutoCompleteBox()
         {
-            this.CandidateBox.DropDownClosed += CandidateBox_DropDownClosed;
-
             this.CompareOptions = this.defaultCompareOptions;
-            this.CandidateBox.IntegralHeight = false;
+
+            if (ComponentExtensions.IsDesignMode(this))
+            {
+                return;
+            }
+
+            // 必要なイベントを設定
+            this.candidateBox.SelectedValueChanged += CandidateBox_SelectedValueChanged;
+            this.candidateBox.CandidateBoxClosed += CandidateBox_CandidateBoxClosed;
         }
 
+        // FIXED
         /// <summary>
         /// 新しい AutoCompleteBox インスタンスを生成します。
         /// </summary>
         /// <param name="control">利用するコントロール。</param>
-        public AutoCompleteBox(Control control) : base()
+        public AutoCompleteBox(Control control)
         {
-            this.SetTarget(control);
+            this.CompareOptions = this.defaultCompareOptions;
+
+            // 紐づくコントロールを保持
+            this.TargetControl = control;
+            this.isAssociatedControl = true;
+
+            if (ComponentExtensions.IsDesignMode(this))
+            {
+                return;
+            }
+
+            // 必要なイベントを設定
+            this.candidateBox.SelectedValueChanged += CandidateBox_SelectedValueChanged;
+            this.candidateBox.CandidateBoxOpened += CandidateBox_CandidateBoxOpened;
+            this.candidateBox.CandidateBoxClosed += CandidateBox_CandidateBoxClosed;
         }
+
+        #region イベント
+
+        /// <summary>
+        /// ドロップダウンを開いた時のイベントを発生させる。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CandidateBox_CandidateBoxOpened(object sender, EventArgs e)
+        {
+            this.OnCandidateBoxOpened(sender, e);
+        }
+
+        // FIXED
+        /// <summary>
+        /// ドロップダウンを閉じた時のイベントを発生させる。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CandidateBox_CandidateBoxClosed(object sender, EventArgs e)
+        {
+            // プルダウンの表示件数初期化
+            this.preCandidateItemCount = -1;
+            this.OnCandidateBoxClosed(sender, e);
+        }
+
+        // TODO
+        // IListの実装を行う
+        /// <summary>
+        /// ドロップダウンを選択した時に選択値を設定してイベントを発生させる。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CandidateBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // リストの初期表示で値が選択された時は走行させない, 候補が表示中に手入力で候補を決定した時は走行させない
+            if (this.innerSelectedChanging)
+            {
+                return;
+            }
+
+            // DataSet または DataTable の場合
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
+            {
+                var dt = (this.DataSource as DataTable) ?? (this.DataSource as DataSet)?.Tables[0];
+
+                var item = ((DataRowView)this.candidateBox.SelectedItem).Row;
+                this.SelectedItem = item;
+                this.SelectedValue = this.GetValue(item);
+                this.SelectedIndex = dt.Rows.IndexOf(item);
+                var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, this.candidateBox.Text, this.SelectedIndex);
+                this.OnCandidateSelected(this, cse);
+                return;
+            }
+
+            // IList の場合
+            var list = this.DataSource as IList;
+            if (list != null)
+            {
+                var item = this.candidateBox.SelectedItem;
+                this.SelectedItem = item;
+                this.SelectedValue = this.GetValue(item);
+                this.SelectedIndex = list.IndexOf(item);
+                var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, this.candidateBox.Text, this.SelectedIndex);
+                this.OnCandidateSelected(this, cse);
+                return;
+            }
+        }
+
+        #endregion
+
+        #region 追加イベント
+
+        /// <summary>
+        /// 候補ドロップダウンを開く前に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("AutoCompleteBoxCandidateBoxOpening")]
+        public event EventHandler CandidateBoxOpening;
+
+        // FIXED
+        /// <summary>
+        /// 候補ドロップダウンを開く前に発生します。
+        /// </summary>
+        /// <param name="sender">呼出元オブジェクト。</param>
+        /// <param name="e">EventArgs オブジェクト。</param>
+        protected virtual void OnCandidateBoxOpening(object sender, EventArgs e)
+        {
+            this.CandidateBoxOpening?.Invoke(sender, e);
+        }
+
+        // FIXED
+        /// <summary>
+        /// 候補ドロップダウンを開いた時に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("AutoCompleteBoxCandidateBoxOpened")]
+        public event EventHandler CandidateBoxOpened;
+
+        // FIXED
+        /// <summary>
+        /// 候補ドロップダウンを開いた時に発生します。
+        /// </summary>
+        /// <param name="sender">呼出元オブジェクト。</param>
+        /// <param name="e">EventArgs オブジェクト。</param>
+        protected virtual void OnCandidateBoxOpened(object sender, EventArgs e)
+        {
+            this.CandidateBoxOpened?.Invoke(sender, e);
+        }
+
+        // FIXED
+        /// <summary>
+        /// 候補ドロップダウンを閉じた時に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("AutoCompleteBoxCandidateBoxClosed")]
+        public event EventHandler CandidateBoxClosed;
+
+        // FIXED
+        /// <summary>
+        /// 候補ドロップダウンを閉じた時に発生します。
+        /// </summary>
+        /// <param name="sender">呼出元オブジェクト。</param>
+        /// <param name="e">EventArgs オブジェクト。</param>
+        protected virtual void OnCandidateBoxClosed(object sender, EventArgs e)
+        {
+            this.CandidateBoxClosed?.Invoke(sender, e);
+        }
+
+        // FIXED
+        /// <summary>
+        /// 候補の値が選択された時に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("AutoCompleteBoxCandidateSelected")]
+        public event CandidateSelectedEventHandler CandidateSelected;
+
+        /// <summary>
+        /// 候補の値が選択された時に発生します。
+        /// </summary>
+        /// <param name="sender">呼出元オブジェクト。</param>
+        /// <param name="e">CandidateSelectedEventArgs オブジェクト。</param>
+        protected virtual void OnCandidateSelected(object sender, CandidateSelectedEventArgs e)
+        {
+            this.CandidateSelected?.Invoke(sender, e);
+        }
+
+        #endregion
 
         #region プロパティ
 
+        private object dataSource = null;
+
+        // TODO
+        // DataSet, DataTable, IList 以外のオブジェクトが指定されたらエラーにする。
         /// <summary>
         /// オートコンプリートに利用される全データを含むデータソースを取得または設定します。
         /// </summary>
@@ -54,45 +227,46 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxDataSource")]
         public object DataSource
         {
-            get => innerCandidateBox.DataSource;
+            get => this.dataSource;
             set
             {
-                innerCandidateBox.DataSource = value;
-
-                // 本体のデータソースを初期化
-                this.DataSourceChanging = true;
-                CandidateBox.DataSource = innerCandidateBox.DataSource;
-                CandidateBox.DisplayMember = innerCandidateBox.DisplayMember;
-                CandidateBox.ValueMember = innerCandidateBox.ValueMember;
-                this.ResetSelectedIndex();
-                this.DataSourceChanging = false;
+                if (value != null && !(value is DataSet) && !(value is DataTable) && !(value is IList))
+                {
+                    //throw new ArgumentException("Complex DataBinding はIList または IListSource のどちらかをデータソースとして受け入れます。");
+                    throw new ArgumentException("IList または DataSet, DataTable のいずれかをデータソースとして受け入れます。");
+                }
+                this.dataSource = value;
             }
         }
 
+        // FIXED
         /// <summary>
         /// このコントロール内の項目に対して表示するプロパティを示します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue("")]
         [MetDescription("AutoCompleteBoxDisplayMember")]
-        public string DisplayMember { get => innerCandidateBox.DisplayMember; set => innerCandidateBox.DisplayMember = value; }
+        public string DisplayMember { get; set; } = "";
 
+        // FIXED
         /// <summary>
         /// コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue("")]
         [MetDescription("AutoCompleteBoxValueMember")]
-        public string ValueMember { get => innerCandidateBox.ValueMember; set => innerCandidateBox.ValueMember = value; }
+        public string ValueMember { get; set; } = "";
 
+        // FIXED
         /// <summary>
         /// オートコンプリートの表示するアイテム数を設定します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(8)]
         [MetDescription("AutoCompleteBoxMaxDropDownItems")]
-        public int MaxDropDownItems { get => CandidateBox.MaxDropDownItems; set => CandidateBox.MaxDropDownItems = value; }
+        public int MaxDropDownItems { get => this.candidateBox.MaxDropDownItems; set => this.candidateBox.MaxDropDownItems = value; }
 
+        // FIXED
         /// <summary>
         /// 候補の絞込みを行うパターンを取得または設定します。
         /// </summary>
@@ -101,8 +275,10 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxMatchPattern")]
         public MatchPatternType MatchPattern { get; set; } = MatchPatternType.StartsWith;
 
+        // FIXED
         private CompareOptions[] defaultCompareOptions = new CompareOptions[] { System.Globalization.CompareOptions.None };
 
+        // FIXED
         /// <summary>
         /// 候補の絞込みに判断するオプションを取得または設定します。
         /// </summary>
@@ -110,386 +286,498 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxCompareOptions")]
         public CompareOptions[] CompareOptions { get; set; }
 
+        // FIXED
         /// <summary>
-        /// BaseBackColor が既定値から変更されたかどうかを返却する。
+        /// CompareOptions が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
         private bool ShouldSerializeCompareOptions() => this.CompareOptions != null && this.CompareOptions != this.defaultCompareOptions;
 
+        // FIXED
         /// <summary>
-        /// BaseBackColor のリセット操作を行う。
+        /// CompareOptions のリセット操作を行う。
         /// </summary>
         private void ResetCompareOptions() => this.CompareOptions = defaultCompareOptions;
 
+        private Control targetControl = null;
+
+        // FIXED
         /// <summary>
         /// オートコンプリートの利用を行うコントロールを取得します。
         /// </summary>
-        [Browsable(false)]
-        public Control Target { get; private set; } = null;
+        [Browsable(true)]
+        [DefaultValue(null)]
+        public Control TargetControl
+        {
+            get => this.targetControl;
+            set
+            {
+                // インスタンス生成時に紐づけを行った場合は変更不可
+                if (isAssociatedControl)
+                {
+                    return;
+                }
+                this.targetControl = value;
+            }
+        }
 
+        // FIXED
         /// <summary>
         /// 実際に画面に表示するコンボボックスの取得を行います。
         /// </summary>
         [Browsable(false)]
-        public MetComboBox CandidateBox { get; } = new MetComboBox();
+        private AutoCompleteCandidateBox candidateBox { get; } = new AutoCompleteCandidateBox();
 
+        // FIXED
         /// <summary>
-        /// ValueMember プロパティで指定したメンバー プロパティの値を取得します。
+        /// 現在選択中の候補インデックスを取得します。
         /// </summary>
         [Browsable(false)]
-        public object SelectedValue
-        {
-            get
-            {
-                return this.innerCandidateBox.SelectedIndex == -1 ? this.CandidateBox.SelectedValue : this.innerCandidateBox.SelectedValue;
-            }
-        }
+        public int SelectedIndex { get; private set; } = -1;
 
+        // FIXED
         /// <summary>
-        /// 現在選択中のアイテムを取得します。
+        /// 現在選択中の ValueMember プロパティで指定したメンバー プロパティの値を取得します。
         /// </summary>
         [Browsable(false)]
-        public object SelectedItem
-        {
-            get
-            {
-                return this.innerCandidateBox.SelectedIndex == -1 ? this.CandidateBox.SelectedItem : this.innerCandidateBox.SelectedItem;
-            }
-        }
+        public object SelectedValue { get; private set; } = null;
 
+        // FIXED
         /// <summary>
-        /// DataSource プロパティを変更中かどうかを取得します。
+        /// 現在選択中の候補アイテムを取得します。
         /// </summary>
         [Browsable(false)]
-        public bool DataSourceChanging { get; private set; } = false;
+        public object SelectedItem { get; private set; } = null;
 
-        /// <summary>
-        /// オートコンプリートのボックスを閉じようとしているかどうかを取得します。
-        /// </summary>
-        [Browsable(false)]
-        public bool BoxClosing { get; private set; } = false;
-
-        /// <summary>
-        /// オートコンプリートのボックスを開こうとしているかどうかを取得します。
-        /// </summary>
-        [Browsable(false)]
-        public bool BoxOpening { get; private set; } = false;
-
+        // FIXED
         /// <summary>
         /// オートコンプリートのボックスが開かれているかどうかを取得します。
         /// </summary>
         [Browsable(false)]
-        public bool IsOpen { get => this.CandidateBox.DroppedDown; }
-
-        /// <summary>
-        /// オートコンプリートのボックスがアクティブフォーカスかどうかを取得します。
-        /// </summary>
-        [Browsable(false)]
-        public bool IsActive { get => this.Target.FindForm().ActiveControl == this.CandidateBox; }
-
-        #endregion
-
-        #region イベント
-
-        /// <summary>
-        /// 候補をマウスクリックで選択してコンボボックスが閉じられた時、正しく終了させ、
-        /// 利用コントロールをフォーカスする。
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CandidateBox_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BoxClosing = true;
-
-            // クリックによって選択した時、ドロップダウンが非表示されないので非表示とする
-            if (this.CandidateBox.Visible)
-            {
-                // ドロップダウンのVisible = false で次のコントロールへフォーカスが遷移してしまうため、自身に留まる
-                this.Target.Focus();
-                this.CandidateBox.Visible = false;
-            }
-
-            // ドロップダウンを表示している状態で候補が表示されており、
-            // クリックによって選択、またはテキスト値をリスト候補の文字列としてフォーカス遷移した時、
-            // リスト候補にない場合は、テキスト値をリストのテキストとする
-            if (this.CandidateBox.Items.Count >= 1 && this.CandidateBox.Text != this.Target.Text &&
-                !this.Contains(this.Target.Text))
-            {
-                this.CandidateBox.Text = this.Target.Text;
-            }
-
-            this.Target.Cursor = Cursors.IBeam;
-
-            this.BoxClosing = false;
-        }
+        public bool IsOpened { get => this.candidateBox.IsOpened; }
 
         #endregion
 
         #region メソッド
 
-        private int preItemCount = -1;
+        // FIXED
+        // 直前の候補件数
+        private int preCandidateItemCount = -1;
 
+        // FIXED
+        // 内部的に候補値が設定され、SelectedValueChanged イベントを走行させないためのフラグ
+        private bool innerSelectedChanging = false;
+
+        // FIXED
         /// <summary>
         /// オートコンプリートのボックスを開きます。
         /// </summary>
-        public void Open()
+        /// <param name="text">候補の検索に利用するテキスト。</param>
+        public void Open(string text)
         {
-            this.SetupControlProperties();
+            this.OnCandidateBoxOpening(this, EventArgs.Empty);
 
-            this.BoxOpening = true;
-
-            this.CandidateBox.Visible = true;
-
-            // プルダウンの表示件数初期化
-            this.preItemCount = -1;
+            // 最初に初期化しないとDataSourceの反映ができないため
+            this.candidateBox.InitializeControl(this.targetControl);
 
             // 既に入力されている値での絞り込み
-            this.Extract(this.Target.Text);
+            this.Extract(text);
 
             // 候補がある時だけ表示する
-            if (this.CandidateBox.Items.Count > 0)
+            if (this.GetCandidateCount() > 0)
             {
-                Cursor.Current = Cursors.Arrow;
-                this.CandidateBox.DroppedDown = true;
+                this.candidateBox.Open();
             }
-
-            // TextBoxのテキストに差し替える
-            this.CandidateBox.Text = this.Target.Text;
-            this.Target.Cursor = Cursors.Arrow;
-
-            this.BoxOpening = false;
         }
 
+        // FIXED
         /// <summary>
         /// オートコンプリートのボックスを閉じます。
         /// </summary>
         public void Close()
         {
-            this.CandidateBox.DroppedDown = false;
-            this.CandidateBox.Visible = false;
+            this.candidateBox.Close();
         }
 
+        // FIXED
         /// <summary>
-        /// 全候補の選択状態をリセットします。（候補から値を変更した時用）
+        /// 対象インデックスからデータソースのアイテムを取得する。
         /// </summary>
-        public void ResetAllItemSelected()
+        /// <param name="index">インデックス。</param>
+        /// <returns>アイテム。</returns>
+        private object GetItem(int index)
         {
-            // 全体候補の選択状態をリセットする
-            // なぜか2回実行することでSelectedIndex=-1になる
-            this.innerCandidateBox.SelectedIndex = -1;
-            this.innerCandidateBox.SelectedIndex = -1;
+            // DataSet または DataTable の場合
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
+            {
+                var sourceDt = (this.DataSource as DataTable) ?? (this.DataSource as DataSet)?.Tables[0];
+                if (sourceDt != null)
+                {
+                    return sourceDt.Rows[index];
+                }
+            }
+
+            // IList(List<T>)の場合の処理
+            var sourceList = this.DataSource as IList;
+            if (sourceList != null)
+            {
+                return sourceList[index];
+            }
+
+            return null;
         }
 
+        // TODO
         /// <summary>
-        /// 入力値から全候補に合致するアイテムを選択状態にします。
+        /// アイテムの値を取得する。
         /// </summary>
-        /// <param name="text">入力値。</param>
-        public void AssignItemForManualInput(string text)
+        /// <param name="item">アイテム。</param>
+        /// <returns>実際の値。</returns>
+        private object GetDisplay(object item)
         {
-            // 入力値が全体候補に存在するかどうか
-            var index = this.IndexOf(text.ToString());
+            // DataSet または DataTable の場合
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
+            {
+
+                var row = item as DataRow;
+                if (row != null)
+                {
+                    return row[this.DisplayMember];
+                }
+                return null;
+            }
+
+            // IListの場合の処理
+            var sourceList = this.DataSource as IList;
+            if (sourceList != null)
+            {
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.DisplayMember, true);
+                return descriptor.GetValue(item);
+            }
+            return null;
+        }
+
+        // FIXED
+        /// <summary>
+        /// アイテムの実際の値を取得する。
+        /// </summary>
+        /// <param name="item">アイテム。</param>
+        /// <returns>実際の値。</returns>
+        private object GetValue(object item)
+        {
+            // DataSet または DataTable の場合
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
+            {
+
+                var row = item as DataRow;
+                if (row != null)
+                {
+                    return row[this.ValueMember];
+                }
+                return null;
+            }
+
+            // IListの場合の処理
+            var sourceList = this.DataSource as IList;
+            if (sourceList != null)
+            {
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.ValueMember, true);
+                return descriptor.GetValue(item);
+            }
+            return null;
+        }
+
+        // FIXED
+        /// <summary>
+        /// <para>テキストからデータソースのアイテムを決定します。</para>
+        /// <para>主に、TargetControl のテキストが入力されたタイミングで利用します。</para>
+        /// </summary>
+        /// <param name="text">テキスト。</param>
+        public void DecideItemForText(string text)
+        {
+            this.SelectedItem = null;
+            this.SelectedValue = null;
+            this.SelectedIndex = -1;
+
+            // 入力値が全体候補に存在する場合は選択状態とする
+            var index = this.IndexOfAllItem(text.ToString());
             if (index > -1)
             {
-                // 候補の選択状態をリセットする
-                // なぜか2回実行することでSelectedIndex=-1になる
-                this.CandidateBox.SelectedIndex = -1;
-                this.CandidateBox.SelectedIndex = -1;
-
-                // 全体候補から選択状態にする
-                this.innerCandidateBox.SelectedIndex = index;
-            }
-            else
-            {
-                // 候補の選択状態をリセットする
-                // なぜか2回実行することでSelectedIndex=-1になる
-                this.CandidateBox.SelectedIndex = -1;
-                this.CandidateBox.SelectedIndex = -1;
-
-                // 全体候補の選択状態をリセットする
-                // なぜか2回実行することでSelectedIndex=-1になる
-                this.innerCandidateBox.SelectedIndex = -1;
-                this.innerCandidateBox.SelectedIndex = -1;
-
-                // 入力値はそのまま生かす
-                this.CandidateBox.Text = text;
+                this.SelectedItem = this.GetItem(index);
+                this.SelectedValue = this.GetValue(this.SelectedItem);
+                this.SelectedIndex = index;
+                var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, text, this.SelectedIndex);
+                this.OnCandidateSelected(this, cse);
             }
         }
 
-        /// <summary>
-        /// オートコンプリートを利用するコントロールを設定します。
-        /// </summary>
-        /// <param name="target">オートコンプリートを利用するコントロール。</param>
-        internal void SetTarget(Control target)
-        {
-            this.Target = target;
-
-            if (this.Target.Parent == null)
-            {
-                return;
-            }
-
-            this.SetupControlProperties();
-            this.Target.Parent.Controls.Add(this.CandidateBox);
-
-            // DataSource の Items プロパティを有効にするため、Target 内部のコントロールとして追加する
-            this.innerCandidateBox.Visible = false;
-            this.Target.Controls.Add(this.innerCandidateBox);
-        }
-
+        // FIXED
         /// <summary>
         /// 全体の入力候補より絞り込みを行います。
         /// </summary>
-        /// <param name="value">候補を絞り込む文字列。</param>
-        internal void Extract(string value)
+        /// <param name="text">候補を絞り込む文字列。</param>
+        public void Extract(string text)
         {
-            this.CandidateBox.DataSource = this.ExtractObject(value);
-            this.ResetSelectedIndex();
+            // データソースを再設定する前に選択済みだったアイテムを保持
+            var preItem = this.SelectedItem;
 
-            // 初回ドロップダウン表示以外で、前回の表示件数より多い場合はドロップダウンを開き直す
-            if (!this.BoxOpening && this.CandidateBox.Items.Count > this.preItemCount)
+            this.innerSelectedChanging = true;
+            this.candidateBox.DataSource = this.ExtractObject(text);
+            this.candidateBox.DisplayMember = this.DisplayMember;
+            this.candidateBox.ValueMember = this.ValueMember;
+            this.candidateBox.SelectedIndex = -1;
+            this.innerSelectedChanging = false;
+
+            // 選択済みのアイテムがない状態でドロップダウンを開いた時
+            // ドロップダウンが開いている状態で、選択済みのアイテムがなく、手入力によって選択済みアイテムが決定した時
+            if (preItem == null)
             {
-                this.Redraw();
+                var i = this.IndexOfCandidate(text);
+                if (i > -1)
+                {
+                    this.candidateBox.SelectedIndex = i;
+                }
+                this.ReOpenDropdown();
+                return;
             }
-            this.preItemCount = this.CandidateBox.Items.Count;
+
+            // 入力された値で設定値を決定する
+            this.DecideItem(preItem, text);
+
+            this.ReOpenDropdown();
         }
 
+        // TODO
+        // IListの実装を行う。
         /// <summary>
-        /// 現在の入力候補より、指定した値が存在するかどうかを取得します。
+        /// ドロップダウンからアイテムを決定する。
         /// </summary>
-        /// <param name="value">検索する文字列。</param>
-        internal bool Contains(string value)
+        /// <param name="preItem">直前の選択アイテムオブジェクト。</param>
+        /// <param name="text">テキスト。</param>
+        private void DecideItem(object preItem, string text)
         {
-            // DataSet または DataTable の場合
-            if (this.CandidateBox.DataSource is DataSet || this.CandidateBox.DataSource is DataTable)
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
             {
-                var sourceDt = (this.CandidateBox.DataSource as DataTable) ?? (this.CandidateBox.DataSource as DataSet).Tables[0];
-
-                // 対象列に入っている文字列が合致する行を候補とする
-                foreach (DataRow row in sourceDt.Rows)
-                {
-                    var displayText = row[DisplayMember].ToString();
-                    if (displayText == value)
-                    {
-                        return true;
-                    }
-                }
-                return false;
+                this.DecideItemForDataTable((DataRow)preItem, text);
+                return;
             }
 
-            // IList(List<T>)の場合の処理
-            if (this.CandidateBox.DataSource is IList)
+            if (this.DataSource is IList)
             {
-                var sourceList = this.CandidateBox.DataSource as IList;
-
-                // 対象プロパティに入っている文字列が合致する行を候補とする
-                foreach (var sourceItem in sourceList)
-                {
-                    PropertyDescriptor descriptor = TypeDescriptor.GetProperties(sourceItem).Find(innerCandidateBox.DisplayMember, true);
-                    var displayText = descriptor.GetValue(sourceItem).ToString();
-                    if (displayText == value)
-                    {
-                        return true;
-                    }
-                }
-                return false;
+                this.DecideItemForLIst(preItem, text);
+                return;
             }
-            return false;
         }
 
+        // FIXED
         /// <summary>
-        /// すべての入力候補より、指定した値のアイテムインデックスを取得します。
+        /// データソースが DataSet または DataTable だった時に、ドロップダウンからアイテムを決定する。
         /// </summary>
-        /// <param name="value">検索する文字列。</param>
+        /// <param name="preItem">直前の選択アイテムオブジェクト。</param>
+        /// <param name="text">テキスト。</param>
+        private void DecideItemForDataTable(DataRow preItem, string text)
+        {
+            // 値が確定していて、ドロップダウンを開いた時に、内部の SelectedItem を設定し直す
+            if (text == this.GetDisplay(preItem).ToString())
+            {
+                var source = (DataView)this.candidateBox.DataSource;
+                foreach (DataRowView row in source)
+                {
+                    if (row.Row == preItem)
+                    {
+                        this.innerSelectedChanging = true;
+                        this.candidateBox.SelectedItem = row;
+                        this.innerSelectedChanging = false;
+                        break;
+                    }
+                }
+                return;
+            }
+
+            // ドロップダウンが表示されている状態で、削除などにより、確定した値から確定した値に変更された時
+            var index = this.IndexOfCandidate(text);
+            if (index > -1)
+            {
+                this.candidateBox.SelectedIndex = index;
+                return;
+            }
+
+            // ドロップダウンが表示されている状態で、削除などにより、確定した値から未確定の値に変更された時
+            this.SelectedItem = null;
+            this.SelectedValue = null;
+            this.SelectedIndex = -1;
+        }
+
+        // TODO
+        /// <summary>
+        /// データソースが IList だった時に、ドロップダウンからアイテムを決定する。
+        /// </summary>
+        /// <param name="preItem">直前の選択アイテムオブジェクト。</param>
+        /// <param name="text">テキスト。</param>
+        private void DecideItemForLIst(object preItem, string text)
+        {
+            // 値が確定していて、ドロップダウンを開いた時に、内部の SelectedItem を設定し直す
+            if (text == this.GetDisplay(preItem).ToString())
+            {
+                var source = (IList)this.candidateBox.DataSource;
+                foreach (var item in source)
+                {
+                    if (item == preItem)
+                    {
+                        this.innerSelectedChanging = true;
+                        this.candidateBox.SelectedItem = item;
+                        this.innerSelectedChanging = false;
+                        break;
+                    }
+                }
+                return;
+            }
+
+            // ドロップダウンが表示されている状態で、削除などにより、確定した値から確定した値に変更された時
+            var index = this.IndexOfCandidate(text);
+            if (index > -1)
+            {
+                this.candidateBox.SelectedIndex = index;
+                return;
+            }
+
+            // ドロップダウンが表示されている状態で、削除などにより、確定した値から未確定の値に変更された時
+            this.SelectedItem = null;
+            this.SelectedValue = null;
+            this.SelectedIndex = -1;
+        }
+
+        // FIXED
+        /// <summary>
+        /// ドロップダウンを開き直す必要がある場合に開き直す。
+        /// </summary>
+        private void ReOpenDropdown()
+        {
+            // ドロップダウンの件数が、直前のドロップダウンの件数より多く、ドロップダウンが開いていた時に開き直す
+            var candidateItemCount = this.GetCandidateCount();
+            if (this.candidateBox.IsOpened && candidateItemCount > 0 && candidateItemCount > this.preCandidateItemCount)
+            {
+                this.candidateBox.ReOpen();
+            }
+            this.preCandidateItemCount = candidateItemCount;
+        }
+
+        // FIXED
+        /// <summary>
+        /// 現在のドロップダウン候補数を取得します。
+        /// </summary>
+        /// <returns>ドロップダウン候補数。</returns>
+        public int GetCandidateCount()
+        {
+            if (this.candidateBox.DataSource is IList)
+            {
+                return ((IList)this.candidateBox.DataSource).Count;
+            }
+            return 0;
+        }
+
+        // FIXED
+        /// <summary>
+        /// データソースからテキストを検索し、アイテムインデックスを取得する。
+        /// </summary>
+        /// <param name="text">検索する文字列。</param>
         /// <returns>アイテムインデックス。</returns>
-        internal int IndexOf(string value)
+        private int IndexOfAllItem(string text)
         {
             // DataSet または DataTable の場合
-            if (this.innerCandidateBox.DataSource is DataSet || this.innerCandidateBox.DataSource is DataTable)
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
             {
-                var sourceDt = (this.innerCandidateBox.DataSource as DataTable) ?? (this.innerCandidateBox.DataSource as DataSet).Tables[0];
-
-                // 対象列に入っている文字列が合致する行を候補とする
-                var i = 0;
-                foreach (DataRow row in sourceDt.Rows)
+                var sourceDt = (this.DataSource as DataTable) ?? (this.DataSource as DataSet)?.Tables[0];
+                if (sourceDt != null)
                 {
-                    var displayText = row[DisplayMember].ToString();
-                    if (displayText == value)
-                    {
-                        return i;
-                    }
-                    i++;
+                    return this.IndexOfItemForDataTable(sourceDt, text);
                 }
-                return -1;
             }
 
-            // IList(List<T>)の場合の処理
-            if (this.innerCandidateBox.DataSource is IList)
+            // IList の場合の処理
+            var sourceList = this.DataSource as IList;
+            if (sourceList != null)
             {
-                var sourceList = this.innerCandidateBox.DataSource as IList;
+                return this.IndexOfItemForIList(sourceList, text);
+            }
 
-                // 対象プロパティに入っている文字列が合致する行を候補とする
-                var i = 0;
-                foreach (var sourceItem in sourceList)
+            return -1;
+        }
+
+        // FIXED
+        /// <summary>
+        /// 現在の候補からテキストを検索し、アイテムインデックスを取得する。
+        /// </summary>
+        /// <param name="text">検索するテキスト。</param>
+        /// <returns>現在の入力候補アイテムのインデックス。</returns>
+        private int IndexOfCandidate(string text)
+        {
+            // DataView も IList もいける
+            var sourceList = this.candidateBox.DataSource as IList;
+            if (sourceList != null)
+            {
+                return this.IndexOfItemForIList(sourceList, text);
+            }
+
+            return -1;
+        }
+
+        // FIXED
+        /// <summary>
+        /// IList オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
+        /// </summary>
+        /// <param name="list">IList オブジェクト。</param>
+        /// <param name="text">検索するテキスト。</param>
+        /// <returns>アイテムのインデックス。</returns>
+        private int IndexOfItemForIList(IList list, string text)
+        {
+            // 対象プロパティに入っている文字列が合致する行を候補とする
+            var i = 0;
+            foreach (var item in list)
+            {
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.DisplayMember, true);
+                var displayText = descriptor.GetValue(item).ToString();
+                if (displayText == text)
                 {
-                    PropertyDescriptor descriptor = TypeDescriptor.GetProperties(sourceItem).Find(DisplayMember, true);
-                    var displayText = descriptor.GetValue(sourceItem).ToString();
-                    if (displayText == value)
-                    {
-                        return i;
-                    }
-                    i++;
+                    return i;
                 }
-                return -1;
+                i++;
             }
             return -1;
         }
 
+        // FIXED
         /// <summary>
-        /// コンボボックスのプロパティを設定する。
+        /// DataTable オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
         /// </summary>
-        private void SetupControlProperties()
+        /// <param name="dt">DataTable オブジェクト。</param>
+        /// <param name="text">検索するテキスト。</param>
+        /// <returns>アイテムのインデックス。</returns>
+        private int IndexOfItemForDataTable(DataTable dt, string text)
         {
-            this.CandidateBox.Name = Guid.NewGuid().ToString("N").Substring(0, 10);
-            this.CandidateBox.BaseBackColor = this.Target.BackColor;
-            this.CandidateBox.BaseForeColor = this.Target.ForeColor;
-            this.CandidateBox.FocusBackColor = this.Target.BackColor;
-            this.CandidateBox.FocusForeColor = this.Target.ForeColor;
-            this.CandidateBox.FlatStyle = FlatStyle.Flat;
-            this.CandidateBox.Font = this.Target.Font;
-            this.CandidateBox.Location = this.Target.Location;
-            this.CandidateBox.Size = Target.Size;
-
-            // コンボボックス自体の高さを、テキストと一緒にする
-            // WParam: -1 = コンボボックス自体の高さ
-            // Height: TextBoxの高さ - 6 = TextBoxより+6大きい数値が設定されるため
-            var height = this.Target.Height - 6;
-            User32.SendMessage(this.CandidateBox.Handle, ComboBoxCommand.CB_SETITEMHEIGHT, -1, height);
-
-            this.CandidateBox.Visible = false;
+            // 対象プロパティに入っている文字列が合致する行を候補とする
+            var i = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                var displayText = this.GetDisplay(row).ToString();
+                if (displayText == text)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
         }
 
+        // FIXED
         /// <summary>
-        /// オートコンプリートのボックス内容を再描画する。
+        /// 候補の絞り込みを行う。
         /// </summary>
-        private void Redraw()
+        /// <param name="text">テキスト。</param>
+        /// <returns>絞り込みデータオブジェクト。</returns>
+        private object ExtractObject(string text)
         {
-            this.Close();
-            this.BoxOpening = true;
-            this.CandidateBox.Visible = true;
-            Cursor.Current = Cursors.Arrow;
-            this.CandidateBox.DroppedDown = true;
-            this.Target.Cursor = Cursors.Arrow;
-            this.BoxOpening = false;
-        }
-
-        /// <summary>
-        /// ボックス候補の絞り込みを行う。
-        /// </summary>
-        /// <param name="value">絞り込み文字列。</param>
-        /// <returns>絞り込みデータ。</returns>
-        private object ExtractObject(string value)
-        {
-            var compareOptions = this.GetExecuteCompareOptions();
+            var compareOptions = this.GetCompareOptions();
 
             var dataSource = this.DataSource;
 
@@ -509,34 +797,35 @@ namespace Metroit.Windows.Forms
                 if (bindingFieldProperty != null)
                 {
                     dataSource = bindingFieldProperty.GetValue(dataSourceBinding.DataSource, null);
-                    CandidateBox.DisplayMember = innerCandidateBox.DisplayMember;
-                    CandidateBox.ValueMember = innerCandidateBox.ValueMember;
+                    candidateBox.DisplayMember = this.DisplayMember;
+                    candidateBox.ValueMember = this.ValueMember;
                 }
             }
 
             if (dataSource is DataSet)
             {
-                return this.ExtractDataSet(dataSource, value, compareOptions);
+                return this.ExtractDataSet((DataSet)dataSource, text, compareOptions);
             }
 
             if (dataSource is DataTable)
             {
-                return this.ExtractDataTable(dataSource, value, compareOptions);
+                return this.ExtractDataTable((DataTable)dataSource, text, compareOptions);
             }
 
             if (dataSource is IList)
             {
-                return this.ExtractList(dataSource, value, compareOptions);
+                return this.ExtractList((IList)dataSource, text, compareOptions);
             }
 
             return null;
         }
 
+        // FIXED
         /// <summary>
-        /// 判断実行を行うオプションを取得する。
+        /// 候補判断を行うオプションを取得する。
         /// </summary>
         /// <returns>CompareOptions オブジェクト。</returns>
-        private CompareOptions GetExecuteCompareOptions()
+        private CompareOptions GetCompareOptions()
         {
             var executeCompareOptions = System.Globalization.CompareOptions.None;
             foreach (var compareOption in this.CompareOptions)
@@ -546,97 +835,79 @@ namespace Metroit.Windows.Forms
             return executeCompareOptions;
         }
 
+        // FIXED
         /// <summary>
         /// DataSet オブジェクトのリストデータを取得する。
         /// </summary>
         /// <param name="dataSource">処理対象のデータソース。</param>
-        /// <param name="value">絞り込み文字列。</param>
-        /// <param name="compareOptions">絞り込み条件。</param>
-        /// <returns>DataSet オブジェクト。</returns>
-        private DataSet ExtractDataSet(object dataSource, string value, CompareOptions compareOptions)
+        /// <param name="text">テキスト。</param>
+        /// <param name="compareOptions">候補判断。</param>
+        /// <returns>DataView オブジェクト。</returns>
+        private DataView ExtractDataSet(DataSet dataSource, string text, CompareOptions compareOptions)
         {
-            var sourceDt = (dataSource as DataSet).Tables[0];
-            var destDt = sourceDt.Clone();
-
-            // 対象列に入っている文字列が合致する行を候補とする
-            foreach (DataRow row in sourceDt.Rows)
-            {
-                var displayText = row[DisplayMember].ToString();
-                if (!IsMatch(displayText, value, compareOptions))
-                {
-                    continue;
-                }
-                destDt.ImportRow(row);
-            }
-
-            var destDs = new DataSet();
-            destDs.Tables.Add(destDt);
-            return destDs;
+            var dt = dataSource.Tables[0];
+            return this.ExtractDataTable(dt, text, compareOptions);
         }
 
+        // FIXED
         /// <summary>
         /// DataTable オブジェクトのリストデータを取得する。
         /// </summary>
         /// <param name="dataSource">処理対象のデータソース。</param>
-        /// <param name="value">絞り込み文字列。</param>
-        /// <param name="compareOptions">絞り込み条件。</param>
-        /// <returns>DataTable オブジェクト。</returns>
-        private DataTable ExtractDataTable(object dataSource, string value, CompareOptions compareOptions)
+        /// <param name="text">テキスト。</param>
+        /// <param name="compareOptions">候補判断。</param>
+        /// <returns>DataView オブジェクト。</returns>
+        private DataView ExtractDataTable(DataTable dataSource, string text, CompareOptions compareOptions)
         {
-            var sourceDt = (dataSource as DataTable);
-            var destDt = sourceDt.Clone();
+            var dt = dataSource.Clone();
 
-            // 対象列に入っている文字列が合致する行を候補とする
-            foreach (DataRow row in sourceDt.Rows)
+            foreach (DataRow row in dataSource.Rows)
             {
-                var displayText = row[DisplayMember].ToString();
-                if (!IsMatch(displayText, value, compareOptions))
+                if (IsMatch(this.GetDisplay(row).ToString(), text, compareOptions))
                 {
-                    continue;
+                    dt.ImportRow(row);
                 }
-                destDt.ImportRow(row);
             }
 
-            return destDt;
+            var dv = new DataView(dt);
+            return dv;
         }
 
+        // FIXED
         /// <summary>
         /// IList オブジェクトのリストデータを取得する。
         /// </summary>
         /// <param name="dataSource">処理対象のデータソース。</param>
-        /// <param name="value">絞り込み文字列。</param>
-        /// <param name="compareOptions">絞り込み条件。</param>
+        /// <param name="text">テキスト。</param>
+        /// <param name="compareOptions">候補判断。</param>
         /// <returns>IList オブジェクト。</returns>
-        private IList ExtractList(object dataSource, string value, CompareOptions compareOptions)
+        private IList ExtractList(IList dataSource, string text, CompareOptions compareOptions)
         {
-            var sourceList = dataSource as IList;
-            var destList = Activator.CreateInstance(dataSource.GetType()) as IList;
+            var result = new List<object>();
 
-            // 対象プロパティに入っている文字列が合致する行を候補とする
-            foreach (var sourceItem in sourceList)
+            foreach (var value in dataSource)
             {
-                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(sourceItem).Find(innerCandidateBox.DisplayMember, true);
-                var displayText = descriptor.GetValue(sourceItem).ToString();
-                if (!IsMatch(displayText, value, compareOptions))
+                var descriptor = TypeDescriptor.GetProperties(value).Find(this.DisplayMember, true);
+                if (this.IsMatch(this.GetDisplay(value).ToString(), text, compareOptions))
                 {
-                    continue;
+                    result.Add(value);
                 }
-                destList.Add(sourceItem);
             }
-            return destList;
+            return result;
         }
 
+        // FIXED
         /// <summary>
         /// 対象のテキストが候補対象となるかを確認する。
         /// </summary>
-        /// <param name="sourceText">候補文字列。</param>
-        /// <param name="destText">検索文字列。</param>
+        /// <param name="candidateText">候補文字列。</param>
+        /// <param name="searchText">検索文字列。</param>
         /// <param name="compareOptions">CompareOptions オブジェクト。</param>
         /// <returns>true:候補対象, false:候補対象でない。</returns>
-        private bool IsMatch(string sourceText, string destText, CompareOptions compareOptions)
+        private bool IsMatch(string candidateText, string searchText, CompareOptions compareOptions)
         {
             // 検索文字列が空の場合は候補とする
-            if (string.IsNullOrEmpty(destText))
+            if (string.IsNullOrEmpty(searchText))
             {
                 return true;
             }
@@ -645,42 +916,31 @@ namespace Metroit.Windows.Forms
             switch (MatchPattern)
             {
                 case MatchPatternType.StartsWith:
-                    if (ci.IndexOf(sourceText, destText, compareOptions) != 0)
+                    if (ci.IndexOf(candidateText, searchText, compareOptions) != 0)
                     {
                         return false;
                     }
                     break;
                 case MatchPatternType.EndsWith:
-                    if (ci.LastIndexOf(sourceText, destText, compareOptions) != sourceText.Length - destText.Length)
+                    if (ci.LastIndexOf(candidateText, searchText, compareOptions) != candidateText.Length - searchText.Length)
                     {
                         return false;
                     }
                     break;
                 case MatchPatternType.Partial:
-                    if (ci.IndexOf(sourceText, destText, compareOptions) < 0)
+                    if (ci.IndexOf(candidateText, searchText, compareOptions) < 0)
                     {
                         return false;
                     }
                     break;
                 case MatchPatternType.Equal:
-                    if (ci.IndexOf(sourceText, destText, compareOptions) < 0 || sourceText.Length != destText.Length)
+                    if (ci.IndexOf(candidateText, searchText, compareOptions) < 0 || candidateText.Length != searchText.Length)
                     {
                         return false;
                     }
                     break;
             }
             return true;
-        }
-
-        /// <summary>
-        /// リストのテキスト値とターゲットのテキスト値が異なる時、リストの選択状態を初期化する。
-        /// </summary>
-        private void ResetSelectedIndex()
-        {
-            if (this.CandidateBox.Text != this.Target.Text)
-            {
-                this.CandidateBox.SelectedIndex = -1;
-            }
         }
 
         #endregion
@@ -690,12 +950,12 @@ namespace Metroit.Windows.Forms
         private BindingContext bindingContext;
         private ControlBindingsCollection dataBindings;
 
-        /// <summary>
-        /// 使わない。
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Disposed;
+        ///// <summary>
+        ///// 使わない。
+        ///// </summary>
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public event EventHandler Disposed;
 
         /// <summary>
         /// 使わない。
@@ -708,7 +968,9 @@ namespace Metroit.Windows.Forms
             get
             {
                 if (bindingContext == null)
+                {
                     bindingContext = new BindingContext();
+                }
                 return bindingContext;
             }
             set
@@ -728,27 +990,29 @@ namespace Metroit.Windows.Forms
             get
             {
                 if (dataBindings == null)
+                {
                     dataBindings = new ControlBindingsCollection(this);
+                }
                 return dataBindings;
             }
         }
 
-        /// <summary>
-        /// 使わない。
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ISite Site { get; set; }
+        ///// <summary>
+        ///// 使わない。
+        ///// </summary>
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Advanced)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        //public ISite Site { get; set; }
 
-        /// <summary>
-        /// 使わない。
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            this.Disposed?.Invoke(this, EventArgs.Empty);
-        }
+        ///// <summary>
+        ///// 使わない。
+        ///// </summary>
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public void Dispose()
+        //{
+        //    this.Disposed?.Invoke(this, EventArgs.Empty);
+        //}
 
         #endregion
     }

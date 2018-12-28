@@ -405,10 +405,10 @@
   <data name="MetTextBoxMultilineSelectAll.ja" xml:space="preserve">
     <value>複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。</value>
   </data>
-  <data name="MetTextBoxTextChangeValidationEventHandler" xml:space="preserve">
+  <data name="MetTextBoxTextChangeValidation" xml:space="preserve">
     <value>occurs when the value of the Text property is added or inserted. You can verify the value and reject the change.</value>
   </data>
-  <data name="MetTextBoxTextChangeValidationEventHandler.ja" xml:space="preserve">
+  <data name="MetTextBoxTextChangeValidation.ja" xml:space="preserve">
     <value>Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
   </data>
   <data name="NumericPattern" xml:space="preserve">
@@ -543,18 +543,6 @@
   <data name="MetFormControlRollbacking.ja" xml:space="preserve">
     <value>ESCキーによってロールバックを行う時に発生するイベントです。</value>
   </data>
-  <data name="MetTextBoxCompleteBoxOpened" xml:space="preserve">
-    <value>This event occurs when opened a candidate box.</value>
-  </data>
-  <data name="MetTextBoxCompleteBoxOpened.ja" xml:space="preserve">
-    <value>候補ボックスを開いたときに発生するイベントです。</value>
-  </data>
-  <data name="MetTextBoxCompleteBoxOpening" xml:space="preserve">
-    <value>This event occurs when opening a candidate box.</value>
-  </data>
-  <data name="MetTextBoxCompleteBoxOpening.ja" xml:space="preserve">
-    <value>候補ボックスを開くときに発生するイベントです。</value>
-  </data>
   <data name="MetTextBoxWatermark" xml:space="preserve">
     <value>Get or set watermark.</value>
   </data>
@@ -572,5 +560,29 @@
   </data>
   <data name="AutoCompleteBoxDataBindings.ja" xml:space="preserve">
     <value>コントロールのデータバインドです。DataSource をバインドすることができます。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxClosed" xml:space="preserve">
+    <value>This event occurs when the dropdown closes.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxClosed.ja" xml:space="preserve">
+    <value>ドロップダウンが閉じた時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpened" xml:space="preserve">
+    <value>This event occurs when a dropdown is opened.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpened.ja" xml:space="preserve">
+    <value>ドロップダウンが開いた時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateSelected" xml:space="preserve">
+    <value>This is an event that occurs when candidate values are selected.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateSelected.ja" xml:space="preserve">
+    <value>候補の値が選択された時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpening" xml:space="preserve">
+    <value>This event occurs before the dropdown opens.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpening.ja" xml:space="preserve">
+    <value>ドロップダウンが開く前に発生するイベントです。</value>
   </data>
 </root>

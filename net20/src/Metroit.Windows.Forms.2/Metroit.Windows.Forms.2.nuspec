@@ -13,7 +13,10 @@
     <releaseNotes>
       modify:
         MetTextBox
-          Changed DataSource so that it can be specified from DataBindings.
+          The operation of the candidate box was optimized.
+      add:
+        AutoCompleteBox
+          The components of the candidate box.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

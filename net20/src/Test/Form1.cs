@@ -170,19 +170,32 @@ namespace Test
             row["Column3"] = "ccc column3";
             dt.Rows.Add(row);
 
-            metTextBox1.CustomAutoCompleteBox.DataSource = dt;
+            var ds = new DataSet();
+            ds.Tables.Add(dt);
+
+            //metTextBox1.CustomAutoCompleteBox.DataSource = dt;
+            metTextBox1.CustomAutoCompleteBox.DataSource = ds;
+            autoCompleteBox1.DataSource = ds;
+
+
+            metTextBox1.CustomAutoCompleteBox.CandidateSelected += CustomAutoCompleteBox_CandidateSelected;
+
+
+
+            var items = new List<ListItem>()
+            {
+                new ListItem() { Value1 = "aaa1", Value2 = "aaa2" },
+                new ListItem() { Value1 = "bbb1", Value2 = "bbb2" },
+                new ListItem() { Value1 = "ccc1", Value2 = "ccc2" }
+            };
+            metTextBox10.CustomAutoCompleteBox.DataSource = items;
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Console.WriteLine(metTextBox1.CustomAutoCompleteBox.SelectedValue.ToString());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            metTextBox1.CustomAutoCompleteBox.DataSource = "test";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -192,13 +205,12 @@ namespace Test
 
         private void button3_Click(object sender, EventArgs e)
         {
-            metTextBox1.Width -= 10;
-            //metTextBox2.Width -= 10;
+            metTextBox1.Text = "bbb column2";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.metTextBox1.ReadOnlyLabel = !this.metTextBox1.ReadOnlyLabel;
+            this.metTextBox1.CustomAutoCompleteBox.DisplayMember = "Column1";
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -247,16 +259,6 @@ namespace Test
             }
         }
 
-        private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
-        {
-            //Console.WriteLine("kita");
-            //if (e.After == "かなac")
-            if (e.After == "かなa")
-            {
-                e.Cancel = true;
-            }
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine("kita:" + textBox1.Text);
@@ -295,7 +297,10 @@ namespace Test
 
         private void button9_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
+            //MessageBox.Show(metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
+            Console.WriteLine("SelectedItem：" + metTextBox1.CustomAutoCompleteBox.SelectedItem);
+            Console.WriteLine("SelectedValue：" + metTextBox1.CustomAutoCompleteBox.SelectedValue);
+            Console.WriteLine("SelectedIndex：" + metTextBox1.CustomAutoCompleteBox.SelectedIndex);
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -315,14 +320,160 @@ namespace Test
 
         private void metTextBox1_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("TextChanged");
-            Console.WriteLine("value:" + metTextBox1.CustomAutoCompleteBox.SelectedValue?.ToString());
-            Console.WriteLine("item:" + metTextBox1.CustomAutoCompleteBox.SelectedItem?.ToString());
-            var row = metTextBox1.CustomAutoCompleteBox.SelectedItem as DataRowView;
-            if (row != null)
+            //Console.WriteLine("TextChanged");
+
+            ////Console.WriteLine("index:" + metTextBox1.CustomAutoCompleteBox.SelectedIndex);
+
+            //var value = metTextBox1.CustomAutoCompleteBox.SelectedValue;
+            //if (value != null)
+            //{
+            //    Console.WriteLine("value:" + value.ToString());
+            //}
+            //else
+            //{
+            //    Console.WriteLine("value:null");
+            //}
+
+            var item = metTextBox1.CustomAutoCompleteBox.SelectedItem;
+            if (item != null)
             {
-                Console.WriteLine(row["Column3"].ToString());
+                //Console.WriteLine("item:" + item.ToString());
+                Console.WriteLine("TextChanged index:" + metTextBox1.CustomAutoCompleteBox.SelectedIndex + ", item details:" + ((DataRow)item)["Column3"].ToString());
             }
+            else
+            {
+                Console.WriteLine("TextChanged index:" + metTextBox1.CustomAutoCompleteBox.SelectedIndex + ", item:null");
+            }
+
+            //var row = metTextBox1.CustomAutoCompleteBox.SelectedItem as DataRowView;
+            //if (row != null)
+            //{
+            //    Console.WriteLine(row["Column3"].ToString());
+            //}
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            //metTextBox1.CustomAutoCompleteBox.Open(metTextBox1.Text);
+            metTextBox1.CustomAutoCompleteBox.Open("bbb");
+        }
+
+        private void metTextBox1_Validating(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine("TextBox Validating");
+        }
+
+        private void metTextBox1_Validated(object sender, EventArgs e)
+        {
+            Console.WriteLine("TextBox Validated");
+        }
+
+        private void CustomAutoCompleteBox_CandidateSelected(object sender, CandidateSelectedEventArgs item)
+        {
+            Console.WriteLine("CustomAutoCompleteBox_CandidateSelected");
+        }
+
+        private void metTextBox1_TextChangeValidation(object sender, Metroit.Windows.Forms.TextChangeValidationEventArgs e)
+        {
+            //Console.WriteLine("TextBox TextChangeValidation");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            var dt = new System.Data.DataTable();
+            dt.Columns.Add("Column1");
+            dt.Columns.Add("Column2");
+            dt.Columns.Add("Column3");
+
+            var row = dt.NewRow();
+            row["Column1"] = "aaa column1";
+            row["Column2"] = "aaa column2";
+            row["Column3"] = "aaa column3";
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Column1"] = "文字かなAB column1";
+            row["Column2"] = "文字かなAB column2";
+            row["Column3"] = "文字かなAB column3";
+            dt.Rows.Add(row);
+            row = dt.NewRow();
+            row["Column1"] = "文字かなAB column1B";
+            row["Column2"] = "文字かなAB column2B";
+            row["Column3"] = "文字かなAB column3B";
+            dt.Rows.Add(row);
+            row = dt.NewRow();
+            row["Column1"] = "ccc column1";
+            row["Column2"] = "ccc column2";
+            row["Column3"] = "ccc column3";
+            dt.Rows.Add(row);
+
+            metTextBox1.CustomAutoCompleteBox.DataSource = dt;
+
+            Console.WriteLine(metTextBox1.CustomAutoCompleteBox.SelectedIndex);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            //metTextBox1.CustomAutoCompleteBox.SelectedIndex = 5;
+        }
+
+        private void metTextBox9_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("TextChanged");
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("SelectedItem：" + metTextBox10.CustomAutoCompleteBox.SelectedItem);
+            Console.WriteLine("SelectedValue：" + metTextBox10.CustomAutoCompleteBox.SelectedValue);
+            Console.WriteLine("SelectedIndex：" + metTextBox10.CustomAutoCompleteBox.SelectedIndex);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            metTextBox10.Text = "ccc1";
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            comboBox1.DataSource = "test";
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            autoCompleteBox1.Open(textBox3.Text);
+        }
+
+        private bool candidateSelectedValueChanging = false;
+        private void autoCompleteBox1_CandidateSelected(object sender, CandidateSelectedEventArgs e)
+        {
+            // 選択された候補の値をテキストに表示する
+            candidateSelectedValueChanging = true;
+            textBox3.Text = e.SelectedText;
+            candidateSelectedValueChanging = false;
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (autoCompleteBox1.IsOpened && !candidateSelectedValueChanging)
+            {
+                autoCompleteBox1.Extract(textBox3.Text);
+
+                // 候補が0件の時はドロップダウンを閉じる
+                // 候補が1件のみで、その候補が選択状態になった時はドロップダウンを閉じる
+                if ((this.autoCompleteBox1.GetCandidateCount() == 0) ||
+                    (this.autoCompleteBox1.GetCandidateCount() == 1 && this.autoCompleteBox1.SelectedItem != null))
+                {
+                    this.autoCompleteBox1.Close();
+                }
+            }
+
+
+        }
+
+        private void metTextBox1_CandidateBoxOpening(object sender, EventArgs e)
+        {
+            Console.WriteLine("metTextBox1_CandidateBoxOpening");
         }
     }
 }

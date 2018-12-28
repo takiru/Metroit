@@ -10,7 +10,7 @@ namespace Metroit.Windows.Forms.Extensions
     /// </summary>
     public static class ControlExtensions
     {
-        private static string processName = Process.GetCurrentProcess().ProcessName.ToUpper();
+        private static readonly string processName = Process.GetCurrentProcess().ProcessName.ToUpper();
 
         /// <summary>
         /// <para>Control が現在デザイン モードかどうかを示す値を取得します。</para>
