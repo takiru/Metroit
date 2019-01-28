@@ -465,6 +465,11 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void switchTextBox()
         {
+            if (this.Parent == null)
+            {
+                return;
+            }
+
             // 非表示
             if (!this.Visible)
             {
@@ -623,6 +628,11 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void switchLabel()
         {
+            if (this.Parent == null)
+            {
+                return;
+            }
+
             // 非表示
             if (!this.Visible)
             {

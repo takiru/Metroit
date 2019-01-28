@@ -11,12 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      modify:
-        MetTextBox
-          The operation of the candidate box was optimized.
-      add:
-        AutoCompleteBox
-          The components of the candidate box.
+      bugfix:
+        MetDateTimePicker
+          A control creation error occurs when trying to display a control with ReadOnly = true, AcceptNull = true, Value = null or ReadOnlyLabel = true, AcceptNull = true, Value = null.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
