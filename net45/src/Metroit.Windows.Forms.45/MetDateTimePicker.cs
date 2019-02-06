@@ -63,16 +63,8 @@ namespace Metroit.Windows.Forms
                 }
 
                 // UIから操作した時、ミリ秒は取り除かれるのが通常仕様
-                var recoverDate = new DateTime(base.Value.Year, base.Value.Month, base.Value.Day, base.Value.Hour, base.Value.Minute, base.Value.Second, 0);
-                if (base.Value == recoverDate)
-                {
-                    this.Value = recoverDate;
-                    this.OnValueChanged(EventArgs.Empty);
-                }
-                else
-                {
-                    this.Value = recoverDate;
-                }
+                var restoreValue = new DateTime(base.Value.Year, base.Value.Month, base.Value.Day, base.Value.Hour, base.Value.Minute, base.Value.Second, 0);
+                this.Value = restoreValue;
             }
         }
 
@@ -199,6 +191,10 @@ namespace Metroit.Windows.Forms
                     {
                         return;
                     }
+                    if (!this.controlCreated)
+                    {
+                        return;
+                    }
                     switchControl();
                     this.OnValueChanged(EventArgs.Empty);
                     return;
@@ -212,15 +208,19 @@ namespace Metroit.Windows.Forms
                     {
                         return;
                     }
-                    switchControl();
                     if (base.Value == value.Value)
                     {
-                        this.OnValueChanged(EventArgs.Empty);
+                        // Value と Text の内容が合致しないため、一度 Value を変更させて整合させる
+                        this.innerValueChanged = true;
+                        base.Value = DateTime.Now;
+                        this.innerValueChanged = false;
+                        base.Value = value.Value;
                     }
                     else
                     {
                         base.Value = value.Value;
                     }
+                    switchControl();
                     return;
                 }
 
@@ -283,7 +283,7 @@ namespace Metroit.Windows.Forms
         [DefaultValue(DateTimePickerFormat.Long)]
         public new DateTimePickerFormat Format
         {
-            get => base.Format;
+            get => this.innerFormat;
             set
             {
                 this.innerFormat = value;
@@ -293,7 +293,13 @@ namespace Metroit.Windows.Forms
                 if (this.isNull)
                 {
                     this.switchFormat(false);
-                    OnValueChanged(EventArgs.Empty);
+
+                    // Value と Text の内容が合致しないため、一度 Value を変更させて整合させる
+                    this.innerValueChanged = true;
+                    var restoreValue = base.Value;
+                    base.Value = DateTime.Now;
+                    this.innerValueChanged = false;
+                    base.Value = restoreValue;
                 }
 
                 if (!this.controlCreated)
@@ -310,7 +316,7 @@ namespace Metroit.Windows.Forms
         [DefaultValue("")]
         public new string CustomFormat
         {
-            get => base.CustomFormat;
+            get => this.innerCustomFormat;
             set
             {
                 this.innerCustomFormat = value;
@@ -953,7 +959,7 @@ namespace Metroit.Windows.Forms
             }
 
             // テキストの代替表示を行っている場合はテキストの表示色も変更
-            if (this.controlCreated && this.ReadOnly && this.Visible)
+            if (this.controlCreated && this.ReadOnly && this.Visible && this.textBox != null)
             {
                 this.textBox.BackColor = this.FocusBackColor;
                 this.textBox.ForeColor = this.FocusForeColor;
@@ -983,12 +989,12 @@ namespace Metroit.Windows.Forms
             }
 
             // テキスト・ラベルの代替表示を行っている場合はテキスト・ラベルの表示色も変更
-            if (this.controlCreated && this.ReadOnly && this.Visible)
+            if (this.controlCreated && this.ReadOnly && this.Visible && this.textBox != null)
             {
                 this.textBox.BackColor = this.BaseBackColor;
                 this.textBox.ForeColor = this.BaseForeColor;
             }
-            if (this.controlCreated && this.ReadOnlyLabel && this.Visible)
+            if (this.controlCreated && this.ReadOnlyLabel && this.Visible && this.label != null)
             {
                 this.label.BackColor = this.BaseBackColor;
                 this.label.ForeColor = this.BaseForeColor;
@@ -1054,6 +1060,7 @@ namespace Metroit.Windows.Forms
         #region メソッド
 
         private bool controlCreated = false;
+        private bool innerValueChanged = false;
 
         /// <summary>
         /// InitializeComponent()でコントロールの生成が完了していないことを通知します。
@@ -1094,7 +1101,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         protected override void OnCreateControl()
         {
-            // Formatプロパティを変更するとOnCreateControlが走行する。
+            // null変換、null復帰のためにFormatプロパティを変更するとOnCreateControlが走行する。
             // 内部的にFormatプロパティが変更された時は何も処理させない。
             if (this.formatSwitching)
             {
@@ -1107,9 +1114,8 @@ namespace Metroit.Windows.Forms
             {
                 return;
             }
-
-            this.controlCreated = true;
             switchControl();
+            this.controlCreated = true;
         }
 
         /// <summary>
@@ -1134,16 +1140,30 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 値が変更された時、内部的な値変更では処理しないようにします。
+        /// </summary>
+        /// <param name="eventargs"></param>
+        protected override void OnValueChanged(EventArgs eventargs)
+        {
+            // 内部的にValueを強制変更時は処理させない
+            if (this.innerValueChanged)
+            {
+                return;
+            }
+            base.OnValueChanged(eventargs);
+        }
+
+        /// <summary>
         /// コントロールの配置元が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの配置元も変更します。
         /// </summary>
         /// <param name="e"></param>
         protected override void OnParentChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Parent = this.Parent;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Parent = this.Parent;
             }
@@ -1156,11 +1176,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnLocationChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Location = this.Location;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Location = this.Location;
             }
@@ -1173,11 +1193,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnSizeChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Size = this.Size;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Size = this.Size;
             }
@@ -1190,11 +1210,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnResize(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Size = this.Size;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Size = this.Size;
             }
@@ -1207,11 +1227,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnDockChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Dock = this.Dock;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Dock = this.Dock;
             }
@@ -1224,11 +1244,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnRightToLeftChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.RightToLeft = this.RightToLeft;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.RightToLeft = this.RightToLeft;
             }
@@ -1241,11 +1261,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnFontChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Font = this.Font;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Font = this.Font;
             }
@@ -1258,11 +1278,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnMarginChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Margin = this.Margin;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Margin = this.Margin;
             }
@@ -1275,11 +1295,11 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnCursorChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnlyLabel)
+            if (this.controlCreated && this.ReadOnlyLabel && this.label != null)
             {
                 this.label.Cursor = this.Cursor;
             }
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Cursor = this.Cursor;
             }
@@ -1292,7 +1312,7 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnEnabledChanged(EventArgs e)
         {
-            if (this.controlCreated && this.ReadOnly)
+            if (this.controlCreated && this.ReadOnly && this.textBox != null)
             {
                 this.textBox.Enabled = this.Enabled;
             }

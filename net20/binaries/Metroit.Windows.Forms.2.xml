@@ -1873,6 +1873,12 @@
             </summary>
             <param name="eventargs">EventArgs オブジェクト。</param>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnValueChanged(System.EventArgs)">
+            <summary>
+            値が変更された時、内部的な値変更では処理しないようにします。
+            </summary>
+            <param name="eventargs"></param>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnParentChanged(System.EventArgs)">
             <summary>
             コントロールの配置元が変更時、ラベル・テキスト代替表示をしていたらラベル・テキストの配置元も変更します。

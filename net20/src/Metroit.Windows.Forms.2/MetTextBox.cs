@@ -667,6 +667,10 @@ namespace Metroit.Windows.Forms
                 {
                     return;
                 }
+                if (!this.initialized)
+                {
+                    return;
+                }
                 if (this.ReadOnlyLabel)
                 {
                     this.label.Text = base.Text;
@@ -985,7 +989,7 @@ namespace Metroit.Windows.Forms
             base.BackColor = this.BaseBackColor;
 
             // ラベルの代替表示を行っている場合はラベルの表示色も変更
-            if (this.ReadOnlyLabel)
+            if (this.ReadOnlyLabel && this.label != null)
             {
                 this.label.ForeColor = this.BaseForeColor;
                 this.label.BackColor = this.BaseBackColor;
