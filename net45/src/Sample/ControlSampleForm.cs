@@ -18,66 +18,36 @@ namespace Sample
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ControlSampleForm_Load(object sender, EventArgs e)
         {
-            metDateTimePicker1.ReadOnlyLabel = !metDateTimePicker1.ReadOnlyLabel;
-            dynaDtp.ReadOnlyLabel = !dynaDtp.ReadOnlyLabel;
+            var dt = new DataTable();
+            dt.Columns.Add("Column1");
+            dt.Columns.Add("Column2");
+
+            var row = dt.NewRow();
+            row["Column1"] = "Sample1 Display";
+            row["Column2"] = "Sample1 Value";
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Column1"] = "Sample2 Display";
+            row["Column2"] = "Sample2 Value";
+            dt.Rows.Add(row);
+
+            listBox1.DataSource = dt;
+            listBox1.DisplayMember = "Column1";
+            listBox1.ValueMember = "Column2";
+
+            metTextBox1.CustomAutoCompleteMode = CustomAutoCompleteMode.KeysSuggest;
+            metTextBox1.CustomAutoCompleteBox.DataSource = dt;
+            metTextBox1.CustomAutoCompleteBox.DisplayMember = "Column1";
+            metTextBox1.CustomAutoCompleteBox.ValueMember = "Column2";
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void metTextBox1_CandidateSelected(object sender, CandidateSelectedEventArgs e)
         {
-            metDateTimePicker1.Value = new DateTime(2010, 1, 1);
-            dynaDtp.Value = new DateTime(2010, 1, 1);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            metDateTimePicker1.Value = null;
-            dynaDtp.Value = null;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            metDateTimePicker1.Format = DateTimePickerFormat.Long;
-            dynaDtp.Format = DateTimePickerFormat.Long;
-        }
-
-        private MetDateTimePicker dynaDtp = null;
-        private void button5_Click(object sender, EventArgs e)
-        {
-            dynaDtp = new MetDateTimePicker();
-            dynaDtp.ReadOnlyLabel = true;
-            dynaDtp.AcceptNull = true;
-            dynaDtp.Location = button5.Location;
-            dynaDtp.Top = button5.Height + button5.Top;
-            dynaDtp.ValueChanged += (s, ex) =>
-            {
-                if (dynaDtp.Value.HasValue)
-                {
-                    Console.WriteLine("dynaDtp ValueChanged:" + dynaDtp.Value.Value.ToString("yyyy/MM/dd HH:mm:ss.fffff"));
-                }
-                else
-                {
-                    Console.WriteLine("dynaDtp ValueChanged:null");
-                }
-            };
-            tabPage1.Controls.Add(dynaDtp);
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Value:" + metDateTimePicker1.Value.ToString());
-        }
-
-        private void metDateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            if (metDateTimePicker1.Value.HasValue)
-            {
-                Console.WriteLine("ValueChanged:" + metDateTimePicker1.Value.Value.ToString("yyyy/MM/dd HH:mm:ss.fffff"));
-            } else
-            {
-                Console.WriteLine("ValueChanged:null");
-            }
+            var row = (DataRow)e.SelectedItem;
+            MessageBox.Show(row["Column2"].ToString());
         }
     }
 }

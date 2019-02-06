@@ -30,7 +30,7 @@ namespace Metroit.Windows.Forms
         {
             get
             {
-                return CultureInfo.DefaultThreadCurrentUICulture;
+                return CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
             }
         }
 
