@@ -12,15 +12,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       bugfix:
-        MetTextBox
-          - When ReadOnlyLabel = true in the designer, a NullReferenceException occurs.
-        MetNumericTextBox
-          - NullReferenceException occurs when ReadOnlyLabel = true and Value is changed in the designer.
-        MetDateTimePicker
-          - When AcceptNull = true and Value = null in the designer, Format and CustomFormat properties change.
-          - When ReadOnly = true or ReadOnlyLabel = true in the designer, Value value is not displayed immediately after execution.
-          - If AcceptNull = true and Value = null in the designer, it will not be displayed even if the value is changed by executing it.
-          - When AcceptNull = true and Value = null in the designer, the change of ReadOnly or ReadOnlyLabel does not work at run time.
+        General
+          - In ClickOnce execution, there was a behavior that did not work properly because of DefaultDomain.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
