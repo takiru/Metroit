@@ -4,7 +4,7 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
 |Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.20-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
 |Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
@@ -38,6 +38,11 @@ using Metroit.Extensions;
 // Insert delimiters on judgment of capital letters.
 var value = "TestTestTest";
 Console.WriteLine(value.InsertSeparator("_", SeparateJudgeType.UpperChar));  // Test_Test_Test
+
+var value = "(aaa(bbb(ccc)ddd)eee)";
+value = value.GetEnclosedText(); // aaa(bbb(ccc)ddd)eee
+value = value.GetEnclosedText(); // bbb(ccc)ddd
+value = value.GetEnclosedText(); // ccc
 ```
 #### Rounding calculation ####
 ```C#

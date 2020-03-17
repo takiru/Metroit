@@ -1,4 +1,5 @@
-﻿using Metroit.Windows.Forms;
+﻿using Metroit.Extensions;
+using Metroit.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -474,6 +475,17 @@ namespace Test
         private void metTextBox1_CandidateBoxOpening(object sender, EventArgs e)
         {
             Console.WriteLine("metTextBox1_CandidateBoxOpening");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            var result = "(aaa(bbb(ccc)ddd)eee)";
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
         }
     }
 }

@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="System.ComponentModel.DataAnnotations\ColumnAttribute.cs" />
     <Compile Include="System.Runtime.CompilerServices\ExtensionAttribute.cs" />
+    <Compile Include="MetSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\ExceptionResources.resx">

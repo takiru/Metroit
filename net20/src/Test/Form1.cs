@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Metroit.Extensions;
 
 namespace Test
 {
@@ -474,6 +475,17 @@ namespace Test
         private void metTextBox1_CandidateBoxOpening(object sender, EventArgs e)
         {
             Console.WriteLine("metTextBox1_CandidateBoxOpening");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            var result = "(aaa(bbb(ccc)ddd)eee)";
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
+            result = result.GetEnclosedText();
+            Console.WriteLine(result);
         }
     }
 }

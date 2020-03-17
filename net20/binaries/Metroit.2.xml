@@ -772,6 +772,28 @@
             <param name="type">区切り文字判断</param>
             <returns>区切り文字を挿入した文字列</returns>
         </member>
+        <member name="M:Metroit.Extensions.StringExtensions.GetEnclosedText(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            <para>囲み文字内の文字列を取得します。</para>
+            <para>囲み文字の開始、終了がひもづかない場合は取得できません。</para>
+            </summary>
+            <param name="value">文字列。</param>
+            <param name="startBracket">囲み文字の開始文字。</param>
+            <param name="endBracket">囲み文字の終了文字。</param>
+            <param name="includeBracket">結果に囲み文字を含めるかどうか。</param>
+            <returns>囲み文字内の文字列。取得できない場合は空。</returns>
+        </member>
+        <member name="M:Metroit.Extensions.StringExtensions.GetEnclosedText(System.String,System.Boolean,System.Char,System.Char)">
+            <summary>
+            <para>囲み文字内の文字列を取得します。</para>
+            <para>囲み文字の開始、終了がひもづかない場合は取得できません。</para>
+            </summary>
+            <param name="value">文字列。</param>
+            <param name="includeBracket">結果に囲み文字を含めるかどうか。</param>
+            <param name="startBracket">囲み文字の開始文字。</param>
+            <param name="endBracket">囲み文字の終了文字。</param>
+            <returns>囲み文字内の文字列。取得できない場合は空。</returns>
+        </member>
         <member name="T:Metroit.Properties.ExceptionResources">
             <summary>
               ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
@@ -849,6 +871,59 @@
             <summary>
               一時ファイルパスと変換先ファイルパスが同一のため、変換を続行することはできません。 に類似しているローカライズされた文字列を検索します。
             </summary>
+        </member>
+        <member name="T:Metroit.MetSystem">
+            <summary>
+            System Delegates
+            </summary>
+        </member>
+        <member name="T:Metroit.MetSystem.Func`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.MetSystem.Func`3">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.MetSystem.Func`4">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+            <param name="arg3"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.MetSystem.Func`5">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <typeparam name="T4"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+            <param name="arg3"></param>
+            <param name="arg4"></param>
+            <returns></returns>
         </member>
         <member name="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
             <summary>
