@@ -72,11 +72,13 @@
             this.button19 = new System.Windows.Forms.Button();
             this.autoCompleteBox1 = new Metroit.Windows.Forms.AutoCompleteBox();
             this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.metDateTimePicker3 = new Metroit.Windows.Forms.MetDateTimePicker();
+            this.metComboBox2 = new Metroit.Windows.Forms.MetComboBox();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
-            this.button21 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -686,6 +689,44 @@
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(314, 188);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(100, 23);
+            this.button21.TabIndex = 33;
+            this.button21.Text = "GetEnclosed";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // metDateTimePicker3
+            // 
+            this.metDateTimePicker3.BaseBackColor = System.Drawing.Color.Blue;
+            this.metDateTimePicker3.BaseBorderColor = System.Drawing.Color.Lime;
+            this.metDateTimePicker3.BaseForeColor = System.Drawing.Color.Red;
+            this.metDateTimePicker3.FocusBackColor = System.Drawing.Color.Yellow;
+            this.metDateTimePicker3.FocusBorderColor = System.Drawing.Color.Blue;
+            this.metDateTimePicker3.FocusForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.metDateTimePicker3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metDateTimePicker3.Location = new System.Drawing.Point(39, 184);
+            this.metDateTimePicker3.Name = "metDateTimePicker3";
+            this.metDateTimePicker3.Size = new System.Drawing.Size(152, 25);
+            this.metDateTimePicker3.TabIndex = 34;
+            // 
+            // metComboBox2
+            // 
+            this.metComboBox2.FocusBackColor = System.Drawing.Color.Lime;
+            this.metComboBox2.FocusForeColor = System.Drawing.Color.Red;
+            this.metComboBox2.FormattingEnabled = true;
+            this.metComboBox2.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc"});
+            this.metComboBox2.Location = new System.Drawing.Point(438, 188);
+            this.metComboBox2.Name = "metComboBox2";
+            this.metComboBox2.Size = new System.Drawing.Size(121, 26);
+            this.metComboBox2.TabIndex = 35;
+            // 
             // textBoxEx4
             // 
             this.textBoxEx4.Location = new System.Drawing.Point(314, 135);
@@ -722,22 +763,14 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(314, 188);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(100, 23);
-            this.button21.TabIndex = 33;
-            this.button21.Text = "GetEnclosed";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(717, 224);
+            this.ClientSize = new System.Drawing.Size(717, 241);
+            this.Controls.Add(this.metComboBox2);
+            this.Controls.Add(this.metDateTimePicker3);
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.button19);
@@ -786,6 +819,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -840,5 +874,7 @@
         private Metroit.Windows.Forms.AutoCompleteBox autoCompleteBox1;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
+        private Metroit.Windows.Forms.MetDateTimePicker metDateTimePicker3;
+        private Metroit.Windows.Forms.MetComboBox metComboBox2;
     }
 }

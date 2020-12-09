@@ -59,12 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Win32\ComboBoxCommand.cs" />
+    <Compile Include="Api\Win32\Gdi32.cs" />
+    <Compile Include="Api\Win32\RasterOperation.cs" />
     <Compile Include="Api\Win32\Structures\PaintStruct.cs" />
     <Compile Include="Api\Win32\Structures\Rect.cs" />
     <Compile Include="Api\Win32\SystemCommand.cs" />
     <Compile Include="Api\Win32\User32.cs" />
     <Compile Include="Api\Win32\VirtualKey.cs" />
     <Compile Include="Api\Win32\WindowMessage.cs" />
+    <Compile Include="Api\WindowsControls\CommonControls\DateTimePickerInfo.cs" />
+    <Compile Include="Api\WindowsControls\CommonControls\MonthCalendarView.cs" />
+    <Compile Include="Api\WindowsControls\CommonControls\NmViewChange.cs" />
+    <Compile Include="Api\WindowsControls\DateTimePickerMessage.cs" />
+    <Compile Include="Api\WindowsControls\MonthCalendarNotifications.cs" />
+    <Compile Include="Api\WindowsControls\MonthCalenderMessage.cs" />
+    <Compile Include="Api\WindowsControls\WinUser\NmHdr.cs" />
     <Compile Include="Collections\Generic\LimitedList.cs" />
     <Compile Include="IO\ConvertCompleteEventArgs.cs" />
     <Compile Include="IO\ConverterBase.cs" />

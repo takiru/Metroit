@@ -931,14 +931,13 @@ namespace Metroit.Windows.Forms
                     this.drawBitmap(bmp, bmpGraphics);
 
                     // コントロールへ描画
-                    var hWnd = new HandleRef(this, m.HWnd);
                     var ps = new PAINTSTRUCT();
-                    var controlHdc = User32.BeginPaint(hWnd, ref ps);
+                    var controlHdc = User32.BeginPaint(m.HWnd, ref ps);
                     using (var controlGraphics = Graphics.FromHdc(controlHdc))
                     {
                         controlGraphics.DrawImage(bmp, 0, 0);
                     }
-                    User32.EndPaint(hWnd, ref ps);
+                    User32.EndPaint(m.HWnd, ref ps);
                 }
             }
             else

@@ -63,5 +63,10 @@ namespace Metroit.Api.Win32
         /// IMEがキーストロークの結果として構成ステータスを変更すると送信されるメッセージを定義します。
         /// </summary>
         public const int WM_IME_COMPOSITION = 0x010F;
+
+        /// <summary>
+        /// イベントが発生したとき、またはコントロールが何らかの情報を必要とするときに、共通コントロールによってその親ウィンドウに送信されます。
+        /// </summary>
+        public const int WM_NOTIFY = 0x004E;
     }
 }

@@ -12,13 +12,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       bugfix:
-        General
-          - In ClickOnce execution, there was a behavior that did not work properly because of DefaultDomain.
+        MetDateTimePicker
+          - The font color does not change neatly depending on the font type.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.0.5" />
+      <dependency id="Metroit.45" version="1.0.7" />
     </dependencies>
   </metadata>
 </package>

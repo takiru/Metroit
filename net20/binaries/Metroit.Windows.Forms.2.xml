@@ -1941,14 +1941,77 @@
         </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WndProc(System.Windows.Forms.Message@)">
             <summary>
-            背景色の変更を行います。
+            WM_PAINTにより、背景色・文字色・外枠色の変更を行います。
             </summary>
             <param name="m"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WmPaint(System.Windows.Forms.Message@)">
             <summary>
-            Bitmapオブジェクトにコントロール描画を行う。
+            WM_PAINTにより、背景色・文字色・外枠色の変更を行う。
             </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BitBltGraphics(System.Drawing.Bitmap,System.Drawing.Size)">
+            <summary>
+            背景色、文字色、キャレット範囲をビットブロック転送し、外枠を描画する。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="cs">クライアントサイズ。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.CreateNativeBitmap(System.Drawing.Size)">
+            <summary>
+            描画変更される前のBitmapオブジェクトを取得する。
+            </summary>
+            <param name="cs">クライアントサイズ。</param>
+            <returns>Bitmap オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.CreateNegativeBitmap(System.Drawing.Bitmap)">
+            <summary>
+            対象Bitmapオブジェクトの色を反転し、背景を白、文字を黒としたBitmapオブジェクトを取得する。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <returns>Bitmap オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.GetCanvasRectangle(System.Drawing.Size)">
+            <summary>
+            入力エリア領域を求める。
+            </summary>
+            <returns>Rectangle オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.GetCaretRectangle(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            選択領域の座標を求める。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="canvas">Rectangle オブジェクト。</param>
+            <returns>選択領域座標の Rectangle オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BitBlt(System.Drawing.Bitmap,System.Drawing.Color,System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Bitmapの入力領域に対して、背景色・文字色だけを変更し、それ以外を黒とする。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="color">変更する色。</param>
+            <param name="rectangle"></param>
+            <param name="dwRop"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BitBlt(System.IntPtr,System.Drawing.Bitmap,System.Int32)">
+            <summary>
+            対象Bitmapを指定したラスター操作コードで色変換する。
+            </summary>
+            <param name="hdc">IntPtr。</param>
+            <param name="bmp">Bitmapオブジェクト。</param>
+            <param name="dwRop">ラスター操作コード。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BitBlt(System.IntPtr,System.Drawing.Bitmap,System.Drawing.Rectangle,System.Drawing.Point,System.Int32)">
+            <summary>
+            対象領域を指定したラスター操作コードで色変換する。
+            </summary>
+            <param name="hdc">IntPtr。</param>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="rectangle">Rectangle オブジェクト。</param>
+            <param name="point">Point オブジェクト。</param>
+            <param name="dwRop">ラスター操作コード。</param>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>

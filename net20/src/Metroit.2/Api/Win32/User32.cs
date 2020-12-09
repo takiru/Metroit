@@ -36,7 +36,7 @@ namespace Metroit.Api.Win32
         /// <param name="lpPaint">描画情報を持つ構造体へのポインタ。</param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern IntPtr BeginPaint(HandleRef hWnd, ref Structures.PAINTSTRUCT lpPaint);
+        public static extern IntPtr BeginPaint(IntPtr hWnd, ref Structures.PAINTSTRUCT lpPaint);
 
         /// <summary>
         /// 指定されたウィンドウ内の描画の終わりを示します。
@@ -45,6 +45,15 @@ namespace Metroit.Api.Win32
         /// <param name="lpPaint">描画データ。</param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern bool EndPaint(HandleRef hWnd, ref Structures.PAINTSTRUCT lpPaint);
+        public static extern bool EndPaint(IntPtr hWnd, ref Structures.PAINTSTRUCT lpPaint);
+
+        /// <summary>
+        /// 指定されたウィンドウの外接する四角形の寸法を取得します。寸法は、画面の左上隅を基準にした画面座標で示されます。
+        /// </summary>
+        /// <param name="hWnd">ウィンドウへのハンドル。</param>
+        /// <param name="lpRect">ウィンドウの左上隅と右下隅の画面座標を受け取るRECT構造体へのポインター 。</param>
+        /// <returns>0:失敗, 0以外:成功。</returns>
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hWnd, out Structures.RECT lpRect);
     }
 }
