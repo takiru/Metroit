@@ -40,7 +40,6 @@ namespace Metroit.Windows.Forms
             this.candidateBox.CandidateBoxClosed += CandidateBox_CandidateBoxClosed;
         }
 
-        // FIXED
         /// <summary>
         /// 新しい AutoCompleteBox インスタンスを生成します。
         /// </summary>
@@ -89,7 +88,6 @@ namespace Metroit.Windows.Forms
             this.OnCandidateBoxClosed(sender, e);
         }
 
-        // TODO
         // IListの実装を行う
         /// <summary>
         /// ドロップダウンを選択した時に選択値を設定してイベントを発生させる。
@@ -143,7 +141,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxCandidateBoxOpening")]
         public event EventHandler CandidateBoxOpening;
 
-        // FIXED
         /// <summary>
         /// 候補ドロップダウンを開く前に発生します。
         /// </summary>
@@ -154,7 +151,6 @@ namespace Metroit.Windows.Forms
             this.CandidateBoxOpening?.Invoke(sender, e);
         }
 
-        // FIXED
         /// <summary>
         /// 候補ドロップダウンを開いた時に発生するイベントです。
         /// </summary>
@@ -162,7 +158,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxCandidateBoxOpened")]
         public event EventHandler CandidateBoxOpened;
 
-        // FIXED
         /// <summary>
         /// 候補ドロップダウンを開いた時に発生します。
         /// </summary>
@@ -173,7 +168,6 @@ namespace Metroit.Windows.Forms
             this.CandidateBoxOpened?.Invoke(sender, e);
         }
 
-        // FIXED
         /// <summary>
         /// 候補ドロップダウンを閉じた時に発生するイベントです。
         /// </summary>
@@ -192,7 +186,6 @@ namespace Metroit.Windows.Forms
             this.CandidateBoxClosed?.Invoke(sender, e);
         }
 
-        // FIXED
         /// <summary>
         /// 候補の値が選択された時に発生するイベントです。
         /// </summary>
@@ -216,7 +209,6 @@ namespace Metroit.Windows.Forms
 
         private object dataSource = null;
 
-        // TODO
         // DataSet, DataTable, IList 以外のオブジェクトが指定されたらエラーにする。
         /// <summary>
         /// オートコンプリートに利用される全データを含むデータソースを取得または設定します。
@@ -241,7 +233,6 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        // FIXED
         /// <summary>
         /// このコントロール内の項目に対して表示するプロパティを示します。
         /// </summary>
@@ -259,7 +250,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxValueMember")]
         public string ValueMember { get; set; } = "";
 
-        // FIXED
         /// <summary>
         /// オートコンプリートの表示するアイテム数を設定します。
         /// </summary>
@@ -268,7 +258,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxMaxDropDownItems")]
         public int MaxDropDownItems { get => this.candidateBox.MaxDropDownItems; set => this.candidateBox.MaxDropDownItems = value; }
 
-        // FIXED
         /// <summary>
         /// 候補の絞込みを行うパターンを取得または設定します。
         /// </summary>
@@ -277,10 +266,8 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxMatchPattern")]
         public MatchPatternType MatchPattern { get; set; } = MatchPatternType.StartsWith;
 
-        // FIXED
         private CompareOptions[] defaultCompareOptions = new CompareOptions[] { System.Globalization.CompareOptions.None };
 
-        // FIXED
         /// <summary>
         /// 候補の絞込みに判断するオプションを取得または設定します。
         /// </summary>
@@ -288,14 +275,12 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxCompareOptions")]
         public CompareOptions[] CompareOptions { get; set; }
 
-        // FIXED
         /// <summary>
         /// CompareOptions が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
         private bool ShouldSerializeCompareOptions() => this.CompareOptions != null && this.CompareOptions != this.defaultCompareOptions;
 
-        // FIXED
         /// <summary>
         /// CompareOptions のリセット操作を行う。
         /// </summary>
@@ -303,7 +288,6 @@ namespace Metroit.Windows.Forms
 
         private Control targetControl = null;
 
-        // FIXED
         /// <summary>
         /// オートコンプリートの利用を行うコントロールを取得します。
         /// </summary>
@@ -323,35 +307,30 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        // FIXED
         /// <summary>
         /// 実際に画面に表示するコンボボックスの取得を行います。
         /// </summary>
         [Browsable(false)]
         private AutoCompleteCandidateBox candidateBox { get; } = new AutoCompleteCandidateBox();
 
-        // FIXED
         /// <summary>
         /// 現在選択中の候補インデックスを取得します。
         /// </summary>
         [Browsable(false)]
         public int SelectedIndex { get; private set; } = -1;
 
-        // FIXED
         /// <summary>
         /// 現在選択中の ValueMember プロパティで指定したメンバー プロパティの値を取得します。
         /// </summary>
         [Browsable(false)]
         public object SelectedValue { get; private set; } = null;
 
-        // FIXED
         /// <summary>
         /// 現在選択中の候補アイテムを取得します。
         /// </summary>
         [Browsable(false)]
         public object SelectedItem { get; private set; } = null;
 
-        // FIXED
         /// <summary>
         /// オートコンプリートのボックスが開かれているかどうかを取得します。
         /// </summary>
@@ -362,15 +341,12 @@ namespace Metroit.Windows.Forms
 
         #region メソッド
 
-        // FIXED
         // 直前の候補件数
         private int preCandidateItemCount = -1;
 
-        // FIXED
         // 内部的に候補値が設定され、SelectedValueChanged イベントを走行させないためのフラグ
         private bool innerSelectedChanging = false;
 
-        // FIXED
         /// <summary>
         /// オートコンプリートのボックスを開きます。
         /// </summary>
@@ -392,7 +368,6 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        // FIXED
         /// <summary>
         /// オートコンプリートのボックスを閉じます。
         /// </summary>
@@ -401,7 +376,6 @@ namespace Metroit.Windows.Forms
             this.candidateBox.Close();
         }
 
-        // FIXED
         /// <summary>
         /// 対象インデックスからデータソースのアイテムを取得する。
         /// </summary>
@@ -429,7 +403,6 @@ namespace Metroit.Windows.Forms
             return null;
         }
 
-        // TODO
         /// <summary>
         /// アイテムの値を取得する。
         /// </summary>
@@ -459,7 +432,6 @@ namespace Metroit.Windows.Forms
             return null;
         }
 
-        // FIXED
         /// <summary>
         /// アイテムの実際の値を取得する。
         /// </summary>
@@ -489,13 +461,12 @@ namespace Metroit.Windows.Forms
             return null;
         }
 
-        // FIXED
         /// <summary>
         /// <para>テキストからデータソースのアイテムを決定します。</para>
         /// <para>主に、TargetControl のテキストが入力されたタイミングで利用します。</para>
         /// </summary>
         /// <param name="text">テキスト。</param>
-        public void DecideItemForText(string text)
+        public void SelectItem(string text)
         {
             this.SelectedItem = null;
             this.SelectedValue = null;
@@ -513,7 +484,6 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        // FIXED
         /// <summary>
         /// 全体の入力候補より絞り込みを行います。
         /// </summary>
@@ -549,7 +519,6 @@ namespace Metroit.Windows.Forms
             this.ReOpenDropdown();
         }
 
-        // TODO
         // IListの実装を行う。
         /// <summary>
         /// ドロップダウンからアイテムを決定する。
@@ -571,7 +540,6 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        // FIXED
         /// <summary>
         /// データソースが DataSet または DataTable だった時に、ドロップダウンからアイテムを決定する。
         /// </summary>
@@ -610,7 +578,6 @@ namespace Metroit.Windows.Forms
             this.SelectedIndex = -1;
         }
 
-        // TODO
         /// <summary>
         /// データソースが IList だった時に、ドロップダウンからアイテムを決定する。
         /// </summary>
@@ -649,7 +616,6 @@ namespace Metroit.Windows.Forms
             this.SelectedIndex = -1;
         }
 
-        // FIXED
         /// <summary>
         /// ドロップダウンを開き直す必要がある場合に開き直す。
         /// </summary>
@@ -664,7 +630,6 @@ namespace Metroit.Windows.Forms
             this.preCandidateItemCount = candidateItemCount;
         }
 
-        // FIXED
         /// <summary>
         /// 現在のドロップダウン候補数を取得します。
         /// </summary>
@@ -678,7 +643,6 @@ namespace Metroit.Windows.Forms
             return 0;
         }
 
-        // FIXED
         /// <summary>
         /// データソースからテキストを検索し、アイテムインデックスを取得する。
         /// </summary>
@@ -706,7 +670,6 @@ namespace Metroit.Windows.Forms
             return -1;
         }
 
-        // FIXED
         /// <summary>
         /// 現在の候補からテキストを検索し、アイテムインデックスを取得する。
         /// </summary>
@@ -724,7 +687,6 @@ namespace Metroit.Windows.Forms
             return -1;
         }
 
-        // FIXED
         /// <summary>
         /// IList オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
         /// </summary>
@@ -748,7 +710,6 @@ namespace Metroit.Windows.Forms
             return -1;
         }
 
-        // FIXED
         /// <summary>
         /// DataTable オブジェクト内のプロパティで、テキストと合致するインデックスを取得する。
         /// </summary>
@@ -771,7 +732,6 @@ namespace Metroit.Windows.Forms
             return -1;
         }
 
-        // FIXED
         /// <summary>
         /// 候補の絞り込みを行う。
         /// </summary>
@@ -814,7 +774,6 @@ namespace Metroit.Windows.Forms
             return null;
         }
 
-        // FIXED
         /// <summary>
         /// 候補判断を行うオプションを取得する。
         /// </summary>
@@ -829,7 +788,6 @@ namespace Metroit.Windows.Forms
             return executeCompareOptions;
         }
 
-        // FIXED
         /// <summary>
         /// DataSet オブジェクトのリストデータを取得する。
         /// </summary>
@@ -843,7 +801,6 @@ namespace Metroit.Windows.Forms
             return this.ExtractDataTable(dt, text, compareOptions);
         }
 
-        // FIXED
         /// <summary>
         /// DataTable オブジェクトのリストデータを取得する。
         /// </summary>
@@ -859,7 +816,6 @@ namespace Metroit.Windows.Forms
             return query.AsDataView();
         }
 
-        // FIXED
         /// <summary>
         /// IList オブジェクトのリストデータを取得する。
         /// </summary>
@@ -882,7 +838,6 @@ namespace Metroit.Windows.Forms
             return result;
         }
 
-        // FIXED
         /// <summary>
         /// 対象のテキストが候補対象となるかを確認する。
         /// </summary>
@@ -936,13 +891,6 @@ namespace Metroit.Windows.Forms
         private BindingContext bindingContext;
         private ControlBindingsCollection dataBindings;
 
-        ///// <summary>
-        ///// 使わない。
-        ///// </summary>
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public event EventHandler Disposed;
-
         /// <summary>
         /// 使わない。
         /// </summary>
@@ -982,23 +930,6 @@ namespace Metroit.Windows.Forms
                 return dataBindings;
             }
         }
-
-        ///// <summary>
-        ///// 使わない。
-        ///// </summary>
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Advanced)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //public ISite Site { get; set; }
-
-        ///// <summary>
-        ///// 使わない。
-        ///// </summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public void Dispose()
-        //{
-        //    this.Disposed?.Invoke(this, EventArgs.Empty);
-        //}
 
         #endregion
     }
