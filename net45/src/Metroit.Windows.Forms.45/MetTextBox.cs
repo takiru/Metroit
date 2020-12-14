@@ -1354,7 +1354,7 @@ namespace Metroit.Windows.Forms
                 // ドロップダウンが表示されておらず、文字入力によって値が変化した時は、値の決定を行う
                 if (!this.CustomAutoCompleteBox.IsOpened && !candidateSelectedValueChanging)
                 {
-                    this.CustomAutoCompleteBox.DecideItemForText(this.Text);
+                    this.CustomAutoCompleteBox.SelectItem(this.Text);
 
                     // 入力値によって選択が決定されていない場合のみサジェストを開く
                     if (this.CustomAutoCompleteBox.SelectedItem == null)

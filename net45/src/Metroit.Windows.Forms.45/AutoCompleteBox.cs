@@ -377,6 +377,41 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 対象アイテムからデータソースのインデックスを取得する。
+        /// </summary>
+        /// <param name="item">アイテム。</param>
+        /// <returns>インデックス。</returns>
+        private int GetIndex(object item)
+        {
+            // DataSet または DataTable の場合
+            if (this.DataSource is DataSet || this.DataSource is DataTable)
+            {
+                var sourceDt = (this.DataSource as DataTable) ?? (this.DataSource as DataSet)?.Tables[0];
+                foreach (var row in sourceDt.AsEnumerable())
+                {
+                    if (row.Equals(item))
+                    {
+                        return sourceDt.Rows.IndexOf(row);
+                    }
+                }
+                return -1;
+            }
+
+            // IList(List<T>)の場合の処理
+            var sourceList = this.DataSource as IList;
+            if (sourceList != null)
+            {
+                if (sourceList.Contains(item))
+                {
+                    return sourceList.IndexOf(item);
+                }
+                return -1;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
         /// 対象インデックスからデータソースのアイテムを取得する。
         /// </summary>
         /// <param name="index">インデックス。</param>
@@ -439,6 +474,11 @@ namespace Metroit.Windows.Forms
         /// <returns>実際の値。</returns>
         private object GetValue(object item)
         {
+            if (this.ValueMember == "")
+            {
+                return null;
+            }
+
             // DataSet または DataTable の場合
             if (this.DataSource is DataSet || this.DataSource is DataTable)
             {
@@ -462,8 +502,7 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// <para>テキストからデータソースのアイテムを決定します。</para>
-        /// <para>主に、TargetControl のテキストが入力されたタイミングで利用します。</para>
+        /// テキストからデータソースのアイテムを決定します。
         /// </summary>
         /// <param name="text">テキスト。</param>
         public void SelectItem(string text)
@@ -472,16 +511,42 @@ namespace Metroit.Windows.Forms
             this.SelectedValue = null;
             this.SelectedIndex = -1;
 
-            // 入力値が全体候補に存在する場合は選択状態とする
             var index = this.IndexOfAllItem(text.ToString());
-            if (index > -1)
+            if (index == -1)
             {
-                this.SelectedItem = this.GetItem(index);
-                this.SelectedValue = this.GetValue(this.SelectedItem);
-                this.SelectedIndex = index;
-                var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, text, this.SelectedIndex);
-                this.OnCandidateSelected(this, cse);
+                return;
             }
+
+            // 入力値が全体候補に存在する場合は選択状態とする
+            this.SelectedItem = this.GetItem(index);
+            this.SelectedValue = this.GetValue(this.SelectedItem);
+            this.SelectedIndex = index;
+            var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, text, this.SelectedIndex);
+            this.OnCandidateSelected(this, cse);
+        }
+
+        /// <summary>
+        /// アイテムからデータソースのアイテムを決定します。
+        /// </summary>
+        /// <param name="item">選択オブジェクト。</param>
+        public void SelectItem(object item)
+        {
+            this.SelectedItem = null;
+            this.SelectedValue = null;
+            this.SelectedIndex = -1;
+
+            var index = GetIndex(item);
+            if (index == -1)
+            {
+                return;
+            }
+
+            // 入力値が全体候補に存在する場合は選択状態とする
+            this.SelectedItem = item;
+            this.SelectedValue = this.GetValue(this.SelectedItem);
+            this.SelectedIndex = index;
+            var cse = new CandidateSelectedEventArgs(this.SelectedItem, this.SelectedValue, GetDisplay(item).ToString(), this.SelectedIndex);
+            this.OnCandidateSelected(this, cse);
         }
 
         /// <summary>
