@@ -22,7 +22,6 @@ namespace Metroit.Windows.Forms
     {
         private bool isAssociatedControl = false;    // Controlを指定したインスタンス化を実施したかどうか
 
-        // FIXED
         /// <summary>
         /// 新しい AutoCompleteBox インスタンスを生成します。
         /// </summary>
@@ -75,7 +74,6 @@ namespace Metroit.Windows.Forms
             this.OnCandidateBoxOpened(sender, e);
         }
 
-        // FIXED
         /// <summary>
         /// ドロップダウンを閉じた時のイベントを発生させる。
         /// </summary>
@@ -175,7 +173,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxCandidateBoxClosed")]
         public event EventHandler CandidateBoxClosed;
 
-        // FIXED
         /// <summary>
         /// 候補ドロップダウンを閉じた時に発生します。
         /// </summary>
@@ -241,7 +238,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxDisplayMember")]
         public string DisplayMember { get; set; } = "";
 
-        // FIXED
         /// <summary>
         /// コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。
         /// </summary>
@@ -445,26 +441,41 @@ namespace Metroit.Windows.Forms
         /// <returns>実際の値。</returns>
         private object GetDisplay(object item)
         {
+            if (this.DisplayMember == "" && this.ValueMember == "")
+            {
+                return item;
+            }
+
+            string member = this.DisplayMember;
+            if (member == "")
+            {
+                member = this.ValueMember;
+            }
+
             // DataSet または DataTable の場合
             if (this.DataSource is DataSet || this.DataSource is DataTable)
             {
 
                 var row = item as DataRow;
-                if (row != null)
+                if (row == null)
                 {
-                    return row[this.DisplayMember];
+                    return item;
                 }
-                return null;
+                return row[member];
             }
 
             // IListの場合の処理
             var sourceList = this.DataSource as IList;
             if (sourceList != null)
             {
-                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.DisplayMember, true);
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(member, true);
+                if (descriptor == null)
+                {
+                    return item;
+                }
                 return descriptor.GetValue(item);
             }
-            return null;
+            return item;
         }
 
         /// <summary>
@@ -476,7 +487,7 @@ namespace Metroit.Windows.Forms
         {
             if (this.ValueMember == "")
             {
-                return null;
+                return item;
             }
 
             // DataSet または DataTable の場合
@@ -484,11 +495,11 @@ namespace Metroit.Windows.Forms
             {
 
                 var row = item as DataRow;
-                if (row != null)
+                if (row == null)
                 {
-                    return row[this.ValueMember];
+                    return item;
                 }
-                return null;
+                return row[this.ValueMember];
             }
 
             // IListの場合の処理
@@ -496,9 +507,13 @@ namespace Metroit.Windows.Forms
             if (sourceList != null)
             {
                 PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.ValueMember, true);
+                if (descriptor == null)
+                {
+                    return item;
+                }
                 return descriptor.GetValue(item);
             }
-            return null;
+            return item;
         }
 
         /// <summary>
@@ -559,6 +574,8 @@ namespace Metroit.Windows.Forms
             var preItem = this.SelectedItem;
 
             this.innerSelectedChanging = true;
+            this.candidateBox.DisplayMember = "";
+            this.candidateBox.ValueMember = "";
             this.candidateBox.DataSource = this.ExtractObject(text);
             this.candidateBox.DisplayMember = this.DisplayMember;
             this.candidateBox.ValueMember = this.ValueMember;
@@ -760,11 +777,26 @@ namespace Metroit.Windows.Forms
         /// <returns>アイテムのインデックス。</returns>
         private int IndexOfItemForIList(IList list, string text)
         {
+            if (this.DisplayMember == "" && this.ValueMember == "")
+            {
+                return -1;
+            }
+
+            string member = this.DisplayMember;
+            if (member == "")
+            {
+                member = this.ValueMember;
+            }
+
             // 対象プロパティに入っている文字列が合致する行を候補とする
             var i = 0;
             foreach (var item in list)
             {
-                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(this.DisplayMember, true);
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(item).Find(member, true);
+                if (descriptor == null)
+                {
+                    return -1;
+                }
                 var displayText = descriptor.GetValue(item).ToString();
                 if (displayText == text)
                 {
@@ -894,7 +926,6 @@ namespace Metroit.Windows.Forms
 
             foreach (var value in dataSource)
             {
-                var descriptor = TypeDescriptor.GetProperties(value).Find(this.DisplayMember, true);
                 if (this.IsMatch(this.GetDisplay(value).ToString(), text, compareOptions))
                 {
                     result.Add(value);
