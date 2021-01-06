@@ -585,4 +585,28 @@
   <data name="AutoCompleteBoxCandidateBoxOpening.ja" xml:space="preserve">
     <value>ドロップダウンが開く前に発生するイベントです。</value>
   </data>
+  <data name="ControlDateTimeMinCalendarType" xml:space="preserve">
+    <value>Get or set the date type that can be selected in the calendar control and the date type that can be actually set.</value>
+  </data>
+  <data name="ControlDateTimeMinCalendarType.ja" xml:space="preserve">
+    <value>カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowToday" xml:space="preserve">
+    <value>Sets whether to display the "Today" date at the bottom of the calendar control.</value>
+  </data>
+  <data name="ControlDateTimeShowToday.ja" xml:space="preserve">
+    <value>カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowTodayCircle" xml:space="preserve">
+    <value>Sets whether to circle the "Today" date in the calendar control.</value>
+  </data>
+  <data name="ControlDateTimeShowTodayCircle.ja" xml:space="preserve">
+    <value>カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowTorailingDates" xml:space="preserve">
+    <value>In the calendar control, set whether the dates of the previous month and the next month are displayed in the calendar of the current month.</value>
+  </data>
+  <data name="ControlDateTimeShowTorailingDates.ja" xml:space="preserve">
+    <value>カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ namespace Metroit.Windows.Forms.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class DesignResources {
@@ -543,6 +543,78 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlCustomChars_ja {
             get {
                 return ResourceManager.GetString("ControlCustomChars.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Get or set the date type that can be selected in the calendar control and the date type that can be actually set. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeMinCalendarType {
+            get {
+                return ResourceManager.GetString("ControlDateTimeMinCalendarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeMinCalendarType_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeMinCalendarType.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sets whether to display the &quot;Today&quot; date at the bottom of the calendar control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowToday {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowToday_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowToday.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sets whether to circle the &quot;Today&quot; date in the calendar control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTodayCircle {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTodayCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTodayCircle_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTodayCircle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   In the calendar control, set whether the dates of the previous month and the next month are displayed in the calendar of the current month. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTorailingDates {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTorailingDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTorailingDates_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTorailingDates.ja", resourceCulture);
             }
         }
         

@@ -11,20 +11,7 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-    Modify:
-      Changed the handle argument of BeginPaint to IntPtr.
-    Add:
-      Api.Win32.User32.GetWindowRect()
-      Api.Win32.WindowMessage.WM_NOTIFY
-      Api.Win32.Gdi32
-      Api.Win32.RasterOperation
-      Api.WindowsControls.DateTimePickerMessage
-      Api.WindowsControls.MonthCalendarNotifications
-      Api.WindowsControls.MonthCalenderMessage
-      Api.WindowsControls.CommonControls.DateTimePickerInfo
-      Api.WindowsControls.CommonControls.MonthCalendarView
-      Api.WindowsControls.CommonControls.NmViewChange
-      Api.WindowsControls.WinUser.NmHdr
+    We have changed the namespace structure and provided some API support classes.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

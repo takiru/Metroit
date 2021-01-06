@@ -73,6 +73,7 @@
     <Compile Include="AutoCompleteCandidateBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CalendarType.cs" />
     <Compile Include="CandidateSelectedEventArgs.cs" />
     <Compile Include="ComponentModel\AcceptsCharControl.cs">
       <SubType>UserControl</SubType>

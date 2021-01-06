@@ -4,12 +4,12 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.0.7-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.0.20-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.0.21-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
 # Metroit #
 Several classes to support logic, and WinForms extension control. Target framework is .NET 2.0, 4.5.  
@@ -426,6 +426,10 @@ It is a library that helps to create WinForms application.
     |FocusBorderColor    |Border color when you get focus.                            |
     |ErrorBorderColor    |Border color when error.                                      |
     |Error               |Whether it is an error.                                        |
+    |MinCalendarType     |Calendar to represent, editable month / day level.            |
+    |ShowToday           |Whether to display today's date on the calendar.              |
+    |ShowTodayCircle     |Whether to mark today's date on the calendar.            |
+    |ShowTorailingDates  |Whether to display the dates of the previous month and the next month on the calendar for the current month.  |
 
         Replace ReadOnly with TextBox.
         Replace ReadOnlyLabel with Label.

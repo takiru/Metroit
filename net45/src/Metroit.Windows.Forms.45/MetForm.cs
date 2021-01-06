@@ -1,8 +1,9 @@
-﻿using Metroit.Windows.Forms.Extensions;
+﻿using Metroit.Win32.Api;
+using Metroit.Win32.DesktopAppUi.MenuRc;
+using Metroit.Windows.Forms.Extensions;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Metroit.Api.Win32;
 
 namespace Metroit.Windows.Forms
 {
@@ -317,18 +318,15 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void LeaveControl()
         {
-            // 一時的にボタンを用意して、ボタンにフォーカス遷移させる
-            using (var hiddenButton = new Button())
+            if (!this.ActiveControl.CausesValidation)
             {
-                hiddenButton.Name = Guid.NewGuid().ToString("N").Substring(0, 10);
-                hiddenButton.Size = new System.Drawing.Size(0, 0);
-                this.Controls.Add(hiddenButton);
-
-                hiddenButton.Focus();
-
                 this.ActiveControl = null;
-                this.Controls.Remove(hiddenButton);
-                hiddenButton.Dispose();
+                return;
+            }
+
+            if (this.Validate())
+            {
+                this.ActiveControl = null;
             }
         }
 
@@ -343,7 +341,7 @@ namespace Metroit.Windows.Forms
                 return false;
             }
 
-            User32.SendMessage(this.Handle, WindowMessage.WM_SYSCOMMAND, SystemCommand.SC_CLOSE, 0);
+            User32.SendMessage(this.Handle, WindowMessage.WM_SYSCOMMAND, new IntPtr(SystemCommandTypes.SC_CLOSE), IntPtr.Zero);
             return true;
         }
 

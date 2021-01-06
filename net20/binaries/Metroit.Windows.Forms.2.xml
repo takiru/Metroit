@@ -513,6 +513,26 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="T:Metroit.Windows.Forms.CalendarType">
+            <summary>
+            指定できるカレンダーのタイプを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CalendarType.Day">
+            <summary>
+            日まで選択できるカレンダーを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CalendarType.Month">
+            <summary>
+            月まで選択できるカレンダーを示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.CalendarType.Year">
+            <summary>
+            年まで選択できるカレンダーを示します。
+            </summary>
+        </member>
         <member name="T:Metroit.Windows.Forms.CandidateSelectedEventArgs">
             <summary>
             候補が選択された時のデータを提供します。
@@ -1613,14 +1633,77 @@
         </member>
         <member name="M:Metroit.Windows.Forms.MetComboBox.WndProc(System.Windows.Forms.Message@)">
             <summary>
-            背景色の変更を行います。
+            固有のメッセージ制御を行います。
             </summary>
             <param name="m"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetComboBox.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
+        <member name="M:Metroit.Windows.Forms.MetComboBox.WmPaint(System.Windows.Forms.Message@)">
             <summary>
-            Bitmapオブジェクトにコントロール描画を行う。
+            WM_PAINTにより、背景色・文字色・外枠色の変更を行う。
             </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.BitBltGraphics(System.Drawing.Bitmap,System.Drawing.Size)">
+            <summary>
+            背景色、文字色、キャレット範囲をビットブロック転送し、外枠を描画する。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="cs">クライアントサイズ。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.CreateNativeBitmap(System.Drawing.Size)">
+            <summary>
+            描画変更される前のBitmapオブジェクトを取得する。
+            </summary>
+            <param name="cs">クライアントサイズ。</param>
+            <returns>Bitmap オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.CreateNegativeBitmap(System.Drawing.Bitmap)">
+            <summary>
+            対象Bitmapオブジェクトの色を反転し、背景を白、文字を黒としたBitmapオブジェクトを取得する。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <returns>Bitmap オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.GetCanvasRectangle(System.Drawing.Size)">
+            <summary>
+            入力エリア領域を求める。
+            </summary>
+            <returns>Rectangle オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.GetCaretRectangle(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            選択領域の座標を求める。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="canvas">Rectangle オブジェクト。</param>
+            <returns>選択領域座標の Rectangle オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.BitBlt(System.Drawing.Bitmap,System.Drawing.Color,System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Bitmapの入力領域に対して、背景色・文字色だけを変更し、それ以外を黒とする。
+            </summary>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="color">変更する色。</param>
+            <param name="rectangle"></param>
+            <param name="dwRop"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.BitBlt(System.IntPtr,System.Drawing.Bitmap,System.Int32)">
+            <summary>
+            対象Bitmapを指定したラスター操作コードで色変換する。
+            </summary>
+            <param name="hdc">IntPtr。</param>
+            <param name="bmp">Bitmapオブジェクト。</param>
+            <param name="dwRop">ラスター操作コード。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.BitBlt(System.IntPtr,System.Drawing.Bitmap,System.Drawing.Rectangle,System.Drawing.Point,System.Int32)">
+            <summary>
+            対象領域を指定したラスター操作コードで色変換する。
+            </summary>
+            <param name="hdc">IntPtr。</param>
+            <param name="bmp">Bitmap オブジェクト。</param>
+            <param name="rectangle">Rectangle オブジェクト。</param>
+            <param name="point">Point オブジェクト。</param>
+            <param name="dwRop">ラスター操作コード。</param>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDateTimePicker">
             <summary>
@@ -1837,6 +1920,32 @@
             コントロールがエラーかどうかを取得または設定します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.MinCalendarType">
+            <summary>
+            カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ShowToday">
+            <summary>
+            カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ShowTodayCircle">
+            <summary>
+            カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.ShowTorailingDates">
+            <summary>
+            カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.InnerValueChanged">
+            <summary>
+            内部的なValueの変更を実施中かどうかを取得します。
+            内部的なValueの変更であってもOnValueChangedが発生するため、このプロパティで判定を行う必要があります。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.BeginInit">
             <summary>
             InitializeComponent()でコントロールの生成が完了していないことを通知します。
@@ -1862,6 +1971,12 @@
             <param name="sender">ロールバック指示オブジェクト。</param>
             <param name="control">ロールバック対象オブジェクト。</param>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnHandleCreated(System.EventArgs)">
+            <summary>
+            ハンドルが作成された時に、カレンダーレイアウトの初期状態の把握と、カレンダーレイアウトの反映を行います。
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnCreateControl">
             <summary>
             コントロールの生成が完了したことを通知し、ReadOnly, ReadOnlyLabelの制御を行います。
@@ -1876,6 +1991,7 @@
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnValueChanged(System.EventArgs)">
             <summary>
             値が変更された時、内部的な値変更では処理しないようにします。
+            InnerValueChanged = true の場合は走行させないようにしてください。
             </summary>
             <param name="eventargs"></param>
         </member>
@@ -1939,15 +2055,32 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.RefreshCalendarLayout">
+            <summary>
+            カレンダーレイアウトを反映する。
+            </summary>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WndProc(System.Windows.Forms.Message@)">
             <summary>
-            WM_PAINTにより、背景色・文字色・外枠色の変更を行います。
+            固有のメッセージ制御を行います。
             </summary>
             <param name="m"></param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WmPaint(System.Windows.Forms.Message@)">
             <summary>
             WM_PAINTにより、背景色・文字色・外枠色の変更を行う。
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WmKeyDown(System.Windows.Forms.Message@)">
+            <summary>
+            WM_KEYDOWNにより、上下キーによって日付を変更時の制御を行う。
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.WmNotify(System.Windows.Forms.Message@)">
+            <summary>
+            WM_NOTIFYにより、カレンダー操作を制御する。
             </summary>
             <param name="m"></param>
         </member>
@@ -2012,6 +2145,21 @@
             <param name="rectangle">Rectangle オブジェクト。</param>
             <param name="point">Point オブジェクト。</param>
             <param name="dwRop">ラスター操作コード。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.GetRestoreValue(System.DateTime,System.Boolean)">
+            <summary>
+            対象の日付で、カレンダータイプに応じた復元用の日付を取得する。
+            </summary>
+            <param name="value">日付値。</param>
+            <param name="resetMilliSecond">ミリ秒をリセットするかどうか。</param>
+            <returns>カレンダータイプに応じた復元用の日付。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.GetValueByMinCalendarType(System.DateTime)">
+            <summary>
+            対象の日付で、カレンダータイプに応じた日付を取得する。
+            </summary>
+            <param name="value">日付値。</param>
+            <returns>カレンダータイプに応じた日付。</returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>
@@ -3554,6 +3702,46 @@
               記号 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxClosed">
+            <summary>
+              This event occurs when the dropdown closes. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxClosed_ja">
+            <summary>
+              ドロップダウンが閉じた時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxOpened">
+            <summary>
+              This event occurs when a dropdown is opened. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxOpened_ja">
+            <summary>
+              ドロップダウンが開いた時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxOpening">
+            <summary>
+              This event occurs before the dropdown opens. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateBoxOpening_ja">
+            <summary>
+              ドロップダウンが開く前に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateSelected">
+            <summary>
+              This is an event that occurs when candidate values are selected. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCandidateSelected_ja">
+            <summary>
+              候補の値が選択された時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.AutoCompleteBoxCompareOptions">
             <summary>
               Gets or sets the option to decide candidate narrowing down. に類似しているローカライズされた文字列を検索します。
@@ -3722,6 +3910,46 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlCustomChars_ja">
             <summary>
               文字種類がカスタムな場合に、入力を許可する単一文字を1行単位で設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeMinCalendarType">
+            <summary>
+              Get or set the date type that can be selected in the calendar control and the date type that can be actually set. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeMinCalendarType_ja">
+            <summary>
+              カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowToday">
+            <summary>
+              Sets whether to display the &quot;Today&quot; date at the bottom of the calendar control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowToday_ja">
+            <summary>
+              カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowTodayCircle">
+            <summary>
+              Sets whether to circle the &quot;Today&quot; date in the calendar control. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowTodayCircle_ja">
+            <summary>
+              カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowTorailingDates">
+            <summary>
+              In the calendar control, set whether the dates of the previous month and the next month are displayed in the calendar of the current month. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeShowTorailingDates_ja">
+            <summary>
+              カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlDateTimeValue">
@@ -4144,26 +4372,6 @@
               Metroit拡張 プロパティ変更 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpened">
-            <summary>
-              This event occurs when opened a candidate box. に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpened_ja">
-            <summary>
-              候補ボックスを開いたときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpening">
-            <summary>
-              This event occurs when opening a candidate box. に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCompleteBoxOpening_ja">
-            <summary>
-              候補ボックスを開くときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
-            </summary>
-        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxCustomAutoCompleteBox">
             <summary>
               Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
@@ -4204,12 +4412,12 @@
               複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidationEventHandler">
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidation">
             <summary>
               occurs when the value of the Text property is added or inserted. You can verify the value and reject the change. に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
-        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidationEventHandler_ja">
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetTextBoxTextChangeValidation_ja">
             <summary>
               Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
             </summary>

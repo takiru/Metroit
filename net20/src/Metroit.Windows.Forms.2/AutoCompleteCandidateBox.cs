@@ -1,4 +1,4 @@
-﻿using Metroit.Api.Win32;
+﻿using Metroit.Win32.Api;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -155,7 +155,7 @@ namespace Metroit.Windows.Forms
                     WParam = new List<int>() { VirtualKey.VK_DOWN },
                     Action = (e) =>
                     {
-                        User32.SendMessage(this.Handle, WindowMessage.WM_KEYDOWN, VirtualKey.VK_DOWN, 0);
+                        User32.SendMessage(this.Handle, WindowMessage.WM_KEYDOWN, new IntPtr(VirtualKey.VK_DOWN), IntPtr.Zero);
                         e.StopMessage = true;
                     }
                 }
@@ -169,7 +169,7 @@ namespace Metroit.Windows.Forms
                     WParam = new List<int>() { VirtualKey.VK_UP },
                     Action = (e) =>
                     {
-                        User32.SendMessage(this.Handle, WindowMessage.WM_KEYDOWN, VirtualKey.VK_UP, 0);
+                        User32.SendMessage(this.Handle, WindowMessage.WM_KEYDOWN, new IntPtr(VirtualKey.VK_UP), IntPtr.Zero);
                         e.StopMessage = true;
                     }
                 }
@@ -224,7 +224,7 @@ namespace Metroit.Windows.Forms
                     Controls = new List<Control>() { this.TargetControl },
                     Action = (e) =>
                     {
-                        User32.SendMessage(this.Handle, e.Message.Msg, e.Message.WParam.ToInt32(), e.Message.LParam.ToInt32());
+                        User32.SendMessage(this.Handle, e.Message.Msg, e.Message.WParam, e.Message.LParam);
                         e.StopMessage = true;
                     }
                 }

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using Metroit.Api.Win32;
-using Metroit.Api.Win32.Structures;
+using Metroit.Win32.Api;
+using Metroit.Win32.Api.WindowsControls.CommonCtrl;
+using Metroit.Win32.Api.WindowsGdi;
+using Metroit.Win32.Api.WindowsGdi.WinUser;
+using Metroit.Win32.DesktopAppUi.WindowsControls;
 using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
@@ -911,27 +915,38 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// 背景色の変更を行います。
+        /// 固有のメッセージ制御を行います。
         /// </summary>
         /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
-            // 背景色・文字色、外枠を描画する
-            if (m.Msg == WindowMessage.WM_PAINT)
+            switch (m.Msg)
             {
-                using (var bmp = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height))
-                using (var bmpGraphics = Graphics.FromImage(bmp))
+                case WindowMessage.WM_PAINT:
+                    WmPaint(ref m);
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// WM_PAINTにより、背景色・文字色・外枠色の変更を行う。
+        /// </summary>
+        /// <param name="m"></param>
+        private void WmPaint(ref Message m)
+        {
+            var cs = this.ClientSize;
+            using (var bmp = new Bitmap(cs.Width, cs.Height))
+            {
+                BitBltGraphics(bmp, cs);
+
+                if (m.WParam == IntPtr.Zero)
                 {
-                    // bitmap に描画してもらう
-                    var bmphdc = bmpGraphics.GetHdc();
-                    var msg = Message.Create(m.HWnd, WindowMessage.WM_PAINT, bmphdc, IntPtr.Zero);
-                    base.WndProc(ref msg);
-                    bmpGraphics.ReleaseHdc();
-
-                    this.drawBitmap(bmp, bmpGraphics);
-
-                    // コントロールへ描画
-                    var ps = new PAINTSTRUCT();
+                    // コントロールに描画
+                    var ps = new PaintStruct();
                     var controlHdc = User32.BeginPaint(m.HWnd, ref ps);
                     using (var controlGraphics = Graphics.FromHdc(controlHdc))
                     {
@@ -939,51 +954,228 @@ namespace Metroit.Windows.Forms
                     }
                     User32.EndPaint(m.HWnd, ref ps);
                 }
+                else
+                {
+                    // hdc に描画(WM_PAINTの動作は、意図的にWParamにHDCを設定した時は、そのHDCに描画する仕様)
+                    using (var controlGraphics = Graphics.FromHdc(m.WParam))
+                    {
+                        controlGraphics.DrawImage(bmp, 0, 0);
+                    }
+                }
             }
-            else
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, ComboBoxInfo lParam);
+
+        /// <summary>
+        /// 背景色、文字色、キャレット範囲をビットブロック転送し、外枠を描画する。
+        /// </summary>
+        /// <param name="bmp">Bitmap オブジェクト。</param>
+        /// <param name="cs">クライアントサイズ。</param>
+        private void BitBltGraphics(Bitmap bmp, Size cs)
+        {
+            using (var g = Graphics.FromImage(bmp))
+            using (var bmpBack = CreateNativeBitmap(cs))
+            using (var bmpFore = CreateNegativeBitmap(bmpBack))
             {
-                base.WndProc(ref m);
+                IntPtr hdc = g.GetHdc();
+                var canvas = GetCanvasRectangle(cs);
+
+                // ベースとなる背景色を変更した全体イメージを生成し、適用する
+                BitBlt(bmpBack, this.BackColor, canvas, RasterOperations.SRCAND);
+                BitBlt(hdc, bmpBack, RasterOperations.SRCCOPY);
+
+                // 文字色を変更したイメージを生成し、入力領域のみを再描画する
+                BitBlt(bmpFore, this.ForeColor, canvas, RasterOperations.SRCAND);
+                BitBlt(hdc, bmpFore, canvas, canvas.Location, RasterOperations.SRCPAINT);
+
+                if (this.ContainsFocus)
+                {
+                    // 選択領域を再描画する
+                    using (var bmpOrg = CreateNativeBitmap(cs))
+                    {
+                        Rectangle caret = GetCaretRectangle(bmpOrg, canvas);
+                        BitBlt(hdc, bmpOrg, caret, caret.Location, RasterOperations.SRCCOPY);
+                    }
+                }
+                g.ReleaseHdc();
+
+                // 外枠の変更
+                var frameColor = this.BaseBorderColor;
+                if (this.ContainsFocus)
+                {
+                    frameColor = this.FocusBorderColor;
+                }
+                if (this.Error)
+                {
+                    frameColor = this.ErrorBorderColor;
+                }
+                g.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
             }
         }
 
         /// <summary>
-        /// Bitmapオブジェクトにコントロール描画を行う。
+        /// 描画変更される前のBitmapオブジェクトを取得する。
         /// </summary>
-        private void drawBitmap(Bitmap bmp, Graphics bmpGraphics)
+        /// <param name="cs">クライアントサイズ。</param>
+        /// <returns>Bitmap オブジェクト。</returns>
+        private Bitmap CreateNativeBitmap(Size cs)
         {
-            // 現状のコントロール描画をBitmapにコピー
-            this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
-
-            System.Drawing.Imaging.ColorMap[] cm = { new System.Drawing.Imaging.ColorMap(), new System.Drawing.Imaging.ColorMap() };
-
-            // 背景色のマッピング
-            cm[0].OldColor = SystemColors.Window;
-            cm[0].NewColor = this.BackColor;
-
-            // 文字色のマッピング
-            cm[1].OldColor = SystemColors.WindowText;
-            cm[1].NewColor = this.ForeColor;
-
-            // 背景色・文字色の変更
-            var ia = new System.Drawing.Imaging.ImageAttributes();
-            ia.SetRemapTable(cm);
-            var r = new Rectangle(0, 0, bmp.Width, bmp.Height);
-            bmpGraphics.DrawImage(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height),
-                        0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, ia);
-
-            // 外枠の変更
-            var frameColor = this.BaseBorderColor;
-            var form = this.FindForm();
-            if (form != null && form.ActiveControl == this)
+            var bmp = new Bitmap(cs.Width, cs.Height);
+            using (var g = Graphics.FromImage(bmp))
             {
-                frameColor = this.FocusBorderColor;
+                var hdc = g.GetHdc();
+                var pm = Message.Create(this.Handle, WindowMessage.WM_PAINT, hdc, IntPtr.Zero);
+                base.DefWndProc(ref pm);
+                g.ReleaseHdc();
             }
-            if (this.Error)
-            {
-                frameColor = this.ErrorBorderColor;
-            }
+            return bmp;
+        }
 
-            bmpGraphics.DrawRectangle(new Pen(frameColor), new Rectangle(0, 0, bmp.Width - 1, bmp.Height - 1));
+        /// <summary>
+        /// 対象Bitmapオブジェクトの色を反転し、背景を白、文字を黒としたBitmapオブジェクトを取得する。
+        /// </summary>
+        /// <param name="bmp">Bitmap オブジェクト。</param>
+        /// <returns>Bitmap オブジェクト。</returns>
+        private static Bitmap CreateNegativeBitmap(Bitmap bmp)
+        {
+            var bmpDest = new Bitmap(bmp.Width, bmp.Height);
+            using (var g = Graphics.FromImage(bmpDest))
+            {
+                var hdc = g.GetHdc();
+                BitBlt(hdc, bmp, RasterOperations.NOTSRCCOPY);
+                g.ReleaseHdc();
+            }
+            return bmpDest;
+        }
+
+        /// <summary>
+        /// 入力エリア領域を求める。
+        /// </summary>
+        /// <returns>Rectangle オブジェクト。</returns>
+        private Rectangle GetCanvasRectangle(Size cs)
+        {
+            var bsz = SystemInformation.Border3DSize;
+
+            var cbi = new ComboBoxInfo();
+            SendMessage(this.Handle, ComboBoxControlMessages.CB_GETCOMBOBOXINFO, IntPtr.Zero, cbi);
+            var x = bsz.Width;
+            var y = bsz.Height;
+            var height = cs.Height - bsz.Height * 2;
+
+            var width = cbi.rcButton.Left - bsz.Width;
+            return new Rectangle(x, y, width, height);
+        }
+
+        /// <summary>
+        /// 選択領域の座標を求める。
+        /// </summary>
+        /// <param name="bmp">Bitmap オブジェクト。</param>
+        /// <param name="canvas">Rectangle オブジェクト。</param>
+        /// <returns>選択領域座標の Rectangle オブジェクト。</returns>
+        private static Rectangle GetCaretRectangle(Bitmap bmp, Rectangle canvas)
+        {
+            var baseColor = SystemColors.Highlight;
+            int pixelSize = Image.GetPixelFormatSize(bmp.PixelFormat) / 8;
+            BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),
+                ImageLockMode.ReadOnly, bmp.PixelFormat);
+
+            byte[] pixels = new byte[bmpData.Stride * bmp.Height];
+            Marshal.Copy(bmpData.Scan0, pixels, 0, pixels.Length);
+
+            var rangeStartX = -1;
+            var rangeEndX = -1;
+            var rangeStartY = canvas.Top + 2;   // Yの開始座標を、とりあえず4ピクセル目とする
+            var rangeEndY = bmpData.Height - 4; // Yの終了座標は、どの環境でも全体レイアウトの高さ-4
+
+            // X方向へ選択領域座標を取得
+            for (int x = canvas.Left; x <= canvas.Left + canvas.Width; x++)
+            {
+                int pos = rangeStartY * bmpData.Stride + x * pixelSize;
+                if (!(pixels[pos] == baseColor.B && pixels[pos + 1] == baseColor.G && pixels[pos + 2] == baseColor.R))
+                {
+                    continue;
+                }
+                if (rangeStartX == -1)
+                {
+                    rangeStartX = x;
+                }
+                else
+                {
+                    rangeEndX = x;
+                }
+            }
+            // Y開始座標が3ピクセル目の場合があるので、開始座標を求め直す
+            for (int y = rangeStartY; y >= canvas.Top; y--)
+            {
+                int pos = y * bmpData.Stride + rangeStartX * pixelSize;
+                if (!(pixels[pos] == baseColor.B && pixels[pos + 1] == baseColor.G && pixels[pos + 2] == baseColor.R))
+                {
+                    continue;
+                }
+                rangeStartY = y;
+            }
+            bmp.UnlockBits(bmpData);
+            return Rectangle.FromLTRB(rangeStartX, rangeStartY, rangeEndX + 1, rangeEndY);
+        }
+
+        /// <summary>
+        /// Bitmapの入力領域に対して、背景色・文字色だけを変更し、それ以外を黒とする。
+        /// </summary>
+        /// <param name="bmp">Bitmap オブジェクト。</param>
+        /// <param name="color">変更する色。</param>
+        /// <param name="rectangle"></param>
+        /// <param name="dwRop"></param>
+        private static void BitBlt(Bitmap bmp, Color color, Rectangle rectangle, int dwRop)
+        {
+            using (var g = Graphics.FromImage(bmp))
+            {
+                IntPtr hdc = g.GetHdc();
+                BitBlt(hdc, bmp, new Rectangle(0, 0, bmp.Width, bmp.Height), new Point(0, 0), RasterOperations.SRCCOPY);
+
+                using (var fillBmp = new Bitmap(rectangle.Width, rectangle.Height))
+                using (var fillGraphics = Graphics.FromImage(fillBmp))
+                {
+                    fillGraphics.Clear(color);
+                    BitBlt(hdc, fillBmp, rectangle, new Point(0, 0), dwRop);
+                }
+
+                g.ReleaseHdc();
+            }
+        }
+
+        /// <summary>
+        /// 対象Bitmapを指定したラスター操作コードで色変換する。
+        /// </summary>
+        /// <param name="hdc">IntPtr。</param>
+        /// <param name="bmp">Bitmapオブジェクト。</param>
+        /// <param name="dwRop">ラスター操作コード。</param>
+        private static void BitBlt(IntPtr hdc, Bitmap bmp, int dwRop)
+        {
+            BitBlt(hdc, bmp, new Rectangle(0, 0, bmp.Width, bmp.Height), new Point(0, 0), dwRop);
+        }
+
+        /// <summary>
+        /// 対象領域を指定したラスター操作コードで色変換する。
+        /// </summary>
+        /// <param name="hdc">IntPtr。</param>
+        /// <param name="bmp">Bitmap オブジェクト。</param>
+        /// <param name="rectangle">Rectangle オブジェクト。</param>
+        /// <param name="point">Point オブジェクト。</param>
+        /// <param name="dwRop">ラスター操作コード。</param>
+        private static void BitBlt(IntPtr hdc, Bitmap bmp, Rectangle rectangle, Point point, int dwRop)
+        {
+            var hdcSrc = Gdi32.CreateCompatibleDC(hdc);
+            var hBitmap = bmp.GetHbitmap();
+            var hbmpOld = Gdi32.SelectObject(hdcSrc, hBitmap);
+
+            Gdi32.BitBlt(hdc, rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height,
+                hdcSrc, point.X, point.Y, dwRop);
+
+            Gdi32.SelectObject(hdcSrc, hbmpOld);
+            Gdi32.DeleteObject(hBitmap);
+            Gdi32.DeleteDC(hdcSrc);
         }
 
         #endregion

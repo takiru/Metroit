@@ -487,5 +487,38 @@ namespace Test
             result = result.GetEnclosedText();
             Console.WriteLine(result);
         }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            metDateTimePicker3.Value = new DateTime(2020, 12, 5);
+        }
+
+        private void metDateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("ValueChanged");
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            metDateTimePicker3.MinCalendarType = CalendarType.Day;
+            metDateTimePicker3.ShowToday = true;
+            metDateTimePicker3.ShowTodayCircle = true;
+            //metDateTimePicker3.ShowNearMonthDays = true;
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            metDateTimePicker3.MinCalendarType = CalendarType.Month;
+        }
+
+        private void dateTimePickerEx1_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Ex ValueChanged");
+        }
+
+        private void metTextBox10_Validating(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine("metTextBox10 Validating");
+        }
     }
 }

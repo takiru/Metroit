@@ -373,7 +373,7 @@ namespace Metroit.Windows.Forms
         /// オートコンプリートのボックスを開きます。
         /// </summary>
         /// <param name="text">候補の検索に利用するテキスト。</param>
-        public void Open(string text)
+        public void Open(string text = "")
         {
             this.OnCandidateBoxOpening(this, EventArgs.Empty);
 

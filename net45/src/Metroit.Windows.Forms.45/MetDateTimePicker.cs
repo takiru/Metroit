@@ -3,12 +3,15 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Metroit.Windows.Forms.Extensions;
-using Metroit.Api.Win32;
-using Metroit.Api.Win32.Structures;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
-using Metroit.Api.WindowsControls;
-using Metroit.Api.WindowsControls.CommonControls;
+using Metroit.Win32.DesktopAppUi.WindowsControls;
+using Metroit.Win32.Api.WindowsControls.WinUser;
+using Metroit.Win32.Api;
+using Metroit.Win32.Api.WindowsControls.CommonCtrl;
+using Metroit.Win32.Api.DisplayDeviceReference.WinDef;
+using Metroit.Win32.Api.WindowsGdi;
+using Metroit.Win32.Api.WindowsGdi.WinUser;
 
 namespace Metroit.Windows.Forms
 {
@@ -66,8 +69,7 @@ namespace Metroit.Windows.Forms
                 }
 
                 // UIから操作した時、ミリ秒は取り除かれるのが通常仕様
-                var restoreValue = new DateTime(base.Value.Year, base.Value.Month, base.Value.Day, base.Value.Hour, base.Value.Minute, base.Value.Second, 0);
-                this.Value = restoreValue;
+                this.Value = this.GetRestoreValue(base.Value, true);
             }
         }
 
@@ -214,9 +216,9 @@ namespace Metroit.Windows.Forms
                     if (base.Value == value.Value)
                     {
                         // Value と Text の内容が合致しないため、一度 Value を変更させて整合させる
-                        this.innerValueChanged = true;
+                        this.InnerValueChanged = true;
                         base.Value = DateTime.Now;
-                        this.innerValueChanged = false;
+                        this.InnerValueChanged = false;
                         base.Value = value.Value;
                     }
                     else
@@ -227,7 +229,7 @@ namespace Metroit.Windows.Forms
                     return;
                 }
 
-                base.Value = value.Value;
+                base.Value = this.GetValueByMinCalendarType(value.Value);
                 if (this.IsDesignMode())
                 {
                     return;
@@ -240,16 +242,22 @@ namespace Metroit.Windows.Forms
         /// Value が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        internal bool ShouldSerializeValue() => this.isValueChanged;
+        private bool ShouldSerializeValue() => this.isValueChanged;
 
         /// <summary>
         /// Value のリセット操作を行う。
         /// </summary>
-        internal void ResetValue()
+        private void ResetValue()
         {
-            this.Value = DateTime.Now;
-            this.Checked = false;
-            this.isValueChanged = false;
+            this.isValueChanged = true;
+            this.Value = this.GetRestoreValue(DateTime.Now);
+
+            // カレンダーが日まで指定する場合は既定と同じ動作とする
+            if (this.MinCalendarType == CalendarType.Day)
+            {
+                this.Checked = false;
+                this.isValueChanged = false;
+            }
         }
 
         /// <summary>
@@ -298,10 +306,10 @@ namespace Metroit.Windows.Forms
                     this.switchFormat(false);
 
                     // Value と Text の内容が合致しないため、一度 Value を変更させて整合させる
-                    this.innerValueChanged = true;
+                    this.InnerValueChanged = true;
                     var restoreValue = base.Value;
                     base.Value = DateTime.Now;
-                    this.innerValueChanged = false;
+                    this.InnerValueChanged = false;
                     base.Value = restoreValue;
                 }
 
@@ -794,12 +802,12 @@ namespace Metroit.Windows.Forms
         /// BaseBackColor が既定値から変更されたかどうかを返却します。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        internal bool ShouldSerializeBaseBackColor() => this.baseBackColor != null && this.baseBackColor != this.defaultBaseBackColor;
+        private bool ShouldSerializeBaseBackColor() => this.baseBackColor != null && this.baseBackColor != this.defaultBaseBackColor;
 
         /// <summary>
         /// BaseBackColor のリセット操作を行う。
         /// </summary>
-        internal void ResetBaseBackColor()
+        private void ResetBaseBackColor()
         {
             this.baseBackColor = null;
             // 背景色・文字色の変更
@@ -833,12 +841,12 @@ namespace Metroit.Windows.Forms
         /// FocusBackColor が既定値から変更されたかどうかを返却します。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        internal bool ShouldSerializeFocusBackColor() => this.focusBackColor != null && this.focusBackColor != this.defaultFocusBackColor;
+        private bool ShouldSerializeFocusBackColor() => this.focusBackColor != null && this.focusBackColor != this.defaultFocusBackColor;
 
         /// <summary>
         /// FocusBackColor のリセット操作を行う。
         /// </summary>
-        internal void ResetFocusBackColor()
+        private void ResetFocusBackColor()
         {
             this.focusBackColor = null;
             // 背景色・文字色の変更
@@ -871,12 +879,12 @@ namespace Metroit.Windows.Forms
         /// BaseBackColor が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        internal bool ShouldSerializeBaseForeColor() => this.baseForeColor != null && this.baseForeColor != this.defaultBaseForeColor;
+        private bool ShouldSerializeBaseForeColor() => this.baseForeColor != null && this.baseForeColor != this.defaultBaseForeColor;
 
         /// <summary>
         /// BaseBackColor のリセット操作を行う。
         /// </summary>
-        internal void ResetBaseForeColor()
+        private void ResetBaseForeColor()
         {
             this.baseForeColor = null;
             // 背景色・文字色の変更
@@ -910,12 +918,12 @@ namespace Metroit.Windows.Forms
         /// FocusBackColor が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        internal bool ShouldSerializeFocusForeColor() => this.focusForeColor != null && this.focusForeColor != this.defaultFocusForeColor;
+        private bool ShouldSerializeFocusForeColor() => this.focusForeColor != null && this.focusForeColor != this.defaultFocusForeColor;
 
         /// <summary>
         /// FocusBackColor のリセット操作を行う。
         /// </summary>
-        internal void ResetFocusForeColor()
+        private void ResetFocusForeColor()
         {
             this.focusForeColor = null;
             // 背景色・文字色の変更
@@ -1058,12 +1066,110 @@ namespace Metroit.Windows.Forms
 
         #endregion
 
+        #region カレンダー
+
+        private CalendarType minCalendarType = CalendarType.Day;
+
+        /// <summary>
+        /// カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [Bindable(true)]
+        [DefaultValue(CalendarType.Day)]
+        [MetCategory("MetBehavior")]
+        [MetDescription("ControlDateTimeMinCalendarType")]
+        public CalendarType MinCalendarType
+        {
+            get
+            {
+                return this.minCalendarType;
+            }
+            set
+            {
+                this.minCalendarType = value;
+
+                // 月日を固定値に切り替える
+                if (this.MinCalendarType != CalendarType.Day)
+                {
+                    this.Value = this.GetValueByMinCalendarType(this.Value.Value);
+                }
+            }
+        }
+
+        private bool showToday = true;
+
+        /// <summary>
+        /// カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。
+        /// </summary>
+        [Browsable(true)]
+        [Bindable(true)]
+        [DefaultValue(true)]
+        [MetCategory("MetBehavior")]
+        [MetDescription("ControlDateTimeShowToday")]
+        public bool ShowToday
+        {
+            get => this.showToday;
+            set
+            {
+                this.showToday = value;
+                this.RefreshCalendarLayout();
+            }
+        }
+
+        private bool showTodayCircle = true;
+
+        /// <summary>
+        /// カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。
+        /// </summary>
+        [Browsable(true)]
+        [Bindable(true)]
+        [DefaultValue(true)]
+        [MetCategory("MetBehavior")]
+        [MetDescription("ControlDateTimeShowTodayCircle")]
+        public bool ShowTodayCircle
+        {
+            get => this.showTodayCircle;
+            set
+            {
+                this.showTodayCircle = value;
+                this.RefreshCalendarLayout();
+            }
+        }
+
+        private bool showTorailingDates = true;
+
+        /// <summary>
+        /// カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。
+        /// </summary>
+        [Browsable(true)]
+        [Bindable(true)]
+        [DefaultValue(true)]
+        [MetCategory("MetBehavior")]
+        [MetDescription("ControlDateTimeShowTorailingDates")]
+        public bool ShowTorailingDates
+        {
+            get => this.showTorailingDates;
+            set
+            {
+                this.showTorailingDates = value;
+                this.RefreshCalendarLayout();
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region メソッド
 
         private bool controlCreated = false;
-        private bool innerValueChanged = false;
+        private IntPtr initialCalendarLayoutValue;
+
+        /// <summary>
+        /// 内部的なValueの変更を実施中かどうかを取得します。
+        /// 内部的なValueの変更であってもOnValueChangedが発生するため、このプロパティで判定を行う必要があります。
+        /// </summary>
+        protected bool InnerValueChanged { get; private set; } = false;
 
         /// <summary>
         /// InitializeComponent()でコントロールの生成が完了していないことを通知します。
@@ -1097,6 +1203,18 @@ namespace Metroit.Windows.Forms
         public void Rollback(object sender, Control control)
         {
             this.Value = this.enterValue;
+        }
+        
+        /// <summary>
+        /// ハンドルが作成された時に、カレンダーレイアウトの初期状態の把握と、カレンダーレイアウトの反映を行います。
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            this.initialCalendarLayoutValue = User32.SendMessage(this.Handle, DateTimePickerMessages.DTM_GETMCSTYLE, IntPtr.Zero, IntPtr.Zero);
+            this.RefreshCalendarLayout();
+
+            base.OnHandleCreated(e);
         }
 
         /// <summary>
@@ -1137,19 +1255,19 @@ namespace Metroit.Windows.Forms
             // 日付が確定してカレンダーが消えてしまうため、直前に指定されていた日付を復帰し、Alt+F4によって
             // カレンダーを表示させ、通常ルートに戻す
             // UIから操作した時、ミリ秒は取り除かれるのが通常仕様
-            var recoverDate = new DateTime(base.Value.Year, base.Value.Month, base.Value.Day, base.Value.Hour, base.Value.Minute, base.Value.Second, 0);
-            this.Value = recoverDate;
+            this.Value = this.GetRestoreValue(base.Value, true);
             SendKeys.Send("%{DOWN}");
         }
 
         /// <summary>
         /// 値が変更された時、内部的な値変更では処理しないようにします。
+        /// InnerValueChanged = true の場合は走行させないようにしてください。
         /// </summary>
         /// <param name="eventargs"></param>
         protected override void OnValueChanged(EventArgs eventargs)
         {
             // 内部的にValueを強制変更時は処理させない
-            if (this.innerValueChanged)
+            if (this.InnerValueChanged)
             {
                 return;
             }
@@ -1323,7 +1441,28 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// WM_PAINTにより、背景色・文字色・外枠色の変更を行います。
+        /// カレンダーレイアウトを反映する。
+        /// </summary>
+        private void RefreshCalendarLayout()
+        {
+            var layoutValue = this.initialCalendarLayoutValue.ToInt32();
+            if (!ShowToday)
+            {
+                layoutValue |= MonthCalendarControlStyles.MCS_NOTODAY;
+            }
+            if (!ShowTodayCircle)
+            {
+                layoutValue |= MonthCalendarControlStyles.MCS_NOTODAYCIRCLE;
+            }
+            if (!ShowTorailingDates)
+            {
+                layoutValue |= MonthCalendarControlStyles.MCS_NOTRAILINGDATES;
+            }
+            User32.SendMessage(this.Handle, DateTimePickerMessages.DTM_SETMCSTYLE, IntPtr.Zero, new IntPtr(layoutValue));
+        }
+
+        /// <summary>
+        /// 固有のメッセージ制御を行います。
         /// </summary>
         /// <param name="m"></param>
         protected override void WndProc(ref Message m)
@@ -1333,6 +1472,15 @@ namespace Metroit.Windows.Forms
                 case WindowMessage.WM_PAINT:
                     WmPaint(ref m);
                     break;
+
+                case WindowMessage.WM_KEYDOWN:
+                    WmKeyDown(ref m);
+                    break;
+
+                case WindowMessage.WM_NOTIFY:
+                    WmNotify(ref m);
+                    break;
+
                 default:
                     base.WndProc(ref m);
                     break;
@@ -1353,7 +1501,7 @@ namespace Metroit.Windows.Forms
                 if (m.WParam == IntPtr.Zero)
                 {
                     // コントロールに描画
-                    var ps = new PAINTSTRUCT();
+                    var ps = new PaintStruct();
                     var controlHdc = User32.BeginPaint(m.HWnd, ref ps);
                     using (var controlGraphics = Graphics.FromHdc(controlHdc))
                     {
@@ -1369,6 +1517,106 @@ namespace Metroit.Windows.Forms
                         controlGraphics.DrawImage(bmp, 0, 0);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// WM_KEYDOWNにより、上下キーによって日付を変更時の制御を行う。
+        /// </summary>
+        /// <param name="m"></param>
+        private void WmKeyDown(ref Message m)
+        {
+            // 上、下キー以外の押下は既定動作
+            if (m.WParam.ToInt32() != VirtualKey.VK_UP && m.WParam.ToInt32() != VirtualKey.VK_DOWN)
+            {
+                base.WndProc(ref m);
+                return;
+            }
+            // nullからの復帰が行われる場合は既定動作
+            if (this.isNull)
+            {
+                base.WndProc(ref m);
+                return;
+            }
+            // カレンダータイプが日の場合は既定動作
+            if (this.MinCalendarType == CalendarType.Day)
+            {
+                base.WndProc(ref m);
+                return;
+            }
+
+            // まず一度WndProcによって値を書き換える
+            this.InnerValueChanged = true;
+            base.WndProc(ref m);
+            this.InnerValueChanged = false;
+
+            var newValue = this.GetValueByMinCalendarType(this.Value.Value);
+            // 書き換えた値が一緒の場合はカレンダーのタイプによって固定になる月日以外の変更であるため、イベント発行
+            if (this.Value.Value == newValue)
+            {
+                OnValueChanged(EventArgs.Empty);
+                return;
+            }
+
+            // 書き換えた値が異なる場合は固定の日付に戻し、イベント発行はしない
+            this.InnerValueChanged = true;
+            this.Value = newValue;
+            this.InnerValueChanged = false;
+        }
+
+        /// <summary>
+        /// WM_NOTIFYにより、カレンダー操作を制御する。
+        /// </summary>
+        /// <param name="m"></param>
+        private void WmNotify(ref Message m)
+        {
+            // カレンダータイプが日の場合は制御しない
+            if (this.MinCalendarType == CalendarType.Day)
+            {
+                base.WndProc(ref m);
+                return;
+            }
+
+            var nmhdr = (NmHdr)Marshal.PtrToStructure(m.LParam, typeof(NmHdr));
+
+            if (nmhdr.code != MonthCalendarNotifications.MCN_SELCHANGE && nmhdr.code != -950 &&
+                nmhdr.code != MonthCalendarNotifications.MCN_VIEWCHANGE)
+            {
+                base.WndProc(ref m);
+                return;
+            }
+
+            switch (nmhdr.code)
+            {
+                case MonthCalendarNotifications.MCN_SELCHANGE:
+                    // 十字キーでカレンダーを選択時
+                    // 表示の日付を正しく切り替わるようにするため、WndProcを実施する
+                    // base.WndProc()によってカレンダーを表示した時の日付に戻ってしまうので、強制的に書き換えてOnValueChangedを発行させる
+                    this.InnerValueChanged = true;
+                    base.WndProc(ref m);
+
+                    if (this.MinCalendarType != CalendarType.Day)
+                    {
+                        this.Value = this.GetValueByMinCalendarType(this.Value.Value);
+                    }
+                    this.InnerValueChanged = false;
+                    OnValueChanged(EventArgs.Empty);
+                    break;
+
+                case -950:
+                    // カレンダーを開いた時、カレンダータイプのカレンダーを表示する
+                    var calendar = User32.SendMessage(this.Handle, DateTimePickerMessages.DTM_GETMONTHCAL, IntPtr.Zero, IntPtr.Zero);
+                    User32.SendMessage(calendar, MonthCalendarMessages.MCM_SETCURRENTVIEW, IntPtr.Zero, (IntPtr)this.MinCalendarType);
+                    break;
+
+                case MonthCalendarNotifications.MCN_VIEWCHANGE:
+                    // カレンダータイプより下位のカレンダータイプに切り替えた場合、カレンダーを閉じる
+                    var nmviewchange = (NmViewChange)Marshal.PtrToStructure(m.LParam, typeof(NmViewChange));
+                    if (nmviewchange.dwOldView == (int)this.MinCalendarType && nmviewchange.dwNewView == (int)this.MinCalendarType - 1)
+                    {
+                        User32.SendMessage(this.Handle, DateTimePickerMessages.DTM_CLOSEMONTHCAL, IntPtr.Zero, IntPtr.Zero);
+                    }
+                    break;
             }
         }
 
@@ -1390,12 +1638,12 @@ namespace Metroit.Windows.Forms
                 var canvas = GetCanvasRectangle(cs);
 
                 // ベースとなる背景色を変更した全体イメージを生成し、適用する
-                BitBlt(bmpBack, this.BackColor, canvas, RasterOperation.SRCAND);
-                BitBlt(hdc, bmpBack, RasterOperation.SRCCOPY);
-                
+                BitBlt(bmpBack, this.BackColor, canvas, RasterOperations.SRCAND);
+                BitBlt(hdc, bmpBack, RasterOperations.SRCCOPY);
+
                 // 文字色を変更したイメージを生成し、入力領域のみを再描画する
-                BitBlt(bmpFore, this.ForeColor, canvas, RasterOperation.SRCAND);
-                BitBlt(hdc, bmpFore, canvas, canvas.Location, RasterOperation.SRCPAINT);
+                BitBlt(bmpFore, this.ForeColor, canvas, RasterOperations.SRCAND);
+                BitBlt(hdc, bmpFore, canvas, canvas.Location, RasterOperations.SRCPAINT);
 
                 if (this.ContainsFocus)
                 {
@@ -1403,7 +1651,7 @@ namespace Metroit.Windows.Forms
                     using (var bmpOrg = CreateNativeBitmap(cs))
                     {
                         Rectangle caret = GetCaretRectangle(bmpOrg, canvas);
-                        BitBlt(hdc, bmpOrg, caret, caret.Location, RasterOperation.SRCCOPY);
+                        BitBlt(hdc, bmpOrg, caret, caret.Location, RasterOperations.SRCCOPY);
                     }
                 }
                 g.ReleaseHdc();
@@ -1451,7 +1699,7 @@ namespace Metroit.Windows.Forms
             using (var g = Graphics.FromImage(bmpDest))
             {
                 var hdc = g.GetHdc();
-                BitBlt(hdc, bmp, RasterOperation.NOTSRCCOPY);
+                BitBlt(hdc, bmp, RasterOperations.NOTSRCCOPY);
                 g.ReleaseHdc();
             }
             return bmpDest;
@@ -1466,14 +1714,14 @@ namespace Metroit.Windows.Forms
             var bsz = SystemInformation.Border3DSize;
 
             var dti = new DateTimePickerInfo();
-            SendMessage(this.Handle, DateTimePickerMessage.DTM_GETDATETIMEPICKERINFO, IntPtr.Zero, dti);
+            SendMessage(this.Handle, DateTimePickerMessages.DTM_GETDATETIMEPICKERINFO, IntPtr.Zero, dti);
             var x = bsz.Width + (dti.rcCheck.Right != 0 ? dti.rcCheck.Right - 1 : 0);
             var y = bsz.Height;
             var height = cs.Height - bsz.Height * 2;
 
             if (ShowUpDown)
             {
-                RECT rc;
+                Rect rc;
                 User32.GetWindowRect(dti.hwndUD, out rc);
                 Point point = PointToClient(new Point(rc.Left, rc.Top));
                 var width = point.X - bsz.Width - (dti.rcCheck.Right != 0 ? dti.rcCheck.Right - 1 : 0);
@@ -1550,7 +1798,7 @@ namespace Metroit.Windows.Forms
             using (var g = Graphics.FromImage(bmp))
             {
                 IntPtr hdc = g.GetHdc();
-                BitBlt(hdc, bmp, new Rectangle(0, 0, bmp.Width, bmp.Height), new Point(0, 0), RasterOperation.SRCCOPY);
+                BitBlt(hdc, bmp, new Rectangle(0, 0, bmp.Width, bmp.Height), new Point(0, 0), RasterOperations.SRCCOPY);
 
                 using (var fillBmp = new Bitmap(rectangle.Width, rectangle.Height))
                 using (var fillGraphics = Graphics.FromImage(fillBmp))
@@ -1594,6 +1842,54 @@ namespace Metroit.Windows.Forms
             Gdi32.SelectObject(hdcSrc, hbmpOld);
             Gdi32.DeleteObject(hBitmap);
             Gdi32.DeleteDC(hdcSrc);
+        }
+
+        /// <summary>
+        /// 対象の日付で、カレンダータイプに応じた復元用の日付を取得する。
+        /// </summary>
+        /// <param name="value">日付値。</param>
+        /// <param name="resetMilliSecond">ミリ秒をリセットするかどうか。</param>
+        /// <returns>カレンダータイプに応じた復元用の日付。</returns>
+        private DateTime GetRestoreValue(DateTime value, bool resetMilliSecond = false)
+        {
+            DateTime result;
+            switch (this.MinCalendarType)
+            {
+                case CalendarType.Month:
+                    result = new DateTime(value.Year, value.Month, 1, value.Hour, value.Minute, value.Second, resetMilliSecond ? 0 : value.Millisecond);
+                    break;
+                case CalendarType.Year:
+                    result = new DateTime(value.Year, 1, 1, value.Hour, value.Minute, value.Second, resetMilliSecond ? 0 : value.Millisecond);
+                    break;
+                default:
+                    result = new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second, resetMilliSecond ? 0 : value.Millisecond);
+                    break;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 対象の日付で、カレンダータイプに応じた日付を取得する。
+        /// </summary>
+        /// <param name="value">日付値。</param>
+        /// <returns>カレンダータイプに応じた日付。</returns>
+        private DateTime GetValueByMinCalendarType(DateTime value)
+        {
+            DateTime result;
+            switch (this.MinCalendarType)
+            {
+                case CalendarType.Month:
+                    result = value.AddDays(-(value.Day - 1));
+                    break;
+
+                case CalendarType.Year:
+                    result = value.AddMonths(-(value.Month - 1)).AddDays(-(value.Day - 1));
+                    break;
+                default:
+                    result = value;
+                    break;
+            }
+            return result;
         }
 
         #endregion

@@ -58,22 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Win32\ComboBoxCommand.cs" />
-    <Compile Include="Api\Win32\Gdi32.cs" />
-    <Compile Include="Api\Win32\RasterOperation.cs" />
-    <Compile Include="Api\Win32\Structures\PaintStruct.cs" />
-    <Compile Include="Api\Win32\Structures\Rect.cs" />
-    <Compile Include="Api\Win32\SystemCommand.cs" />
-    <Compile Include="Api\Win32\User32.cs" />
-    <Compile Include="Api\Win32\VirtualKey.cs" />
-    <Compile Include="Api\Win32\WindowMessage.cs" />
-    <Compile Include="Api\WindowsControls\CommonControls\DateTimePickerInfo.cs" />
-    <Compile Include="Api\WindowsControls\CommonControls\MonthCalendarView.cs" />
-    <Compile Include="Api\WindowsControls\CommonControls\NmViewChange.cs" />
-    <Compile Include="Api\WindowsControls\DateTimePickerMessage.cs" />
-    <Compile Include="Api\WindowsControls\MonthCalendarNotifications.cs" />
-    <Compile Include="Api\WindowsControls\MonthCalenderMessage.cs" />
-    <Compile Include="Api\WindowsControls\WinUser\NmHdr.cs" />
     <Compile Include="Collections\Generic\LimitedList.cs" />
     <Compile Include="IO\ConvertCompleteEventArgs.cs" />
     <Compile Include="IO\ConverterBase.cs" />
@@ -98,6 +82,24 @@
     <Compile Include="System.ComponentModel.DataAnnotations\ColumnAttribute.cs" />
     <Compile Include="System.Runtime.CompilerServices\ExtensionAttribute.cs" />
     <Compile Include="MetSystem.cs" />
+    <Compile Include="Win32\Api\DisplayDeviceReference\WinDef\Rect.cs" />
+    <Compile Include="Win32\Api\Gdi32.cs" />
+    <Compile Include="Win32\Api\User32.cs" />
+    <Compile Include="Win32\Api\VirtualKey.cs" />
+    <Compile Include="Win32\Api\WindowMessage.cs" />
+    <Compile Include="Win32\Api\WindowsControls\CommonCtrl\ComboBoxInfo.cs" />
+    <Compile Include="Win32\Api\WindowsControls\CommonCtrl\DateTimePickerInfo.cs" />
+    <Compile Include="Win32\Api\WindowsControls\CommonCtrl\MonthCalendarView.cs" />
+    <Compile Include="Win32\Api\WindowsControls\CommonCtrl\NmViewChange.cs" />
+    <Compile Include="Win32\Api\WindowsControls\WinUser\NmHdr.cs" />
+    <Compile Include="Win32\Api\WindowsGdi\RasterOperations.cs" />
+    <Compile Include="Win32\Api\WindowsGdi\WinUser\PaintStruct.cs" />
+    <Compile Include="Win32\DesktopAppUi\MenuRc\SystemCommandTypes.cs" />
+    <Compile Include="Win32\DesktopAppUi\WindowsControls\ComboBoxControlMessages.cs" />
+    <Compile Include="Win32\DesktopAppUi\WindowsControls\DateTimePickerMessages.cs" />
+    <Compile Include="Win32\DesktopAppUi\WindowsControls\MonthCalendarControlStyles.cs" />
+    <Compile Include="Win32\DesktopAppUi\WindowsControls\MonthCalendarMessages.cs" />
+    <Compile Include="Win32\DesktopAppUi\WindowsControls\MonthCalendarNotifications.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\ExceptionResources.resx">

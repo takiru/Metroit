@@ -169,6 +169,78 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   This event occurs when the dropdown closes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxClosed {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ドロップダウンが閉じた時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxClosed_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxClosed.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This event occurs when a dropdown is opened. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxOpened {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ドロップダウンが開いた時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxOpened_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxOpened.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This event occurs before the dropdown opens. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxOpening {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxOpening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ドロップダウンが開く前に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateBoxOpening_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateBoxOpening.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This is an event that occurs when candidate values are selected. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateSelected {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   候補の値が選択された時に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AutoCompleteBoxCandidateSelected_ja {
+            get {
+                return ResourceManager.GetString("AutoCompleteBoxCandidateSelected.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the option to decide candidate narrowing down. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string AutoCompleteBoxCompareOptions {
@@ -471,6 +543,78 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlCustomChars_ja {
             get {
                 return ResourceManager.GetString("ControlCustomChars.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Get or set the date type that can be selected in the calendar control and the date type that can be actually set. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeMinCalendarType {
+            get {
+                return ResourceManager.GetString("ControlDateTimeMinCalendarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeMinCalendarType_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeMinCalendarType.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sets whether to display the &quot;Today&quot; date at the bottom of the calendar control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowToday {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowToday_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowToday.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sets whether to circle the &quot;Today&quot; date in the calendar control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTodayCircle {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTodayCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTodayCircle_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTodayCircle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   In the calendar control, set whether the dates of the previous month and the next month are displayed in the calendar of the current month. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTorailingDates {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTorailingDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlDateTimeShowTorailingDates_ja {
+            get {
+                return ResourceManager.GetString("ControlDateTimeShowTorailingDates.ja", resourceCulture);
             }
         }
         
@@ -1231,42 +1375,6 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   This event occurs when opened a candidate box. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string MetTextBoxCompleteBoxOpened {
-            get {
-                return ResourceManager.GetString("MetTextBoxCompleteBoxOpened", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   候補ボックスを開いたときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string MetTextBoxCompleteBoxOpened_ja {
-            get {
-                return ResourceManager.GetString("MetTextBoxCompleteBoxOpened.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   This event occurs when opening a candidate box. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string MetTextBoxCompleteBoxOpening {
-            get {
-                return ResourceManager.GetString("MetTextBoxCompleteBoxOpening", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   候補ボックスを開くときに発生するイベントです。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string MetTextBoxCompleteBoxOpening_ja {
-            get {
-                return ResourceManager.GetString("MetTextBoxCompleteBoxOpening.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteBox {
@@ -1341,18 +1449,18 @@ namespace Metroit.Windows.Forms.Properties {
         /// <summary>
         ///   occurs when the value of the Text property is added or inserted. You can verify the value and reject the change. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MetTextBoxTextChangeValidationEventHandler {
+        internal static string MetTextBoxTextChangeValidation {
             get {
-                return ResourceManager.GetString("MetTextBoxTextChangeValidationEventHandler", resourceCulture);
+                return ResourceManager.GetString("MetTextBoxTextChangeValidation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string MetTextBoxTextChangeValidationEventHandler_ja {
+        internal static string MetTextBoxTextChangeValidation_ja {
             get {
-                return ResourceManager.GetString("MetTextBoxTextChangeValidationEventHandler.ja", resourceCulture);
+                return ResourceManager.GetString("MetTextBoxTextChangeValidation.ja", resourceCulture);
             }
         }
         

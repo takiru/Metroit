@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using Metroit.Api.Win32;
-using Metroit.Api.Win32.Structures;
+using Metroit.Win32.Api;
+using Metroit.Win32.Api.WindowsGdi.WinUser;
 using Metroit.Windows.Forms.Extensions;
 
 namespace Metroit.Windows.Forms
@@ -1640,7 +1640,7 @@ namespace Metroit.Windows.Forms
                 this.drawBitmap(bmp, bmpGraphics);
 
                 // コントロールへ描画
-                var ps = new PAINTSTRUCT();
+                var ps = new PaintStruct();
                 var controlHdc = User32.BeginPaint(m.HWnd, ref ps);
                 using (var controlGraphics = Graphics.FromHdc(controlHdc))
                 {

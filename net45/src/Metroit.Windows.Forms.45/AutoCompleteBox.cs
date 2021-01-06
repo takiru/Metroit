@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-using Metroit.Api.Win32;
 using System.Linq;
 using Metroit.Windows.Forms.Extensions;
 
@@ -347,7 +346,7 @@ namespace Metroit.Windows.Forms
         /// オートコンプリートのボックスを開きます。
         /// </summary>
         /// <param name="text">候補の検索に利用するテキスト。</param>
-        public void Open(string text)
+        public void Open(string text = "")
         {
             this.OnCandidateBoxOpening(this, EventArgs.Empty);
 

@@ -53,6 +53,8 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.metTextBox8 = new Metroit.Windows.Forms.MetTextBox();
             this.metDateTimePicker2 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -75,6 +77,11 @@
             this.button21 = new System.Windows.Forms.Button();
             this.metDateTimePicker3 = new Metroit.Windows.Forms.MetDateTimePicker();
             this.metComboBox2 = new Metroit.Windows.Forms.MetComboBox();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
@@ -95,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -253,16 +261,17 @@
             this.metComboBox1.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metComboBox1.FocusBorderColor = System.Drawing.Color.Fuchsia;
             this.metComboBox1.FocusForeColor = System.Drawing.Color.Blue;
-            this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metComboBox1.Font = new System.Drawing.Font("メイリオ", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.metComboBox1.FormattingEnabled = true;
             this.metComboBox1.Items.AddRange(new object[] {
             "aaa",
             "bbb",
-            "ccc"});
+            "ccc",
+            "2021年1月6日"});
             this.metComboBox1.Location = new System.Drawing.Point(79, 284);
             this.metComboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metComboBox1.Name = "metComboBox1";
-            this.metComboBox1.Size = new System.Drawing.Size(140, 32);
+            this.metComboBox1.Size = new System.Drawing.Size(156, 32);
             this.metComboBox1.TabIndex = 13;
             // 
             // metDateTimePicker1
@@ -409,6 +418,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.metTextBox8);
             this.groupBox2.Controls.Add(this.metDateTimePicker2);
             this.groupBox2.Controls.Add(this.textBox2);
@@ -437,6 +448,27 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(307, 25);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 26);
+            this.comboBox3.TabIndex = 28;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "aaa",
+            "bbb",
+            "ccc"});
+            this.comboBox2.Location = new System.Drawing.Point(167, 25);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 26);
+            this.comboBox2.TabIndex = 27;
             // 
             // metTextBox8
             // 
@@ -634,6 +666,7 @@
             this.metTextBox10.Name = "metTextBox10";
             this.metTextBox10.Size = new System.Drawing.Size(146, 31);
             this.metTextBox10.TabIndex = 28;
+            this.metTextBox10.Validating += new System.ComponentModel.CancelEventHandler(this.metTextBox10_Validating);
             // 
             // button16
             // 
@@ -701,17 +734,25 @@
             // 
             // metDateTimePicker3
             // 
+            this.metDateTimePicker3.AcceptNull = true;
             this.metDateTimePicker3.BaseBackColor = System.Drawing.Color.Blue;
             this.metDateTimePicker3.BaseBorderColor = System.Drawing.Color.Lime;
             this.metDateTimePicker3.BaseForeColor = System.Drawing.Color.Red;
+            this.metDateTimePicker3.CustomFormat = "yyyy/MM/dd HH:mm:ss";
             this.metDateTimePicker3.FocusBackColor = System.Drawing.Color.Yellow;
             this.metDateTimePicker3.FocusBorderColor = System.Drawing.Color.Blue;
             this.metDateTimePicker3.FocusForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.metDateTimePicker3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.metDateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.metDateTimePicker3.Location = new System.Drawing.Point(39, 184);
             this.metDateTimePicker3.Name = "metDateTimePicker3";
-            this.metDateTimePicker3.Size = new System.Drawing.Size(152, 25);
+            this.metDateTimePicker3.ShowToday = false;
+            this.metDateTimePicker3.ShowTodayCircle = false;
+            this.metDateTimePicker3.ShowTorailingDates = false;
+            this.metDateTimePicker3.Size = new System.Drawing.Size(173, 25);
             this.metDateTimePicker3.TabIndex = 34;
+            this.metDateTimePicker3.Value = new System.DateTime(2021, 3, 1, 16, 18, 0, 0);
+            this.metDateTimePicker3.ValueChanged += new System.EventHandler(this.metDateTimePicker3_ValueChanged);
             // 
             // metComboBox2
             // 
@@ -726,6 +767,53 @@
             this.metComboBox2.Name = "metComboBox2";
             this.metComboBox2.Size = new System.Drawing.Size(121, 26);
             this.metComboBox2.TabIndex = 35;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(233, 184);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 36;
+            this.button22.Text = "button22";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(150, 155);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(75, 23);
+            this.button23.TabIndex = 38;
+            this.button23.Text = "Day";
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(233, 155);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(75, 23);
+            this.button24.TabIndex = 39;
+            this.button24.Text = "Month";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(317, 161);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(142, 25);
+            this.dateTimePicker1.TabIndex = 41;
+            // 
+            // dateTimePickerEx1
+            // 
+            this.dateTimePickerEx1.Location = new System.Drawing.Point(305, 107);
+            this.dateTimePickerEx1.MinCalendarType = Metroit.Windows.Forms.CalendarType.Month;
+            this.dateTimePickerEx1.Name = "dateTimePickerEx1";
+            this.dateTimePickerEx1.Size = new System.Drawing.Size(154, 25);
+            this.dateTimePickerEx1.TabIndex = 40;
+            this.dateTimePickerEx1.Value = new System.DateTime(2021, 3, 1, 15, 19, 0, 0);
+            this.dateTimePickerEx1.ValueChanged += new System.EventHandler(this.dateTimePickerEx1_ValueChanged);
             // 
             // textBoxEx4
             // 
@@ -768,7 +856,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(717, 241);
+            this.ClientSize = new System.Drawing.Size(717, 227);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerEx1);
+            this.Controls.Add(this.button24);
+            this.Controls.Add(this.button23);
+            this.Controls.Add(this.button22);
             this.Controls.Add(this.metComboBox2);
             this.Controls.Add(this.metDateTimePicker3);
             this.Controls.Add(this.button21);
@@ -820,6 +913,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -876,5 +970,12 @@
         private System.Windows.Forms.Button button21;
         private Metroit.Windows.Forms.MetDateTimePicker metDateTimePicker3;
         private Metroit.Windows.Forms.MetComboBox metComboBox2;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button24;
+        private DateTimePickerEx dateTimePickerEx1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

@@ -4,22 +4,570 @@
         <name>Metroit.45</name>
     </assembly>
     <members>
-        <member name="T:Metroit.Api.Win32.ComboBoxCommand">
+        <member name="T:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect">
             <summary>
-            コンボボックス用のコマンドを提供します。
+            RECT構造は、左上隅と右下隅の座標によって長方形を定義します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.ComboBoxCommand.CB_SETITEMHEIGHT">
+        <member name="F:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Left">
             <summary>
-            コンボボックスの高さ決定を定義します。
+            
             </summary>
         </member>
-        <member name="T:Metroit.Api.Win32.Gdi32">
+        <member name="F:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Right">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Bottom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="top"></param>
+            <param name="right"></param>
+            <param name="bottom"></param>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.X">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Location">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.op_Implicit(Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect)~System.Drawing.Rectangle">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.op_Implicit(System.Drawing.Rectangle)~Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.op_Equality(Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect,Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect)">
+            <summary>
+            
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.op_Inequality(Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect,Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect)">
+            <summary>
+            
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Equals(Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Metroit.Win32.Api.User32">
+            <summary>
+            user32.dll を利用するWin32APIを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Win32.Api.User32.SendMessage(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            ウィンドウハンドルへメッセージを送信します。
+            </summary>
+            <param name="hWnd">ウィンドウハンドル。</param>
+            <param name="Msg">メッセージ。</param>
+            <param name="wParam">メッセージ特有の追加情報。</param>
+            <param name="lParam">メッセージ特有の追加情報。</param>
+            <returns>メッセージ処理の結果が返ります。この戻り値の意味は、送信されたメッセージにより異なります。</returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.User32.GetWindowDC(System.IntPtr)">
+            <summary>
+            タイトルバー、メニュー、スクロールバーを含む、ウィンドウ全体のデバイスコンテキスト（DC）を取得します。
+            </summary>
+            <param name="hwnd">ウィンドウのハンドル。</param>
+            <returns>null以外:ウィンドウのデバイスコンテキストのハンドル, null:取得エラー。</returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.User32.BeginPaint(System.IntPtr,Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct@)">
+            <summary>
+            指定されたウィンドウに対して描画の準備をします。
+            </summary>
+            <param name="hWnd">ウィンドウのハンドル。</param>
+            <param name="lpPaint">描画情報を持つ構造体へのポインタ。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.User32.EndPaint(System.IntPtr,Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct@)">
+            <summary>
+            指定されたウィンドウ内の描画の終わりを示します。
+            </summary>
+            <param name="hWnd">ウィンドウのハンドル。</param>
+            <param name="lpPaint">描画データ。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Metroit.Win32.Api.User32.GetWindowRect(System.IntPtr,Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect@)">
+            <summary>
+            指定されたウィンドウの外接する四角形の寸法を取得します。寸法は、画面の左上隅を基準にした画面座標で示されます。
+            </summary>
+            <param name="hWnd">ウィンドウへのハンドル。</param>
+            <param name="lpRect">ウィンドウの左上隅と右下隅の画面座標を受け取るRECT構造体へのポインター 。</param>
+            <returns>0:失敗, 0以外:成功。</returns>
+        </member>
+        <member name="T:Metroit.Win32.Api.VirtualKey">
+            <summary>
+            仮想キーコードを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_UP">
+            <summary>
+            上キーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_DOWN">
+            <summary>
+            下キーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_TAB">
+            <summary>
+            Tabキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_ESCAPE">
+            <summary>
+            ESCキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_RETURN">
+            <summary>
+            Enterキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_BACK">
+            <summary>
+            BackSpaceキーを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.VirtualKey.VK_DELETE">
+            <summary>
+            Deleteキーを定義します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowMessage">
+            <summary>
+            ウィンドウメッセージを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_KEYDOWN">
+            <summary>
+            キーの押下を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_KEYUP">
+            <summary>
+            キーのリリースを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_MOUSEWHEEL">
+            <summary>
+            マウスホイール操作を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_PASTE">
+            <summary>
+            貼り付けを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_CUT">
+            <summary>
+            切り取りを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_SYSCOMMAND">
+            <summary>
+            システムコマンドを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_PAINT">
+            <summary>
+            ウィンドウのクライアント領域の描画を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_NCPAINT">
+            <summary>
+            ウインドウの非クライアント領域の描画を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_IME_STARTCOMPOSITION">
+            <summary>
+            IMEがキーストロークの結果としてコンポジション文字列を生成する直前に送信されるメッセージを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_IME_ENDCOMPOSITION">
+            <summary>
+            IMEが合成を終了すると送信されるメッセージを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_IME_COMPOSITION">
+            <summary>
+            IMEがキーストロークの結果として構成ステータスを変更すると送信されるメッセージを定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowMessage.WM_NOTIFY">
+            <summary>
+            イベントが発生したとき、またはコントロールが何らかの情報を必要とするときに、共通コントロールによってその親ウィンドウに送信されます。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo">
+            <summary>
+            ComboBox の領域情報。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.cbSize">
+            <summary>
+            構造体のサイズ（バイト単位）。呼び出し元のアプリケーションは、これをsizeof（COMBOBOXINFO）に設定する必要があります。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.rcItem">
+            <summary>
+            編集ボックスの座標を指定するRECT構造。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.rcButton">
+            <summary>
+            ドロップダウン矢印を含むボタンの座標を指定するRECT構造。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.stateButton">
+            <summary>
+            コンボボックスボタンの状態。このパラメーターは、次のいずれかの値になります。
+             0                      ボタンが存在し、押されていません。
+             STATE_SYSTEM_INVISIBLE ボタンはありません。
+             STATE_SYSTEM_PRESSED   ボタンが押されました。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.hwndCombo">
+            <summary>
+            コンボボックスへのハンドル。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.hwndItem">
+            <summary>
+            編集ボックスへのハンドル。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.hwndList">
+            <summary>
+            ドロップダウンリストへのハンドル。
+            </summary>
+        </member>
+        <member name="M:Metroit.Win32.Api.WindowsControls.CommonCtrl.ComboBoxInfo.#ctor">
+            <summary>
+            新しいインスタンスを生成します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo">
+            <summary>
+            DateTimePicker の領域情報。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.cbSize">
+            <summary>
+            自身のアンマネージサイズ。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.rcCheck">
+            <summary>
+            RECTのチェックボックスの位置を記述する構造。チェックボックスが表示されてチェックされている場合は、選択した日時値を更新するための編集コントロールを使用できる必要があります。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.stateCheck">
+            <summary>
+            状態rcCheck用のオンオブジェクト状態定数など、STATE_SYSTEM_CHECKED又はSTATE_SYSTEM_INVISIBLE。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.rcButton">
+            <summary>
+            RECTの制御下のドロップダウングリッドまたはアップ/の位置を記述する構造。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.stateButton">
+            <summary>
+            状態 rcButton - 1つのビット単位の組み合わせオブジェクトの状態の定数など、STATE_SYSTEM_UNAVAILABLE、STATE_SYSTEM_INVISIBLE、又はSTATE_SYSTEM_PRESSED。アップ/ダウンコントロールが使用されている場合、ボタンの状態は STATE_SYSTEM_INVISIBLEです。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.hwndEdit">
+            <summary>
+            編集コントロールへのハンドル。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.hwndUD">
+            <summary>
+            アップ/ダウンコントロールへのハンドル ドロップダウングリッドを使用する代わりに（月のカレンダーコントロールのように見えます）。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.hwndDropDown">
+            <summary>
+            ドロップダウングリッドへのハンドル。
+            </summary>
+        </member>
+        <member name="M:Metroit.Win32.Api.WindowsControls.CommonCtrl.DateTimePickerInfo.#ctor">
+            <summary>
+            新しいインスタンスを生成します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsControls.CommonCtrl.MonthCalendarView">
+            <summary>
+            MonthCalendarのビュー種類を提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.MonthCalendarView.MCMV_MONTH">
+            <summary>
+            月単位のビュー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.MonthCalendarView.MCMV_YEAR">
+            <summary>
+            年間ビュー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.MonthCalendarView.MCMV_DECADE">
+            <summary>
+            10年表示ビュー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.MonthCalendarView.MCMV_CENTURY">
+            <summary>
+            世紀表示ビュー。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsControls.CommonCtrl.NmViewChange">
+            <summary>
+            MCN_VIEWCHANGE通知コードの処理に必要な情報を格納します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.NmViewChange.nmhdr">
+            <summary>
+            この通知コードに関する情報を含むNMHDR構造。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.NmViewChange.dwOldView">
+            <summary>
+            古いビュー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.CommonCtrl.NmViewChange.dwNewView">
+            <summary>
+            新しいビュー。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsControls.WinUser.NmHdr">
+            <summary>
+            通知メッセージに関する情報が含まれています。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.WinUser.NmHdr.hwndFrom">
+            <summary>
+            メッセージを送信するコントロールへのウィンドウハンドル。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.WinUser.NmHdr.idFrom">
+            <summary>
+            メッセージを送信するコントロールの識別子。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsControls.WinUser.NmHdr.code">
+            <summary>
+            通知コード。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsGdi.RasterOperations">
+            <summary>
+            BitBlt に利用するラスター操作コード。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.SRCCOPY">
+            <summary>
+            ソースの長方形を宛先の長方形に直接コピーします。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.SRCPAINT">
+            <summary>
+            ブールOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.SRCAND">
+            <summary>
+            ブールAND演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.SRCINVERT">
+            <summary>
+            ブールXOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.SRCERASE">
+            <summary>
+            ブールAND演算子を使用して、宛先長方形の反転された色をソース長方形の色と組み合わせます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.NOTSRCCOPY">
+            <summary>
+            反転したソース長方形を宛先にコピーします。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.NOTSRCERASE">
+            <summary>
+            ブールOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせてから、結果の色を反転します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.MERGECOPY">
+            <summary>
+            ブールAND演算子を使用して、hdcDestで 現在選択されているブラシとソース長方形の色をマージします。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.MERGEPAINT">
+            <summary>
+            ブールOR演算子を使用して、反転したソース長方形の色をデスティネーション長方形の色とマージします。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.PATCOPY">
+            <summary>
+            hdcDestで 現在選択されているブラシを宛先ビットマップにコピーします。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.PATPAINT">
+            <summary>
+            hdcDestで 現在選択されているブラシの色を、ブールOR演算子を使用して反転されたソース長方形の色と組み合わせます。この操作の結果は、ブールOR演算子を使用して、宛先の長方形の色と組み合わされます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.PATINVERT">
+            <summary>
+            ブールXOR演算子を使用して 、hdcDestで現在選択されているブラシの色を、宛先の長方形の色と組み合わせます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.DSTINVERT">
+            <summary>
+            宛先の長方形を反転します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.BLACKNESS">
+            <summary>
+            物理パレットのインデックス0に関連付けられた色を使用して、宛先の長方形を塗りつぶします。（この色は、デフォルトの物理パレットでは黒です。）
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.WHITENESS">
+            <summary>
+            物理パレットのインデックス1に関連付けられた色を使用して、宛先の長方形を塗りつぶします。（この色は、デフォルトの物理パレットでは白です。）
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.RasterOperations.CAPTUREBLT">
+            <summary>
+            結果の画像でウィンドウの上にレイヤー化されているウィンドウが含まれます。デフォルトでは、画像にはウィンドウのみが含まれています。これは通常、デバイスコンテキストの印刷には使用できないことに注意してください。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct">
+            <summary>
+            ウィンドウのクライアント領域の描画に使用できる情報が含まれています。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.hdc">
+            <summary>
+            描画に使用するディスプレイ コンテキストを識別します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.fErase">
+            <summary>
+            バックグラウンドが再描画されるようにする必要があるかどうかを指定します。 
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.rcPaint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.fRestore">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.fIncUpdate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.Api.WindowsGdi.WinUser.PaintStruct.rgbReserved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.Api.Gdi32">
             <summary>
             gdi32.dll を利用するWin32APIを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Api.Win32.Gdi32.BitBlt(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Metroit.Win32.Api.Gdi32.BitBlt(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.Int32)">
             <summary>
             宛先デバイスコンテキストに指定されたソースデバイスコンテキストからピクセルの矩形に対応する色データのビットブロック転送を行います。
             </summary>
@@ -34,21 +582,21 @@
             <param name="rop">ラスター操作コード。これらのコードは、ソース長方形のカラーデータを宛先長方形のカラーデータと組み合わせて最終的な色を実現する方法を定義します。</param>
             <returns>0:失敗, 0以外:成功。</returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Gdi32.CreateCompatibleDC(System.IntPtr)">
+        <member name="M:Metroit.Win32.Api.Gdi32.CreateCompatibleDC(System.IntPtr)">
             <summary>
             指定されたデバイスと互換性のあるメモリデバイスコンテキスト（DC）を作成します。
             </summary>
             <param name="hdc">既存のDCへのハンドル。このハンドルがNULLの場合、関数はアプリケーションの現在の画面と互換性のあるメモリDCを作成します。</param>
             <returns>null:失敗, メモリDCのハンドル:成功。</returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Gdi32.DeleteDC(System.IntPtr)">
+        <member name="M:Metroit.Win32.Api.Gdi32.DeleteDC(System.IntPtr)">
             <summary>
             指定されたデバイスコンテキスト（DC）を削除します。
             </summary>
             <param name="hdc">デバイスコンテキストへのハンドル。</param>
             <returns>0:失敗, 0以外:成功。</returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Gdi32.SelectObject(System.IntPtr,System.IntPtr)">
+        <member name="M:Metroit.Win32.Api.Gdi32.SelectObject(System.IntPtr,System.IntPtr)">
             <summary>
             指定されたデバイスコンテキスト（DC）に変換するオブジェクトを選択します。新しいオブジェクトは、同じタイプの以前のオブジェクトを置き換えます。
             </summary>
@@ -56,821 +604,649 @@
             <param name="hgdiobj">選択するオブジェクトへのハンドル。</param>
             <returns>選択したオブジェクトが領域ではなく、関数が成功した場合、戻り値は置き換えられるオブジェクトへのハンドルです。エラーが発生し、選択したオブジェクトがリージョンではない場合、戻り値はNULLです。それ以外の場合は、HGDI_ERRORです。</returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Gdi32.DeleteObject(System.IntPtr)">
+        <member name="M:Metroit.Win32.Api.Gdi32.DeleteObject(System.IntPtr)">
             <summary>
             オブジェクトに関連付けられているすべてのシステムリソースを解放し、論理ペン、ブラシ、フォント、ビットマップ、領域、またはパレットを削除します。オブジェクトが削除されると、指定されたハンドルは無効になります。
             </summary>
             <param name="hgdiobj">論理ペン、ブラシ、フォント、ビットマップ、領域、またはパレットへのハンドル。</param>
             <returns>関数が成功した場合、戻り値はゼロ以外です。指定されたハンドルが無効であるか、現在DCに選択されている場合、戻り値はゼロです。</returns>
         </member>
-        <member name="T:Metroit.Api.Win32.RasterOperation">
+        <member name="T:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes">
             <summary>
-            BitBlt に利用するラスター操作コード。
+            システムコマンドのタイプを提供します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.SRCCOPY">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_CLOSE">
             <summary>
-            ソースの長方形を宛先の長方形に直接コピーします。
+            ウィンドウを閉じます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.SRCPAINT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_CONTEXTHELP">
             <summary>
-            ブールOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            カーソルをポインタ付きの疑問符に変更します。次に、ユーザーがダイアログボックスでコントロールをクリックすると、コントロールはWM_HELPメッセージを受信します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.SRCAND">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_DEFAULT">
             <summary>
-            ブールAND演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            デフォルトのアイテムを選択します。ユーザーがウィンドウメニューをダブルクリックしました。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.SRCINVERT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_HOTKEY">
             <summary>
-            ブールXOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせます。
+            アプリケーション指定のホットキーに関連付けられているウィンドウをアクティブにします。lParamにはパラメータが有効にするには、ウィンドウを識別します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.SRCERASE">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_HSCROLL">
             <summary>
-            ブールAND演算子を使用して、宛先長方形の反転された色をソース長方形の色と組み合わせます。
+            水平方向にスクロールします。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.NOTSRCCOPY">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SCF_ISSECURE">
             <summary>
-            反転したソース長方形を宛先にコピーします。
+            スクリーンセーバーが安全かどうかを示します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.NOTSRCERASE">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_KEYMENU">
             <summary>
-            ブールOR演算子を使用して、ソース長方形と宛先長方形の色を組み合わせてから、結果の色を反転します。
+            キーストロークの結果としてウィンドウメニューを取得します。詳細については、「備考」セクションを参照してください。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.MERGECOPY">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_MAXIMIZE">
             <summary>
-            ブールAND演算子を使用して、hdcDestで 現在選択されているブラシとソース長方形の色をマージします。
+            ウィンドウを最大化します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.MERGEPAINT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_MINIMIZE">
             <summary>
-            ブールOR演算子を使用して、反転したソース長方形の色をデスティネーション長方形の色とマージします。
+            ウィンドウを最小化します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.PATCOPY">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_MONITORPOWER">
             <summary>
-            hdcDestで 現在選択されているブラシを宛先ビットマップにコピーします。
+            ディスプレイの状態を設定します。このコマンドは、バッテリー駆動のパーソナルコンピューターなど、省電力機能を備えたデバイスをサポートします。lParamにはパラメータは次の値を指定できます。
+              -1（ディスプレイの電源がオンになっています）
+               1（ディスプレイの電力が低下します）
+               2（ディスプレイがオフになっています）
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.PATPAINT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_MOUSEMENU">
             <summary>
-            hdcDestで 現在選択されているブラシの色を、ブールOR演算子を使用して反転されたソース長方形の色と組み合わせます。この操作の結果は、ブールOR演算子を使用して、宛先の長方形の色と組み合わされます。
+            マウスクリックの結果としてウィンドウメニューを取得します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.PATINVERT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_MOVE">
             <summary>
-            ブールXOR演算子を使用して 、hdcDestで現在選択されているブラシの色を、宛先の長方形の色と組み合わせます。
+            ウィンドウを移動します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.DSTINVERT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_NEXTWINDOW">
             <summary>
-            宛先の長方形を反転します。
+            次のウィンドウに移動します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.BLACKNESS">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_PREVWINDOW">
             <summary>
-            物理パレットのインデックス0に関連付けられた色を使用して、宛先の長方形を塗りつぶします。（この色は、デフォルトの物理パレットでは黒です。）
+            前のウィンドウに移動します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.WHITENESS">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_RESTORE">
             <summary>
-            物理パレットのインデックス1に関連付けられた色を使用して、宛先の長方形を塗りつぶします。（この色は、デフォルトの物理パレットでは白です。）
+            ウィンドウを通常の位置とサイズに戻します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.RasterOperation.CAPTUREBLT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_SCREENSAVE">
             <summary>
-            結果の画像でウィンドウの上にレイヤー化されているウィンドウが含まれます。デフォルトでは、画像にはウィンドウのみが含まれています。これは通常、デバイスコンテキストの印刷には使用できないことに注意してください。
+            System.iniファイルの[boot]セクションで指定されたスクリーンセーバーアプリケーションを実行します。
             </summary>
         </member>
-        <member name="T:Metroit.Api.Win32.Structures.PAINTSTRUCT">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_SIZE">
             <summary>
-            ウィンドウのクライアント領域の描画に使用できる情報が含まれています。
+            ウィンドウのサイズを変更します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.hdc">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_TASKLIST">
             <summary>
-            描画に使用するディスプレイ コンテキストを識別します。
+            スタートメニューをアクティブにします。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fErase">
+        <member name="F:Metroit.Win32.DesktopAppUi.MenuRc.SystemCommandTypes.SC_VSCROLL">
             <summary>
-            バックグラウンドが再描画されるようにする必要があるかどうかを指定します。 
+            垂直方向にスクロールします。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.rcPaint">
+        <member name="T:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages">
             <summary>
-            
+            ComboBoxを操作するメッセージを提供します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fRestore">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_ADDSTRING">
             <summary>
-            
+            コンボボックスのリストボックスに文字列を追加します。コンボボックスにCBS_SORTスタイルがない場合、文字列はリストの最後に追加されます。それ以外の場合は、文字列がリストに挿入され、リストが並べ替えられます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.fIncUpdate">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_DELETESTRING">
             <summary>
-            
+            コンボボックスのリストボックス内の文字列を削除します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.PAINTSTRUCT.rgbReserved">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_DIR">
             <summary>
-            
+            コンボボックスに表示されるリストに名前を追加します。このメッセージは、指定された文字列とファイル属性のセットに一致するディレクトリとファイルの名前を追加します。CB_DIRは、マップされたドライブ文字をリストに追加することもできます。
             </summary>
         </member>
-        <member name="T:Metroit.Api.Win32.Structures.RECT">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_FINDSTRING">
             <summary>
-            
+            コンボボックスのリストボックスで、指定した文字列の文字で始まる項目を検索します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.RECT.Left">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_FINDSTRINGEXACT">
             <summary>
-            
+            lParamパラメーターで指定された文字列と一致するコンボボックス内の最初のリストボックス文字列を検索します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.RECT.Top">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETCOMBOBOXINFO">
             <summary>
-            
+            指定されたコンボボックスに関する情報を取得します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.RECT.Right">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETCOUNT">
             <summary>
-            
+            コンボボックスのリストボックス内のアイテムの数を取得します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.Structures.RECT.Bottom">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETCUEBANNER">
             <summary>
-            
+            コンボボックスのエディットコントロールに表示されるキューバナーテキストを取得します。このメッセージを明示的に送信するか、ComboBox_GetCueBannerTextマクロを使用して送信します。
             </summary>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETCURSEL">
             <summary>
-            
+            アプリケーションはCB_GETCURSELメッセージを送信して、コンボボックスのリストボックスで現在選択されているアイテムのインデックスを取得します（存在する場合）。
             </summary>
-            <param name="left"></param>
-            <param name="top"></param>
-            <param name="right"></param>
-            <param name="bottom"></param>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.#ctor(System.Drawing.Rectangle)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETDROPPEDCONTROLRECT">
             <summary>
-            
+            アプリケーションは、CB_GETDROPPEDCONTROLRECTメッセージを送信して、ドロップダウン状態のコンボボックスの画面座標を取得します。
             </summary>
-            <param name="r"></param>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.X">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETDROPPEDSTATE">
             <summary>
-            
+            コンボボックスのリストボックスをドロップダウンするかどうかを決定します。
             </summary>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.Y">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETDROPPEDWIDTH">
             <summary>
-            
+            CBS_DROPDOWNまたはCBS_DROPDOWNLISTスタイルのコンボボックスのリストボックスの最小許容幅をピクセル単位で取得します。
             </summary>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.Height">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETEDITSEL">
             <summary>
-            
+            コンボボックスの編集コントロールで、現在の選択範囲の開始文字と終了文字の位置を取得します。
             </summary>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.Width">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETEXTENDEDUI">
             <summary>
-            
+            コンボボックスにデフォルトのユーザーインターフェイスがあるか、拡張ユーザーインターフェイスがあるかを決定します。
             </summary>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.Location">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETHORIZONTALEXTENT">
             <summary>
-            
+            リストボックスを水平方向にスクロールできる幅（スクロール可能な幅）をピクセル単位で取得します。これは、リストボックスに水平スクロールバーがある場合にのみ適用されます。
             </summary>
         </member>
-        <member name="P:Metroit.Api.Win32.Structures.RECT.Size">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETITEMDATA">
             <summary>
-            
+            アプリケーションは、CB_GETITEMDATAメッセージをコンボボックスに送信して、コンボボックス内の指定された項目に関連付けられたアプリケーション提供の値を取得します。
             </summary>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Implicit(Metroit.Api.Win32.Structures.RECT)~System.Drawing.Rectangle">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETITEMHEIGHT">
             <summary>
-            
+            リストアイテムまたはコンボボックスの選択フィールドの高さを決定します。
             </summary>
-            <param name="r"></param>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Implicit(System.Drawing.Rectangle)~Metroit.Api.Win32.Structures.RECT">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETLBTEXT">
             <summary>
-            
+            コンボボックスのリストから文字列を取得します。
             </summary>
-            <param name="r"></param>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Equality(Metroit.Api.Win32.Structures.RECT,Metroit.Api.Win32.Structures.RECT)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETLBTEXTLEN">
             <summary>
-            
+            コンボボックスのリスト内の文字列の長さを文字数で取得します。
             </summary>
-            <param name="r1"></param>
-            <param name="r2"></param>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.op_Inequality(Metroit.Api.Win32.Structures.RECT,Metroit.Api.Win32.Structures.RECT)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETLOCALE">
             <summary>
-            
+            コンボボックスの現在のロケールを取得します。ロケールは、CBS_SORTスタイルのコンボボックスに表示されるテキストと、CB_ADDSTRINGメッセージを使用して追加されたテキストの正しいソート順を決定するために使用されます。
             </summary>
-            <param name="r1"></param>
-            <param name="r2"></param>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.Equals(Metroit.Api.Win32.Structures.RECT)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETMINVISIBLE">
             <summary>
-            
+            コンボボックスのドロップダウンリストに表示されるアイテムの最小数を取得します。
             </summary>
-            <param name="r"></param>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.Equals(System.Object)">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_GETTOPINDEX">
             <summary>
-            
+            アプリケーションはCB_GETTOPINDEXメッセージを送信して、コンボボックスのリストボックス部分にある最初の表示項目のゼロベースのインデックスを取得します。最初は、インデックス0のアイテムがリストボックスの一番上にありますが、リストボックスの内容がスクロールされている場合は、別のアイテムが一番上にある可能性があります。
             </summary>
-            <param name="obj"></param>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.GetHashCode">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_INITSTORAGE">
             <summary>
-            
+            アプリケーションは、コンボボックスのリストボックス部分に多数の項目を追加する前に、CB_INITSTORAGEメッセージを送信します。このメッセージは、リストボックスアイテムを格納するためのメモリを割り当てます。
             </summary>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Api.Win32.Structures.RECT.ToString">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_INSERTSTRING">
             <summary>
-            
+            文字列またはアイテムデータをコンボボックスのリストに挿入します。異なりCB_ADDSTRINGのメッセージ、CB_INSERTSTRINGのメッセージを持つリスト起こさないCBS_SORTのスタイルをソートします。
             </summary>
-            <returns></returns>
         </member>
-        <member name="T:Metroit.Api.Win32.SystemCommand">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_LIMITTEXT">
             <summary>
-            システムコマンドを提供します。
+            ユーザーがコンボボックスの編集コントロールに入力できるテキストの長さを制限します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.SystemCommand.SC_CLOSE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_RESETCONTENT">
             <summary>
-            ウィンドウのクローズを定義します。
+            リストボックスからすべての項目を削除し、コンボボックスのコントロールを編集します。
             </summary>
         </member>
-        <member name="T:Metroit.Api.Win32.VirtualKey">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SELECTSTRING">
             <summary>
-            仮想キーコードを提供します。
+            コンボボックスのリストで、指定された文字列の文字で始まる項目を検索します。一致するアイテムが見つかった場合、それが選択され、編集コントロールにコピーされます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_UP">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETCUEBANNER">
             <summary>
-            上キーを定義します。
+            コンボボックスの編集コントロールに表示されるキューバナーテキストを設定します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_DOWN">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETCURSEL">
             <summary>
-            下キーを定義します。
+            アプリケーションはCB_SETCURSELメッセージを送信して、コンボボックスのリストから文字列を選択します。必要に応じて、リストは文字列をスクロールして表示します。コンボボックスの編集コントロールのテキストは、新しい選択を反映するように変更され、リスト内の以前の選択はすべて削除されます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_TAB">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETDROPPEDWIDTH">
             <summary>
-            Tabキーを定義します。
+            アプリケーションは、CB_SETDROPPEDWIDTHメッセージを送信して、CBS_DROPDOWNまたはCBS_DROPDOWNLISTスタイルのコンボボックスのリストボックスの最小許容幅をピクセル単位で設定します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_ESCAPE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETEDITSEL">
             <summary>
-            ESCキーを定義します。
+            アプリケーションはCB_SETEDITSELメッセージを送信して、コンボボックスの編集コントロール内の文字を選択します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_RETURN">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETEXTENDEDUI">
             <summary>
-            Enterキーを定義します。
+            アプリケーションはCB_SETEXTENDEDUIメッセージを送信して、CBS_DROPDOWNまたはCBS_DROPDOWNLISTスタイルのコンボボックスのデフォルトUIまたは拡張UIのいずれかを選択します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_BACK">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETHORIZONTALEXTENT">
             <summary>
-            BackSpaceキーを定義します。
+            アプリケーションは、CB_SETHORIZONTALEXTENTメッセージを送信して、リストボックスを水平方向にスクロールできる幅（スクロール可能な幅）をピクセル単位で設定します。リストボックスの幅がこの値よりも小さい場合、水平スクロールバーはリストボックス内のアイテムを水平方向にスクロールします。リストボックスの幅がこの値以上の場合、水平スクロールバーは非表示になり、コンボボックスのスタイルがCBS_DISABLENOSCROLLスタイルの場合は無効になります。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.VirtualKey.VK_DELETE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETITEMDATA">
             <summary>
-            Deleteキーを定義します。
+            アプリケーションはCB_SETITEMDATAメッセージを送信して、コンボボックス内の指定されたアイテムに関連付けられた値を設定します。
             </summary>
         </member>
-        <member name="T:Metroit.Api.Win32.WindowMessage">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETITEMHEIGHT">
             <summary>
-            ウィンドウメッセージを提供します。
+            アプリケーションは、CB_SETITEMHEIGHTメッセージを送信して、リスト項目の高さまたはコンボボックスの選択フィールドを設定します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_KEYDOWN">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETLOCALE">
             <summary>
-            キーの押下を定義します。
+            アプリケーションはCB_SETLOCALEメッセージを送信して、コンボボックスの現在のロケールを設定します。コンボボックスがCBS_SORTスタイルであり、文字列がCB_ADDSTRINGを使用して追加される場合、コンボボックスのロケールは、リスト項目のソート方法に影響します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_KEYUP">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETMINVISIBLE">
             <summary>
-            キーのリリースを定義します。
+            アプリケーションはCB_SETMINVISIBLEメッセージを送信して、コンボボックスのドロップダウンリストに表示されるアイテムの最小数を設定します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_MOUSEWHEEL">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SETTOPINDEX">
             <summary>
-            マウスホイール操作を定義します。
+            アプリケーションはCB_SETTOPINDEXメッセージを送信して、特定の項目がコンボボックスのリストボックスに表示されるようにします。指定された項目がリストボックスの上部に表示されるか、最大スクロール範囲に達するように、リストボックスの内容がスクロールされます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_PASTE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.ComboBoxControlMessages.CB_SHOWDROPDOWN">
             <summary>
-            貼り付けを定義します。
+            アプリケーションは、CB_SHOWDROPDOWNメッセージを送信して、CBS_DROPDOWNまたはCBS_DROPDOWNLISTスタイルのコンボボックスのリストボックスを表示または非表示にします。
             </summary>
         </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_CUT">
-            <summary>
-            切り取りを定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_SYSCOMMAND">
-            <summary>
-            システムコマンドを定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_PAINT">
-            <summary>
-            ウィンドウのクライアント領域の描画を定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_NCPAINT">
-            <summary>
-            ウインドウの非クライアント領域の描画を定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_STARTCOMPOSITION">
-            <summary>
-            IMEがキーストロークの結果としてコンポジション文字列を生成する直前に送信されるメッセージを定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_ENDCOMPOSITION">
-            <summary>
-            IMEが合成を終了すると送信されるメッセージを定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_IME_COMPOSITION">
-            <summary>
-            IMEがキーストロークの結果として構成ステータスを変更すると送信されるメッセージを定義します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.Win32.WindowMessage.WM_NOTIFY">
-            <summary>
-            イベントが発生したとき、またはコントロールが何らかの情報を必要とするときに、共通コントロールによってその親ウィンドウに送信されます。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.Win32.User32">
-            <summary>
-            user32.dll を利用するWin32APIを提供します。
-            </summary>
-        </member>
-        <member name="M:Metroit.Api.Win32.User32.SendMessage(System.IntPtr,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            ウィンドウハンドルへメッセージを送信します。
-            </summary>
-            <param name="hWnd">ウィンドウハンドル。</param>
-            <param name="Msg">メッセージ。</param>
-            <param name="wParam">メッセージ特有の追加情報。</param>
-            <param name="lParam">メッセージ特有の追加情報。</param>
-            <returns>メッセージ処理の結果が返ります。この戻り値の意味は、送信されたメッセージにより異なります。</returns>
-        </member>
-        <member name="M:Metroit.Api.Win32.User32.GetWindowDC(System.IntPtr)">
-            <summary>
-            タイトルバー、メニュー、スクロールバーを含む、ウィンドウ全体のデバイスコンテキスト（DC）を取得します。
-            </summary>
-            <param name="hwnd">ウィンドウのハンドル。</param>
-            <returns>null以外:ウィンドウのデバイスコンテキストのハンドル, null:取得エラー。</returns>
-        </member>
-        <member name="M:Metroit.Api.Win32.User32.BeginPaint(System.IntPtr,Metroit.Api.Win32.Structures.PAINTSTRUCT@)">
-            <summary>
-            指定されたウィンドウに対して描画の準備をします。
-            </summary>
-            <param name="hWnd">ウィンドウのハンドル。</param>
-            <param name="lpPaint">描画情報を持つ構造体へのポインタ。</param>
-            <returns></returns>
-        </member>
-        <member name="M:Metroit.Api.Win32.User32.EndPaint(System.IntPtr,Metroit.Api.Win32.Structures.PAINTSTRUCT@)">
-            <summary>
-            指定されたウィンドウ内の描画の終わりを示します。
-            </summary>
-            <param name="hWnd">ウィンドウのハンドル。</param>
-            <param name="lpPaint">描画データ。</param>
-            <returns></returns>
-        </member>
-        <member name="M:Metroit.Api.Win32.User32.GetWindowRect(System.IntPtr,Metroit.Api.Win32.Structures.RECT@)">
-            <summary>
-            指定されたウィンドウの外接する四角形の寸法を取得します。寸法は、画面の左上隅を基準にした画面座標で示されます。
-            </summary>
-            <param name="hWnd">ウィンドウへのハンドル。</param>
-            <param name="lpRect">ウィンドウの左上隅と右下隅の画面座標を受け取るRECT構造体へのポインター 。</param>
-            <returns>0:失敗, 0以外:成功。</returns>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo">
-            <summary>
-            DateTimePicker の領域情報。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.cbSize">
-            <summary>
-            自身のアンマネージサイズ。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.rcCheck">
-            <summary>
-            RECTのチェックボックスの位置を記述する構造。チェックボックスが表示されてチェックされている場合は、選択した日時値を更新するための編集コントロールを使用できる必要があります。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.stateCheck">
-            <summary>
-            状態rcCheck用のオンオブジェクト状態定数など、STATE_SYSTEM_CHECKED又はSTATE_SYSTEM_INVISIBLE。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.rcButton">
-            <summary>
-            RECTの制御下のドロップダウングリッドまたはアップ/の位置を記述する構造。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.stateButton">
-            <summary>
-            状態 rcButton - 1つのビット単位の組み合わせオブジェクトの状態の定数など、STATE_SYSTEM_UNAVAILABLE、STATE_SYSTEM_INVISIBLE、又はSTATE_SYSTEM_PRESSED。アップ/ダウンコントロールが使用されている場合、ボタンの状態は STATE_SYSTEM_INVISIBLEです。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.hwndEdit">
-            <summary>
-            編集コントロールへのハンドル。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.hwndUD">
-            <summary>
-            アップ/ダウンコントロールへのハンドル ドロップダウングリッドを使用する代わりに（月のカレンダーコントロールのように見えます）。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.hwndDropDown">
-            <summary>
-            ドロップダウングリッドへのハンドル。
-            </summary>
-        </member>
-        <member name="M:Metroit.Api.WindowsControls.CommonControls.DateTimePickerInfo.#ctor">
-            <summary>
-            新しいインスタンスを生成します。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.CommonControls.MonthCalendarView">
-            <summary>
-            MonthCalendarのビュー種類を提供します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.MonthCalendarView.MCMV_MONTH">
-            <summary>
-            月単位のビュー。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.MonthCalendarView.MCMV_YEAR">
-            <summary>
-            年間ビュー。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.MonthCalendarView.MCMV_DECADE">
-            <summary>
-            10年表示ビュー。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.MonthCalendarView.MCMV_CENTURY">
-            <summary>
-            世紀表示ビュー。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.CommonControls.NMVIEWCHANGE">
-            <summary>
-            MCN_VIEWCHANGE通知コードの処理に必要な情報を格納します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.NMVIEWCHANGE.nmhdr">
-            <summary>
-            この通知コードに関する情報を含むNMHDR構造。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.NMVIEWCHANGE.dwOldView">
-            <summary>
-            古いビュー。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.CommonControls.NMVIEWCHANGE.dwNewView">
-            <summary>
-            新しいビュー。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.WinUser.NmHdr">
-            <summary>
-            通知メッセージに関する情報が含まれています。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.WinUser.NmHdr.hwndFrom">
-            <summary>
-            メッセージを送信するコントロールへのウィンドウハンドル。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.WinUser.NmHdr.idFrom">
-            <summary>
-            メッセージを送信するコントロールの識別子。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.WinUser.NmHdr.code">
-            <summary>
-            通知コード。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.MonthCalendarNotifications">
-            <summary>
-            MonthCalenderの受けた通知の種類を提供します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.MCN_FIRST">
-            <summary>
-            MonthCalendarNotificationsの基準になる値。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.MCN_GETDAYSTATE">
-            <summary>
-            個々の日の表示方法に関する情報を要求するために、月のカレンダーコントロールによって送信されます。この通知コードは、MCS_DAYSTATEスタイルを使用する月暦コントロールによってのみ送信され、WM_NOTIFYメッセージの形式で送信されます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.MCN_SELCHANGE">
-            <summary>
-            現在選択されている日付または日付の範囲が変更されたときに、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.MCN_SELECT">
-            <summary>
-            ユーザーが月のカレンダーコントロール内で明示的な日付を選択すると、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.MCN_VIEWCHANGE">
-            <summary>
-            現在のビューが変更されたときに、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalendarNotifications.NM_RELEASEDCAPTURE">
-            <summary>
-            コントロールがマウスキャプチャを解放していることを月次コントロールの親ウィンドウに通知します。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.MonthCalenderMessage">
-            <summary>
-            MonthCalendarを操作するメッセージを提供します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_FIRST">
-            <summary>
-            MonthCalenderMessageの基準になる値。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCALENDARBORDER">
-            <summary>
-            境界線のサイズをピクセル単位で取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurrentViewマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCALENDARCOUNT">
-            <summary>
-            カレンダーコントロールに現在表示されているカレンダーの数を取得します。このメッセージは、明示的に送信することも、MonthCal_GetCalendarCountマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCALENDARGRIDINFO">
-            <summary>
-            カレンダーグリッドに関する情報を取得します。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCALID">
-            <summary>
-            指定されたカレンダーコントロールのカレンダーIDを取得します。このメッセージは、明示的に送信することも、MonthCal_GetCALIDマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCOLOR">
-            <summary>
-            月のカレンダーコントロールの特定の部分の色を取得します。このメッセージは、明示的に送信することも、MonthCal_GetColorマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCURRENTVIEW">
-            <summary>
-            カレンダーの現在のビューを取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurrentViewマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETCURSEL">
-            <summary>
-            現在選択されている日付を取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurSelマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETFIRSTDAYOFWEEK">
-            <summary>
-            月のカレンダーコントロールの最初の曜日を取得します。このメッセージは、明示的に送信することも、MonthCal_GetFirstDayOfWeekマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETMAXSELCOUNT">
-            <summary>
-            月のカレンダーコントロールで選択できる最大の日付範囲を取得します。このメッセージは、明示的に送信することも、MonthCal_GetMaxSelCountマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETMAXTODAYWIDTH">
-            <summary>
-            月暦コントロールの「今日」の文字列の最大幅を取得します。これには、ラベルテキストと日付テキストが含まれます。このメッセージは、明示的に送信することも、MonthCal_GetMaxTodayWidthマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETMINREQRECT">
-            <summary>
-            月のカレンダーコントロールで1か月全体を表示するために必要な最小サイズを取得します。このメッセージは、明示的に送信することも、MonthCal_GetMinReqRectマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETMONTHDELTA">
-            <summary>
-            月のカレンダーコントロールのスクロール速度を取得します。スクロールレートは、ユーザーがスクロールボタンをクリックしたときにコントロールがディスプレイを移動する月数です。このメッセージは、明示的に送信することも、MonthCal_GetMonthDeltaマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETMONTHRANGE">
-            <summary>
-            月のカレンダーコントロールの表示の上限と下限を表す日付情報を（SYSTEMTIME構造を使用して）取得します。このメッセージは、明示的に送信することも、MonthCal_GetMonthRangeマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETRANGE">
-            <summary>
-            月のカレンダーコントロールに設定されている最小および最大の許容日を取得します。このメッセージは、明示的に送信することも、MonthCal_GetRangeマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETSELRANGE">
-            <summary>
-            ユーザーが現在選択している日付範囲の上限と下限を表す日付情報を取得します。このメッセージは、明示的に送信することも、MonthCal_GetSelRangeマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETTODAY">
-            <summary>
-            月のカレンダーコントロールの「今日」として指定された日付の日付情報を取得します。このメッセージは、明示的に送信することも、MonthCal_GetTodayマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_GETUNICODEFORMAT">
-            <summary>
-            コントロールのUnicode文字フォーマットフラグを取得します。このメッセージを明示的に送信するか、MonthCal_GetUnicodeFormatマクロを使用できます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_HITTEST">
-            <summary>
-            月のカレンダーコントロールのどの部分が画面の特定のポイントにあるかを決定します。このメッセージは、明示的に送信することも、MonthCal_HitTestマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETCALENDARBORDER">
-            <summary>
-            境界線のサイズをピクセル単位で設定します。このメッセージは、明示的に送信することも、MonthCal_SetCalendarBorderマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETCALID">
-            <summary>
-            指定されたカレンダーコントロールのカレンダーIDを設定します。このメッセージは、明示的に送信することも、MonthCal_SetCALIDマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETCOLOR">
-            <summary>
-            月のカレンダーコントロールの特定の部分の色を設定します。このメッセージは、明示的に送信することも、MonthCal_SetColorマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETCURRENTVIEW">
-            <summary>
-            カレンダーの現在のビューを設定します。このメッセージは、明示的に送信することも、MonthCal_SetCurrentViewマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETCURSEL">
-            <summary>
-            月のカレンダーコントロールに現在選択されている日付を設定します。指定した日付が表示されていない場合、コントロールは表示を更新して表示します。このメッセージは、明示的に送信することも、MonthCal_SetCurSelマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETDAYSTATE">
-            <summary>
-            月のカレンダーコントロール内に現在表示されているすべての月の日の状態を設定します。このメッセージは、明示的に送信することも、MonthCal_SetDayStateマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETFIRSTDAYOFWEEK">
-            <summary>
-            月のカレンダーコントロールの最初の曜日を設定します。このメッセージは、明示的に送信することも、MonthCal_SetFirstDayOfWeekマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETMAXSELCOUNT">
-            <summary>
-            月間カレンダーコントロールで選択できる最大日数を設定します。このメッセージは、明示的に送信することも、MonthCal_SetMaxSelCountマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETMONTHDELTA">
-            <summary>
-            月間カレンダーコントロールのスクロール速度を設定します。スクロールレートは、ユーザーがスクロールボタンをクリックしたときにコントロールがディスプレイを移動する月数です。このメッセージは、明示的に送信することも、MonthCal_SetMonthDeltaマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETRANGE">
-            <summary>
-            月のカレンダーコントロールの最小許容日と最大許容日を設定します。このメッセージは、明示的に送信することも、MonthCal_SetRangeマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETSELRANGE">
-            <summary>
-            月のカレンダーコントロールの選択を特定の日付範囲に設定します。このメッセージは、明示的に送信することも、MonthCal_SetSelRangeマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETTODAY">
-            <summary>
-            月のカレンダーコントロールの「今日」の選択を設定します。このメッセージは、明示的に送信することも、MonthCal_SetTodayマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SETUNICODEFORMAT">
-            <summary>
-            コントロールのUnicode文字フォーマットフラグを設定します。このメッセージを使用すると、コントロールを再作成しなくても、実行時にコントロールが使用する文字セットを変更できます。このメッセージを明示的に送信するか、MonthCal_SetUnicodeFormatマクロを使用できます。
-            </summary>
-        </member>
-        <member name="F:Metroit.Api.WindowsControls.MonthCalenderMessage.MCM_SIZERECTTOMIN">
-            <summary>
-            指定された長方形に収まるカレンダーの数を計算し、その数のカレンダーに収まるために長方形が必要とする最小サイズを返します。このメッセージは、明示的に送信することも、MonthCal_SizeRectToMinマクロを使用して送信することもできます。
-            </summary>
-        </member>
-        <member name="T:Metroit.Api.WindowsControls.DateTimePickerMessage">
+        <member name="T:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages">
             <summary>
             DateTimePickerを操作するメッセージを提供します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_FIRST">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_FIRST">
             <summary>
             DateTimePickerMessageの基準になる値。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_CLOSEMONTHCAL">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_CLOSEMONTHCAL">
             <summary>
             日付と時刻のピッカー（DTP）コントロールを閉じます。このメッセージを明示的に送信するか、DateTime_CloseMonthCalマクロを使用して送信します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETDATETIMEPICKERINFO">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETDATETIMEPICKERINFO">
             <summary>
             日付と時刻のピッカー（DTP）コントロールに関する情報を取得します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETIDEALSIZE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETIDEALSIZE">
             <summary>
             クリッピングなしでコントロールを表示するために必要なサイズを取得します。このメッセージを明示的に送信するか、DateTime_GetIdealSizeマクロを使用して送信します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETMCCOLOR">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETMCCOLOR">
             <summary>
             日付と時刻のピッカー（DTP）コントロール内の月暦の特定の部分の色を取得します。このメッセージを明示的に送信するか、DateTime_GetMonthCalColorマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETMCFONT">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETMCFONT">
             <summary>
             日付と時刻のピッカー（DTP）コントロールの子月暦コントロールが現在使用しているフォントを取得します。このメッセージを明示的に送信するか、DateTime_GetMonthCalFontマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETMCSTYLE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETMCSTYLE">
             <summary>
             日付と時刻のピッカー（DTP）コントロールのスタイルを取得します。このメッセージを明示的に送信するか、DateTime_GetMonthCalStyleマクロを使用して送信します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETMONTHCAL">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETMONTHCAL">
             <summary>
             日付と時刻のピッカー（DTP）の子月暦コントロールへのハンドルを取得します。このメッセージを明示的に送信するか、DateTime_GetMonthCalマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETRANGE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETRANGE">
             <summary>
             日付と時刻のピッカー（DTP）コントロールの現在の最小および最大許容システム時間を取得します。このメッセージを明示的に送信するか、DateTime_GetRangeマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_GETSYSTEMTIME">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_GETSYSTEMTIME">
             <summary>
             日付と時刻のピッカー（DTP）コントロールから現在選択されている時刻を取得し、指定されたSYSTEMTIME構造体に配置します。このメッセージを明示的に送信するか、DateTime_GetSystemtimeマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETFORMAT">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETFORMAT">
             <summary>
             指定されたフォーマット文字列に基づいて、日付と時刻のピッカー（DTP）コントロールの表示を設定します。このメッセージを明示的に送信するか、DateTime_SetFormatマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETMCCOLOR">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETMCCOLOR">
             <summary>
             日付と時刻のピッカー（DTP）コントロール内で、月のカレンダーの特定の部分の色を設定します。このメッセージを明示的に送信するか、DateTime_SetMonthCalColorマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETMCFONT">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETMCFONT">
             <summary>
             日付と時刻のピッカー（DTP）コントロールの子月暦コントロールで使用されるフォントを設定します。このメッセージを明示的に送信するか、DateTime_SetMonthCalFontマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETMCSTYLE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETMCSTYLE">
             <summary>
             日付と時刻のピッカー（DTP）コントロールのスタイルを設定します。このメッセージを明示的に送信するか、DateTime_SetMonthCalStyleマクロを使用して送信します。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETRANGE">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETRANGE">
             <summary>
             日付と時刻のピッカー（DTP）コントロールの最小および最大許容システム時間を設定します。このメッセージを明示的に送信するか、DateTime_SetRangeマクロを使用できます。
             </summary>
         </member>
-        <member name="F:Metroit.Api.WindowsControls.DateTimePickerMessage.DTM_SETSYSTEMTIME">
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.DateTimePickerMessages.DTM_SETSYSTEMTIME">
             <summary>
             日付と時刻のピッカー（DTP）コントロールで時刻を設定します。このメッセージを明示的に送信するか、DateTime_SetSystemtimeマクロを使用できます。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages">
+            <summary>
+            MonthCalendarを操作するメッセージを提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_FIRST">
+            <summary>
+            MonthCalenderMessageの基準になる値。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCALENDARBORDER">
+            <summary>
+            境界線のサイズをピクセル単位で取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurrentViewマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCALENDARCOUNT">
+            <summary>
+            カレンダーコントロールに現在表示されているカレンダーの数を取得します。このメッセージは、明示的に送信することも、MonthCal_GetCalendarCountマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCALENDARGRIDINFO">
+            <summary>
+            カレンダーグリッドに関する情報を取得します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCALID">
+            <summary>
+            指定されたカレンダーコントロールのカレンダーIDを取得します。このメッセージは、明示的に送信することも、MonthCal_GetCALIDマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCOLOR">
+            <summary>
+            月のカレンダーコントロールの特定の部分の色を取得します。このメッセージは、明示的に送信することも、MonthCal_GetColorマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCURRENTVIEW">
+            <summary>
+            カレンダーの現在のビューを取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurrentViewマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETCURSEL">
+            <summary>
+            現在選択されている日付を取得します。このメッセージは、明示的に送信することも、MonthCal_GetCurSelマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETFIRSTDAYOFWEEK">
+            <summary>
+            月のカレンダーコントロールの最初の曜日を取得します。このメッセージは、明示的に送信することも、MonthCal_GetFirstDayOfWeekマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETMAXSELCOUNT">
+            <summary>
+            月のカレンダーコントロールで選択できる最大の日付範囲を取得します。このメッセージは、明示的に送信することも、MonthCal_GetMaxSelCountマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETMAXTODAYWIDTH">
+            <summary>
+            月暦コントロールの「今日」の文字列の最大幅を取得します。これには、ラベルテキストと日付テキストが含まれます。このメッセージは、明示的に送信することも、MonthCal_GetMaxTodayWidthマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETMINREQRECT">
+            <summary>
+            月のカレンダーコントロールで1か月全体を表示するために必要な最小サイズを取得します。このメッセージは、明示的に送信することも、MonthCal_GetMinReqRectマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETMONTHDELTA">
+            <summary>
+            月のカレンダーコントロールのスクロール速度を取得します。スクロールレートは、ユーザーがスクロールボタンをクリックしたときにコントロールがディスプレイを移動する月数です。このメッセージは、明示的に送信することも、MonthCal_GetMonthDeltaマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETMONTHRANGE">
+            <summary>
+            月のカレンダーコントロールの表示の上限と下限を表す日付情報を（SYSTEMTIME構造を使用して）取得します。このメッセージは、明示的に送信することも、MonthCal_GetMonthRangeマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETRANGE">
+            <summary>
+            月のカレンダーコントロールに設定されている最小および最大の許容日を取得します。このメッセージは、明示的に送信することも、MonthCal_GetRangeマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETSELRANGE">
+            <summary>
+            ユーザーが現在選択している日付範囲の上限と下限を表す日付情報を取得します。このメッセージは、明示的に送信することも、MonthCal_GetSelRangeマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETTODAY">
+            <summary>
+            月のカレンダーコントロールの「今日」として指定された日付の日付情報を取得します。このメッセージは、明示的に送信することも、MonthCal_GetTodayマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_GETUNICODEFORMAT">
+            <summary>
+            コントロールのUnicode文字フォーマットフラグを取得します。このメッセージを明示的に送信するか、MonthCal_GetUnicodeFormatマクロを使用できます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_HITTEST">
+            <summary>
+            月のカレンダーコントロールのどの部分が画面の特定のポイントにあるかを決定します。このメッセージは、明示的に送信することも、MonthCal_HitTestマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETCALENDARBORDER">
+            <summary>
+            境界線のサイズをピクセル単位で設定します。このメッセージは、明示的に送信することも、MonthCal_SetCalendarBorderマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETCALID">
+            <summary>
+            指定されたカレンダーコントロールのカレンダーIDを設定します。このメッセージは、明示的に送信することも、MonthCal_SetCALIDマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETCOLOR">
+            <summary>
+            月のカレンダーコントロールの特定の部分の色を設定します。このメッセージは、明示的に送信することも、MonthCal_SetColorマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETCURRENTVIEW">
+            <summary>
+            カレンダーの現在のビューを設定します。このメッセージは、明示的に送信することも、MonthCal_SetCurrentViewマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETCURSEL">
+            <summary>
+            月のカレンダーコントロールに現在選択されている日付を設定します。指定した日付が表示されていない場合、コントロールは表示を更新して表示します。このメッセージは、明示的に送信することも、MonthCal_SetCurSelマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETDAYSTATE">
+            <summary>
+            月のカレンダーコントロール内に現在表示されているすべての月の日の状態を設定します。このメッセージは、明示的に送信することも、MonthCal_SetDayStateマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETFIRSTDAYOFWEEK">
+            <summary>
+            月のカレンダーコントロールの最初の曜日を設定します。このメッセージは、明示的に送信することも、MonthCal_SetFirstDayOfWeekマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETMAXSELCOUNT">
+            <summary>
+            月間カレンダーコントロールで選択できる最大日数を設定します。このメッセージは、明示的に送信することも、MonthCal_SetMaxSelCountマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETMONTHDELTA">
+            <summary>
+            月間カレンダーコントロールのスクロール速度を設定します。スクロールレートは、ユーザーがスクロールボタンをクリックしたときにコントロールがディスプレイを移動する月数です。このメッセージは、明示的に送信することも、MonthCal_SetMonthDeltaマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETRANGE">
+            <summary>
+            月のカレンダーコントロールの最小許容日と最大許容日を設定します。このメッセージは、明示的に送信することも、MonthCal_SetRangeマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETSELRANGE">
+            <summary>
+            月のカレンダーコントロールの選択を特定の日付範囲に設定します。このメッセージは、明示的に送信することも、MonthCal_SetSelRangeマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETTODAY">
+            <summary>
+            月のカレンダーコントロールの「今日」の選択を設定します。このメッセージは、明示的に送信することも、MonthCal_SetTodayマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SETUNICODEFORMAT">
+            <summary>
+            コントロールのUnicode文字フォーマットフラグを設定します。このメッセージを使用すると、コントロールを再作成しなくても、実行時にコントロールが使用する文字セットを変更できます。このメッセージを明示的に送信するか、MonthCal_SetUnicodeFormatマクロを使用できます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarMessages.MCM_SIZERECTTOMIN">
+            <summary>
+            指定された長方形に収まるカレンダーの数を計算し、その数のカレンダーに収まるために長方形が必要とする最小サイズを返します。このメッセージは、明示的に送信することも、MonthCal_SizeRectToMinマクロを使用して送信することもできます。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications">
+            <summary>
+            MonthCalenderの受けた通知の種類を提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.MCN_FIRST">
+            <summary>
+            MonthCalendarNotificationsの基準になる値。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.MCN_GETDAYSTATE">
+            <summary>
+            個々の日の表示方法に関する情報を要求するために、月のカレンダーコントロールによって送信されます。この通知コードは、MCS_DAYSTATEスタイルを使用する月暦コントロールによってのみ送信され、WM_NOTIFYメッセージの形式で送信されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.MCN_SELCHANGE">
+            <summary>
+            現在選択されている日付または日付の範囲が変更されたときに、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.MCN_SELECT">
+            <summary>
+            ユーザーが月のカレンダーコントロール内で明示的な日付を選択すると、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.MCN_VIEWCHANGE">
+            <summary>
+            現在のビューが変更されたときに、月のカレンダーコントロールによって送信されます。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarNotifications.NM_RELEASEDCAPTURE">
+            <summary>
+            コントロールがマウスキャプチャを解放していることを月次コントロールの親ウィンドウに通知します。この通知コードは、WM_NOTIFYメッセージの形式で送信されます。
+            </summary>
+        </member>
+        <member name="T:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles">
+            <summary>
+            MonthCalendarのスタイル種類を提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_DAYSTATE">
+            <summary>
+            月間カレンダーはMCN_GETDAYSTATE通知を送信して、太字で表示する日に関する情報を要求します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_MULTISELECT">
+            <summary>
+            月間カレンダーを使用すると、ユーザーはコントロール内の日付の範囲を選択できます。デフォルトでは、最大範囲は1週間です。MCM_SETMAXSELCOUNTメッセージを使用して、選択できる最大範囲を変更できます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_WEEKNUMBERS">
+            <summary>
+            月暦コントロールは、日の各行の左側に週番号（1〜52）を表示します。第1週は、少なくとも4日を含む最初の週として定義されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_NOTODAYCIRCLE">
+            <summary>
+            月のカレンダーコントロールは、「今日」の日付を丸で囲みません。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_NOTODAY">
+            <summary>
+            月暦コントロールは、コントロールの下部に「今日」の日付を表示しません。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_NOTRAILINGDATES">
+            <summary>
+            前月と翌月の日付は、当月のカレンダーには表示されません。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_SHORTDAYSOFWEEK">
+            <summary>
+            短い日の名前がヘッダーに表示されます。
+            </summary>
+        </member>
+        <member name="F:Metroit.Win32.DesktopAppUi.WindowsControls.MonthCalendarControlStyles.MCS_NOSELCHANGEONNAV">
+            <summary>
+            ユーザーがカレンダーの次または前に移動しても、選択は変更されません。これにより、ユーザーは表示されているよりも広い範囲を選択できます。
             </summary>
         </member>
         <member name="T:Metroit.Collections.Generic.LimitedList`1">

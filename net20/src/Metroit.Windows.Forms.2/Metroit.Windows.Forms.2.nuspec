@@ -11,14 +11,19 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugfix:
+      add:
         MetDateTimePicker
-          - The font color does not change neatly depending on the font type.
+          - Added Properties MinCalendarType, ShowToday, ShowTodayCircle and ShowTorailingDates.
+      modify:
+        MetForm
+          - Changed the reflection control of rollback focus loss.
+        MetComboBox
+          - Changed the reflection control of back color and fore color.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.2" version="1.0.7" />
+      <dependency id="Metroit.2" version="1.1.0" />
     </dependencies>
   </metadata>
 </package>

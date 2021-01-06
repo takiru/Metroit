@@ -17,6 +17,8 @@
   - [特定の文字だけ入力を許可したい](#特定の文字だけ入力を許可したい)
   - [数値表現の入力を行いたい](#数値表現の入力を行いたい)
   - [日付項目にNullを許可したい](#日付項目にNullを許可したい)
+  - [日付を、年のみ指定、年月のみ指定したい](#日付を、年のみ指定、年月のみ指定したい)
+  - [DateTimePickerのカレンダーをカスタマイズしたい](#DateTimePickerのカレンダーをカスタマイズしたい)
 
 ## コントロール
 
@@ -356,3 +358,27 @@ AcceptNull を利用します。
 ![prop](./images/DateTimeNull/prop.gif "prop")
 
 ![anime](./images/DateTimeNull/anime.gif "anime")
+
+## 日付を、年のみ指定、年月のみ指定したい
+
+対象コントロール
+- MetDateTimePicker
+
+MinCalendarType を利用します。
+年までの指定はYear、年月までの指定はMonthを指定します。
+
+![prop](./images/DateTimeCalendarType/prop.gif "prop")
+
+![anime](./images/DateTimeCalendarType/anime.gif "anime")
+
+## DateTimePickerのカレンダーをカスタマイズしたい
+
+対象コントロール
+- MetDateTimePicker
+
+ShowToday, ShowTodayCircle, ShowTorailingDates を利用します。
+
+![prop](./images/DateTimeCalendarLayout/prop.gif "prop")
+
+![anime](./images/DateTimeCalendarLayout/anime.gif "anime")
+
