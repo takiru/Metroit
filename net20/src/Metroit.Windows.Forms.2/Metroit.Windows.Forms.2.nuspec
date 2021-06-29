@@ -11,14 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      add:
+      bugfix:
         MetDateTimePicker
-          - Added Properties MinCalendarType, ShowToday, ShowTodayCircle and ShowTorailingDates.
-      modify:
-        MetForm
-          - Changed the reflection control of rollback focus loss.
-        MetComboBox
-          - Changed the reflection control of back color and fore color.
+          - Fixed to display Value with Up button and Down button when ShowUpDown is true.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

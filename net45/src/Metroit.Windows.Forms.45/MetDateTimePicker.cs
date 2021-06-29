@@ -1252,7 +1252,7 @@ namespace Metroit.Windows.Forms
             }
 
             // nullの時、カレンダーを表示後、日付の選択や月の移動ボタンを押すとFormatプロパティ変更直後に
-            // 日付が確定してカレンダーが消えてしまうため、直前に指定されていた日付を復帰し、Alt+F4によって
+            // 日付が確定してカレンダーが消えてしまうため、直前に指定されていた日付を復帰し、Alt+下キーによって
             // カレンダーを表示させ、通常ルートに戻す
             // UIから操作した時、ミリ秒は取り除かれるのが通常仕様
             this.Value = this.GetRestoreValue(base.Value, true);
@@ -1570,6 +1570,18 @@ namespace Metroit.Windows.Forms
         /// <param name="m"></param>
         private void WmNotify(ref Message m)
         {
+            // カレンダー利用ではない場合
+            if (this.ShowUpDown)
+            {
+                if (!this.isNull)
+                {
+                    base.WndProc(ref m);
+                    return;
+                }
+                this.Value = this.GetRestoreValue(base.Value, true);
+                return;
+            }
+
             // カレンダータイプが日の場合は制御しない
             if (this.MinCalendarType == CalendarType.Day)
             {

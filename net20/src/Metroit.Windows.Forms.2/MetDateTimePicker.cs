@@ -1570,6 +1570,18 @@ namespace Metroit.Windows.Forms
         /// <param name="m"></param>
         private void WmNotify(ref Message m)
         {
+            // カレンダー利用ではない場合
+            if (this.ShowUpDown)
+            {
+                if (!this.isNull)
+                {
+                    base.WndProc(ref m);
+                    return;
+                }
+                this.Value = this.GetRestoreValue(base.Value, true);
+                return;
+            }
+
             // カレンダータイプが日の場合は制御しない
             if (this.MinCalendarType == CalendarType.Day)
             {
