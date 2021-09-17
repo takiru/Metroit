@@ -1354,67 +1354,53 @@
             変換結果を取得します。
             </summary>
         </member>
-        <member name="T:Metroit.IO.ConverterBase">
+        <member name="T:Metroit.IO.ConverterBase`1">
             <summary>
             データの変換を表します。
             </summary>
         </member>
-        <member name="T:Metroit.IO.ConverterBase.ConvertCompleteEventHandler">
+        <member name="T:Metroit.IO.ConverterBase`1.ConvertCompleteEventHandler">
             <summary>
             実行が完了したイベントを処理するメソッドを表します。
             </summary>
             <param name="parameter">変換パラメーター。</param>
             <param name="e">実行完了イベント。</param>
         </member>
-        <member name="T:Metroit.IO.ConverterBase.ConvertPrepareEventHandler">
+        <member name="T:Metroit.IO.ConverterBase`1.ConvertPrepareEventHandler">
             <summary>
             変換準備のイベントを処理するメソッドを表します。
             </summary>
             <param name="parameter">変換パラメーター。</param>
             <param name="e">キャンセルイベント。</param>
         </member>
-        <member name="E:Metroit.IO.ConverterBase.Prepare">
+        <member name="E:Metroit.IO.ConverterBase`1.Prepare">
             <summary>
             変換準備が行われたときに発生します。
             </summary>
         </member>
-        <member name="E:Metroit.IO.ConverterBase.ConvertCompleted">
+        <member name="E:Metroit.IO.ConverterBase`1.ConvertCompleted">
             <summary>
             変換処理が完了したときに発生します。
             </summary>
         </member>
-        <member name="M:Metroit.IO.ConverterBase.Convert(Metroit.IO.IConvertParameter)">
+        <member name="M:Metroit.IO.ConverterBase`1.Convert(`0)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター。</param>
         </member>
-        <member name="M:Metroit.IO.ConverterBase.ConvertAsync(Metroit.IO.IConvertParameter)">
+        <member name="M:Metroit.IO.ConverterBase`1.ConvertAsync(`0)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター。</param>
             <returns>ConvertResult のタスク。</returns>
         </member>
-        <member name="M:Metroit.IO.ConverterBase.DoConvert(Metroit.IO.IConvertParameter)">
+        <member name="M:Metroit.IO.ConverterBase`1.DoConvert(`0)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター</param>
-        </member>
-        <member name="M:Metroit.IO.ConverterBase.onConvertTask(Metroit.IO.IConvertParameter)">
-            <summary>
-            非同期で変換を行うためのタスクメソッド。
-            </summary>
-            <param name="parameter">変換パラメーター。</param>
-            <returns>ConvertResult のタスク。</returns>
-        </member>
-        <member name="M:Metroit.IO.ConverterBase.onConvert(Metroit.IO.IConvertParameter)">
-            <summary>
-            変換の呼び出しを実施する。
-            </summary>
-            <param name="parameter"></param>
-            <returns></returns>
         </member>
         <member name="T:Metroit.IO.FileConvertException">
             <summary>
@@ -1458,27 +1444,30 @@
             ファイルのコンバーターを表します。
             </summary>
         </member>
-        <member name="P:Metroit.IO.FileConverterBase.Parameter">
-            <summary>
-            ファイル変換を実施するパラメーター値を取得します。
-            </summary>
-        </member>
         <member name="P:Metroit.IO.FileConverterBase.ErrorMessage">
             <summary>
             エラーメッセージの取得または設定します。
             </summary>
         </member>
-        <member name="M:Metroit.IO.FileConverterBase.DoConvert(Metroit.IO.IConvertParameter)">
+        <member name="M:Metroit.IO.FileConverterBase.DoConvert(Metroit.IO.FileConvertParameter)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター。</param>
         </member>
-        <member name="M:Metroit.IO.FileConverterBase.CanConvert">
+        <member name="M:Metroit.IO.FileConverterBase.CanConvert(Metroit.IO.FileConvertParameter)">
             <summary>
             変換実行が有効かどうかを取得します。
             </summary>
             <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.CreateTempFileName(System.String,System.String)">
+            <summary>
+            一時ファイルパスを生成する。
+            </summary>
+            <param name="tempDirectory"></param>
+            <param name="fileName"></param>
+            <returns></returns>
         </member>
         <member name="M:Metroit.IO.FileConverterBase.ConvertFile(Metroit.IO.FileConvertParameter)">
             <summary>
@@ -1486,13 +1475,7 @@
             </summary>
             <param name="parameter">変換パラメーター。</param>
         </member>
-        <member name="M:Metroit.IO.FileConverterBase.CreateTemporaryFilePath">
-            <summary>
-            一時ファイルパスを決定する。
-            </summary>
-            <returns>一時ファイルパス。</returns>
-        </member>
-        <member name="M:Metroit.IO.FileConverterBase.TempFileToDestFile">
+        <member name="M:Metroit.IO.FileConverterBase.TempFileToDestFile(Metroit.IO.FileConvertParameter)">
             <summary>
             一時ファイルパスを変換後ファイルパスへ移動させる。
             </summary>
@@ -1502,42 +1485,56 @@
             ファイルの変換パラメーターを提供します。
             </summary>
         </member>
-        <member name="P:Metroit.IO.FileConvertParameter.SourceFilePath">
+        <member name="P:Metroit.IO.FileConvertParameter.SourceFileName">
             <summary>
-            変換元ファイルのパスの取得または設定します。
+            変換元ファイルのパスを取得または設定します。
             </summary>
         </member>
-        <member name="P:Metroit.IO.FileConvertParameter.DestinationFilePath">
+        <member name="P:Metroit.IO.FileConvertParameter.UseSourceTemporary">
             <summary>
-            ファイルを保存する変換先パスの取得または設定します。
+            <para>変換元ファイルとして一時ファイルを利用するかどうかを取得または設定します。</para>
+            <para>利用する場合、変換元ファイルを一時ディレクトリにコピーしてから変換を行います。</para>
             </summary>
         </member>
-        <member name="P:Metroit.IO.FileConvertParameter.UseTemporary">
+        <member name="P:Metroit.IO.FileConvertParameter.SourceTempDirectory">
             <summary>
-            一時ディレクトリを利用した変換を行うかどうかの取得または設定します。
-            </summary>
-        </member>
-        <member name="P:Metroit.IO.FileConvertParameter.TemporaryDirectory">
-            <summary>
-            <para>一時ディレクトリの取得または設定します。</para>
+            <para>変換元の一時ディレクトリを取得または設定します。</para>
             <para>設定しない場合、Windows標準の一時ディレクトリを使用します。</para>
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.SourceConvertFileName">
+            <summary>
+            <para>変換を行う元ファイルパスを取得します。</para>
+            <para>UseSourceTemporary = true の場合、SourceTempDirectory のファイルパスとなります。</para>
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.DestFileName">
+            <summary>
+            変換先ファイルのパスの取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.UseDestTemporary">
+            <summary>
+            <para>変換先として一時ディレクトリを利用するかどうかの取得または設定します。</para>
+            <para>利用する場合、一時ディレクトリに変換してから変換先ファイルへ移動します。</para>
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.DestTempDirectory">
+            <summary>
+            <para>変換先の一時ディレクトリの取得または設定します。</para>
+            <para>設定しない場合、Windows標準の一時ディレクトリを使用します。</para>
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.DestConvertFileName">
+            <summary>
+            <para>変換先となるファイルパスの取得を行います。</para>
+            <para>UseDestTemporary = true の場合、DestTempDirectory のファイルパスとなります。</para>
             </summary>
         </member>
         <member name="P:Metroit.IO.FileConvertParameter.Overwrite">
             <summary>
-            DestinationFilePath に既に同名のファイルがあった時、上書きするかどうかの取得または設定します。
-            </summary>
-        </member>
-        <member name="P:Metroit.IO.FileConvertParameter.TemporaryFilePath">
-            <summary>
-            一時ディレクトリを利用した際に、変換が行われたファイルのフルパスの取得を行います。
-            </summary>
-        </member>
-        <member name="P:Metroit.IO.FileConvertParameter.ConvertingPath">
-            <summary>
-            <para>変換を行うファイルパスの取得を行います。</para>
-            <para>UseTemporary=trueの場合、TemporaryFilePath と同じです。</para>
-            <para>UseTemporary=falseの場合、DestinationFilePath と同じです。</para>
+            <para>変換先ファイルが既に存在する時、上書きするかどうかの取得または設定します。</para>
+            <para>上書きしない時、変換先ファイルが存在する場合は変換は行われません。</para>
             </summary>
         </member>
         <member name="M:Metroit.IO.FileConvertParameter.#ctor">
@@ -1545,28 +1542,12 @@
             FileConvertParameter クラスの新しいインスタンスを初期化します。
             </summary>
         </member>
-        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.Boolean,System.String)">
+        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.String,System.String,System.Boolean)">
             <summary>
             FileConvertParameter クラスの新しいインスタンスを初期化します。
-            </summary>
-            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
-            <param name="directory">一時ディレクトリ。</param>
-        </member>
-        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.String,System.Boolean,System.String)">
-            <summary>
-            FileConvertParameter クラスの新しいインスタンスを初期化します。
-            <param name="sourceFilePath">変換元ファイルのフルパス。</param>
-            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
-            <param name="directory">一時ディレクトリ。</param>
-            </summary>
-        </member>
-        <member name="M:Metroit.IO.FileConvertParameter.#ctor(System.String,System.String,System.Boolean,System.String)">
-            <summary>
-            FileConvertParameter クラスの新しいインスタンスを初期化します。
-            <param name="sourceFilePath">変換元ファイルのフルパス。</param>
-            <param name="destinationFilePath">変換先ファイルのフルパス。</param>
-            <param name="useTemporary">一時ディレクトリを利用するかどうか。</param>
-            <param name="directory">一時ディレクトリ。</param>
+            <param name="sourceFileName">変換元ファイル。</param>
+            <param name="destFileName">変換先ファイル。</param>
+            <param name="overwrite">上書きするかどうか。</param>
             </summary>
         </member>
         <member name="T:Metroit.IO.IFileConverterFactory">

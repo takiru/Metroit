@@ -4,10 +4,10 @@
 
 |Module                 |NuGet                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
 |Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
@@ -121,7 +121,7 @@ class TestFileConverter : FileConverterBase
 
     protected override void ConvertFile(FileConvertParameter parameter)
         // ファイルの変換処理など
-        File.Copy(Parameter.SourceFilePath, Parameter.ConvertingPath);
+        File.Copy(parameter.SourceConvertFileName, parameter.DestConvertFileName);
     }
 }
 
@@ -131,22 +131,20 @@ class Test
     {
         var parameter = new FileConvertParameter()
         {
-            SourceFilePath = "C:\test.txt",
-            DestinationFilePath = "D:\test.dat",
-            UseTemporary = true,
+            SourceFileName = "C:\test.txt",
+            DestFileName = "D:\test.dat",
+            UseDestTemporary = true,
             Overwrite = true,
 
         };
         var converter = new TestFileConverter();
         converter.Prepare += (p, e) =>
         {
-            var fp = p as FileConvertParameter;
             e.Cancel = false;
             Console.WriteLine("Convert prepare process.");
         };
         converter.ConvertCompleted += (p, e) =>
         {
-            var fp = p as FileConvertParameter;
             Console.WriteLine(e.Result.ToString() + e.Error.Message);
             Console.WriteLine("Convert complete process.");
         };

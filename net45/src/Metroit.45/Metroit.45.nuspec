@@ -11,7 +11,10 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-    We have changed the namespace structure and provided some API support classes.
+      change:
+        FileConvertParameter
+          - It is now possible to convert after copying the conversion source.
+          - The property names of the conversion destination and the conversion source have been completely changed.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

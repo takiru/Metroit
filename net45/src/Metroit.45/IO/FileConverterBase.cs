@@ -6,13 +6,8 @@ namespace Metroit.IO
     /// <summary>
     /// ファイルのコンバーターを表します。
     /// </summary>
-    public abstract class FileConverterBase : ConverterBase
+    public abstract class FileConverterBase : ConverterBase<FileConvertParameter>
     {
-        /// <summary>
-        /// ファイル変換を実施するパラメーター値を取得します。
-        /// </summary>
-        protected FileConvertParameter Parameter { get; private set; }
-
         /// <summary>
         /// エラーメッセージの取得または設定します。
         /// </summary>
@@ -22,46 +17,57 @@ namespace Metroit.IO
         /// 変換を行います。
         /// </summary>
         /// <param name="parameter">変換パラメーター。</param>
-        protected override sealed void DoConvert(IConvertParameter parameter)
+        protected override sealed void DoConvert(FileConvertParameter parameter)
         {
-            Parameter = parameter as FileConvertParameter;
-
-            // 一時ディレクトリの設定
-            Parameter.TemporaryDirectory = SetTemporaryDirectory();
-
-            // 一時ファイルパスの生成
-            Parameter.TemporaryFilePath = CreateTemporaryFilePath();
-
-            // 変換先ファイルパスの決定
-            Parameter.ConvertingPath = Parameter.UseTemporary
-                    ? Parameter.TemporaryFilePath
-                    : Parameter.DestinationFilePath;
-
-            // 変換可能なパラメーターであるかを確認する
-            if (!CanConvert())
+            if (!CanConvert(parameter))
             {
                 throw new ArgumentException(ErrorMessage);
             }
 
-            // 一時ファイルパスのディレクトリを作成
-            if (Parameter.UseTemporary && !Directory.Exists(Parameter.TemporaryDirectory))
+            // 変換元の一時パスを決定
+            parameter.SourceConvertFileName = parameter.SourceFileName;
+            if (parameter.UseSourceTemporary)
             {
-                Directory.CreateDirectory(Parameter.TemporaryDirectory);
+                parameter.SourceConvertFileName = CreateTempFileName(parameter.SourceTempDirectory, parameter.SourceFileName);
+            }
+
+            // 変換先の一時パスを決定
+            parameter.DestConvertFileName = parameter.DestFileName;
+            if (parameter.UseDestTemporary)
+            {
+                parameter.DestConvertFileName = CreateTempFileName(parameter.DestTempDirectory, parameter.DestFileName);
+            }
+
+            // 変換元ファイルを一時パスへコピー
+            if (parameter.UseSourceTemporary)
+            {
+                File.Copy(parameter.SourceFileName, parameter.SourceConvertFileName);
+
             }
 
             // 変換実行
-            ConvertFile(Parameter);
+            ConvertFile(parameter);
 
             // 一時パスのファイルを変換後ファイルパスへ移動
-            if (Parameter.UseTemporary)
+            if (parameter.UseSourceTemporary)
+            {
+                File.Delete(parameter.SourceConvertFileName);
+
+                var tempDirectory = Path.GetDirectoryName(parameter.SourceConvertFileName);
+                if (Directory.GetFiles(tempDirectory).Length == 0)
+                {
+                    Directory.Delete(tempDirectory);
+                }
+            }
+            if (parameter.UseDestTemporary)
             {
                 try
                 {
-                    TempFileToDestFile();
+                    TempFileToDestFile(parameter);
                 }
                 catch
                 {
-                    File.Delete(Parameter.TemporaryFilePath);
+                    File.Delete(parameter.DestConvertFileName);
                     throw;
                 }
             }
@@ -71,40 +77,26 @@ namespace Metroit.IO
         /// 変換実行が有効かどうかを取得します。
         /// </summary>
         /// <returns>true:有効, false:無効</returns>
-        protected virtual bool CanConvert()
+        protected virtual bool CanConvert(FileConvertParameter parameter)
         {
-            if (Parameter == null)
+            if (parameter == null)
             {
                 ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
             }
-            if (string.IsNullOrEmpty(Parameter.SourceFilePath) ||
-                    string.IsNullOrEmpty(Parameter.DestinationFilePath))
+            if (string.IsNullOrEmpty(parameter.SourceFileName) ||
+                    string.IsNullOrEmpty(parameter.DestFileName))
             {
                 ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
             }
-            if (!File.Exists(Parameter.SourceFilePath))
+            if (!File.Exists(parameter.SourceFileName))
             {
-                ErrorMessage = string.Format(ExceptionResources.GetString("NotExistsFilePath"), Parameter.SourceFilePath);
-                return false;
-            }
-            if (!Directory.Exists(Path.GetDirectoryName(Parameter.DestinationFilePath)))
-            {
-                ErrorMessage = string.Format(ExceptionResources.GetString("NotExistsFilePath"), Parameter.DestinationFilePath);
+                ErrorMessage = string.Format(ExceptionResources.GetString("NotExistsFilePath"), parameter.SourceFileName);
                 return false;
             }
 
-            if (Parameter.UseTemporary)
-            {
-                if (Parameter.DestinationFilePath == Parameter.TemporaryFilePath)
-                {
-                    ErrorMessage = ExceptionResources.GetString("SameTempPathAndDestFilePath");
-                    return false;
-                }
-            }
-
-            if (!Parameter.Overwrite && File.Exists(Parameter.DestinationFilePath))
+            if (!parameter.Overwrite && File.Exists(parameter.DestFileName))
             {
                 ErrorMessage = ExceptionResources.GetString("ExistsDestFilePath");
                 return false;
@@ -114,65 +106,62 @@ namespace Metroit.IO
         }
 
         /// <summary>
+        /// 一時ファイルパスを生成する。
+        /// </summary>
+        /// <param name="tempDirectory"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private string CreateTempFileName(string tempDirectory, string fileName)
+        {
+            var sourceTempDirectory = tempDirectory;
+
+            // 一時ディレクトリが未指定時はWindows標準の一時ディレクトリを使用
+            if (string.IsNullOrEmpty(sourceTempDirectory))
+            {
+                sourceTempDirectory = Path.GetTempPath();
+            }
+
+            string tempFileName = Path.Combine(sourceTempDirectory, Path.GetRandomFileName() + Path.GetExtension(fileName));
+            Directory.CreateDirectory(sourceTempDirectory);
+            return tempFileName;
+        }
+
+        /// <summary>
         /// ファイルの変換を行います。
         /// </summary>
         /// <param name="parameter">変換パラメーター。</param>
         protected abstract void ConvertFile(FileConvertParameter parameter);
 
-        private string SetTemporaryDirectory()
-        {
-            if (!Parameter.UseTemporary)
-            {
-                return null;
-            }
-
-            // 一時ディレクトリが未指定時はWindows標準の一時ディレクトリを使用
-            if (string.IsNullOrEmpty(Parameter.TemporaryDirectory))
-            {
-                return Path.GetTempPath();
-            }
-
-            return Parameter.TemporaryDirectory;
-        }
-
-        /// <summary>
-        /// 一時ファイルパスを決定する。
-        /// </summary>
-        /// <returns>一時ファイルパス。</returns>
-        private string CreateTemporaryFilePath()
-        {
-            if (!Parameter.UseTemporary)
-            {
-                return null;
-            }
-
-            return Path.Combine(Parameter.TemporaryDirectory, Path.GetRandomFileName());
-        }
-
         /// <summary>
         /// 一時ファイルパスを変換後ファイルパスへ移動させる。
         /// </summary>
-        private void TempFileToDestFile()
+        private void TempFileToDestFile(FileConvertParameter parameter)
         {
-            var fileExists = File.Exists(Parameter.DestinationFilePath);
+            var fileExists = File.Exists(parameter.DestFileName);
 
-            // 上書き設定しておらず、変換後ファイルパスにファイルがある場合
-            if (!Parameter.Overwrite && fileExists)
+            // 上書きでない時、変換後に変換先ファイルパスに同名のファイルがある場合
+            if (!parameter.Overwrite && fileExists)
             {
                 throw new ArgumentException(ExceptionResources.GetString("ExistsDestFilePath"));
             }
 
-            // 変換後ファイルパスへ保存
-            if (Parameter.Overwrite && fileExists)
+            // 変換後ファイルパスへ移動
+            if (parameter.Overwrite && fileExists)
             {
-                File.Delete(Parameter.DestinationFilePath);
+                File.Delete(parameter.DestFileName);
             }
-            var directory = Path.GetDirectoryName(Parameter.DestinationFilePath);
+            var directory = Path.GetDirectoryName(parameter.DestFileName);
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
-            File.Move(Parameter.TemporaryFilePath, Parameter.DestinationFilePath);
+            File.Move(parameter.DestConvertFileName, parameter.DestFileName);
+
+            var tempDirectory = Path.GetDirectoryName(parameter.DestConvertFileName);
+            if (Directory.GetFiles(tempDirectory).Length == 0)
+            {
+                Directory.Delete(tempDirectory);
+            }
         }
     }
 }
