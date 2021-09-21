@@ -7,7 +7,7 @@
 |Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
 |Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
 |Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.3.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
 |Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
@@ -128,26 +128,24 @@ class Test
 {
     public void Hoge()
     {
-        var parameter = new FileConvertParameter()
+        var converter = new TestFileConverter()
         {
-            SourceFileName = "C:\test.txt",
-            DestFileName = "D:\test.dat",
-            UseDestTemporary = true,
-            Overwrite = true,
-
+            Parameter = new FileConvertParameter() {
+                SourceFileName = "C:\test.txt",
+                DestFileName = "D:\test.dat",
+                UseDestTemporary = true,
+                Overwrite = true
+            },
+            Prepare = (p, e) => {
+                e.Cancel = false;
+                Console.WriteLine("Convert prepare process.");
+            },
+            Complete(p, e) => {
+                Console.WriteLine(e.Result.ToString() + e.Error?.Message);
+                Console.WriteLine("Convert complete process.");
+            }
         };
-        var converter = new TestFileConverter();
-        converter.Prepare += (p, e) =>
-        {
-            e.Cancel = false;
-            Console.WriteLine("Convert prepare process.");
-        };
-        converter.ConvertCompleted += (p, e) =>
-        {
-            Console.WriteLine(e.Result.ToString() + e.Error.Message);
-            Console.WriteLine("Convert complete process.");
-        };
-        var result = converter.Convert(parameter);
+        var result = converter.Convert();
         if (result == ConvertResultType.Cancelled)
         {
             return;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Metroit.IO
@@ -12,6 +13,25 @@ namespace Metroit.IO
         /// エラーメッセージの取得または設定します。
         /// </summary>
         protected string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// 変換をかけた結果に対して更に変換するものを取得または設定します。
+        /// </summary>
+        public List<FileConverterBase> ReactiveConvert { get; set; } = new List<FileConverterBase>();
+
+        /// <summary>
+        /// 新しい FileConverterBase インスタンスを生成します。
+        /// </summary>
+        public FileConverterBase() { }
+
+        /// <summary>
+        /// 新しい FileConverterBase インスタンスを生成します。
+        /// </summary>
+        /// <param name="parameter">FileConvertParameter オブジェクト。</param>
+        public FileConverterBase(FileConvertParameter parameter) : base()
+        {
+            Parameter = parameter;
+        }
 
         /// <summary>
         /// 変換を行います。
@@ -30,6 +50,10 @@ namespace Metroit.IO
             {
                 parameter.SourceConvertFileName = CreateTempFileName(parameter.SourceTempDirectory, parameter.SourceFileName);
             }
+            if (parameter.OriginalFileName == null)
+            {
+                parameter.OriginalFileName = parameter.SourceConvertFileName;  // Reactiveすると上書きされちゃうからだめだー
+            }
 
             // 変換先の一時パスを決定
             parameter.DestConvertFileName = parameter.DestFileName;
@@ -41,35 +65,83 @@ namespace Metroit.IO
             // 変換元ファイルを一時パスへコピー
             if (parameter.UseSourceTemporary)
             {
-                File.Copy(parameter.SourceFileName, parameter.SourceConvertFileName);
-
+                File.Copy(parameter.SourceFileName, parameter.SourceConvertFileName, true);
             }
 
-            // 変換実行
-            ConvertFile(parameter);
-
-            // 一時パスのファイルを変換後ファイルパスへ移動
-            if (parameter.UseSourceTemporary)
+            try
             {
-                File.Delete(parameter.SourceConvertFileName);
+                // 変換実行
+                ConvertFile(parameter);
 
-                var tempDirectory = Path.GetDirectoryName(parameter.SourceConvertFileName);
-                if (Directory.GetFiles(tempDirectory).Length == 0)
+                // 反応変換の実行
+                if (ReactiveConvert != null)
                 {
-                    Directory.Delete(tempDirectory);
+                    foreach (var reactive in ReactiveConvert)
+                    {
+                        reactive.Parameter.OriginalFileName = parameter.OriginalFileName;
+                        switch (reactive.Parameter.ReactiveTarget)
+                        {
+                            case ReactiveFileTarget.Original:
+                                reactive.Parameter.SourceFileName = parameter.OriginalFileName;
+                                break;
+                            case ReactiveFileTarget.RecentOriginal:
+                                reactive.Parameter.SourceFileName = parameter.SourceConvertFileName;
+                                break;
+                            case ReactiveFileTarget.RecentConvert:
+                                reactive.Parameter.SourceFileName = parameter.DestConvertFileName;
+                                break;
+                        }
+                        reactive.Convert();
+                    }
+                }
+
+                // 一時パスのファイルを変換後ファイルパスへ移動
+                if (parameter.UseSourceTemporary)
+                {
+                    File.Delete(parameter.SourceConvertFileName);
+
+                    var tempDirectory = Path.GetDirectoryName(parameter.SourceConvertFileName);
+                    if (Directory.GetFiles(tempDirectory).Length == 0)
+                    {
+                        Directory.Delete(tempDirectory);
+                    }
+                }
+                if (parameter.UseDestTemporary)
+                {
+                    try
+                    {
+                        TempFileToDestFile(parameter);
+                    }
+                    catch
+                    {
+                        File.Delete(parameter.DestConvertFileName);
+                        throw;
+                    }
                 }
             }
-            if (parameter.UseDestTemporary)
+            catch
             {
-                try
+                if (parameter.UseSourceTemporary)
                 {
-                    TempFileToDestFile(parameter);
+                    File.Delete(parameter.SourceConvertFileName);
+
+                    var tempDirectory = Path.GetDirectoryName(parameter.SourceConvertFileName);
+                    if (Directory.GetFiles(tempDirectory).Length == 0)
+                    {
+                        Directory.Delete(tempDirectory);
+                    }
                 }
-                catch
+                if (parameter.UseDestTemporary)
                 {
                     File.Delete(parameter.DestConvertFileName);
-                    throw;
+
+                    var tempDirectory = Path.GetDirectoryName(parameter.DestConvertFileName);
+                    if (Directory.GetFiles(tempDirectory).Length == 0)
+                    {
+                        Directory.Delete(tempDirectory);
+                    }
                 }
+                throw;
             }
         }
 

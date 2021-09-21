@@ -7,38 +7,41 @@ namespace Metroit.IO
     /// <summary>
     /// データの変換を表します。
     /// </summary>
-    public abstract class ConverterBase<T> where T : IConvertParameter
+    public abstract class ConverterBase<T> where T : IConvertParameter, new()
     {
         /// <summary>
-        /// 実行が完了したイベントを処理するメソッドを表します。
+        /// 
         /// </summary>
-        /// <param name="parameter">変換パラメーター。</param>
-        /// <param name="e">実行完了イベント。</param>
-        public delegate void ConvertCompleteEventHandler(T parameter, ConvertCompleteEventArgs e);
+        public T Parameter { get; set; } = new T();
 
         /// <summary>
-        /// 変換準備のイベントを処理するメソッドを表します。
+        /// 変換準備を行います。
         /// </summary>
-        /// <param name="parameter">変換パラメーター。</param>
-        /// <param name="e">キャンセルイベント。</param>
-        public delegate void ConvertPrepareEventHandler(T parameter, CancelEventArgs e);
-
-        /// <summary>
-        /// 変換準備が行われたときに発生します。
-        /// </summary>
-        public event ConvertPrepareEventHandler Prepare;
+        public Action<T, CancelEventArgs> Prepare { get; set; } = null;
 
         /// <summary>
         /// 変換処理が完了したときに発生します。
         /// </summary>
-        public event ConvertCompleteEventHandler ConvertCompleted;
+        public Action<T, ConvertCompleteEventArgs> Complete { get; set; } = null;
+
+        /// <summary>
+        /// 変換を行います。
+        /// </summary>
+        /// <returns>変換結果。</returns>
+        public ConvertResultType Convert()
+        {
+            return Convert(Parameter);
+        }
 
         /// <summary>
         /// 変換を行います。
         /// </summary>
         /// <param name="parameter">変換パラメーター。</param>
+        /// <returns>変換結果。</returns>
         public ConvertResultType Convert(T parameter)
         {
+            Parameter = parameter;
+
             var cea = new CancelEventArgs();
             cea.Cancel = false;
             Prepare?.Invoke(parameter, cea);
@@ -48,7 +51,7 @@ namespace Metroit.IO
                 r = ConvertResultType.Cancelled;
                 var ccea = new ConvertCompleteEventArgs();
                 ccea.Result = ConvertResultType.Cancelled;
-                ConvertCompleted?.Invoke(parameter, ccea);
+                Complete?.Invoke(parameter, ccea);
                 return r;
             }
 
@@ -58,7 +61,7 @@ namespace Metroit.IO
                 DoConvert(parameter);
                 result.Result = ConvertResultType.Succeed;
                 result.Error = null;
-                ConvertCompleted?.Invoke(parameter, result);
+                Complete?.Invoke(parameter, result);
                 return result.Result;
 
             }
@@ -67,9 +70,23 @@ namespace Metroit.IO
                 var result = new ConvertCompleteEventArgs();
                 result.Result = ConvertResultType.Failed;
                 result.Error = e;
-                ConvertCompleted?.Invoke(parameter, result);
+                Complete?.Invoke(parameter, result);
                 return result.Result;
             }
+        }
+
+        /// <summary>
+        /// 変換を行います。
+        /// </summary>
+        /// <returns>ConvertResult のタスク。</returns>
+        public async Task<ConvertResultType> ConvertAsync()
+        {
+            var task = await Task.Run(() =>
+            {
+                return Convert(Parameter);
+            });
+
+            return task;
         }
 
         /// <summary>

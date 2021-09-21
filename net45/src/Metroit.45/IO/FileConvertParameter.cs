@@ -1,4 +1,6 @@
-﻿namespace Metroit.IO
+﻿using System.Collections.Generic;
+
+namespace Metroit.IO
 {
     /// <summary>
     /// ファイルの変換パラメーターを提供します。
@@ -6,73 +8,72 @@
     public class FileConvertParameter : IConvertParameter
     {
         /// <summary>
+        /// どのファイルを処理ターゲットにするかを取得または設定します。
+        /// </summary>
+        public ReactiveFileTarget ReactiveTarget { get; set; } = ReactiveFileTarget.Original;
+
+        /// <summary>
+        /// 変換が実施されたオリジナルファイルのパスを取得します。
+        /// 一時ディレクトリを利用している場合、一時ディレクトリにコピーしたオリジナルファイルのパスとなります。
+        /// </summary>
+        public string OriginalFileName { get; internal set; } = null;
+
+        /// <summary>
         /// 変換元ファイルのパスを取得または設定します。
         /// </summary>
-        public string SourceFileName { get; set; }
+        public string SourceFileName { get; set; } = null;
 
         /// <summary>
         /// <para>変換元ファイルとして一時ファイルを利用するかどうかを取得または設定します。</para>
         /// <para>利用する場合、変換元ファイルを一時ディレクトリにコピーしてから変換を行います。</para>
         /// </summary>
-        public bool UseSourceTemporary { get; set; }
+        public bool UseSourceTemporary { get; set; } = false;
 
         /// <summary>
         /// <para>変換元の一時ディレクトリを取得または設定します。</para>
         /// <para>設定しない場合、Windows標準の一時ディレクトリを使用します。</para>
         /// </summary>
-        public string SourceTempDirectory { get; set; }
+        public string SourceTempDirectory { get; set; } = null;
 
         /// <summary>
         /// <para>変換を行う元ファイルパスを取得します。</para>
         /// <para>UseSourceTemporary = true の場合、SourceTempDirectory のファイルパスとなります。</para>
         /// </summary>
-        public string SourceConvertFileName { get; internal set; }
+        public string SourceConvertFileName { get; internal set; } = null;
 
         /// <summary>
         /// 変換先ファイルのパスの取得または設定します。
         /// </summary>
-        public string DestFileName { get; set; }
+        public string DestFileName { get; set; } = null;
 
         /// <summary>
         /// <para>変換先として一時ディレクトリを利用するかどうかの取得または設定します。</para>
         /// <para>利用する場合、一時ディレクトリに変換してから変換先ファイルへ移動します。</para>
         /// </summary>
-        public bool UseDestTemporary { get; set; }
+        public bool UseDestTemporary { get; set; } = false;
 
         /// <summary>
         /// <para>変換先の一時ディレクトリの取得または設定します。</para>
         /// <para>設定しない場合、Windows標準の一時ディレクトリを使用します。</para>
         /// </summary>
-        public string DestTempDirectory { get; set; }
+        public string DestTempDirectory { get; set; } = null;
 
         /// <summary>
         /// <para>変換先となるファイルパスの取得を行います。</para>
         /// <para>UseDestTemporary = true の場合、DestTempDirectory のファイルパスとなります。</para>
         /// </summary>
-        public string DestConvertFileName { get; internal set; }
+        public string DestConvertFileName { get; internal set; } = null;
 
         /// <summary>
         /// <para>変換先ファイルが既に存在する時、上書きするかどうかの取得または設定します。</para>
         /// <para>上書きしない時、変換先ファイルが存在する場合は変換は行われません。</para>
         /// </summary>
-        public bool Overwrite { get; set; }
+        public bool Overwrite { get; set; } = false;
 
         /// <summary>
         /// FileConvertParameter クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public FileConvertParameter()
-        {
-            SourceFileName = null;
-            UseSourceTemporary = false;
-            SourceTempDirectory = null;
-            SourceConvertFileName = null;
-
-            DestFileName = null;
-            UseDestTemporary = false;
-            DestTempDirectory = null;
-            DestConvertFileName = null;
-            Overwrite = false;
-        }
+        public FileConvertParameter() { }
 
         /// <summary>
         /// FileConvertParameter クラスの新しいインスタンスを初期化します。

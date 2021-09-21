@@ -12,9 +12,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       change:
-        FileConvertParameter
-          - It is now possible to convert after copying the conversion source.
-          - The property names of the conversion destination and the conversion source have been completely changed.
+        ConverterBase
+          - Changed the event to an action.
+        FileConverterBase
+          - The ReactiveConvert property allows you to reconvert after conversion.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

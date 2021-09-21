@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\ReactiveFileTarget.cs" />
     <Compile Include="Win32\Api\DisplayDeviceReference\WinDef\Rect.cs" />
     <Compile Include="Win32\Api\User32.cs" />
     <Compile Include="Win32\Api\VirtualKey.cs" />
