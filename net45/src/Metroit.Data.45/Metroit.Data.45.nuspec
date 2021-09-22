@@ -10,7 +10,11 @@
     <licenseUrl>https://github.com/takiru/Metroit/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes>Changed the space of Build() to line feed.</releaseNotes>
+    <releaseNotes>
+      bugfix:
+        DbTransactionExtensions
+          - No transaction was set when the DbCommand was generated.
+    </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>

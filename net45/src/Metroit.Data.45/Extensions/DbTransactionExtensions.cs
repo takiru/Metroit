@@ -24,6 +24,7 @@ namespace Metroit.Data.Extensions
             {
                 command.BindByName();
             }
+            command.Transaction = trans;
             return command;
         }
 
