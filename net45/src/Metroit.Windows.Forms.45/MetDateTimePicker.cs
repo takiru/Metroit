@@ -1204,7 +1204,7 @@ namespace Metroit.Windows.Forms
         {
             this.Value = this.enterValue;
         }
-        
+
         /// <summary>
         /// ハンドルが作成された時に、カレンダーレイアウトの初期状態の把握と、カレンダーレイアウトの反映を行います。
         /// </summary>
@@ -1652,11 +1652,11 @@ namespace Metroit.Windows.Forms
                 // ベースとなる背景色を変更した全体イメージを生成し、適用する
                 BitBlt(bmpBack, this.BackColor, canvas, RasterOperations.SRCAND);
                 BitBlt(hdc, bmpBack, RasterOperations.SRCCOPY);
-
+                
                 // 文字色を変更したイメージを生成し、入力領域のみを再描画する
                 BitBlt(bmpFore, this.ForeColor, canvas, RasterOperations.SRCAND);
                 BitBlt(hdc, bmpFore, canvas, canvas.Location, RasterOperations.SRCPAINT);
-
+                
                 if (this.ContainsFocus)
                 {
                     // 選択領域を再描画する
@@ -1768,7 +1768,7 @@ namespace Metroit.Windows.Forms
             var rangeEndY = bmpData.Height - 4; // Yの終了座標は、どの環境でも全体レイアウトの高さ-4
 
             // X方向へ選択領域座標を取得
-            for (int x = canvas.Left; x <= canvas.Left + canvas.Width; x++)
+            for (int x = canvas.Left; x <= canvas.Left + canvas.Width - 1; x++)
             {
                 int pos = rangeStartY * bmpData.Stride + x * pixelSize;
                 if (!(pixels[pos] == baseColor.B && pixels[pos + 1] == baseColor.G && pixels[pos + 2] == baseColor.R))

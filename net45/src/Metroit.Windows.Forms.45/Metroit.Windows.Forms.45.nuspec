@@ -11,8 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      change:
-        Changed the latest Metroit.45 to reference dependency.
+      bugfix:
+        MetDateTimePicker
+          - When hovering the mouse cursor over the calendar icon, the background color sometimes did not change.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
