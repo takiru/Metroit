@@ -970,10 +970,10 @@ namespace Metroit.Windows.Forms
             }
 
             // テキストの代替表示を行っている場合はテキストの表示色も変更
-            if (this.controlCreated && this.ReadOnly && this.Visible && this.textBox != null)
+            if (this.ReadOnly && this.Visible && this.textBox != null)
             {
-                this.textBox.BackColor = this.FocusBackColor;
-                this.textBox.ForeColor = this.FocusForeColor;
+                this.textBox.FocusBackColor = this.FocusBackColor;
+                this.textBox.FocusForeColor = this.FocusForeColor;
             }
         }
 
@@ -1000,12 +1000,12 @@ namespace Metroit.Windows.Forms
             }
 
             // テキスト・ラベルの代替表示を行っている場合はテキスト・ラベルの表示色も変更
-            if (this.controlCreated && this.ReadOnly && this.Visible && this.textBox != null)
+            if (this.ReadOnly && this.Visible && this.textBox != null)
             {
-                this.textBox.BackColor = this.BaseBackColor;
-                this.textBox.ForeColor = this.BaseForeColor;
+                this.textBox.BaseBackColor = this.BaseBackColor;
+                this.textBox.BaseForeColor = this.BaseForeColor;
             }
-            if (this.controlCreated && this.ReadOnlyLabel && this.Visible && this.label != null)
+            if (this.ReadOnlyLabel && this.Visible && this.label != null)
             {
                 this.label.BackColor = this.BaseBackColor;
                 this.label.ForeColor = this.BaseForeColor;
@@ -1652,11 +1652,11 @@ namespace Metroit.Windows.Forms
                 // ベースとなる背景色を変更した全体イメージを生成し、適用する
                 BitBlt(bmpBack, this.BackColor, canvas, RasterOperations.SRCAND);
                 BitBlt(hdc, bmpBack, RasterOperations.SRCCOPY);
-                
+
                 // 文字色を変更したイメージを生成し、入力領域のみを再描画する
                 BitBlt(bmpFore, this.ForeColor, canvas, RasterOperations.SRCAND);
                 BitBlt(hdc, bmpFore, canvas, canvas.Location, RasterOperations.SRCPAINT);
-                
+
                 if (this.ContainsFocus)
                 {
                     // 選択領域を再描画する

@@ -13,7 +13,7 @@
     <releaseNotes>
       bugfix:
         MetDateTimePicker
-          - When hovering the mouse cursor over the calendar icon, the background color sometimes did not change.
+          - At the time of ReadOnly, ReadOnlyLabel, the any color were not changed.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
