@@ -11,9 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugfix:
-        DbTransactionExtensions
-          - No transaction was set when the DbCommand was generated.
+      add:
+        DataRowCollectionExtensions
+          - Add row from the entity with AddEntity().
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

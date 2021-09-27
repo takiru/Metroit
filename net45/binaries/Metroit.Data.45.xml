@@ -141,6 +141,18 @@
             Hitachi.HiRDB を示します。
             </summary>
         </member>
+        <member name="T:Metroit.Data.Extensions.DataRowCollectionExtensions">
+            <summary>
+            DataRowCollection クラスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DataRowCollectionExtensions.AddEntity(System.Data.DataRowCollection,System.Object)">
+            <summary>
+            指定したオブジェクトを DataRowCollection オブジェクトに追加します。
+            </summary>
+            <param name="dataRowCollection">DataRowCollection オブジェクト。</param>
+            <param name="entity">エンティティクラスオブジェクト。</param>
+        </member>
         <member name="T:Metroit.Data.Extensions.DataRowExtensions">
             <summary>
             DataRow クラスの拡張メソッドを提供します。

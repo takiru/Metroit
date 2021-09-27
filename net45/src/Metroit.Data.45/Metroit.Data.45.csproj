@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Common\DatabaseType.cs" />
     <Compile Include="Common\MetDbProviderFactories.cs" />
+    <Compile Include="Extensions\DataRowCollectionExtensions.cs" />
     <Compile Include="Extensions\DataRowExtensions.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\DbCommandExtensions.cs" />
