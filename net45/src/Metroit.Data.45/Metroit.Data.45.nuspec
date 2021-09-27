@@ -12,8 +12,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       add:
-        DataRowCollectionExtensions
-          - Add row from the entity with AddEntity().
+        DataRowExtensions
+          - Change row from the entity with FromEntity().
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

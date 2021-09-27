@@ -166,6 +166,13 @@
             <param name="dataRow">DataRow オブジェクト。</param>
             <returns>エンティティクラスオブジェクト。</returns>
         </member>
+        <member name="M:Metroit.Data.Extensions.DataRowExtensions.FromEntity(System.Data.DataRow,System.Object)">
+            <summary>
+            指定したオブジェクトの値を DataRow オブジェクトに設定します。
+            </summary>
+            <param name="dataRow">DataRow オブジェクト。</param>
+            <param name="entity">エンティティクラスオブジェクト。</param>
+        </member>
         <member name="T:Metroit.Data.Extensions.DataTableExtensions">
             <summary>
             DataTable クラスの拡張メソッドを提供します。
