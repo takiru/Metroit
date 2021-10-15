@@ -148,6 +148,11 @@
             変換をかけた結果に対して更に変換するものを取得または設定します。
             </summary>
         </member>
+        <member name="P:Metroit.IO.FileConverterBase.Parent">
+            <summary>
+            反応変換を実施した親のコンバーターを取得します。
+            </summary>
+        </member>
         <member name="M:Metroit.IO.FileConverterBase.#ctor">
             <summary>
             新しい FileConverterBase インスタンスを生成します。
@@ -193,6 +198,11 @@
         <member name="T:Metroit.IO.FileConvertParameter">
             <summary>
             ファイルの変換パラメーターを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConvertParameter.Params">
+            <summary>
+            任意の変換パラメーターを取得または設定します。
             </summary>
         </member>
         <member name="P:Metroit.IO.FileConvertParameter.ReactiveTarget">
@@ -258,6 +268,12 @@
             <para>上書きしない時、変換先ファイルが存在する場合は変換は行われません。</para>
             </summary>
         </member>
+        <member name="P:Metroit.IO.FileConvertParameter.DestThrough">
+            <summary>
+            <para>変換先の一時ディレクトリを使用時、段階的な変換を必要とする時に、途中の変換結果をスルーするかどうかを取得または設定します。</para>
+            <para>true が選択され、UseDestTemporary = true の場合、DestFileName にファイルが作られません。</para>
+            </summary>
+        </member>
         <member name="M:Metroit.IO.FileConvertParameter.#ctor">
             <summary>
             FileConvertParameter クラスの新しいインスタンスを初期化します。
@@ -305,6 +321,11 @@
         <member name="T:Metroit.IO.IConvertParameter">
             <summary>
             変換パラメーター用のインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.IConvertParameter.Params">
+            <summary>
+            任意の変換パラメーターを取得または設定します。
             </summary>
         </member>
         <member name="T:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect">

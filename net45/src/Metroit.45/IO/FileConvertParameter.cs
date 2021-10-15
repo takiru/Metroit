@@ -8,6 +8,11 @@ namespace Metroit.IO
     public class FileConvertParameter : IConvertParameter
     {
         /// <summary>
+        /// 任意の変換パラメーターを取得または設定します。
+        /// </summary>
+        public object[] Params { get; set; }
+
+        /// <summary>
         /// どのファイルを処理ターゲットにするかを取得または設定します。
         /// </summary>
         public ReactiveFileTarget ReactiveTarget { get; set; } = ReactiveFileTarget.Original;
@@ -69,6 +74,12 @@ namespace Metroit.IO
         /// <para>上書きしない時、変換先ファイルが存在する場合は変換は行われません。</para>
         /// </summary>
         public bool Overwrite { get; set; } = false;
+
+        /// <summary>
+        /// <para>変換先の一時ディレクトリを使用時、段階的な変換を必要とする時に、途中の変換結果をスルーするかどうかを取得または設定します。</para>
+        /// <para>true が選択され、UseDestTemporary = true の場合、DestFileName にファイルが作られません。</para>
+        /// </summary>
+        public bool DestThrough { get; set; } = false;
 
         /// <summary>
         /// FileConvertParameter クラスの新しいインスタンスを初期化します。

@@ -11,14 +11,13 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugfix:
-        MetDateTimePicker
-          - At the time of ReadOnly, ReadOnlyLabel, the any color were not changed.
+      others:
+        Changed support for Metroit.45 1.3.3.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.3.0" />
+      <dependency id="Metroit.45" version="1.3.3" />
     </dependencies>
   </metadata>
 </package>

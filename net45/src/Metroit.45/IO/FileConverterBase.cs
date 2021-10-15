@@ -20,6 +20,11 @@ namespace Metroit.IO
         public List<FileConverterBase> ReactiveConvert { get; set; } = new List<FileConverterBase>();
 
         /// <summary>
+        /// 反応変換を実施した親のコンバーターを取得します。
+        /// </summary>
+        public FileConverterBase Parent { get; private set; } = null;
+
+        /// <summary>
         /// 新しい FileConverterBase インスタンスを生成します。
         /// </summary>
         public FileConverterBase() { }
@@ -52,7 +57,7 @@ namespace Metroit.IO
             }
             if (parameter.OriginalFileName == null)
             {
-                parameter.OriginalFileName = parameter.SourceConvertFileName;  // Reactiveすると上書きされちゃうからだめだー
+                parameter.OriginalFileName = parameter.SourceConvertFileName;
             }
 
             // 変換先の一時パスを決定
@@ -78,6 +83,7 @@ namespace Metroit.IO
                 {
                     foreach (var reactive in ReactiveConvert)
                     {
+                        reactive.Parent = this;
                         reactive.Parameter.OriginalFileName = parameter.OriginalFileName;
                         switch (reactive.Parameter.ReactiveTarget)
                         {
@@ -108,14 +114,18 @@ namespace Metroit.IO
                 }
                 if (parameter.UseDestTemporary)
                 {
-                    try
-                    {
-                        TempFileToDestFile(parameter);
-                    }
-                    catch
+                    if (parameter.DestThrough)
                     {
                         File.Delete(parameter.DestConvertFileName);
-                        throw;
+                        var tempDirectory = Path.GetDirectoryName(parameter.DestConvertFileName);
+                        if (Directory.GetFiles(tempDirectory).Length == 0)
+                        {
+                            Directory.Delete(tempDirectory);
+                        }
+                    }
+                    else
+                    {
+                        TempFileToDestFile(parameter);
                     }
                 }
             }
@@ -157,7 +167,7 @@ namespace Metroit.IO
                 return false;
             }
             if (string.IsNullOrEmpty(parameter.SourceFileName) ||
-                    string.IsNullOrEmpty(parameter.DestFileName))
+                    (!parameter.DestThrough && string.IsNullOrEmpty(parameter.DestFileName)))
             {
                 ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
@@ -165,6 +175,13 @@ namespace Metroit.IO
             if (!File.Exists(parameter.SourceFileName))
             {
                 ErrorMessage = string.Format(ExceptionResources.GetString("NotExistsFilePath"), parameter.SourceFileName);
+                return false;
+            }
+
+            // 変換をスルーするのに、一時ディレクトリを利用していない場合はNG
+            if (parameter.DestThrough && !parameter.UseDestTemporary)
+            {
+                ErrorMessage = ExceptionResources.GetString("InvalidConvertParameter");
                 return false;
             }
 

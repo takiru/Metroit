@@ -43,15 +43,28 @@ namespace ConvertTest
                     },
                     ReactiveConvert = new List<FileConverterBase>()
                     {
+                        // ショートカットの作成
+                        new FileShortcut()
+                        {
+                            Parameter = new FileConvertParameter()
+                            {
+                                ReactiveTarget = ReactiveFileTarget.Original,
+                                DestFileName = Path.Combine(Path.GetDirectoryName(file), Path.GetFileNameWithoutExtension(file) + ".lnk"),
+                                UseDestTemporary = true,
+                                DestTempDirectory = Path.Combine(Path.GetTempPath(), "Test", "TestDest4")
+                            },
+                            Complete = convertComplete
+                        },
                         // オリジナルから変換
                         new ExcelToPdf()
                         {
                             Parameter = new FileConvertParameter()
                             {
                                 ReactiveTarget = ReactiveFileTarget.Original,
-                                DestFileName = Path.Combine(Path.GetDirectoryName(file), Path.GetFileNameWithoutExtension(file) + "-2.pdf"),
+                                DestFileName = ".pdf",
                                 UseDestTemporary = true,
-                                DestTempDirectory = Path.Combine(Path.GetTempPath(), "Test", "TestDest2")
+                                DestTempDirectory = Path.Combine(Path.GetTempPath(), "Test", "TestDest2"),
+                                DestThrough = true
                             },
                             ReactiveConvert = new List<FileConverterBase>()
                             {
