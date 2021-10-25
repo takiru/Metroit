@@ -29,6 +29,14 @@
             一時ディレクトリを利用している場合、一時ディレクトリに変換された変換先ファイルが対象となります。
             </summary>
         </member>
+        <member name="F:Metroit.IO.ReactiveFileTarget.RecentDest">
+            <summary>
+            直近の変換実行で変換された変換先ファイルを定義します。
+            多階層による変換を実行している場合、直近の階層で変換された変換先ファイルが対象となります。
+            一時ディレクトリを利用している場合でも、変換先ファイルが対象となります。
+            直近の変換はDestThrough = false でなければなりません。
+            </summary>
+        </member>
         <member name="T:Metroit.IO.ConvertCompleteEventArgs">
             <summary>
             変換処理完成時のイベントのデータを提供します。
@@ -59,7 +67,7 @@
             変換準備を行います。
             </summary>
         </member>
-        <member name="P:Metroit.IO.ConverterBase`1.Complete">
+        <member name="P:Metroit.IO.ConverterBase`1.Completed">
             <summary>
             変換処理が完了したときに発生します。
             </summary>
@@ -83,6 +91,13 @@
             </summary>
             <returns>ConvertResult のタスク。</returns>
         </member>
+        <member name="M:Metroit.IO.ConverterBase`1.ConvertAsync(System.Threading.CancellationToken)">
+            <summary>
+            変換を行います。
+            </summary>
+            <param name="token">キャンセルトークン。</param>
+            <returns>ConvertResult のタスク。</returns>
+        </member>
         <member name="M:Metroit.IO.ConverterBase`1.ConvertAsync(`0)">
             <summary>
             変換を行います。
@@ -90,11 +105,28 @@
             <param name="parameter">変換パラメーター。</param>
             <returns>ConvertResult のタスク。</returns>
         </member>
-        <member name="M:Metroit.IO.ConverterBase`1.DoConvert(`0)">
+        <member name="M:Metroit.IO.ConverterBase`1.ConvertAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            変換を行います。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+            <param name="token">キャンセルトークン。</param>
+            <returns>ConvertResult のタスク。</returns>
+        </member>
+        <member name="M:Metroit.IO.ConverterBase`1.Convert(`0,System.Threading.CancellationToken)">
+            <summary>
+            変換を行う。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+            <param name="token">キャンセルトークン。</param>
+            <returns>変換結果。</returns>
+        </member>
+        <member name="M:Metroit.IO.ConverterBase`1.DoConvert(`0,System.Threading.CancellationToken)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター</param>
+            <param name="token"></param>
         </member>
         <member name="T:Metroit.IO.FileConvertException">
             <summary>
@@ -164,11 +196,30 @@
             </summary>
             <param name="parameter">FileConvertParameter オブジェクト。</param>
         </member>
-        <member name="M:Metroit.IO.FileConverterBase.DoConvert(Metroit.IO.FileConvertParameter)">
+        <member name="P:Metroit.IO.FileConverterBase.ConvertSucceed">
+            <summary>
+            変換処理が完了した時に発生します。
+            </summary>
+        </member>
+        <member name="P:Metroit.IO.FileConverterBase.ConvertFailed">
+            <summary>
+            変換処理が失敗した時に発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.DoConvert(Metroit.IO.FileConvertParameter,System.Threading.CancellationToken)">
             <summary>
             変換を行います。
             </summary>
             <param name="parameter">変換パラメーター。</param>
+            <param name="token">キャンセルトークン。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.ExecuteConvert(Metroit.IO.FileConverterBase,System.Boolean)">
+            <summary>
+            変換を行う。
+            </summary>
+            <param name="converter">変換コンバーター。</param>
+            <param name="isReactive">反応したものかどうか。</param>
+            <returns>ConvertCompleteEventArgs オブジェクト。</returns>
         </member>
         <member name="M:Metroit.IO.FileConverterBase.CanConvert(Metroit.IO.FileConvertParameter)">
             <summary>
@@ -194,6 +245,31 @@
             <summary>
             一時ファイルパスを変換後ファイルパスへ移動させる。
             </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.CopyDestFile(Metroit.IO.FileConvertParameter)">
+            <summary>
+            変換先の一時ディレクトリを利用している場合、変換したファイルを変換先へコピーする。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.CopySucceedDestFile(Metroit.IO.FileConvertParameter)">
+            <summary>
+            変換先の一時ディレクトリを利用している場合、変換したファイルを変換先へコピーします。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.DeleteTemporary(Metroit.IO.FileConvertParameter)">
+            <summary>
+            変換元、変換先の一時ディレクトリを利用している場合、一時ファイルを削除する。
+            </summary>
+            <param name="parameter">変換パラメーター。</param>
+        </member>
+        <member name="M:Metroit.IO.FileConverterBase.DeleteFile(System.String)">
+            <summary>
+            ファイルの削除を行う。
+            </summary>
+            <param name="fileName">ファイルパス。</param>
         </member>
         <member name="T:Metroit.IO.FileConvertParameter">
             <summary>

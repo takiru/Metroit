@@ -11,21 +11,16 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        IConvertParameter
-          - changed from a class to an interface.
-      change:
-        IConvertParameter
-          - We have prepared a Params property that can accept arbitrary parameters.
-        FileConvertParameter
-          - We have prepared a Params property that can accept arbitrary parameters.
-          - We have prepared the DestThrough property.
-            If set to true, the files in the conversion process will not be used as a result when performing stepwise conversion.
-            UseDestTemporary must be true.
-            You do not need to specify the DestFileName.
-            If you need a specific extension for conversion reasons, specify the extension in DestFileName.
+      chages:
+        ConverterBase
+          - Complete action change name to Completed.
+          - Completed is executed only once at the end of the conversion.
+          - Add argument cancel token to ConvertAsync().
         FileConverterBase
-          - When the reaction conversion is done, the parent conversion information can be obtained by the Parent property.
+          - Add actions ConvertSucceed, ConvertFailed.
+          - You can override CopySucceedDestFile() to perform any file copy operation.
+        ReactiveFileTarget
+          - Add target RecentDest.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

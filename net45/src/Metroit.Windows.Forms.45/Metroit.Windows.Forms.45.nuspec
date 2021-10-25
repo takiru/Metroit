@@ -12,12 +12,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       others:
-        Changed support for Metroit.45 1.3.3.
+        Changed support for Metroit.45 1.4.0.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.3.3" />
+      <dependency id="Metroit.45" version="1.4.0" />
     </dependencies>
   </metadata>
 </package>
