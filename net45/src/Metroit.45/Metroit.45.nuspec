@@ -11,16 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      chages:
-        ConverterBase
-          - Complete action change name to Completed.
-          - Completed is executed only once at the end of the conversion.
-          - Add argument cancel token to ConvertAsync().
+      bugs:
         FileConverterBase
-          - Add actions ConvertSucceed, ConvertFailed.
-          - You can override CopySucceedDestFile() to perform any file copy operation.
-        ReactiveFileTarget
-          - Add target RecentDest.
+          - Reactive is not working properly.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

@@ -118,8 +118,8 @@ namespace Metroit.IO
                 result.Result = ConvertResultType.Succeed;
 
                 // 変換実行
-                ConvertFile(converter.Parameter);
-                CopyDestFile(converter.Parameter);
+                converter.ConvertFile(converter.Parameter);
+                converter.CopyDestFile(converter.Parameter);
                 converter.ConvertSucceed?.Invoke(converter.Parameter);
 
                 // 反応変換の実行
@@ -127,7 +127,7 @@ namespace Metroit.IO
                 {
                     foreach (var reactive in converter.ReactiveConvert)
                     {
-                        reactive.Parent = this;
+                        reactive.Parent = converter;
                         reactive.Parameter.OriginalFileName = converter.Parameter.OriginalFileName;
                         switch (reactive.Parameter.ReactiveTarget)
                         {
@@ -165,12 +165,12 @@ namespace Metroit.IO
                     }
                 }
 
-                DeleteTemporary(converter.Parameter);
+                converter.DeleteTemporary(converter.Parameter);
                 return result;
             }
             catch (Exception ex)
             {
-                DeleteTemporary(converter.Parameter);
+                converter.DeleteTemporary(converter.Parameter);
                 converter.ConvertFailed?.Invoke(converter.Parameter, ex);
                 throw;
             }
