@@ -180,7 +180,7 @@ namespace Metroit.Windows.Forms
                     {
                         return false;
                     }
-                    rollback.Rollback(this, this.ActiveControl);
+                    rollback.Rollback();
                     return true;
                 }
 
@@ -235,7 +235,7 @@ namespace Metroit.Windows.Forms
                 return true;
             }
 
-            return leaveRollback.IsRollbacked(this, this.ActiveControl);
+            return leaveRollback.IsRollbacked;
         }
 
         /// <summary>

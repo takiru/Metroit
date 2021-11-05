@@ -21,7 +21,7 @@ namespace Metroit.Data.Extensions
             var resultData = new T();
             var t = resultData.GetType();
             var pis = t.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
-            
+
             foreach (var pi in pis)
             {
                 var columnName = pi.Name;
@@ -41,11 +41,17 @@ namespace Metroit.Data.Extensions
                 if (dataRow[columnName] == DBNull.Value)
                 {
                     pi.SetValue(resultData, null);
+                    continue;
                 }
-                else
+
+                if (pi.PropertyType == dataRow[columnName].GetType())
                 {
                     pi.SetValue(resultData, dataRow[columnName]);
+                    continue;
                 }
+
+                var safeType = Nullable.GetUnderlyingType(pi.PropertyType) ?? pi.PropertyType;
+                pi.SetValue(resultData, Convert.ChangeType(dataRow[columnName], safeType));
             }
             return resultData;
         }

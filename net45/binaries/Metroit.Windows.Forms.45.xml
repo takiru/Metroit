@@ -1133,20 +1133,15 @@
             コントロールのロールバックを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.IControlRollback.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+        <member name="P:Metroit.Windows.Forms.IControlRollback.IsRollbacked">
             <summary>
             ロールバック済みかどうかを取得します。
             </summary>
-            <param name="sender">指示したオブジェクト。</param>
-            <param name="control">コントロール。</param>
-            <returns></returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.IControlRollback.Rollback(System.Object,System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.IControlRollback.Rollback">
             <summary>
             ロールバックを実施します。
             </summary>
-            <param name="sender">指示したオブジェクト。</param>
-            <param name="control">コントロール。</param>
         </member>
         <member name="T:Metroit.Windows.Forms.IBorder">
             <summary>
@@ -1471,20 +1466,16 @@
             コントロールがエラーかどうかを取得または設定します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetComboBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+        <member name="P:Metroit.Windows.Forms.MetComboBox.IsRollbacked">
             <summary>
             ロールバック済みかどうかを取得します。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetComboBox.Rollback(System.Object,System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.MetComboBox.Rollback">
             <summary>
             フォーカスを得た時の値にロールバックを行います。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetComboBox.OnCreateControl">
             <summary>
@@ -1630,6 +1621,17 @@
             <param name="rectangle">Rectangle オブジェクト。</param>
             <param name="point">Point オブジェクト。</param>
             <param name="dwRop">ラスター操作コード。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetComboBox.IsValidatingCanceled">
+            <summary>
+            値検証がキャンセルされたかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetComboBox.OnValidating(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            値検証を行っている時の動作。
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="T:Metroit.Windows.Forms.MetDescriptionAttribute">
             <summary>
@@ -2085,20 +2087,16 @@
             実装はありません。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.IsRollbacked">
             <summary>
             ロールバック済みかどうかを取得します。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.Rollback(System.Object,System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.Rollback">
             <summary>
             フォーカスを得た時の値にロールバックを行います。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnHandleCreated(System.EventArgs)">
             <summary>
@@ -2289,6 +2287,17 @@
             </summary>
             <param name="value">日付値。</param>
             <returns>カレンダータイプに応じた日付。</returns>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetDateTimePicker.IsValidatingCanceled">
+            <summary>
+            値検証がキャンセルされたかどうかを取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetDateTimePicker.OnValidating(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            値検証を行っている時の動作。
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="T:Metroit.Windows.Forms.MetForm">
             <summary>
@@ -3971,20 +3980,16 @@
             記号表現が変更された時のイベントを登録します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+        <member name="P:Metroit.Windows.Forms.MetNumericTextBox.IsRollbacked">
             <summary>
             ロールバック済みかどうかを取得します。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.Rollback(System.Object,System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.Rollback">
             <summary>
             フォーカスを得た時の値にロールバックを行います。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetNumericTextBox.OnTextChanged(System.EventArgs)">
             <summary>
@@ -4412,20 +4417,16 @@
             InitializeComponent()でコントロールの初期化が完了したことを通知し、ReadOnlyLabelの制御を行います。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.IsRollbacked(System.Object,System.Windows.Forms.Control)">
+        <member name="P:Metroit.Windows.Forms.MetTextBox.IsRollbacked">
             <summary>
             ロールバック済みかどうかを取得します。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetTextBox.Rollback(System.Object,System.Windows.Forms.Control)">
+        <member name="M:Metroit.Windows.Forms.MetTextBox.Rollback">
             <summary>
             フォーカスを得た時の値にロールバックを行います。
             </summary>
-            <param name="sender">ロールバック指示オブジェクト。</param>
-            <param name="control">ロールバック対象オブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.OnGotFocus(System.EventArgs)">
             <summary>
@@ -4450,6 +4451,11 @@
             フォーカスを失った時の動作。
             </summary>
             <param name="e"></param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.IsValidatingCanceled">
+            <summary>
+            値検証がキャンセルされたかどうかを取得します。
+            </summary>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.OnValidating(System.ComponentModel.CancelEventArgs)">
             <summary>

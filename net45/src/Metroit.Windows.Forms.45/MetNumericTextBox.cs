@@ -65,7 +65,10 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetNumericFormatTextBox_Enter(object sender, EventArgs e)
         {
-            this.enterValue = this.Value;
+            if (!IsValidatingCanceled)
+            {
+                this.enterValue = this.Value;
+            }
 
             this.textFormatting = true;
             if (this.value.HasValue)
@@ -863,20 +866,13 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// ロールバック済みかどうかを取得します。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
-        public override bool IsRollbacked(object sender, Control control)
-        {
-            return this.Value == this.enterValue;
-        }
+        public override bool IsRollbacked => this.Value == this.enterValue;
 
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
-        public override void Rollback(object sender, Control control)
+        public override void Rollback()
         {
             if (this.enterValue.HasValue)
             {

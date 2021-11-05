@@ -2,6 +2,7 @@
 using System.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Metroit.Data.Extensions
 {
@@ -53,6 +54,19 @@ namespace Metroit.Data.Extensions
             }
 
             table.Rows.Add(row);
+        }
+
+        /// <summary>
+        /// 指定したコレクションを DataRowCollection オブジェクトに追加します。
+        /// </summary>
+        /// <param name="dataRowCollection">DataRowCollection オブジェクト。</param>
+        /// <param name="collection">コレクションオブジェクト。</param>
+        public static void AddRangeEntity(this DataRowCollection dataRowCollection, IEnumerable<object> collection)
+        {
+            foreach (var entity in collection)
+            {
+                AddEntity(dataRowCollection, entity);
+            }
         }
     }
 }

@@ -97,12 +97,6 @@
     <Compile Include="QueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Metroit.45\Metroit.45.csproj">
-      <Project>{85f37ac4-5ab9-4640-83fb-f22d7582a971}</Project>
-      <Name>Metroit.45</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)" neq "Release" exit

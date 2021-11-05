@@ -153,6 +153,13 @@
             <param name="dataRowCollection">DataRowCollection オブジェクト。</param>
             <param name="entity">エンティティクラスオブジェクト。</param>
         </member>
+        <member name="M:Metroit.Data.Extensions.DataRowCollectionExtensions.AddRangeEntity(System.Data.DataRowCollection,System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            指定したコレクションを DataRowCollection オブジェクトに追加します。
+            </summary>
+            <param name="dataRowCollection">DataRowCollection オブジェクト。</param>
+            <param name="collection">コレクションオブジェクト。</param>
+        </member>
         <member name="T:Metroit.Data.Extensions.DataRowExtensions">
             <summary>
             DataRow クラスの拡張メソッドを提供します。

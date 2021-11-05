@@ -11,13 +11,22 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      others:
-        Changed support for Metroit.45 1.4.1.
+      changes:
+        IControlRollback
+          - Changed IsRollbacked to a property.
+          - The argument of Rollback() has been abolished.
+      bugs:
+        MetTextBox
+        MetLimitedTextBox
+        MetNumericTextBox
+        MetComboBox
+        MetDateTimePicker
+          - Rollback did not work when Validating was cancelled.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.4.1" />
+      <dependency id="Metroit.45" version="1.4.2" />
     </dependencies>
   </metadata>
 </package>

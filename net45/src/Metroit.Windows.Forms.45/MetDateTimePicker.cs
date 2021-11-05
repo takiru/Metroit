@@ -80,7 +80,10 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetDateTimePicker_Enter(object sender, EventArgs e)
         {
-            this.enterValue = this.Value;
+            if (!IsValidatingCanceled)
+            {
+                this.enterValue = this.Value;
+            }
 
             // フォーカス取得時の色に変更
             this.changeFocusColor();
@@ -1187,20 +1190,13 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// ロールバック済みかどうかを取得します。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
-        public bool IsRollbacked(object sender, Control control)
-        {
-            return this.Value == this.enterValue;
-        }
+        public bool IsRollbacked => this.Value == this.enterValue;
 
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
-        public void Rollback(object sender, Control control)
+        public void Rollback()
         {
             this.Value = this.enterValue;
         }
@@ -1905,5 +1901,21 @@ namespace Metroit.Windows.Forms
         }
 
         #endregion
+
+
+        /// <summary>
+        /// 値検証がキャンセルされたかどうかを取得します。
+        /// </summary>
+        protected bool IsValidatingCanceled { get; private set; } = false;
+
+        /// <summary>
+        /// 値検証を行っている時の動作。
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnValidating(CancelEventArgs e)
+        {
+            base.OnValidating(e);
+            IsValidatingCanceled = e.Cancel;
+        }
     }
 }

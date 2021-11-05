@@ -105,7 +105,10 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_Enter(object sender, EventArgs e)
         {
-            this.enterText = this.Text;
+            if (!IsValidatingCanceled)
+            {
+                this.enterText = this.Text;
+            }
 
             // フォーカス取得時の色に変更
             this.changeFocusColor();
@@ -1230,20 +1233,13 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// ロールバック済みかどうかを取得します。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
-        public virtual bool IsRollbacked(object sender, Control control)
-        {
-            return this.Text == this.enterText;
-        }
+        public virtual bool IsRollbacked => this.Text == this.enterText;
 
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
-        /// <param name="sender">ロールバック指示オブジェクト。</param>
-        /// <param name="control">ロールバック対象オブジェクト。</param>
-        public virtual void Rollback(object sender, Control control)
+        public virtual void Rollback()
         {
             this.Text = this.enterText;
         }
@@ -1313,6 +1309,11 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 値検証がキャンセルされたかどうかを取得します。
+        /// </summary>
+        protected bool IsValidatingCanceled { get; private set; } = false;
+
+        /// <summary>
         /// 値検証を行っている時の動作。
         /// </summary>
         /// <param name="e"></param>
@@ -1325,6 +1326,7 @@ namespace Metroit.Windows.Forms
                 return;
             }
             base.OnValidating(e);
+            IsValidatingCanceled = e.Cancel;
         }
 
         /// <summary>

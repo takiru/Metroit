@@ -11,9 +11,8 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        FileConverterBase
-          - Reactive is not working properly.
+      others:
+        Changed support for Metroit.Windows.Forms.45 1.4.2.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

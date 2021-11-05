@@ -12,13 +12,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       add:
+        DataRowCollectionExtensions
+          - Added the AddRangeEntity() method.
+      changes:
         DataRowExtensions
-          - Change row from the entity with FromEntity().
+          - When the numerical precision of each type is different in ToEntity(), it is converted according to the type of Entity.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
-    <dependencies>
-      <dependency id="Metroit.45" version="1.0" />
-    </dependencies>
   </metadata>
 </package>
