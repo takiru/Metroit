@@ -47,10 +47,16 @@ namespace Metroit.Data.Extensions
                 if (value == null)
                 {
                     row[columnName] = DBNull.Value;
-                } else
-                {
-                    row[columnName] = value;
+                    continue;
                 }
+
+                if (pi.PropertyType.IsEnum)
+                {
+                    row[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
+                    continue;
+                }
+
+                row[columnName] = value;
             }
 
             table.Rows.Add(row);

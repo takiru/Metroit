@@ -51,6 +51,12 @@ namespace Metroit.Data.Extensions
                 }
 
                 var safeType = Nullable.GetUnderlyingType(pi.PropertyType) ?? pi.PropertyType;
+                if (safeType.IsEnum)
+                {
+                    pi.SetValue(resultData, Enum.ToObject(safeType,
+                        Convert.ChangeType(dataRow[columnName], safeType.GetField("value__").FieldType)));
+                    continue;
+                }
                 pi.SetValue(resultData, Convert.ChangeType(dataRow[columnName], safeType));
             }
             return resultData;
@@ -87,11 +93,16 @@ namespace Metroit.Data.Extensions
                 if (value == null)
                 {
                     dataRow[columnName] = DBNull.Value;
+                    continue;
                 }
-                else
+
+                if (pi.PropertyType.IsEnum)
                 {
-                    dataRow[columnName] = value;
+                    dataRow[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
+                    continue;
                 }
+
+                dataRow[columnName] = value;
             }
         }
     }

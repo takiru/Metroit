@@ -11,12 +11,12 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      add:
-        DataRowCollectionExtensions
-          - Added the AddRangeEntity() method.
       changes:
+        DataRowCollectionExtensions
+          - When AddEntity() or AddRangeEntity() is performed, if the property is Enum, set the Value of Enum to DataRow.
         DataRowExtensions
-          - When the numerical precision of each type is different in ToEntity(), it is converted according to the type of Entity.
+          - When executing ToEntity (), if the property of Entity is Enum, set the value of Enum to Entity.
+          - When FromEntity() is performed, if the property is Enum, set the Value of Enum to DataRow.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
