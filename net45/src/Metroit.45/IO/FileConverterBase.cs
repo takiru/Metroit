@@ -316,7 +316,7 @@ namespace Metroit.IO
             {
                 Directory.CreateDirectory(directory);
             }
-            File.Copy(parameter.DestConvertFileName, parameter.DestFileName);
+            File.Copy(parameter.DestConvertFileName, parameter.DestFileName, true);
         }
 
         /// <summary>

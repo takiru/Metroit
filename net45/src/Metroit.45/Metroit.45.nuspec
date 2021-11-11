@@ -11,8 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      others:
-        Changed support for Metroit.Windows.Forms.45 1.4.2.
+      bugs:
+        - FileConverterBase
+            - Even if Overwrite is enabled, if a file with the same name exists in the conversion destination, it did not end normally.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
