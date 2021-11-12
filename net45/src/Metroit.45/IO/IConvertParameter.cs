@@ -8,6 +8,6 @@
         /// <summary>
         /// 任意の変換パラメーターを取得または設定します。
         /// </summary>
-        object[] Params { get; set; }
+        object Params { get; set; }
     }
 }

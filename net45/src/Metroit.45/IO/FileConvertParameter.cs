@@ -10,7 +10,7 @@ namespace Metroit.IO
         /// <summary>
         /// 任意の変換パラメーターを取得または設定します。
         /// </summary>
-        public object[] Params { get; set; }
+        public object Params { get; set; }
 
         /// <summary>
         /// どのファイルを処理ターゲットにするかを取得または設定します。
