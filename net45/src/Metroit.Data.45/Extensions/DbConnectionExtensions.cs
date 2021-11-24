@@ -15,11 +15,14 @@ namespace Metroit.Data.Extensions
         /// 接続文字列の設定を行います。
         /// </summary>
         /// <param name="connection">DbConnection オブジェクト。</param>
-        /// <param name="providerFactory">DbProviderFactory オブジェクト。</param>
         /// <param name="connectionValues">接続文字列。</param>
-        public static void SetConnectionString(this DbConnection connection, DbProviderFactory providerFactory, Dictionary<string, string> connectionValues)
+        public static void SetConnectionString(this DbConnection connection, Dictionary<string, string> connectionValues)
         {
-            var builder = providerFactory.CreateConnectionStringBuilder();
+            var pf = connection.GetType().GetProperty("DbProviderFactory",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .GetValue(connection) as DbProviderFactory;
+
+            var builder = pf.CreateConnectionStringBuilder();
             foreach (KeyValuePair<string, string> config in connectionValues)
             {
                 builder[config.Key] = config.Value;

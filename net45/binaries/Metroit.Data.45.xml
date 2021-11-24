@@ -198,7 +198,7 @@
             DbCommand クラスの拡張メソッドを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.Fill(System.Data.Common.DbCommand,System.Data.Common.DbProviderFactory,System.Data.DataTable,System.Boolean,System.Boolean)">
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.Fill(System.Data.Common.DbCommand,System.Data.DataTable,System.Boolean,System.Boolean)">
             <summary>
             <para>DbCommand の実行結果を DataTable へ投入します。</para>
             <para>スキーマ情報をマッピングする場合は mapppingSchema を true にします。</para>
@@ -206,13 +206,12 @@
             <para>mappingSchema, createCommand は単一テーブルの操作の時のみ有効です。サブクエリによる単一テーブルの操作も有効にはなりません。</para>
             </summary>
             <param name="command">DbCommand オブジェクト。</param>
-            <param name="providerFactory">DbProviderFactory オブジェクト。</param>
             <param name="dataTable">DataTable オブジェクト。</param>
             <param name="schemaMapping">スキーマ情報のマッピングを行うかどうか。</param>
             <param name="commandCreate">各更新コマンドの生成を行うかどうか。</param>
             <returns>DbDataAdapter オブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.FillToDataSet(System.Data.Common.DbCommand,System.Data.Common.DbProviderFactory,System.Data.DataSet,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.FillToDataSet(System.Data.Common.DbCommand,System.Data.DataSet,System.String,System.Boolean,System.Boolean)">
             <summary>
             <para>DbCommand の実行結果を DataSet へ投入します。</para>
             <para>スキーマ情報をマッピングする場合は mapppingSchema を true にします。</para>
@@ -220,7 +219,6 @@
             <para>mappingSchema, createCommand は単一テーブルの操作の時のみ有効です。サブクエリによる単一テーブルの操作も有効にはなりません。</para>
             </summary>
             <param name="command">DbCommand オブジェクト。</param>
-            <param name="providerFactory">DbProviderFactory オブジェクト。</param>
             <param name="dataSet">DataSet オブジェクト。</param>
             <param name="tableName">テーブル名。</param>
             <param name="schemaMapping">スキーマ情報のマッピングを行うかどうか。</param>
@@ -238,17 +236,77 @@
             <para>Oracleで名前付きパラメーターを利用したクエリの実行で必要になります。</para>
             </summary>
         </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Object)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="obj">パラメーター。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="dbType">DbType 値。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="dbType">DbType 値。</param>
+            <param name="obj">パラメーター。</param>
+            <param name="direction">パラメーターの入出力方向。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Int32)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="dbType">DbType 値。</param>
+            <param name="size">バッファサイズ。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Int32,System.Object,System.Data.ParameterDirection)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="dbType">DbType 値。</param>
+            <param name="size">バッファサイズ。</param>
+            <param name="obj">パラメーター。</param>
+            <param name="direction">パラメーターの入出力方向。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DbCommandExtensions.CreateParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Data.ParameterDirection)">
+            <summary>
+            DbParameter オブジェクトの新しいインスタンスを作成します。
+            </summary>
+            <param name="command">DbCommand オブジェクト。</param>
+            <param name="parameterName">パラメーター名。</param>
+            <param name="dbType">DbType 値。</param>
+            <param name="direction">パラメーターの入出力方向。</param>
+            <returns>DbParameter オブジェクト。</returns>
+        </member>
         <member name="T:Metroit.Data.Extensions.DbConnectionExtensions">
             <summary>
             DbConnection クラスの拡張メソッドを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Data.Extensions.DbConnectionExtensions.SetConnectionString(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Metroit.Data.Extensions.DbConnectionExtensions.SetConnectionString(System.Data.Common.DbConnection,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             接続文字列の設定を行います。
             </summary>
             <param name="connection">DbConnection オブジェクト。</param>
-            <param name="providerFactory">DbProviderFactory オブジェクト。</param>
             <param name="connectionValues">接続文字列。</param>
         </member>
         <member name="M:Metroit.Data.Extensions.DbConnectionExtensions.CreateCommand(System.Data.Common.DbConnection,System.Boolean)">

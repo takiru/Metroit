@@ -18,20 +18,22 @@ namespace Metroit.Data.Extensions
         /// <para>mappingSchema, createCommand は単一テーブルの操作の時のみ有効です。サブクエリによる単一テーブルの操作も有効にはなりません。</para>
         /// </summary>
         /// <param name="command">DbCommand オブジェクト。</param>
-        /// <param name="providerFactory">DbProviderFactory オブジェクト。</param>
         /// <param name="dataTable">DataTable オブジェクト。</param>
         /// <param name="schemaMapping">スキーマ情報のマッピングを行うかどうか。</param>
         /// <param name="commandCreate">各更新コマンドの生成を行うかどうか。</param>
         /// <returns>DbDataAdapter オブジェクト。</returns>
-        public static DbDataAdapter Fill(this DbCommand command, DbProviderFactory providerFactory,
+        public static DbDataAdapter Fill(this DbCommand command,
                 DataTable dataTable, bool schemaMapping = false, bool commandCreate = false)
         {
-            var da = providerFactory.CreateDataAdapter();
+            var pf = command.Connection.GetType().GetProperty("DbProviderFactory",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .GetValue(command.Connection) as DbProviderFactory;
+            var da = pf.CreateDataAdapter();
             da.SelectCommand = command;
             
             if (commandCreate)
             {
-                var cb = providerFactory.CreateCommandBuilder();
+                var cb = pf.CreateCommandBuilder();
                 cb.DataAdapter = da;
                 da.InsertCommand = cb.GetInsertCommand(true);
                 da.UpdateCommand = cb.GetUpdateCommand(true);
@@ -54,21 +56,23 @@ namespace Metroit.Data.Extensions
         /// <para>mappingSchema, createCommand は単一テーブルの操作の時のみ有効です。サブクエリによる単一テーブルの操作も有効にはなりません。</para>
         /// </summary>
         /// <param name="command">DbCommand オブジェクト。</param>
-        /// <param name="providerFactory">DbProviderFactory オブジェクト。</param>
         /// <param name="dataSet">DataSet オブジェクト。</param>
         /// <param name="tableName">テーブル名。</param>
         /// <param name="schemaMapping">スキーマ情報のマッピングを行うかどうか。</param>
         /// <param name="commandCreate">各更新コマンドの生成を行うかどうか。</param>
         /// <returns>DbDataAdapter オブジェクト。</returns>
-        public static DbDataAdapter FillToDataSet(this DbCommand command, DbProviderFactory providerFactory,
+        public static DbDataAdapter FillToDataSet(this DbCommand command,
                 DataSet dataSet, string tableName = null, bool schemaMapping = false, bool commandCreate = false)
         {
-            var da = providerFactory.CreateDataAdapter();
+            var pf = command.Connection.GetType().GetProperty("DbProviderFactory", 
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .GetValue(command.Connection) as DbProviderFactory;
+            var da = pf.CreateDataAdapter();
             da.SelectCommand = command;
 
             if (commandCreate)
             {
-                var cb = providerFactory.CreateCommandBuilder();
+                var cb = pf.CreateCommandBuilder();
                 cb.DataAdapter = da;
                 da.InsertCommand = cb.GetInsertCommand(true);
                 da.UpdateCommand = cb.GetUpdateCommand(true);
@@ -131,6 +135,102 @@ namespace Metroit.Data.Extensions
                 return;
             }
             prop.SetValue(command, true);
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="obj">パラメーター。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, object obj)
+        {
+            var p = command.CreateParameter();
+            p.ParameterName = parameterName;
+            p.Value = obj;
+            return p;
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="dbType">DbType 値。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, DbType dbType)
+        {
+            var p = command.CreateParameter();
+            p.ParameterName = parameterName;
+            p.DbType = dbType;
+            return p;
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="dbType">DbType 値。</param>
+        /// <param name="obj">パラメーター。</param>
+        /// <param name="direction">パラメーターの入出力方向。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, DbType dbType, object obj, ParameterDirection direction)
+        {
+            var p = CreateParameter(command, parameterName, dbType);
+            p.Value = obj;
+            p.Direction = direction;
+            return p;
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="dbType">DbType 値。</param>
+        /// <param name="size">バッファサイズ。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, DbType dbType, int size)
+        {
+            var p = CreateParameter(command, parameterName, dbType);
+            p.Size = size;
+            return p;
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="dbType">DbType 値。</param>
+        /// <param name="size">バッファサイズ。</param>
+        /// <param name="obj">パラメーター。</param>
+        /// <param name="direction">パラメーターの入出力方向。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, DbType dbType, int size, object obj, ParameterDirection direction)
+        {
+            var p = CreateParameter(command, parameterName, dbType);
+            p.Size = size;
+            p.Value = obj;
+            p.Direction = direction;
+            return p;
+        }
+
+        /// <summary>
+        /// DbParameter オブジェクトの新しいインスタンスを作成します。
+        /// </summary>
+        /// <param name="command">DbCommand オブジェクト。</param>
+        /// <param name="parameterName">パラメーター名。</param>
+        /// <param name="dbType">DbType 値。</param>
+        /// <param name="direction">パラメーターの入出力方向。</param>
+        /// <returns>DbParameter オブジェクト。</returns>
+        public static DbParameter CreateParameter(this DbCommand command, string parameterName, DbType dbType, ParameterDirection direction)
+        {
+            var p = CreateParameter(command, parameterName, dbType);
+            p.Direction = direction;
+            return p;
         }
     }
 }

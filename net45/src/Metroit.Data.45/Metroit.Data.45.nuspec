@@ -12,11 +12,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       changes:
-        DataRowCollectionExtensions
-          - When AddEntity() or AddRangeEntity() is performed, if the property is Enum, set the Value of Enum to DataRow.
-        DataRowExtensions
-          - When executing ToEntity (), if the property of Entity is Enum, set the value of Enum to Entity.
-          - When FromEntity() is performed, if the property is Enum, set the Value of Enum to DataRow.
+        DbConnectionExtensions
+          - DbProviderFactory is no longer required as an argument of the SetConnectionString() method.
+        DbCommandExtensions
+          - DbProviderFactory is no longer required as an argument of the Fill() method and FillToDataSet method.
+      add:
+        DbCommandExtensions
+          - Added CreateParameter() method.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
