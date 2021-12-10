@@ -12,13 +12,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       changes:
-        DbConnectionExtensions
-          - DbProviderFactory is no longer required as an argument of the SetConnectionString() method.
-        DbCommandExtensions
-          - DbProviderFactory is no longer required as an argument of the Fill() method and FillToDataSet method.
-      add:
-        DbCommandExtensions
-          - Added CreateParameter() method.
+        DataRowExtensions
+          - Arguments to control the items to be imported have been added to ToEntity() and FromEntity().
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

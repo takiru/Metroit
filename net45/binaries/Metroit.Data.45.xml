@@ -165,20 +165,22 @@
             DataRow クラスの拡張メソッドを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Data.Extensions.DataRowExtensions.ToEntity``1(System.Data.DataRow)">
+        <member name="M:Metroit.Data.Extensions.DataRowExtensions.ToEntity``1(System.Data.DataRow,System.Func{Metroit.Data.Extensions.ShouldDataRowImportArgs,System.Boolean})">
             <summary>
             DataRow をエンティティクラスに変換します。
             </summary>
             <typeparam name="T">エンティティクラス。</typeparam>
             <param name="dataRow">DataRow オブジェクト。</param>
+            <param name="shouldImport">値を設定すべきかどうかを判断する式。</param>
             <returns>エンティティクラスオブジェクト。</returns>
         </member>
-        <member name="M:Metroit.Data.Extensions.DataRowExtensions.FromEntity(System.Data.DataRow,System.Object)">
+        <member name="M:Metroit.Data.Extensions.DataRowExtensions.FromEntity(System.Data.DataRow,System.Object,System.Func{Metroit.Data.Extensions.ShouldDataRowImportArgs,System.Boolean})">
             <summary>
             指定したオブジェクトの値を DataRow オブジェクトに設定します。
             </summary>
             <param name="dataRow">DataRow オブジェクト。</param>
             <param name="entity">エンティティクラスオブジェクト。</param>
+            <param name="shouldImport">値を設定すべきかどうかを判断する式。</param>
         </member>
         <member name="T:Metroit.Data.Extensions.DataTableExtensions">
             <summary>
@@ -460,6 +462,28 @@
             <param name="dbType">DbType 値。</param>
             <param name="direction">パラメーターの入出力方向。</param>
             <returns>DbParameter オブジェクト。</returns>
+        </member>
+        <member name="T:Metroit.Data.Extensions.ShouldDataRowImportArgs">
+            <summary>
+            DataRow へのデータ設定判断用の情報を提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Data.Extensions.ShouldDataRowImportArgs.Name">
+            <summary>
+            項目名を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Data.Extensions.ShouldDataRowImportArgs.Value">
+            <summary>
+            項目値を取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Data.Extensions.ShouldDataRowImportArgs.#ctor(System.String,System.Object)">
+            <summary>
+            新しい ShouldDataRowImportArgs インスタンスを生成します。
+            </summary>
+            <param name="name">項目名。</param>
+            <param name="value">項目値。</param>
         </member>
         <member name="T:Metroit.Data.QueryBindVariableType">
             <summary>

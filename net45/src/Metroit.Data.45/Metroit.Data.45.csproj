@@ -89,6 +89,7 @@
     <Compile Include="Extensions\DbExceptionExtensions.cs" />
     <Compile Include="Extensions\DbTransactionExtensions.cs" />
     <Compile Include="Extensions\DbProviderFactoryExtensions.cs" />
+    <Compile Include="Extensions\ShouldDataRowImportArgs.cs" />
     <Compile Include="QueryBindVariableType.cs" />
     <Compile Include="QueryParameterOptimizer.cs" />
     <Compile Include="ProcedureResult.cs" />
