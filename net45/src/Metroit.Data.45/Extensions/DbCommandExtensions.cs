@@ -25,9 +25,7 @@ namespace Metroit.Data.Extensions
         public static DbDataAdapter Fill(this DbCommand command,
                 DataTable dataTable, bool schemaMapping = false, bool commandCreate = false)
         {
-            var pf = command.Connection.GetType().GetProperty("DbProviderFactory",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                .GetValue(command.Connection) as DbProviderFactory;
+            var pf = command.Connection.GetProviderFactory();
             var da = pf.CreateDataAdapter();
             da.SelectCommand = command;
             
@@ -64,9 +62,7 @@ namespace Metroit.Data.Extensions
         public static DbDataAdapter FillToDataSet(this DbCommand command,
                 DataSet dataSet, string tableName = null, bool schemaMapping = false, bool commandCreate = false)
         {
-            var pf = command.Connection.GetType().GetProperty("DbProviderFactory", 
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                .GetValue(command.Connection) as DbProviderFactory;
+            var pf = command.Connection.GetProviderFactory();
             var da = pf.CreateDataAdapter();
             da.SelectCommand = command;
 

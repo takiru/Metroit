@@ -11,9 +11,10 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      changes:
-        DataRowExtensions
-          - Arguments to control the items to be imported have been added to ToEntity() and FromEntity().
+      bugs:
+        DbConnectionExtensions
+        DbCommandExtensions
+          - ProviderFactory could not be obtained depending on the type of DB provider, and SetConnectionString(), Fill(), FillToDataSet() did not work.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

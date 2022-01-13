@@ -345,6 +345,13 @@
             <param name="commandText">プロシージャー名。</param>
             <returns>DbCommand オブジェクト。</returns>
         </member>
+        <member name="M:Metroit.Data.Extensions.DbConnectionExtensions.GetProviderFactory(System.Data.Common.DbConnection)">
+            <summary>
+            DbConnection に紐づいている DbProviderFactory を取得する。
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
         <member name="T:Metroit.Data.Extensions.DbExceptionExtensions">
             <summary>
             DbException クラスの拡張メソッドを提供します。
