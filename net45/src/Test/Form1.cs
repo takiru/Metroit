@@ -14,17 +14,20 @@ namespace Test
 {
     public partial class Form1 : MetForm, IControlRollback
     {
-        public bool IsRollbacked(object sender, Control control)
+        public bool IsRollbacked
         {
-            if (this.ActiveControl is DataGridViewTextBoxEditingControl)
+            get
             {
-                return false;
-            }
+                if (this.ActiveControl is DataGridViewTextBoxEditingControl)
+                {
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
         }
 
-        public void Rollback(object sender, Control control)
+        public void Rollback()
         {
             var c = this.ActiveControl as DataGridViewTextBoxEditingControl;
             c.Text = "ddd";
@@ -519,6 +522,11 @@ namespace Test
         private void metTextBox10_Validating(object sender, CancelEventArgs e)
         {
             Console.WriteLine("metTextBox10 Validating");
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            metTextBox10.CustomAutoCompleteBox.Open(metTextBox10.Text);
         }
     }
 }

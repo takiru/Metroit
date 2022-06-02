@@ -86,6 +86,7 @@
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
+            this.button25 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -851,12 +852,24 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(303, 125);
+            this.button25.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(87, 34);
+            this.button25.TabIndex = 42;
+            this.button25.Text = "展開";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(717, 227);
+            this.Controls.Add(this.button25);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dateTimePickerEx1);
             this.Controls.Add(this.button24);
@@ -977,5 +990,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button25;
     }
 }

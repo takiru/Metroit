@@ -258,6 +258,10 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void OpenDropdown()
         {
+            this.BaseBackColor = this.TargetControl.BackColor;
+            this.BaseForeColor = this.TargetControl.ForeColor;
+            this.FocusBackColor = this.TargetControl.BackColor;
+            this.FocusForeColor = this.TargetControl.ForeColor;
             Cursor.Current = Cursors.Arrow;
             this.IsOpened = true;
             this.DroppedDown = true;
