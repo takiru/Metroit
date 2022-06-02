@@ -11,8 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      others:
-        Changed support for Metroit.45 1.4.4.
+      bugs:
+        - AutoCompleteBox
+            Fixed a problem that an abnormal error occurs when trying to display a candidate when there is no candidate by input value when the DataSource of AutoCompleteBox is IList.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

@@ -575,9 +575,12 @@ namespace Metroit.Windows.Forms
             this.innerSelectedChanging = true;
             this.candidateBox.DisplayMember = "";
             this.candidateBox.ValueMember = "";
-            this.candidateBox.DataSource = this.ExtractObject(text);
+            this.candidateBox.DataSource = null;
+
             this.candidateBox.DisplayMember = this.DisplayMember;
             this.candidateBox.ValueMember = this.ValueMember;
+            this.candidateBox.DataSource = this.ExtractObject(text);
+
             this.candidateBox.SelectedIndex = -1;
             this.innerSelectedChanging = false;
 
