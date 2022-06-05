@@ -528,5 +528,21 @@ namespace Test
         {
             metTextBox10.CustomAutoCompleteBox.Open(metTextBox10.Text);
         }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            var simpleLabel = new Label();
+            Console.WriteLine(simpleLabel.AutoSize.ToString());
+            simpleLabel.Location = new Point(50, 50);
+            this.Controls.Add(simpleLabel);
+            Console.WriteLine(simpleLabel.AutoSize.ToString());
+
+            var metLabel = new MetLabel();
+            metLabel.Location = new Point(10, 10);
+            metLabel.Text = "CodeBase";
+            Console.WriteLine(metLabel.AutoSize.ToString());
+            this.Controls.Add(metLabel);
+            Console.WriteLine(metLabel.AutoSize.ToString());
+        }
     }
 }

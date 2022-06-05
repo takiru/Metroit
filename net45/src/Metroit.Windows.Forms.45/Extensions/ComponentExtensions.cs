@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -31,9 +32,13 @@ namespace Metroit.Windows.Forms.Extensions
                 return true;
             }
 
-            if (AppDomain.CurrentDomain.FriendlyName == "DefaultDomain")
+            // ClickOnceでの実行はDefaultDomainのため、ClickOnce時は検証しない
+            if (!ApplicationDeployment.IsNetworkDeployed)
             {
-                return true;
+                if (AppDomain.CurrentDomain.FriendlyName == "DefaultDomain")
+                {
+                    return true;
+                }
             }
 
             return false;

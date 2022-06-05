@@ -11,38 +11,6 @@ namespace Metroit.Windows.Forms.Extensions
     /// </summary>
     public static class ControlExtensions
     {
-        private static readonly string processName = Process.GetCurrentProcess().ProcessName.ToUpper();
-
-        /// <summary>
-        /// <para>Control が現在デザイン モードかどうかを示す値を取得します。</para>
-        /// <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
-        /// </summary>
-        /// <returns>true:デザインモード中、false:実行中</returns>
-        public static bool IsDesignMode(this Control control)
-        {
-            if (System.ComponentModel.LicenseManager.UsageMode
-                    == System.ComponentModel.LicenseUsageMode.Designtime)
-            {
-                return true;
-            }
-
-            if (processName == "DEVENV" || processName == "VCSEXPRESS")
-            {
-                return true;
-            }
-
-            // ClickOnceでの実行はDefaultDomainのため、ClickOnce時は検証しない
-            if (!ApplicationDeployment.IsNetworkDeployed)
-            {
-                if (AppDomain.CurrentDomain.FriendlyName == "DefaultDomain")
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         /// <summary>
         /// 次のコントロールをアクティブにします。
         /// この命令は、TABキーを押下したものと同様の動作をします。

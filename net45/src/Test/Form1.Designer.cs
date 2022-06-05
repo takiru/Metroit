@@ -81,12 +81,19 @@
             this.button23 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button25 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.metLabel1 = new Metroit.Windows.Forms.MetLabel();
+            this.metLabel2 = new Metroit.Windows.Forms.MetLabel();
+            this.metLabel3 = new Metroit.Windows.Forms.MetLabel();
+            this.button26 = new System.Windows.Forms.Button();
             this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
-            this.button25 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -441,7 +448,7 @@
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Location = new System.Drawing.Point(150, 218);
+            this.groupBox2.Location = new System.Drawing.Point(220, 218);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -806,6 +813,93 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(142, 25);
             this.dateTimePicker1.TabIndex = 41;
             // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(303, 125);
+            this.button25.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(87, 34);
+            this.button25.TabIndex = 42;
+            this.button25.Text = "展開";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 218);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 18);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "SmpleLabel None";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Location = new System.Drawing.Point(12, 246);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 20);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "SmpleLabel FixedSingle";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(14, 279);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 20);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "SmpleLabel Fixed3D";
+            // 
+            // metLabel1
+            // 
+            this.metLabel1.LineColor = System.Drawing.Color.Red;
+            this.metLabel1.LinePosition = Metroit.Windows.Forms.LinePosition.Underline;
+            this.metLabel1.LineWidth = 5F;
+            this.metLabel1.Location = new System.Drawing.Point(12, 324);
+            this.metLabel1.Name = "metLabel1";
+            this.metLabel1.Size = new System.Drawing.Size(95, 18);
+            this.metLabel1.TabIndex = 46;
+            this.metLabel1.Text = "MetLabel None";
+            // 
+            // metLabel2
+            // 
+            this.metLabel2.AutoSize = true;
+            this.metLabel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metLabel2.LineColor = System.Drawing.Color.Red;
+            this.metLabel2.LinePosition = Metroit.Windows.Forms.LinePosition.Underline;
+            this.metLabel2.LineWidth = 5F;
+            this.metLabel2.Location = new System.Drawing.Point(14, 351);
+            this.metLabel2.Name = "metLabel2";
+            this.metLabel2.Size = new System.Drawing.Size(133, 20);
+            this.metLabel2.TabIndex = 47;
+            this.metLabel2.Text = "MetLabel FixedSingle";
+            // 
+            // metLabel3
+            // 
+            this.metLabel3.AutoSize = true;
+            this.metLabel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.metLabel3.LineColor = System.Drawing.Color.Red;
+            this.metLabel3.LinePosition = Metroit.Windows.Forms.LinePosition.Underline;
+            this.metLabel3.LineWidth = 5F;
+            this.metLabel3.Location = new System.Drawing.Point(12, 380);
+            this.metLabel3.Name = "metLabel3";
+            this.metLabel3.Size = new System.Drawing.Size(114, 20);
+            this.metLabel3.TabIndex = 48;
+            this.metLabel3.Text = "MetLabel Fixed3D";
+            // 
+            // button26
+            // 
+            this.button26.Location = new System.Drawing.Point(12, 410);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(75, 23);
+            this.button26.TabIndex = 49;
+            this.button26.Text = "button26";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
             // dateTimePickerEx1
             // 
             this.dateTimePickerEx1.Location = new System.Drawing.Point(305, 107);
@@ -852,23 +946,19 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(303, 125);
-            this.button25.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(87, 34);
-            this.button25.TabIndex = 42;
-            this.button25.Text = "展開";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(717, 227);
+            this.ClientSize = new System.Drawing.Size(717, 451);
+            this.Controls.Add(this.button26);
+            this.Controls.Add(this.metLabel3);
+            this.Controls.Add(this.metLabel2);
+            this.Controls.Add(this.metLabel1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button25);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dateTimePickerEx1);
@@ -991,5 +1081,12 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private Metroit.Windows.Forms.MetLabel metLabel1;
+        private Metroit.Windows.Forms.MetLabel metLabel2;
+        private Metroit.Windows.Forms.MetLabel metLabel3;
+        private System.Windows.Forms.Button button26;
     }
 }

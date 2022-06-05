@@ -609,4 +609,28 @@
   <data name="ControlDateTimeShowTorailingDates.ja" xml:space="preserve">
     <value>カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。</value>
   </data>
+  <data name="ControlLineColor.ja" xml:space="preserve">
+    <value>描画する線の色を設定します。</value>
+  </data>
+  <data name="ControlLineDashStyle.ja" xml:space="preserve">
+    <value>描画する線の種類を設定します。</value>
+  </data>
+  <data name="ControlLinePosition.ja" xml:space="preserve">
+    <value>描画する線の位置を設定します。</value>
+  </data>
+  <data name="ControlLineWidth.ja" xml:space="preserve">
+    <value>描画する線の幅を設定します。</value>
+  </data>
+  <data name="ControlLineColor" xml:space="preserve">
+    <value>Set the color of the line to draw.</value>
+  </data>
+  <data name="ControlLineDashStyle" xml:space="preserve">
+    <value>Set the type of line to draw.</value>
+  </data>
+  <data name="ControlLinePosition" xml:space="preserve">
+    <value>Set the position of the line to draw.</value>
+  </data>
+  <data name="ControlLineWidth" xml:space="preserve">
+    <value>Set the width of the line to draw.</value>
+  </data>
 </root>

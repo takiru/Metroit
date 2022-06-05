@@ -91,6 +91,7 @@
     <Compile Include="Extensions\ComponentExtensions.cs" />
     <Compile Include="IControlRollback.cs" />
     <Compile Include="IBorder.cs" />
+    <Compile Include="LinePosition.cs" />
     <Compile Include="MatchPatternType.cs" />
     <Compile Include="MessageFilter.cs" />
     <Compile Include="MessageFilterAction.cs" />
@@ -103,6 +104,9 @@
     <Compile Include="MetCategoryAttribute.cs" />
     <Compile Include="DesignResources.cs" />
     <Compile Include="FormEscapeBehavior.cs" />
+    <Compile Include="MetLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NumericNegativePatternType.cs" />
     <Compile Include="NumericNegativePattern.cs" />
     <Compile Include="ComponentModel\NumericNegativePatternControl.cs">

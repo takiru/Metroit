@@ -925,6 +925,78 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Set the color of the line to draw. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineColor {
+            get {
+                return ResourceManager.GetString("ControlLineColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   描画する線の色を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineColor_ja {
+            get {
+                return ResourceManager.GetString("ControlLineColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set the type of line to draw. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineDashStyle {
+            get {
+                return ResourceManager.GetString("ControlLineDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   描画する線の種類を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineDashStyle_ja {
+            get {
+                return ResourceManager.GetString("ControlLineDashStyle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set the position of the line to draw. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLinePosition {
+            get {
+                return ResourceManager.GetString("ControlLinePosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   描画する線の位置を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLinePosition_ja {
+            get {
+                return ResourceManager.GetString("ControlLinePosition.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Set the width of the line to draw. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineWidth {
+            get {
+                return ResourceManager.GetString("ControlLineWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   描画する線の幅を設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlLineWidth_ja {
+            get {
+                return ResourceManager.GetString("ControlLineWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlMaxByteLength {
