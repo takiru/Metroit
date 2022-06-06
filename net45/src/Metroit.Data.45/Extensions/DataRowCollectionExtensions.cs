@@ -50,13 +50,21 @@ namespace Metroit.Data.Extensions
                     continue;
                 }
 
-                if (pi.PropertyType.IsEnum)
+                try
                 {
-                    row[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
-                    continue;
-                }
+                    if (pi.PropertyType.IsEnum)
+                    {
+                        row[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
+                        continue;
+                    }
 
-                row[columnName] = value;
+                    row[columnName] = value;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException(ex.Message, columnName, ex);
+                }
             }
 
             table.Rows.Add(row);

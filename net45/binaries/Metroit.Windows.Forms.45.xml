@@ -1085,13 +1085,6 @@
             Control クラスの拡張メソッドを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.IsDesignMode(System.Windows.Forms.Control)">
-            <summary>
-            <para>Control が現在デザイン モードかどうかを示す値を取得します。</para>
-            <para>System.Windows.Forms.Control.DesignMode プロパティで制御されない継承コンポーネントの状態まで把握します。</para>
-            </summary>
-            <returns>true:デザインモード中、false:実行中</returns>
-        </member>
         <member name="M:Metroit.Windows.Forms.Extensions.ControlExtensions.MoveNextControl(System.Windows.Forms.Control,System.Boolean)">
             <summary>
             次のコントロールをアクティブにします。
@@ -1166,6 +1159,26 @@
         <member name="P:Metroit.Windows.Forms.IBorder.Error">
             <summary>
             コントロールがエラーかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Windows.Forms.LinePosition">
+            <summary>
+            描画を行う線の位置を定義します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.LinePosition.None">
+            <summary>
+            線を描画しません。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.LinePosition.Overline">
+            <summary>
+            上線を描画します。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.LinePosition.Underline">
+            <summary>
+            下線を描画します。
             </summary>
         </member>
         <member name="T:Metroit.Windows.Forms.MatchPatternType">
@@ -1707,6 +1720,61 @@
             有効になっている要素を文字列で返却します。
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetLabel">
+            <summary>
+            標準Labelを拡張し、新たにいくつかの機能を設けたテキストエリアを提供します。
+            </summary>
+            <remarks>
+            [拡張機能]<br />
+            　・線の描画。
+            </remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLabel.#ctor">
+            <summary>
+            MetLabel の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLabel.LinePosition">
+            <summary>
+            描画する線の位置を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLabel.LineDashStyle">
+            <summary>
+            描画する線の種類を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLabel.LineColor">
+            <summary>
+            描画する線の色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetLabel.LineWidth">
+            <summary>
+            描画する線の幅を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLabel.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            ウィンドウメッセージを捕捉し、線の描画を行います。
+            </summary>
+            <param name="m">ウィンドウメッセージ。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLabel.drawPaint(System.Windows.Forms.Message@)">
+            <summary>
+            プロパティ設定された情報を描画する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLabel.drawBitmap(System.Drawing.Bitmap,System.Drawing.Graphics)">
+            <summary>
+            Bitmapオブジェクトにコントロール描画を行う。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLabel.drawLine(System.Drawing.Graphics)">
+            <summary>
+            線を描画する。
+            </summary>
         </member>
         <member name="T:Metroit.Windows.Forms.NumericNegativePatternType">
             <summary>
@@ -3268,6 +3336,46 @@
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLeave_ja">
             <summary>
               コントロールを非アクティブにします。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineColor">
+            <summary>
+              Set the color of the line to draw. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineColor_ja">
+            <summary>
+              描画する線の色を設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineDashStyle">
+            <summary>
+              Set the type of line to draw. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineDashStyle_ja">
+            <summary>
+              描画する線の種類を設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLinePosition">
+            <summary>
+              Set the position of the line to draw. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLinePosition_ja">
+            <summary>
+              描画する線の位置を設定します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineWidth">
+            <summary>
+              Set the width of the line to draw. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlLineWidth_ja">
+            <summary>
+              描画する線の幅を設定します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxByteLength">

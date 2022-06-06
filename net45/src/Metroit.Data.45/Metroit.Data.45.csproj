@@ -83,6 +83,7 @@
     <Compile Include="Common\MetDbProviderFactories.cs" />
     <Compile Include="Extensions\DataRowCollectionExtensions.cs" />
     <Compile Include="Extensions\DataRowExtensions.cs" />
+    <Compile Include="Extensions\DataReaderExtensions.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\DbCommandExtensions.cs" />
     <Compile Include="Extensions\DbConnectionExtensions.cs" />

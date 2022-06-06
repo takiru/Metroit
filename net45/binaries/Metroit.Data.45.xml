@@ -182,17 +182,32 @@
             <param name="entity">エンティティクラスオブジェクト。</param>
             <param name="shouldImport">値を設定すべきかどうかを判断する式。</param>
         </member>
+        <member name="T:Metroit.Data.Extensions.DataReaderExtensions">
+            <summary>
+            IDataReader クラスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Data.Extensions.DataReaderExtensions.ToEntity``1(System.Data.IDataReader,System.Func{Metroit.Data.Extensions.ShouldDataRowImportArgs,System.Boolean})">
+            <summary>
+            IDataReader の現在のレコードをエンティティクラスに変換します。
+            </summary>
+            <typeparam name="T">エンティティクラス。</typeparam>
+            <param name="dataReader">IDataReader オブジェクト。</param>
+            <param name="shouldImport">値を設定すべきかどうかを判断する式。</param>
+            <returns>エンティティクラスオブジェクト。</returns>
+        </member>
         <member name="T:Metroit.Data.Extensions.DataTableExtensions">
             <summary>
             DataTable クラスの拡張メソッドを提供します。
             </summary>
         </member>
-        <member name="M:Metroit.Data.Extensions.DataTableExtensions.AsEnumerableEntity``1(System.Data.DataTable)">
+        <member name="M:Metroit.Data.Extensions.DataTableExtensions.AsEnumerableEntity``1(System.Data.DataTable,System.Func{Metroit.Data.Extensions.ShouldDataRowImportArgs,System.Boolean})">
             <summary>
             DataRow をエンティティクラスに変換します。
             </summary>
             <typeparam name="T">エンティティクラス。</typeparam>
             <param name="dataTable">DataTable オブジェクト。</param>
+            <param name="shouldImport">値を設定すべきかどうかを判断する式。</param>
             <returns>エンティティクラスオブジェクト。</returns>
         </member>
         <member name="T:Metroit.Data.Extensions.DbCommandExtensions">

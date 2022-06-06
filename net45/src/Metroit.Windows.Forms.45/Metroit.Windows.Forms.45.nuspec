@@ -11,9 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        - AutoCompleteBox
-            Fixed a problem that ForeColor of the display source control is not inherited when a candidate is displayed by Open() from an external operation.
+      new:
+        - MetLabel
+            New control.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

@@ -45,26 +45,34 @@ namespace Metroit.Data.Extensions
                     continue;
                 }
 
-                if (dataRow[columnName] == DBNull.Value)
+                try
                 {
-                    pi.SetValue(resultData, null);
-                    continue;
-                }
+                    if (dataRow[columnName] == DBNull.Value)
+                    {
+                        pi.SetValue(resultData, null);
+                        continue;
+                    }
 
-                if (pi.PropertyType == dataRow[columnName].GetType())
-                {
-                    pi.SetValue(resultData, dataRow[columnName]);
-                    continue;
-                }
+                    if (pi.PropertyType == dataRow[columnName].GetType())
+                    {
+                        pi.SetValue(resultData, dataRow[columnName]);
+                        continue;
+                    }
 
-                var safeType = Nullable.GetUnderlyingType(pi.PropertyType) ?? pi.PropertyType;
-                if (safeType.IsEnum)
-                {
-                    pi.SetValue(resultData, Enum.ToObject(safeType,
-                        Convert.ChangeType(dataRow[columnName], safeType.GetField("value__").FieldType)));
-                    continue;
+                    var safeType = Nullable.GetUnderlyingType(pi.PropertyType) ?? pi.PropertyType;
+                    if (safeType.IsEnum)
+                    {
+                        pi.SetValue(resultData, Enum.ToObject(safeType,
+                            Convert.ChangeType(dataRow[columnName], safeType.GetField("value__").FieldType)));
+                        continue;
+                    }
+                    pi.SetValue(resultData, Convert.ChangeType(dataRow[columnName], safeType));
+
                 }
-                pi.SetValue(resultData, Convert.ChangeType(dataRow[columnName], safeType));
+                catch (Exception ex)
+                {
+                    throw new ArgumentException(ex.Message, columnName, ex);
+                }
             }
             return resultData;
         }
@@ -105,19 +113,27 @@ namespace Metroit.Data.Extensions
                     continue;
                 }
 
-                if (value == null)
+                try
                 {
-                    dataRow[columnName] = DBNull.Value;
-                    continue;
-                }
+                    if (value == null)
+                    {
+                        dataRow[columnName] = DBNull.Value;
+                        continue;
+                    }
 
-                if (pi.PropertyType.IsEnum)
+                    if (pi.PropertyType.IsEnum)
+                    {
+                        dataRow[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
+                        continue;
+                    }
+
+                    dataRow[columnName] = value;
+
+                }
+                catch (Exception ex)
                 {
-                    dataRow[columnName] = Convert.ChangeType(value, Convert.GetTypeCode(value));
-                    continue;
+                    throw new ArgumentException(ex.Message, columnName, ex);
                 }
-
-                dataRow[columnName] = value;
             }
         }
     }

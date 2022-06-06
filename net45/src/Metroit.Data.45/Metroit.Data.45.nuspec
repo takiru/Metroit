@@ -11,10 +11,19 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        DbConnectionExtensions
-        DbCommandExtensions
-          - ProviderFactory could not be obtained depending on the type of DB provider, and SetConnectionString(), Fill(), FillToDataSet() did not work.
+      new:
+        DataReaderExtensions
+          - New extensions.
+      changes:
+        DataTableExtensions
+          - Added the argument shouldImport to AsEnumerableEntity().
+          - ArgumentException is now issued when the value cannot be set correctly with AsEnumerableEntity().
+        DataRowExtensions
+          - ArgumentException is now issued when the value cannot be set correctly with ToEntity().
+          - ArgumentException is now issued when the value cannot be set correctly with FromEntity().
+        DataRowCollectionExtensions
+          - ArgumentException is now issued when the value cannot be set correctly with AddEntity().
+          - ArgumentException is now issued when the value cannot be set correctly with AddRangeEntity().
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

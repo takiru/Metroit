@@ -1,9 +1,12 @@
-﻿using Metroit.Extensions;
+﻿using Metroit.Data.Extensions;
+using Metroit.Extensions;
 using Metroit.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -543,6 +546,35 @@ namespace Test
             Console.WriteLine(metLabel.AutoSize.ToString());
             this.Controls.Add(metLabel);
             Console.WriteLine(metLabel.AutoSize.ToString());
+
+            var c = new SqlConnection(@"XXXX");
+            c.Open();
+
+            var com = c.CreateCommand();
+            com.CommandText = @"SELECT * FROM XXXX";
+
+            var r = com.ExecuteReader();
+            r.Read();
+            var item = r.ToEntity<RowItem>();
+
         }
+    }
+
+    class RowItem
+    {
+        [Column("ent_date")]
+        public DateTime EntDate { get; set; }
+
+        [Column("ent_user")]
+        public string EntUser { get; set; }
+
+        [Column("upd_date")]
+        public DateTime? UpdDate { get; set; }
+
+        [Column("upd_user")]
+        public string UpdUser { get; set; }
+
+        [Column("table_name")]
+        public DateTime TableName { get; set; }
     }
 }

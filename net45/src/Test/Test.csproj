@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,6 +99,10 @@
     <ProjectReference Include="..\Metroit.45\Metroit.45.csproj">
       <Project>{85f37ac4-5ab9-4640-83fb-f22d7582a971}</Project>
       <Name>Metroit.45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Metroit.Data.45\Metroit.Data.45.csproj">
+      <Project>{d04bbeb3-143b-4709-ba3f-fb5fa6557db3}</Project>
+      <Name>Metroit.Data.45</Name>
     </ProjectReference>
     <ProjectReference Include="..\Metroit.Windows.Forms.45\Metroit.Windows.Forms.45.csproj">
       <Project>{660849bb-c100-419f-9fe0-853131726220}</Project>
