@@ -1411,6 +1411,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Occurs when the value changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNumericTextBoxTextValueChanged {
+            get {
+                return ResourceManager.GetString("MetNumericTextBoxTextValueChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   値が変更された時に発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNumericTextBoxTextValueChanged_ja {
+            get {
+                return ResourceManager.GetString("MetNumericTextBoxTextValueChanged.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Metroit Extension Other に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetOther {

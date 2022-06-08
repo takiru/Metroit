@@ -11,14 +11,23 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      new:
-        - MetLabel
-            New control.
+      bugs:
+        - MetTextBox
+            - When rolled back to the maximum number of digits by Rollback(), the focus is not moved by the AutoFocus property.
+        - MetNumericTextBox
+            - For example, if MaxValue is 100 and MinValue is 10, you can enter 9.
+      changes:
+        - MetNumericTextBox
+            - The value is fixed when the focus is lost.
+            - When the Value property is acquired without losing focus like the execution of ToolStripMenuItem, the value is fixed.
+      add:
+        - MetNumericTextBox
+            - Added ValueChanged event.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.4.4" />
+      <dependency id="Metroit.45" version="1.4.4.1" />
     </dependencies>
   </metadata>
 </package>

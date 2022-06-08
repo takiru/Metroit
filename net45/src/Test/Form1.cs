@@ -558,6 +558,37 @@ namespace Test
             var item = r.ToEntity<RowItem>();
 
         }
+
+        private void metNumericTextBox1_Validating(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine($"Validating Text:{metNumericTextBox1.Text}");
+        }
+
+        private void metNumericTextBox1_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine($"ValueChanged Value:{metNumericTextBox1.Value}");
+        }
+
+        private void metNumericTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            //Console.WriteLine($"TextChanged Value:{metNumericTextBox1.Text}");
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine($"MenuStrip:{metNumericTextBox1.Value}");
+            Console.WriteLine($"MenuStrip numericUpDownEx1:{numericUpDownEx1.Value}");
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            metNumericTextBox1.Value = -20;
+        }
+
+        private void metNumericTextBox1_TextChangeValidation(object sender, TextChangeValidationEventArgs e)
+        {
+            Console.WriteLine($"TextChangeValiation:Input={e.Input}, Before={e.Before}, After={e.After}");
+        }
     }
 
     class RowItem

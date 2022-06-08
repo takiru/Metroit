@@ -47,7 +47,6 @@ namespace Metroit.Windows.Forms
             }
 
             this.Enter += MetNumericFormatTextBox_Enter;
-            this.Leave += MetNumericFormatTextBox_Leave;
             this.TextChanged += MetNumericFormatTextBox_TextChanged;
         }
 
@@ -67,7 +66,7 @@ namespace Metroit.Windows.Forms
         {
             if (!IsValidatingCanceled)
             {
-                this.enterValue = this.Value;
+                this.enterValue = this.value;
             }
 
             this.textFormatting = true;
@@ -90,10 +89,10 @@ namespace Metroit.Windows.Forms
 
         /// <summary>
         /// フォーカスを失った時、数値をフォーマット化する。
+        /// NOTE: NumericUpDown コントロールに準拠し、ウィンドウから離れた場合に値が確定されるようにする。
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MetNumericFormatTextBox_Leave(object sender, EventArgs e)
+        protected override void OnLostFocus(EventArgs e)
         {
             this.leavedSelectionStart = this.SelectionStart;
             this.leavedSelectionLength = this.SelectionLength;
@@ -115,17 +114,52 @@ namespace Metroit.Windows.Forms
                 }
                 else
                 {
-                    this.value = 0;
+                    this.value = MinValue;
                 }
             }
             else
             {
                 this.value = decimal.Parse(base.Text);
             }
+
+            // NOTE: isValidRangeValue() によって値が範囲外の場合は強制的に最小値/最大値とする
+            if (value > MaxValue)
+            {
+                this.value = this.MaxValue;
+            }
+            if (value < MinValue)
+            {
+                this.value = this.MinValue;
+            }
+
+            // 内部値と異なるもしくは、フォーカスを得た時に値が入っており、nullに変更した場合に変化があったとする
+            if ((this.value != this.internalValue) || (this.value == null && this.internalValue == null && this.enterValue != null))
+            {
+                this.internalValue = this.value;
+
+                // 入力値チェックイベント
+                var e2 = new TextChangeValidationEventArgs();
+                e2.Cancel = false;
+                e2.Before = this.value.ToString();
+                e2.Input = value.ToString();
+                e2.After = value.ToString();
+                this.OnTextChangeValidation(e2);
+                if (e2.Cancel)
+                {
+                    throw new DeniedTextException(
+                            ExceptionResources.GetString("DeniedTextException"), value.ToString());
+                }
+
+                OnValueChanged(new EventArgs());
+            }
+
             this.textFormatting = true;
             base.Text = this.createFormattedText(this.value);
             this.textFormatting = false;
+
             this.ChangeDisplayColor();
+
+            base.OnLostFocus(e);
         }
 
         /// <summary>
@@ -188,6 +222,26 @@ namespace Metroit.Windows.Forms
                 base.Text = this.createFormattedText(this.value);
                 this.textFormatting = false;
             }
+        }
+
+        #endregion
+
+        #region 追加イベント
+
+        /// <summary>
+        /// 値が変更された時に発生します。
+        /// </summary>
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("MetNumericTextBoxTextValueChanged")]
+        public event EventHandler ValueChanged;
+
+        /// <summary>
+        /// 値が変更された時に走行します。
+        /// </summary>
+        /// <param name="e">イベントオブジェクト。</param>
+        protected virtual void OnValueChanged(EventArgs e)
+        {
+            ValueChanged?.Invoke(this, e);
         }
 
         #endregion
@@ -408,6 +462,8 @@ namespace Metroit.Windows.Forms
         private string percentSymbol = PERCENT_SYMBOL;
         private string negativeSign = NEGATIVE_SIGN;
 
+        private decimal? internalValue;
+
         /// <summary>
         /// 現在の数値を取得または設定します。
         /// </summary>
@@ -419,11 +475,52 @@ namespace Metroit.Windows.Forms
         [MetDescription("ControlValue")]
         public decimal? Value
         {
-            get { return this.value; }
+            get
+            {
+                // NOTE: MenuStrip などのフォーカス遷移が行われないコントロールから値を取得しようとした時、値を確定する必要がある
+                //       isValidRangeValue() によって値が範囲外の場合は強制的に最小値/最大値とする
+                if (value < MinValue)
+                {
+                    value = MinValue;
+                }
+                if (value > MaxValue)
+                {
+                    value = MaxValue;
+                }
+
+                textFormatting = true;
+                var formattedText = createFormattedText(value);
+                base.Text = formattedText;
+
+                if (value != internalValue)
+                {
+                    internalValue = value;
+
+                    // 入力値チェックイベント
+                    var e = new TextChangeValidationEventArgs();
+                    e.Cancel = false;
+                    e.Before = value.ToString();
+                    e.Input = value.ToString();
+                    e.After = value.ToString();
+                    OnTextChangeValidation(e);
+                    if (e.Cancel)
+                    {
+                        throw new DeniedTextException(
+                                ExceptionResources.GetString("DeniedTextException"), value.ToString());
+                    }
+
+                    valueDirectSetting = true;
+                    OnValueChanged(new EventArgs());
+                    valueDirectSetting = false;
+                }
+                textFormatting = false;
+
+                return this.value;
+            }
             set
             {
                 // 設定値に変更がない場合は処理しない
-                if (this.Value == value)
+                if (this.value == value)
                 {
                     return;
                 }
@@ -431,7 +528,7 @@ namespace Metroit.Windows.Forms
                 // 入力値チェックイベント
                 var e = new TextChangeValidationEventArgs();
                 e.Cancel = false;
-                e.Before = this.Value.ToString();
+                e.Before = this.value.ToString();
                 e.Input = value.ToString();
                 e.After = value.ToString();
                 this.OnTextChangeValidation(e);
@@ -444,7 +541,9 @@ namespace Metroit.Windows.Forms
                 this.valueDirectSetting = true;
                 this.textFormatting = true;
                 this.value = value;
+                this.internalValue = value;
                 base.Text = this.createFormattedText(value);
+                OnValueChanged(new EventArgs());
                 this.textFormatting = false;
                 this.valueDirectSetting = false;
                 this.ChangeDisplayColor();
@@ -525,18 +624,26 @@ namespace Metroit.Windows.Forms
             get { return this.maxValue; }
             set
             {
-                // Value値を下回る
-                if (this.value.HasValue && this.value > value)
-                {
-                    throw new ArgumentOutOfRangeException(
-                            ExceptionResources.GetString("ValueSmallerCanNotChange"));
-                }
-
                 // MinValueを下回る
                 if (this.MinValue > value)
                 {
                     throw new ArgumentOutOfRangeException(
                             ExceptionResources.GetString("MinValueSmallerCanNotChange"));
+                }
+
+                // デザイン時にValueがMinValue, MaxValue の範囲外となる場合
+                if (this.IsDesignMode() && this.value.HasValue && !(this.value >= this.MinValue && this.value <= value))
+                {
+                    this.maxValue = value;
+                    this.Value = this.MinValue;
+                    return;
+                }
+
+                // Value値を下回る
+                if (this.value.HasValue && this.value > value && Initialized)
+                {
+                    throw new ArgumentOutOfRangeException(
+                            ExceptionResources.GetString("ValueSmallerCanNotChange"));
                 }
 
                 this.maxValue = value;
@@ -555,18 +662,26 @@ namespace Metroit.Windows.Forms
             get { return this.minValue; }
             set
             {
-                // Value値を上回る
-                if (this.value.HasValue && this.value < value)
-                {
-                    throw new ArgumentOutOfRangeException(
-                            ExceptionResources.GetString("ValueLargerCanNotChange"));
-                }
-
                 // MaxValueを上回る
                 if (this.MaxValue < value)
                 {
                     throw new ArgumentOutOfRangeException(
                             ExceptionResources.GetString("MaxValueSmallerCanNotChange"));
+                }
+
+                // デザイン時にValueがMinValue, MaxValue の範囲外となる場合
+                if (this.IsDesignMode() && this.value.HasValue && !(this.value >= value && this.value <= this.MaxValue))
+                {
+                    this.minValue = value;
+                    this.Value = this.MinValue;
+                    return;
+                }
+
+                // Value値を上回る
+                if (this.value.HasValue && this.value < value && Initialized)
+                {
+                    throw new ArgumentOutOfRangeException(
+                            ExceptionResources.GetString("ValueLargerCanNotChange"));
                 }
 
                 this.minValue = value;
@@ -616,7 +731,7 @@ namespace Metroit.Windows.Forms
             set
             {
                 this.acceptNull = value;
-                if (!value && !this.Value.HasValue)
+                if (!value && !this.value.HasValue)
                 {
                     this.Value = this.MinValue;
                 }
@@ -867,22 +982,27 @@ namespace Metroit.Windows.Forms
         /// ロールバック済みかどうかを取得します。
         /// </summary>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
-        public override bool IsRollbacked => this.Value == this.enterValue;
+        public override bool IsRollbacked => this.value == this.enterValue;
 
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
         public override void Rollback()
         {
+            Rollbacking = true;
             if (this.enterValue.HasValue)
             {
                 base.Text = this.enterValue.ToString();
+                this.value = this.enterValue;
             }
             else
             {
                 base.Text = "";
+                this.value = null;
             }
+            this.internalValue = null;
             this.ChangeDisplayColor();
+            Rollbacking = false;
         }
 
         /// <summary>
@@ -987,6 +1107,12 @@ namespace Metroit.Windows.Forms
         /// <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
         protected override bool CanAutoFocus()
         {
+            // ロールバック中は実施しない
+            if (Rollbacking)
+            {
+                return false;
+            }
+
             // フォーマット変更中は実施しない
             if (this.textFormatting)
             {
@@ -1007,7 +1133,7 @@ namespace Metroit.Windows.Forms
             }
 
             // MinValueと値が一緒だったらOK
-            if (this.minValue == value)
+            if (this.MinValue == value)
             {
                 return true;
             }
@@ -1016,18 +1142,24 @@ namespace Metroit.Windows.Forms
             var maxValueIntLength = this.MaxValue.ToString("+###0;-###0;").Length;
             var minValueIntLength = this.MinValue.ToString("+###0;-###0;").Length;
 
-            // 小数桁数が0の時、MaxValueと整数桁が同じ、またはMinValueと整数桁が同じだったらOK
+            // 小数桁数が0の時、Valueの符号によってMaxValue, MinValue と比較して判定する
             if (this.DecimalDigits == 0)
             {
-                if (maxValueIntLength == valueIntLength ||
-                    minValueIntLength == valueIntLength)
+                if (value == 0)
                 {
                     return true;
                 }
-                else
+
+                if (this.value > 0 && maxValueIntLength == valueIntLength)
                 {
-                    return false;
+                    return true;
                 }
+                if (this.value < 0 && minValueIntLength == valueIntLength)
+                {
+                    return true;
+                }
+
+                return false;
             }
 
             // MaxValueより整数桁が少ない場合は、小数がフル桁入ったらOK
@@ -1130,9 +1262,7 @@ namespace Metroit.Windows.Forms
         /// <returns>true:有効, false:無効</returns>
         private bool isValidDecimalDigits(decimal value)
         {
-            int digits = decimal.GetBits(value)[3] >> 16 & 0x00FF;
-
-            if (digits > this.DecimalDigits)
+            if (getDecimalDigitsLength(value) > this.DecimalDigits)
             {
                 return false;
             }
@@ -1141,13 +1271,132 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 入力値の小数桁数を取得する。
+        /// </summary>
+        /// <param name="value">入力値。</param>
+        /// <returns>小数桁数。</returns>
+        private int getDecimalDigitsLength(decimal value)
+        {
+            return decimal.GetBits(value)[3] >> 16 & 0x00FF;
+        }
+
+        /// <summary>
         /// 最小値 ≦ 入力値 ≦ 最大値かどうか。
+        /// NOTE: MinValue:10, MaxValue:100などの時、Value: 1とすることが可能なため、Leaveイベント内で、範囲外の値の場合は最小値 / 最大値に切り替える。
         /// </summary>
         /// <param name="value">入力値</param>
         /// <returns>true:有効, false:無効</returns>
         private bool isValidRangeValue(decimal value)
         {
-            if (value > this.MaxValue || value < this.MinValue)
+            // 整数部の値検証
+            if (!hasRangeIntValue(value))
+            {
+                return false;
+            }
+
+            // 小数部の評価が不要な場合は範囲内
+            if (getDecimalDigitsLength(value) == 0)
+            {
+                return true;
+            }
+
+            // 小数部の値検証
+            if (!hasRangeDecimalDigitsValue(value))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 整数部が範囲内かどうかを取得する。
+        /// </summary>
+        /// <param name="value">入力値。</param>
+        /// <returns>true:範囲内, false:範囲外。</returns>
+        private bool hasRangeIntValue(decimal value)
+        {
+            var valueInt = Math.Truncate(value);
+            var maxValueInt = Math.Truncate(this.MaxValue);
+            var minValueInt = Math.Truncate(this.MinValue);
+
+            var valueIntLength = valueInt == 0 ? 1 : (int)Math.Log10((double)Math.Abs(valueInt)) + 1;
+            var maxValueIntLength = maxValueInt == 0 ? 1 : (int)Math.Log10((double)Math.Abs(maxValueInt)) + 1;
+            var minValueIntLength = minValueInt == 0 ? 1 : (int)Math.Log10((double)Math.Abs(minValueInt)) + 1;
+
+            // NOTE: valueInt の桁数分と+1桁の値で比較する
+            var maxPow = (decimal)Math.Truncate(Math.Pow(10, maxValueIntLength - valueIntLength));
+            var maxPow2 = (decimal)Math.Truncate(Math.Pow(10, maxValueIntLength - valueIntLength - 1));
+            var minPow = (decimal)Math.Truncate(Math.Pow(10, minValueIntLength - valueIntLength));
+            var minPow2 = (decimal)Math.Truncate(Math.Pow(10, minValueIntLength - valueIntLength - 1));
+
+            var compareMaxValue = maxValueInt;
+            var compareNextMaxValue = maxValueInt;
+            if (maxPow > 0)
+            {
+                compareMaxValue = Math.Truncate(compareMaxValue / maxPow);
+            }
+            if (maxPow2 > 0)
+            {
+                compareNextMaxValue = Math.Truncate(compareNextMaxValue / maxPow2);
+            }
+
+            var compareMinValue = minValueInt;
+            var compareNextMinValue = minValueInt;
+            if (minPow > 0)
+            {
+                compareMinValue = Math.Truncate(compareMinValue / minPow);
+            }
+            if (minPow2 > 0)
+            {
+                compareNextMinValue = Math.Truncate(compareNextMinValue / minPow2);
+            }
+
+            // MaxValue 整数部の範囲外
+            if (valueInt > compareMaxValue && valueInt > compareNextMaxValue)
+            {
+                return false;
+            }
+
+            // MinValue 整数部の範囲外
+            if (valueInt < compareMinValue && valueInt < compareNextMinValue)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 小数部が範囲内かどうかを取得する。
+        /// </summary>
+        /// <param name="value">入力値。</param>
+        /// <returns>true:範囲内, false:範囲外。</returns>
+        private bool hasRangeDecimalDigitsValue(decimal value)
+        {
+            // 小数部の桁数を求める
+            var valueDecimalDigitsLength = getDecimalDigitsLength(value);
+            var maxDecimalDigitsLength = getDecimalDigitsLength(MaxValue);
+            var minDecimalDigitsLength = getDecimalDigitsLength(MinValue);
+
+            // value の小数値より1桁多い比較を行う小数桁数を求める
+            var nextMaxDecimalDigitsLength = valueDecimalDigitsLength + 1 > maxDecimalDigitsLength ? maxDecimalDigitsLength : valueDecimalDigitsLength + 1;
+            var nextMinDecimalDigitsLength = valueDecimalDigitsLength + 1 > minDecimalDigitsLength ? minDecimalDigitsLength : valueDecimalDigitsLength + 1;
+
+            // 比較用の値を求める
+            var compareMaxValue = MetMath.Truncate(MaxValue, valueDecimalDigitsLength);
+            var compareNextMaxValue = MetMath.Truncate(MaxValue, nextMaxDecimalDigitsLength);
+            var compareMinValue = MetMath.Truncate(MinValue, valueDecimalDigitsLength);
+            var compareNextMinValue = MetMath.Truncate(MinValue, nextMinDecimalDigitsLength);
+
+            // MaxValue 小数部の範囲外
+            if (value > compareMaxValue && value > compareNextMaxValue)
+            {
+                return false;
+            }
+
+            // MinValue 小数部の範囲外
+            if (value < compareMinValue && value < compareNextMinValue)
             {
                 return false;
             }

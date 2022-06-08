@@ -135,10 +135,13 @@ namespace Metroit.Windows.Forms
             this.Visible = false;
 
             // 初回にコントロールを追加
-            if (!this.TargetControl.Parent.Controls.Contains(this))
+            if (this.TargetControl.Parent != null)
             {
-                this.TargetControl.Parent.Controls.Add(this);
-                this.InitializeMessageFiliter();
+                if (!this.TargetControl.Parent.Controls.Contains(this))
+                {
+                    this.TargetControl.Parent.Controls.Add(this);
+                    this.InitializeMessageFiliter();
+                }
             }
         }
 

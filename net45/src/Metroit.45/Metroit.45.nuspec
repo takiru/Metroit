@@ -11,10 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      changes:
-        - IConvertParameter
-        - FileConvertParameter
-            - Changed Params property from object [] to object.
+      bugs:
+        - MetMath
+            - In Round(), Ceiling(), Floor(), Truncate(), the error does not occur in the case of the maximum value of the type without decimal digits value.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

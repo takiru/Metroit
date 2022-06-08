@@ -435,7 +435,7 @@ namespace Metroit.Windows.Forms
         /// <returns>true:実行可能, false:実行不可能</returns>
         protected virtual bool CanAutoFocus()
         {
-            if (this.MaxLength != this.Text.Length)
+            if (this.MaxLength != this.Text.Length || Rollbacking)
             {
                 return false;
             }
@@ -1237,11 +1237,19 @@ namespace Metroit.Windows.Forms
         public virtual bool IsRollbacked => this.Text == this.enterText;
 
         /// <summary>
+        /// ロールバック中かどうかを取得または設定します。
+        /// </summary>
+        [Browsable(false)]
+        protected bool Rollbacking { get; set; } = false;
+
+        /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
         public virtual void Rollback()
         {
+            Rollbacking = true;
             this.Text = this.enterText;
+            Rollbacking = false;
         }
 
         /// <summary>

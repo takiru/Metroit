@@ -3608,6 +3608,16 @@
               ユーザーが数値のみを入力できるようにしたテキストエリアを提供します。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetNumericTextBoxTextValueChanged">
+            <summary>
+              Occurs when the value changes. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetNumericTextBoxTextValueChanged_ja">
+            <summary>
+              値が変更された時に発生します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.MetOther">
             <summary>
               Metroit Extension Other に類似しているローカライズされた文字列を検索します。
@@ -3897,11 +3907,11 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.MetNumericFormatTextBox_Leave(System.Object,System.EventArgs)">
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.OnLostFocus(System.EventArgs)">
             <summary>
             フォーカスを失った時、数値をフォーマット化する。
+            NOTE: NumericUpDown コントロールに準拠し、ウィンドウから離れた場合に値が確定されるようにする。
             </summary>
-            <param name="sender"></param>
             <param name="e"></param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetNumericTextBox.MetNumericFormatTextBox_TextChanged(System.Object,System.EventArgs)">
@@ -3924,6 +3934,17 @@
             </summary>
             <param name="sender">object オブジェクト。</param>
             <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetNumericTextBox.ValueChanged">
+            <summary>
+            値が変更された時に発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.OnValueChanged(System.EventArgs)">
+            <summary>
+            値が変更された時に走行します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
         </member>
         <member name="P:Metroit.Windows.Forms.MetNumericTextBox.TextAlign">
             <summary>
@@ -4143,12 +4164,34 @@
             <param name="value">入力値</param>
             <returns>true:有効, false:無効</returns>
         </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.getDecimalDigitsLength(System.Decimal)">
+            <summary>
+            入力値の小数桁数を取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>小数桁数。</returns>
+        </member>
         <member name="M:Metroit.Windows.Forms.MetNumericTextBox.isValidRangeValue(System.Decimal)">
             <summary>
             最小値 ≦ 入力値 ≦ 最大値かどうか。
+            NOTE: MinValue:10, MaxValue:100などの時、Value: 1とすることが可能なため、Leaveイベント内で、範囲外の値の場合は最小値 / 最大値に切り替える。
             </summary>
             <param name="value">入力値</param>
             <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.hasRangeIntValue(System.Decimal)">
+            <summary>
+            整数部が範囲内かどうかを取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>true:範囲内, false:範囲外。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericTextBox.hasRangeDecimalDigitsValue(System.Decimal)">
+            <summary>
+            小数部が範囲内かどうかを取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>true:範囲内, false:範囲外。</returns>
         </member>
         <member name="T:Metroit.Windows.Forms.MetTextBox">
             <summary>
@@ -4530,6 +4573,11 @@
             ロールバック済みかどうかを取得します。
             </summary>
             <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetTextBox.Rollbacking">
+            <summary>
+            ロールバック中かどうかを取得または設定します。
+            </summary>
         </member>
         <member name="M:Metroit.Windows.Forms.MetTextBox.Rollback">
             <summary>

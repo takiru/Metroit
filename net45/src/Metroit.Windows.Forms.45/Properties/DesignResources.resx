@@ -633,4 +633,10 @@
   <data name="ControlLineWidth" xml:space="preserve">
     <value>Set the width of the line to draw.</value>
   </data>
+  <data name="MetNumericTextBoxTextValueChanged" xml:space="preserve">
+    <value>Occurs when the value changes.</value>
+  </data>
+  <data name="MetNumericTextBoxTextValueChanged.ja" xml:space="preserve">
+    <value>値が変更された時に発生します。</value>
+  </data>
 </root>

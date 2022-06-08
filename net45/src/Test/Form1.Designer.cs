@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Metroit.Windows.Forms.NumericNegativePattern numericNegativePattern1 = new Metroit.Windows.Forms.NumericNegativePattern();
+            Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern1 = new Metroit.Windows.Forms.NumericPositivePattern();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -89,11 +91,18 @@
             this.metLabel2 = new Metroit.Windows.Forms.MetLabel();
             this.metLabel3 = new Metroit.Windows.Forms.MetLabel();
             this.button26 = new System.Windows.Forms.Button();
+            this.metNumericTextBox1 = new Metroit.Windows.Forms.MetNumericTextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.metTextBox11 = new Metroit.Windows.Forms.MetTextBox();
+            this.numericUpDownEx1 = new Test.NumericUpDownEx();
             this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
+            this.metLimitedTextBox1 = new Metroit.Windows.Forms.MetLimitedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -110,7 +119,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metNumericTextBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metLimitedTextBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -426,6 +440,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metLimitedTextBox1);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.metTextBox8);
@@ -666,7 +681,7 @@
             this.metTextBox10.CustomAutoCompleteBox.MatchPattern = Metroit.Windows.Forms.MatchPatternType.Partial;
             this.metTextBox10.CustomAutoCompleteBox.TargetControl = this.metTextBox10;
             this.metTextBox10.CustomAutoCompleteBox.ValueMember = "Value2";
-            this.metTextBox10.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Keys;
+            this.metTextBox10.CustomAutoCompleteMode = Metroit.Windows.Forms.CustomAutoCompleteMode.Suggest;
             this.metTextBox10.FocusBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.metTextBox10.FocusBorderColor = System.Drawing.Color.Red;
             this.metTextBox10.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -674,6 +689,7 @@
             this.metTextBox10.Name = "metTextBox10";
             this.metTextBox10.Size = new System.Drawing.Size(146, 31);
             this.metTextBox10.TabIndex = 28;
+            this.metTextBox10.Text = "ccc1";
             this.metTextBox10.Validating += new System.ComponentModel.CancelEventHandler(this.metTextBox10_Validating);
             // 
             // button16
@@ -900,6 +916,104 @@
             this.button26.UseVisualStyleBackColor = true;
             this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
+            // metNumericTextBox1
+            // 
+            this.metNumericTextBox1.AcceptNull = true;
+            this.metNumericTextBox1.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metNumericTextBox1.CustomAutoCompleteBox.TargetControl = this.metNumericTextBox1;
+            this.metNumericTextBox1.DecimalDigits = 3;
+            this.metNumericTextBox1.GroupSizes = new int[] {
+        3};
+            this.metNumericTextBox1.Location = new System.Drawing.Point(150, 402);
+            this.metNumericTextBox1.MaxValue = new decimal(new int[] {
+            11111,
+            0,
+            0,
+            -2147287040});
+            this.metNumericTextBox1.MinValue = new decimal(new int[] {
+            21211,
+            0,
+            0,
+            -2147287040});
+            this.metNumericTextBox1.Name = "metNumericTextBox1";
+            this.metNumericTextBox1.NegativePattern = numericNegativePattern1;
+            this.metNumericTextBox1.PositivePattern = numericPositivePattern1;
+            this.metNumericTextBox1.Size = new System.Drawing.Size(62, 25);
+            this.metNumericTextBox1.TabIndex = 50;
+            this.metNumericTextBox1.Value = new decimal(new int[] {
+            21211,
+            0,
+            0,
+            -2147287040});
+            this.metNumericTextBox1.ValueChanged += new System.EventHandler(this.metNumericTextBox1_ValueChanged);
+            this.metNumericTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metNumericTextBox1_TextChangeValidation);
+            this.metNumericTextBox1.TextChanged += new System.EventHandler(this.metNumericTextBox1_TextChanged);
+            this.metNumericTextBox1.Validating += new System.ComponentModel.CancelEventHandler(this.metNumericTextBox1_Validating);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(717, 24);
+            this.menuStrip1.TabIndex = 52;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 20);
+            this.toolStripMenuItem1.Text = "Get Value";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(66, 20);
+            this.toolStripMenuItem2.Text = "Set Value";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // metTextBox11
+            // 
+            this.metTextBox11.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metTextBox11.CustomAutoCompleteBox.TargetControl = this.metTextBox11;
+            this.metTextBox11.Location = new System.Drawing.Point(151, 279);
+            this.metTextBox11.MaxLength = 2;
+            this.metTextBox11.Name = "metTextBox11";
+            this.metTextBox11.Size = new System.Drawing.Size(61, 25);
+            this.metTextBox11.TabIndex = 54;
+            // 
+            // numericUpDownEx1
+            // 
+            this.numericUpDownEx1.DecimalPlaces = 3;
+            this.numericUpDownEx1.Location = new System.Drawing.Point(129, 322);
+            this.numericUpDownEx1.Maximum = new decimal(new int[] {
+            11111,
+            0,
+            0,
+            -2147287040});
+            this.numericUpDownEx1.Minimum = new decimal(new int[] {
+            21111,
+            0,
+            0,
+            -2147287040});
+            this.numericUpDownEx1.Name = "numericUpDownEx1";
+            this.numericUpDownEx1.Size = new System.Drawing.Size(83, 25);
+            this.numericUpDownEx1.TabIndex = 53;
+            this.numericUpDownEx1.Value = new decimal(new int[] {
+            11111,
+            0,
+            0,
+            -2147287040});
+            // 
             // dateTimePickerEx1
             // 
             this.dateTimePickerEx1.Location = new System.Drawing.Point(305, 107);
@@ -946,12 +1060,29 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
+            // metLimitedTextBox1
+            // 
+            // 
+            // 
+            // 
+            this.metLimitedTextBox1.CustomAutoCompleteBox.TargetControl = this.metLimitedTextBox1;
+            this.metLimitedTextBox1.CustomChars = new string[0];
+            this.metLimitedTextBox1.ExcludeChars = new string[0];
+            this.metLimitedTextBox1.FullSignSpecialChars = new string[0];
+            this.metLimitedTextBox1.Location = new System.Drawing.Point(13, 86);
+            this.metLimitedTextBox1.Name = "metLimitedTextBox1";
+            this.metLimitedTextBox1.Size = new System.Drawing.Size(100, 25);
+            this.metLimitedTextBox1.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(717, 451);
+            this.Controls.Add(this.metTextBox11);
+            this.Controls.Add(this.numericUpDownEx1);
+            this.Controls.Add(this.metNumericTextBox1);
             this.Controls.Add(this.button26);
             this.Controls.Add(this.metLabel3);
             this.Controls.Add(this.metLabel2);
@@ -985,6 +1116,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.EnterFocus = true;
             formEscapeBehavior1.ControlLeave = true;
             formEscapeBehavior1.ControlRollback = true;
@@ -992,6 +1124,7 @@
             this.EscPush = formEscapeBehavior1;
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.KeyPreview = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1016,7 +1149,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metNumericTextBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metLimitedTextBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1088,5 +1227,12 @@
         private Metroit.Windows.Forms.MetLabel metLabel2;
         private Metroit.Windows.Forms.MetLabel metLabel3;
         private System.Windows.Forms.Button button26;
+        private Metroit.Windows.Forms.MetNumericTextBox metNumericTextBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private NumericUpDownEx numericUpDownEx1;
+        private Metroit.Windows.Forms.MetTextBox metTextBox11;
+        private Metroit.Windows.Forms.MetLimitedTextBox metLimitedTextBox1;
     }
 }

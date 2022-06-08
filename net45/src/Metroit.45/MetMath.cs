@@ -19,6 +19,13 @@ namespace Metroit
         public static decimal Round(decimal d, int dec,
                 int roundingNum = 5, MidpointRounding mode = MidpointRounding.ToEven)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits(d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= (decimal)Math.Pow(10, dec);
@@ -55,6 +62,13 @@ namespace Metroit
         public static double Round(double value, int dec,
                 int roundingNum = 5, MidpointRounding mode = MidpointRounding.ToEven)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits((decimal)value)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return value;
+            }
+
             // 有効桁数まで整数化
             var workValue = value;
             workValue *= Math.Pow(10, dec);
@@ -87,6 +101,13 @@ namespace Metroit
         /// <returns>指定した小数部まで切り上げた数値。</returns>
         public static decimal Ceiling(decimal d, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits(d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= (decimal)Math.Pow(10, dec);
@@ -107,6 +128,13 @@ namespace Metroit
         /// <returns>指定した小数部まで切り上げた数値。</returns>
         public static double Ceiling(double a, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits((decimal)a)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return a;
+            }
+
             // 有効桁数まで整数化
             var workValue = a;
             workValue *= Math.Pow(10, dec);
@@ -127,6 +155,13 @@ namespace Metroit
         /// <returns>指定した小数部まで切り捨てた数値。</returns>
         public static decimal Floor(decimal d, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits(d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= (decimal)Math.Pow(10, dec);
@@ -147,6 +182,13 @@ namespace Metroit
         /// <returns>指定した小数部まで切り捨てた数値。</returns>
         public static double Floor(double d, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits((decimal)d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= Math.Pow(10, dec);
@@ -167,6 +209,13 @@ namespace Metroit
         /// <returns>指定した小数位まで丸めた数値。</returns>
         public static decimal Truncate(decimal d, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits(d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= (decimal)Math.Pow(10, dec);
@@ -187,6 +236,13 @@ namespace Metroit
         /// <returns>指定した小数位まで丸めた数値。</returns>
         public static double Truncate(double d, int dec = 0)
         {
+            // 小数部がない場合は処理しない
+            var decimalDigits = decimal.GetBits((decimal)d)[3] >> 16 & 0x00FF;
+            if (decimalDigits == 0)
+            {
+                return d;
+            }
+
             // 有効桁数まで整数化
             var workValue = d;
             workValue *= Math.Pow(10, dec);
