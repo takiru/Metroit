@@ -589,6 +589,16 @@ namespace Test
         {
             Console.WriteLine($"TextChangeValiation:Input={e.Input}, Before={e.Before}, After={e.After}");
         }
+
+        private void metTextBox11_TextChangeValidation(object sender, TextChangeValidationEventArgs e)
+        {
+            Console.WriteLine("kita");
+        }
+
+        private void metTextBox12_TextChangeValidation(object sender, TextChangeValidationEventArgs e)
+        {
+            Console.WriteLine("kita2");
+        }
     }
 
     class RowItem

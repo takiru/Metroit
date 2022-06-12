@@ -18,6 +18,10 @@ namespace Metroit.Windows.Forms
         /// </summary>
         DeleteKey,
         /// <summary>
+        /// Ctrl+Deleteキー。
+        /// </summary>
+        CtrlDeleteKey,
+        /// <summary>
         /// Ctrl+X, SelectionLength > 0 時のShift+Delete による切り取り。
         /// </summary>
         Cut

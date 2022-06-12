@@ -167,12 +167,44 @@ namespace Metroit.Windows.Forms
                 return;
             }
 
+            // Ctrl+Deleteキー
+            if (e.Control && e.KeyCode == Keys.Delete)
+            {
+                var afterText = this.createTextAfterInput(TypingKeyType.CtrlDeleteKey, null);
+                if (base.Text != afterText)
+                {
+                    // TextChangingイベントの発行
+                    var args = new TextChangeValidationEventArgs();
+                    args.Cancel = false;
+                    args.Before = base.Text;
+                    args.Input = "";
+                    args.After = afterText;
+                    this.OnTextChangeValidation(args);
+
+                    // キャンセルされたら入力を拒否する
+                    if (args.Cancel)
+                    {
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
+
             // Backspace, Ctrl+H, 文字選択なし時のShift+Deleteは同じ
+            // NOTE: 文字選択なし時のShift+Delete は、Windows 10 より前だとこちらの動作をする。
             if (e.KeyCode == Keys.Back ||
                 (e.Control && e.KeyCode == Keys.H) ||
-                (this.SelectionLength == 0 && e.Shift && e.KeyCode == Keys.Delete))
+                (Environment.OSVersion.Version.Major < 10 && this.SelectionLength == 0 && !e.Control && e.Shift && e.KeyCode == Keys.Delete))
             {
-                var afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, (char)Keys.Back);
+                string afterText;
+
+                // NOTE: Ctrl+Back は (char)127 が文字追加されるため
+                if (e.Control && e.KeyCode == Keys.Back)
+                {
+                    afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, (char)127);
+                } else
+                {
+                    afterText = this.createTextAfterInput(TypingKeyType.DefaultKeys, (char)Keys.Back);
+                }
                 if (base.Text != afterText)
                 {
                     // TextChangingイベントの発行
@@ -192,11 +224,11 @@ namespace Metroit.Windows.Forms
             }
 
             // Deleteキー
-            if (!e.Shift && e.KeyCode == Keys.Delete)
+            // NOTE: 文字選択なし時のShift+Delete は、Windows 10 だとこちらの動作をする。
+            if ((!e.Control && !e.Shift && e.KeyCode == Keys.Delete) ||
+                (Environment.OSVersion.Version.Major >= 10 && this.SelectionLength == 0 && !e.Control && e.Shift && e.KeyCode == Keys.Delete))
             {
-                // 入力後のテキストを取得
                 var afterText = this.createTextAfterInput(TypingKeyType.DeleteKey, null);
-
                 if (base.Text != afterText)
                 {
                     // TextChangingイベントの発行
@@ -268,6 +300,24 @@ namespace Metroit.Windows.Forms
                     return;
                 }
 
+                // NOTE: 入力後にIMEがONのまま、この3つの制御を行われると処理してはならないため
+                // Controlキーが押されたキー操作は処理しない
+                // NOTE: Multiline の時、Ctrl+Enter よるLineFeedは改行を行うキー操作なので制御対象とする
+                if (ModifierKeys == Keys.Control && !(Multiline && (Keys)e.KeyChar == Keys.LineFeed))
+                {
+                    return;
+                }
+                // BackspaceはKeyDownで制御済みのため処理しない
+                if ((Keys)e.KeyChar == Keys.Back)
+                {
+                    return;
+                }
+                // Multiline でない時、Enter操作は処理しない
+                if (!Multiline && (Keys)e.KeyChar == Keys.Enter)
+                {
+                    return;
+                }
+
                 var inputText = this.createInputString(e.KeyChar.ToString());
 
                 // 入力後のテキストを取得
@@ -315,12 +365,19 @@ namespace Metroit.Windows.Forms
             if (!isImeComposition)
             {
                 // Controlキーが押されたキー操作は処理しない
-                if (ModifierKeys == Keys.Control)
+                // NOTE: Multiline の時、Ctrl+Enter よるLineFeedは改行を行うキー操作なので制御対象とする
+                if (ModifierKeys == Keys.Control && !(Multiline && (Keys)e.KeyChar == Keys.LineFeed))
                 {
                     return;
                 }
                 // BackspaceはKeyDownで制御済みのため処理しない
                 if ((Keys)e.KeyChar == Keys.Back)
+                {
+                    return;
+                }
+
+                // Multiline でない時、Enter操作は処理しない
+                if (!Multiline && (Keys)e.KeyChar == Keys.Enter)
                 {
                     return;
                 }
@@ -390,6 +447,15 @@ namespace Metroit.Windows.Forms
                     if (footText != "" && this.SelectionLength == 0)
                     {
                         footText = footText.Substring(1, footText.Length - 1);
+                    }
+                    return headText + footText;
+
+                case TypingKeyType.CtrlDeleteKey:
+                    // 文字選択なしのCtrl+Deleteキー時
+                    // カーソルのある行の末尾までをカット
+                    if (footText != "" && this.SelectionLength == 0)
+                    {
+                        footText = footText.Substring(footText.Split(new char[] { '\r', '\n' })[0].Length);
                     }
                     return headText + footText;
 
