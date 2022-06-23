@@ -1625,5 +1625,41 @@ namespace Metroit.Windows.Forms.Properties {
                 return ResourceManager.GetString("PercentPattern.ja", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Occurs when the value changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ValueChanged {
+            get {
+                return ResourceManager.GetString("ValueChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   値が変更された時に発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ValueChanged_ja {
+            get {
+                return ResourceManager.GetString("ValueChanged.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   occurs when the value of the Value property is changing. You can verify the value and reject the change. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ValueChangeValidating {
+            get {
+                return ResourceManager.GetString("ValueChangeValidating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ValueChangeValidating_ja {
+            get {
+                return ResourceManager.GetString("ValueChangeValidating.ja", resourceCulture);
+            }
+        }
     }
 }

@@ -30,6 +30,8 @@
         {
             Metroit.Windows.Forms.NumericNegativePattern numericNegativePattern1 = new Metroit.Windows.Forms.NumericNegativePattern();
             Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern1 = new Metroit.Windows.Forms.NumericPositivePattern();
+            Metroit.Windows.Forms.NumericNegativePattern numericNegativePattern2 = new Metroit.Windows.Forms.NumericNegativePattern();
+            Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern2 = new Metroit.Windows.Forms.NumericPositivePattern();
             Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -98,6 +100,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.metTextBox12 = new Metroit.Windows.Forms.MetTextBox();
+            this.metNumericLabel1 = new Metroit.Windows.Forms.MetNumericLabel();
+            this.button27 = new System.Windows.Forms.Button();
             this.numericUpDownEx1 = new Test.NumericUpDownEx();
             this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
@@ -916,25 +920,26 @@
         3};
             this.metNumericTextBox1.Location = new System.Drawing.Point(150, 446);
             this.metNumericTextBox1.MaxValue = new decimal(new int[] {
-            11111,
+            99999,
             0,
             0,
-            -2147287040});
+            0});
             this.metNumericTextBox1.MinValue = new decimal(new int[] {
             21211,
             0,
             0,
             -2147287040});
+            this.metNumericTextBox1.Mode = Metroit.Windows.Forms.NumericFormatMode.Currency;
             this.metNumericTextBox1.Name = "metNumericTextBox1";
             this.metNumericTextBox1.NegativePattern = numericNegativePattern1;
             this.metNumericTextBox1.PositivePattern = numericPositivePattern1;
             this.metNumericTextBox1.Size = new System.Drawing.Size(62, 25);
             this.metNumericTextBox1.TabIndex = 50;
             this.metNumericTextBox1.Value = new decimal(new int[] {
-            21211,
+            1234,
             0,
             0,
-            -2147287040});
+            0});
             this.metNumericTextBox1.ValueChanged += new System.EventHandler(this.metNumericTextBox1_ValueChanged);
             this.metNumericTextBox1.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metNumericTextBox1_TextChangeValidation);
             this.metNumericTextBox1.TextChanged += new System.EventHandler(this.metNumericTextBox1_TextChanged);
@@ -947,7 +952,7 @@
             this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(717, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(996, 24);
             this.menuStrip1.TabIndex = 52;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1017,6 +1022,41 @@
             this.metTextBox12.TabIndex = 58;
             this.metTextBox12.Text = "abcdefg\r\nhijklnm";
             this.metTextBox12.TextChangeValidation += new Metroit.Windows.Forms.TextChangeValidationEventHandler(this.metTextBox12_TextChangeValidation);
+            // 
+            // metNumericLabel1
+            // 
+            this.metNumericLabel1.AcceptNull = true;
+            this.metNumericLabel1.GroupSizes = new int[] {
+        3};
+            this.metNumericLabel1.LinePosition = Metroit.Windows.Forms.LinePosition.Underline;
+            this.metNumericLabel1.Location = new System.Drawing.Point(42, 529);
+            this.metNumericLabel1.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.metNumericLabel1.Name = "metNumericLabel1";
+            this.metNumericLabel1.NegativePattern = numericNegativePattern2;
+            this.metNumericLabel1.PositivePattern = numericPositivePattern2;
+            this.metNumericLabel1.Size = new System.Drawing.Size(72, 27);
+            this.metNumericLabel1.TabIndex = 59;
+            this.metNumericLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.metNumericLabel1.Value = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.metNumericLabel1.ValueChangeValidating += new Metroit.Windows.Forms.ValueChangeValidatingEventHandler(this.metNumericLabel1_ValueChangeValidating);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(39, 503);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(75, 23);
+            this.button27.TabIndex = 60;
+            this.button27.Text = "button27";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
             // numericUpDownEx1
             // 
@@ -1092,7 +1132,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(717, 500);
+            this.ClientSize = new System.Drawing.Size(996, 637);
+            this.Controls.Add(this.button27);
+            this.Controls.Add(this.metNumericLabel1);
             this.Controls.Add(this.metTextBox12);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -1249,5 +1291,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private Metroit.Windows.Forms.MetTextBox metTextBox12;
+        private Metroit.Windows.Forms.MetNumericLabel metNumericLabel1;
+        private System.Windows.Forms.Button button27;
     }
 }

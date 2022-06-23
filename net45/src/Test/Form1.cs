@@ -599,6 +599,19 @@ namespace Test
         {
             Console.WriteLine("kita2");
         }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            metNumericLabel1.Value = 1000;
+        }
+
+        private void metNumericLabel1_ValueChangeValidating(object sender, ValueChangeValidatingEventArgs e)
+        {
+            if (e.After == 1000)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 
     class RowItem

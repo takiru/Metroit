@@ -108,6 +108,9 @@
     <Compile Include="MetLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MetNumericLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NumericNegativePatternType.cs" />
     <Compile Include="NumericNegativePattern.cs" />
     <Compile Include="ComponentModel\NumericNegativePatternControl.cs">
@@ -153,6 +156,8 @@
     </Compile>
     <Compile Include="ShortcutKeysEditorHack.cs" />
     <Compile Include="CandidateSelectedEventHandler.cs" />
+    <Compile Include="ValueChangeValidatingEventHandler.cs" />
+    <Compile Include="ValueChangeValidatingEventArgs.cs" />
     <Compile Include="TextChangeValidationEventHandler.cs" />
     <Compile Include="NumericFormatMode.cs" />
     <Compile Include="MetNumericTextBox.cs">

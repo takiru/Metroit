@@ -639,4 +639,16 @@
   <data name="MetNumericTextBoxTextValueChanged.ja" xml:space="preserve">
     <value>値が変更された時に発生します。</value>
   </data>
+  <data name="ValueChanged" xml:space="preserve">
+    <value>Occurs when the value changes.</value>
+  </data>
+  <data name="ValueChanged.ja" xml:space="preserve">
+    <value>値が変更された時に発生します。</value>
+  </data>
+  <data name="ValueChangeValidating" xml:space="preserve">
+    <value>occurs when the value of the Value property is changing. You can verify the value and reject the change.</value>
+  </data>
+  <data name="ValueChangeValidating.ja" xml:space="preserve">
+    <value>Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
+  </data>
 </root>
