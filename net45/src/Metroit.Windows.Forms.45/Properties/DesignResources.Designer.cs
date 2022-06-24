@@ -1015,6 +1015,60 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineByteLength {
+            get {
+                return ResourceManager.GetString("ControlMaxLineByteLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineByteLength_ja {
+            get {
+                return ResourceManager.GetString("ControlMaxLineByteLength.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specifies the number of lines that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineCount {
+            get {
+                return ResourceManager.GetString("ControlMaxLineCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   テキストボックスコントロールに入力できる行数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineCount_ja {
+            get {
+                return ResourceManager.GetString("ControlMaxLineCount.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specifies the maximum number of characters per line that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineLength {
+            get {
+                return ResourceManager.GetString("ControlMaxLineLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlMaxLineLength_ja {
+            get {
+                return ResourceManager.GetString("ControlMaxLineLength.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   It represents the maximum value that can be entered. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlMaxValue {

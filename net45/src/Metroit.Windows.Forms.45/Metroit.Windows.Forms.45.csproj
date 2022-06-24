@@ -108,6 +108,9 @@
     <Compile Include="MetLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MetMultilineLimitedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MetNumericLabel.cs">
       <SubType>Component</SubType>
     </Compile>

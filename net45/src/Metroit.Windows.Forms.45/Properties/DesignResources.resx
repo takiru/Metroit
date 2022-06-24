@@ -651,4 +651,22 @@
   <data name="ValueChangeValidating.ja" xml:space="preserve">
     <value>Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
   </data>
+  <data name="ControlMaxLineByteLength" xml:space="preserve">
+    <value>Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineByteLength.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxLineCount" xml:space="preserve">
+    <value>Specifies the number of lines that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineCount.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる行数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxLineLength" xml:space="preserve">
+    <value>Specifies the maximum number of characters per line that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineLength.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
 </root>

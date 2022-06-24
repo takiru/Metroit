@@ -46,43 +46,31 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// MetLimitedTextBox の新しいインスタンスを初期化します。
         /// </summary>
-        public MetLimitedTextBox() : base()
-        {
-            // イベントハンドラの追加
-            this.TextChangeValidation += MetLimitedTextBox_TextChangeValidation;
-        }
+        public MetLimitedTextBox() : base() { }
 
         #region イベント
 
         /// <summary>
         /// テキスト変更中、バイト数チェック、許可文字チェックを行います。
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e">入力値許可イベントオブジェクト。</param>
-        private void MetLimitedTextBox_TextChangeValidation(object sender, TextChangeValidationEventArgs e)
+        protected override void OnTextChangeValidation(TextChangeValidationEventArgs e)
         {
-            int afterByteCount = this.ByteEncoding.GetByteCount(e.After);
-
-            // 最大バイト長制御
-            if (this.MaxByteLength > 0 && afterByteCount > this.MaxByteLength)
+            // 文字の長さチェック
+            if (!this.IsValidTextLength(e.After))
             {
                 e.Cancel = true;
                 return;
-            }
-
-            // 複数行許可の場合は改行コードを除去した文字列をチェック対象とする
-            string checkValue = e.Input.ToString();
-            if (Multiline)
-            {
-                checkValue = checkValue.Replace(Environment.NewLine, "");
             }
 
             // 許可文字チェック
-            if (!this.isValidChars(checkValue))
+            if (!this.IsValidChars(e.Input))
             {
                 e.Cancel = true;
                 return;
             }
+
+            base.OnTextChangeValidation(e);
         }
 
         #endregion
@@ -117,14 +105,38 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 入力後の文字列の長さが有効かチェックします。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <returns>true:有効, false:無効。</returns>
+        protected virtual bool IsValidTextLength(string value)
+        {
+            // 最大バイト長制御
+            int byteCount = this.ByteEncoding.GetByteCount(value);
+            if (this.MaxByteLength > 0 && byteCount > this.MaxByteLength)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 入力された文字列を1文字ずつ有効文字かチェックします。
         /// </summary>
         /// <param name="inputText">入力文字列</param>
         /// <returns>true:有効, false:無効</returns>
-        private bool isValidChars(string inputText)
+        protected bool IsValidChars(string inputText)
         {
+            // 複数行許可の場合は改行コードを除去した文字列をチェック対象とする
+            var checkValue = inputText;
+            if (Multiline)
+            {
+                checkValue = checkValue.Replace(Environment.NewLine, "").Replace("\r", "");
+            }
+
             CharacterValidationStatus result;
-            foreach (var singleChar in inputText.ToString())
+            foreach (var singleChar in checkValue)
             {
                 // すべて許可
                 result = this.validateAllChar(singleChar);
@@ -610,6 +622,8 @@ namespace Metroit.Windows.Forms
 
         #region 追加プロパティ
 
+        private int maxByteLength = 0;
+
         /// <summary>
         /// エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。
         /// </summary>
@@ -620,9 +634,20 @@ namespace Metroit.Windows.Forms
         /// </remarks>
         [Browsable(true)]
         [MetCategory("MetBehavior")]
-        [DefaultValue(typeof(uint), "0")]
+        [DefaultValue(0)]
         [MetDescription("ControlMaxByteLength")]
-        public uint MaxByteLength { get; set; } = 0;
+        public int MaxByteLength
+        {
+            get => maxByteLength;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(MaxByteLength));
+                }
+                maxByteLength = value;
+            }
+        }
 
         /// <summary>
         /// 最大バイト数制限を実施する文字エンコーディングを指定します。

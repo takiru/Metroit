@@ -102,12 +102,14 @@
             this.metTextBox12 = new Metroit.Windows.Forms.MetTextBox();
             this.metNumericLabel1 = new Metroit.Windows.Forms.MetNumericLabel();
             this.button27 = new System.Windows.Forms.Button();
+            this.metMultilineLimitedTextBox1 = new Metroit.Windows.Forms.MetMultilineLimitedTextBox();
             this.numericUpDownEx1 = new Test.NumericUpDownEx();
             this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
+            this.metTextBox13 = new Metroit.Windows.Forms.MetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -129,8 +131,10 @@
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metMultilineLimitedTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -1058,6 +1062,24 @@
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
+            // metMultilineLimitedTextBox1
+            // 
+            this.metMultilineLimitedTextBox1.AcceptsChar = Metroit.Windows.Forms.AcceptsCharType.HalfNumeric;
+            this.metMultilineLimitedTextBox1.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metMultilineLimitedTextBox1.CustomAutoCompleteBox.TargetControl = this.metMultilineLimitedTextBox1;
+            this.metMultilineLimitedTextBox1.CustomChars = new string[0];
+            this.metMultilineLimitedTextBox1.ExcludeChars = new string[0];
+            this.metMultilineLimitedTextBox1.FullSignSpecialChars = new string[0];
+            this.metMultilineLimitedTextBox1.Location = new System.Drawing.Point(39, 569);
+            this.metMultilineLimitedTextBox1.MaxLineCount = 2;
+            this.metMultilineLimitedTextBox1.MaxLineLength = 5;
+            this.metMultilineLimitedTextBox1.Name = "metMultilineLimitedTextBox1";
+            this.metMultilineLimitedTextBox1.Size = new System.Drawing.Size(100, 50);
+            this.metMultilineLimitedTextBox1.TabIndex = 61;
+            // 
             // numericUpDownEx1
             // 
             this.numericUpDownEx1.DecimalPlaces = 3;
@@ -1127,12 +1149,27 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
+            // metTextBox13
+            // 
+            this.metTextBox13.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metTextBox13.CustomAutoCompleteBox.TargetControl = this.metTextBox13;
+            this.metTextBox13.Location = new System.Drawing.Point(39, 626);
+            this.metTextBox13.MaxLength = 5;
+            this.metTextBox13.Name = "metTextBox13";
+            this.metTextBox13.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox13.TabIndex = 62;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(996, 637);
+            this.ClientSize = new System.Drawing.Size(996, 714);
+            this.Controls.Add(this.metTextBox13);
+            this.Controls.Add(this.metMultilineLimitedTextBox1);
             this.Controls.Add(this.button27);
             this.Controls.Add(this.metNumericLabel1);
             this.Controls.Add(this.metTextBox12);
@@ -1210,8 +1247,10 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metMultilineLimitedTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1293,5 +1332,7 @@
         private Metroit.Windows.Forms.MetTextBox metTextBox12;
         private Metroit.Windows.Forms.MetNumericLabel metNumericLabel1;
         private System.Windows.Forms.Button button27;
+        private Metroit.Windows.Forms.MetMultilineLimitedTextBox metMultilineLimitedTextBox1;
+        private Metroit.Windows.Forms.MetTextBox metTextBox13;
     }
 }

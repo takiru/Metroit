@@ -37,6 +37,12 @@ namespace Metroit.Windows.Forms.Extensions
             // その他コントロール
             if (forward)
             {
+                // NOTE: テキストエリアで CtrL+V を行われた後に処理されると、 "^{TAB}" となり、Tab文字が入力されてしまうため、
+                //       強制的に Ctrl を一度送信して回避する。
+                if (Control.ModifierKeys == Keys.Control)
+                {
+                    SendKeys.Send("^");
+                }
                 SendKeys.Send("{TAB}");
             }
             else

@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -611,6 +612,10 @@ namespace Test
             {
                 e.Cancel = true;
             }
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
         }
     }
 
