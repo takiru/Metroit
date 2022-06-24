@@ -1776,6 +1776,270 @@
             線を描画する。
             </summary>
         </member>
+        <member name="T:Metroit.Windows.Forms.MetMultilineLimitedTextBox">
+            <summary>
+            複数行の入力を許可するテキストエリアを提供します。
+            </summary>
+            <remarks>
+            [拡張機能]<br />
+            　・1行単位の文字数/バイト数の制限。<br />
+            　・最大行数の制限。
+            </remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetMultilineLimitedTextBox.#ctor">
+            <summary>
+            MetLimitedTextBox の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.Multiline">
+            <summary>
+            テキストボックスコントールは複数行の入力が可能です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.MaxLength">
+            <summary>
+            テキストボックスコントロールの文字数制限は無制限です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.MaxByteLength">
+            <summary>
+            テキストボックスコントロールのバイト数制限は無制限です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.MaxLineLength">
+            <summary>
+            テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.MaxLineByteLength">
+            <summary>
+            テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetMultilineLimitedTextBox.MaxLineCount">
+            <summary>
+            テキストボックスコントロールに入力できる行数を指定します。0を指定した場合、無制限となります。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetMultilineLimitedTextBox.IsValidTextLength(System.String)">
+            <summary>
+            入力後の文字列の長さが有効かチェックします。
+            </summary>
+            <param name="value">文字列。</param>
+            <returns>true:有効, false:無効。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetMultilineLimitedTextBox.CanAutoFocus">
+            <summary>
+            バイト数を考慮して、オートフォーカスを行うか確認します。
+            </summary>
+            <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
+        </member>
+        <member name="T:Metroit.Windows.Forms.MetNumericLabel">
+            <summary>
+            ユーザーが数値のみを出力できるようにしたラベルエリアを提供します。
+            </summary>
+            <remarks>
+            ラベルとしての機能をいくつか拡張し、利用することができます。<br />
+            [拡張機能]<br />
+            　・入力可能範囲の設定。<br />
+            　・null許可制御。<br />
+            　・入力値の表示フォーマット設定。<br />
+            　・マイナス値の文字色設定。<br />
+            </remarks>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.#ctor">
+            <summary>
+            MetNumericLabel の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.Text">
+            <summary>
+            現在のテキストを取得します。数値の取得または設定は、Valueプロパティを利用してください。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.NegativePattern_PatternChanged(System.Object,System.EventArgs)">
+            <summary>
+            マイナス記号表現が変更された時、表示を再描画する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.PositivePattern_PatternChanged(System.Object,System.EventArgs)">
+            <summary>
+            プラス記号表現が変更された時、表示を再描画する。
+            </summary>
+            <param name="sender">object オブジェクト。</param>
+            <param name="e">EventArgs オブジェクト。</param>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetNumericLabel.ValueChangeValidating">
+            <summary>
+            Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。
+            </summary>
+        </member>
+        <member name="E:Metroit.Windows.Forms.MetNumericLabel.ValueChanged">
+            <summary>
+            値が変更された時に発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.OnValueChanged(System.EventArgs)">
+            <summary>
+            値が変更された時に走行します。
+            </summary>
+            <param name="e">イベントオブジェクト。</param>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.ForeColor">
+            <summary>
+            コントロールの前景色を取得または特定のプロパティによって強制的に前景色を設定します。
+            意図的に前景色の変更が必要な場合のみ利用してください。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.Value">
+            <summary>
+            現在の数値を取得または設定します。
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.Mode">
+            <summary>
+            表示される形式を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.PositiveForeColor">
+            <summary>
+            マイナス時の文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.NegativeForeColor">
+            <summary>
+            マイナス時の文字色を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.AcceptNegative">
+            <summary>
+            マイナス値の入力許可を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.MaxValue">
+            <summary>
+            入力可能な最大値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.MinValue">
+            <summary>
+            入力可能な最小値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.DecimalDigits">
+            <summary>
+            入力可能な小数桁数の取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.AcceptNull">
+            <summary>
+            NULLの入力を受け入れるかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.DecimalSeparator">
+            <summary>
+            整数部と小数部の区切り文字を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.GroupSeparator">
+            <summary>
+            整数部の桁区切り文字を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.GroupSizes">
+            <summary>
+            整数部の区切り桁数を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.PositivePattern">
+            <summary>
+            正数の時の記号表現を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.NegativePattern">
+            <summary>
+            負数の時の記号表現を設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.CurrencySymbol">
+            <summary>
+            通貨表現の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.PercentSymbol">
+            <summary>
+            パーセント表現の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.MetNumericLabel.NegativeSign">
+            <summary>
+            負数の時の記号を取得または設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.createFormattedText(System.Nullable{System.Decimal})">
+            <summary>
+            数値データを記号表現に対応したフォーマットに変換する
+            </summary>
+            <param name="value">数値データ</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.OnValueChangeValidating(Metroit.Windows.Forms.ValueChangeValidatingEventArgs)">
+            <summary>
+            テキスト変更中、許可文字チェックを行います。
+            </summary>
+            <param name="e">入力値過程オブジェクト</param>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.ChangeDisplayColor">
+            <summary>
+            コントロールのアクティブ状態に応じた表示色に変更する。
+            </summary>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.isValidNegative(System.Decimal)">
+            <summary>
+            入力値にマイナス許可があるかどうか。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:許可あり, false:許可なし</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.isValidDecimalDigits(System.Decimal)">
+            <summary>
+            入力値が有効小数桁数かどうか。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.getDecimalDigitsLength(System.Decimal)">
+            <summary>
+            入力値の小数桁数を取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>小数桁数。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.isValidRangeValue(System.Decimal)">
+            <summary>
+            最小値 ≦ 入力値 ≦ 最大値かどうか。
+            NOTE: MinValue:10, MaxValue:100などの時、Value: 1とすることが可能なため、Leaveイベント内で、範囲外の値の場合は最小値 / 最大値に切り替える。
+            </summary>
+            <param name="value">入力値</param>
+            <returns>true:有効, false:無効</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.hasRangeIntValue(System.Decimal)">
+            <summary>
+            整数部が範囲内かどうかを取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>true:範囲内, false:範囲外。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetNumericLabel.hasRangeDecimalDigitsValue(System.Decimal)">
+            <summary>
+            小数部が範囲内かどうかを取得する。
+            </summary>
+            <param name="value">入力値。</param>
+            <returns>true:範囲内, false:範囲外。</returns>
+        </member>
         <member name="T:Metroit.Windows.Forms.NumericNegativePatternType">
             <summary>
             数値のマイナス値の表現パターンを定義します。
@@ -2568,11 +2832,10 @@
             MetLimitedTextBox の新しいインスタンスを初期化します。
             </summary>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.MetLimitedTextBox_TextChangeValidation(System.Object,Metroit.Windows.Forms.TextChangeValidationEventArgs)">
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.OnTextChangeValidation(Metroit.Windows.Forms.TextChangeValidationEventArgs)">
             <summary>
             テキスト変更中、バイト数チェック、許可文字チェックを行います。
             </summary>
-            <param name="sender"></param>
             <param name="e">入力値許可イベントオブジェクト。</param>
         </member>
         <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.CanAutoFocus">
@@ -2581,7 +2844,14 @@
             </summary>
             <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
         </member>
-        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.isValidChars(System.String)">
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.IsValidTextLength(System.String)">
+            <summary>
+            入力後の文字列の長さが有効かチェックします。
+            </summary>
+            <param name="value">文字列。</param>
+            <returns>true:有効, false:無効。</returns>
+        </member>
+        <member name="M:Metroit.Windows.Forms.MetLimitedTextBox.IsValidChars(System.String)">
             <summary>
             入力された文字列を1文字ずつ有効文字かチェックします。
             </summary>
@@ -3388,6 +3658,36 @@
               エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineByteLength">
+            <summary>
+              Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineByteLength_ja">
+            <summary>
+              テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineCount">
+            <summary>
+              Specifies the number of lines that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineCount_ja">
+            <summary>
+              テキストボックスコントロールに入力できる行数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineLength">
+            <summary>
+              Specifies the maximum number of characters per line that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxLineLength_ja">
+            <summary>
+              テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ControlMaxValue">
             <summary>
               It represents the maximum value that can be entered. に類似しているローカライズされた文字列を検索します。
@@ -3728,6 +4028,26 @@
               パーセント表記時 に類似しているローカライズされた文字列を検索します。
             </summary>
         </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ValueChanged">
+            <summary>
+              Occurs when the value changes. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ValueChanged_ja">
+            <summary>
+              値が変更された時に発生します。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ValueChangeValidating">
+            <summary>
+              occurs when the value of the Value property is changing. You can verify the value and reject the change. に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.Properties.DesignResources.ValueChangeValidating_ja">
+            <summary>
+              Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。 に類似しているローカライズされた文字列を検索します。
+            </summary>
+        </member>
         <member name="T:Metroit.Windows.Forms.Properties.ExceptionResources">
             <summary>
               ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
@@ -3846,6 +4166,33 @@
             </summary>
             <param name="sender">実行発生オブジェクト</param>
             <param name="e">値変更イベントデータ</param>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ValueChangeValidatingEventHandler">
+            <summary>
+            ValueChangeValidating イベントを発生させる為のデリゲート
+            </summary>
+            <param name="sender">実行発生オブジェクト</param>
+            <param name="e">値変更イベントデータ</param>
+        </member>
+        <member name="T:Metroit.Windows.Forms.ValueChangeValidatingEventArgs">
+            <summary>
+            キャンセルできるイベントと値変更時の過程のデータを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ValueChangeValidatingEventArgs.Input">
+            <summary>
+            入力された値です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ValueChangeValidatingEventArgs.Before">
+            <summary>
+            入力値を許可する前の値です。
+            </summary>
+        </member>
+        <member name="P:Metroit.Windows.Forms.ValueChangeValidatingEventArgs.After">
+            <summary>
+            入力値を許可した時の値です。
+            </summary>
         </member>
         <member name="T:Metroit.Windows.Forms.TextChangeValidationEventHandler">
             <summary>
@@ -4788,6 +5135,11 @@
         <member name="F:Metroit.Windows.Forms.TypingKeyType.DeleteKey">
             <summary>
             Deleteキー。
+            </summary>
+        </member>
+        <member name="F:Metroit.Windows.Forms.TypingKeyType.CtrlDeleteKey">
+            <summary>
+            Ctrl+Deleteキー。
             </summary>
         </member>
         <member name="F:Metroit.Windows.Forms.TypingKeyType.Cut">

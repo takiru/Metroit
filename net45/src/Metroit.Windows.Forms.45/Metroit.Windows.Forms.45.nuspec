@@ -13,16 +13,17 @@
     <releaseNotes>
       bugs:
         - MetTextBox
-            - When rolled back to the maximum number of digits by Rollback(), the focus is not moved by the AutoFocus property.
-        - MetNumericTextBox
-            - For example, if MaxValue is 100 and MinValue is 10, you can enter 9.
+            - I caught the operation of Ctrl + Delete.
       changes:
-        - MetNumericTextBox
-            - The value is fixed when the focus is lost.
-            - When the Value property is acquired without losing focus like the execution of ToolStripMenuItem, the value is fixed.
+        - MetTextBox
+            - Shift + Delete now changes the control depending on the OS version.
+              You need to have an app.manifest to mention supportedOS.
+              https://docs.microsoft.com/ja-jp/windows/win32/sysinfo/targeting-your-application-at-windows-8-1
       add:
-        - MetNumericTextBox
-            - Added ValueChanged event.
+        - MetNumericLabel
+            - Add Control.
+        - MetMultilineLimitedTextBox
+            - Add Control.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
