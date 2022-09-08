@@ -12,18 +12,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       bugs:
-        - MetTextBox
-            - I caught the operation of Ctrl + Delete.
-      changes:
-        - MetTextBox
-            - Shift + Delete now changes the control depending on the OS version.
-              You need to have an app.manifest to mention supportedOS.
-              https://docs.microsoft.com/ja-jp/windows/win32/sysinfo/targeting-your-application-at-windows-8-1
-      add:
-        - MetNumericLabel
-            - Add Control.
-        - MetMultilineLimitedTextBox
-            - Add Control.
+        - MetForm
+            - EscPush could not be changed when inheriting multiple levels.
+              Reset or set all to false to revert to inherited values. When inheriting multiple levels, subclasses cannot set everything to false.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

@@ -57,6 +57,7 @@ namespace Metroit.Windows.Forms
         /// ESCキーが押された時の動作を取得または設定します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetBehavior")]
         [MetDescription("ControlEscPush")]
         public FormEscapeBehavior EscPush { get; set; } = new FormEscapeBehavior();
@@ -75,9 +76,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void ResetEscPush()
         {
-            this.EscPush.ControlRollback = false;
-            this.EscPush.ControlLeave = false;
-            this.EscPush.FormClose = false;
+            this.EscPush = new FormEscapeBehavior();
         }
 
         /// <summary>

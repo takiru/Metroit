@@ -9,7 +9,7 @@
 |Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
 |Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.4.4.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
 |Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.2.6.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.4.6.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.4.6.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
 
 # Metroit #
 ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
