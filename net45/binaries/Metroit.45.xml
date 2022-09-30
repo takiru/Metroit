@@ -4,6 +4,156 @@
         <name>Metroit.45</name>
     </assembly>
     <members>
+        <member name="T:Metroit.Collections.Generic.IItemRemovedKnownList`1">
+            <summary>
+            削除されたアイテムを把握可能なインターフェースを提供します。
+            </summary>
+            <typeparam name="T">StateKnownItemBase を有する型。</typeparam>
+        </member>
+        <member name="P:Metroit.Collections.Generic.IItemRemovedKnownList`1.Removed">
+            <summary>
+            削除されたリストデータ を取得します。
+            </summary>
+        </member>
+        <member name="T:Metroit.Collections.Generic.ItemRemovedKnownList`1">
+            <summary>
+            削除されたアイテムを把握可能なリストを提供します。
+            </summary>
+            <typeparam name="T">StateKnownItemBase を有する型。</typeparam>
+        </member>
+        <member name="P:Metroit.Collections.Generic.ItemRemovedKnownList`1.Removed">
+            <summary>
+            削除されたリストデータを取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.Generic.ItemRemovedKnownList`1.Metroit#Collections#IItemRemovedKnownList#Removed">
+            <summary>
+            削除されたリストデータ を取得します。
+            外部からの利用は不要です。
+            </summary>
+        </member>
+        <member name="F:Metroit.Collections.Generic.ItemRemovedKnownList`1.removedItem">
+            <summary>
+            削除指示を受けたリストデータ。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.ItemRemovedKnownList`1.#ctor">
+            <summary>
+            新しいインスタンスを生成します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.ItemRemovedKnownList`1.RemoveItem(System.Int32)">
+            <summary>
+            リストが削除された時に必ず走行する。削除されたオブジェクトを把握する。
+            </summary>
+            <param name="index">インデックス。</param>
+        </member>
+        <member name="M:Metroit.Collections.Generic.ItemRemovedKnownList`1.OnListChanged(System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            リセットされたら削除リストをクリア、リストが削除されたら削除されたオブジェクトを削除リストに追加する。
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:Metroit.Collections.Generic.LimitedList`1">
+            <summary>
+            管理上限を有する List を提供します。
+            </summary>
+            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor">
+            <summary>
+            LimitedList クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor(System.Int32)">
+            <summary>
+            LimitedList クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.MaxSize">
+            <summary>
+            管理可能な最大インスタンス数を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.LastAccessItem">
+            <summary>
+            直前で操作した値を取得します。
+            </summary>
+            <returns>直前で操作した値。</returns>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedList`1.Item(System.Int32)">
+            <summary>指定されたインデックスの値を取得または設定します。</summary>
+            <param name="index">インデックス。</param>
+            <returns>指定されたインデックスの値。</returns>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.Add(`0)">
+            <summary>指定した値をリストに追加します。</summary>
+            <param name="value">追加する要素の値。</param>
+            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedList`1.CanAdd">
+            <summary>
+            追加が可能かどうかを取得します。
+            </summary>
+            <returns>true:追加可能, false:追加不可。</returns>
+        </member>
+        <member name="T:Metroit.Collections.Generic.LimitedDictionary`2">
+            <summary>
+            管理上限を有する Dictionary を提供します。
+            </summary>
+            <typeparam name="TKey">キーオブジェクト。</typeparam>
+            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor">
+            <summary>
+            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor(System.Int32)">
+            <summary>
+            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.MaxSize">
+            <summary>
+            管理可能な最大インスタンス数を取得します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.LastAccessItem">
+            <summary>
+            直前で操作した値を取得します。
+            </summary>
+            <returns>直前で操作した値。</returns>
+        </member>
+        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.Item(`0)">
+            <summary>指定されたキーに関連付けられている値を取得または設定します。</summary>
+            <param name="key">取得または設定する値のキー。</param>
+            <returns>指定されたキーに関連付けられている値。</returns>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.Add(`0,`1)">
+            <summary>指定したキーと値をディクショナリに追加します。</summary>
+            <param name="key">追加する要素のキー。</param>
+            <param name="value">追加する要素の値。</param>
+            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
+        </member>
+        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.CanAdd">
+            <summary>
+            追加が可能かどうかを取得します。
+            </summary>
+            <returns>true:追加可能, false:追加不可。</returns>
+        </member>
+        <member name="T:Metroit.Collections.IItemRemovedKnownList">
+            <summary>
+            削除されたアイテムを把握可能なインターフェースを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.Collections.IItemRemovedKnownList.Removed">
+            <summary>
+            削除されたリストデータ を取得します。
+            </summary>
+        </member>
         <member name="T:Metroit.IO.ReactiveFileTarget">
             <summary>
             反応変換を行うターゲットとなるファイルを定義します。
@@ -403,6 +553,96 @@
             <summary>
             任意の変換パラメーターを取得または設定します。
             </summary>
+        </member>
+        <member name="T:Metroit.ItemState">
+            <summary>
+            データの状態を提供します。
+            </summary>
+        </member>
+        <member name="F:Metroit.ItemState.New">
+            <summary>
+            新規行 を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.ItemState.NewModified">
+            <summary>
+            新規修正行 を示します。
+            新規行の値を変更した時にこのステータスになります。
+            </summary>
+        </member>
+        <member name="F:Metroit.ItemState.NotModified">
+            <summary>
+            未修正行 を示します。
+            </summary>
+        </member>
+        <member name="F:Metroit.ItemState.Modified">
+            <summary>
+            修正行 を示します。
+            未修正行の値を変更した時にこのステータスになります。
+            </summary>
+        </member>
+        <member name="T:Metroit.StateKnownItemBase">
+            <summary>
+            値の変更状態を有するアイテムを提供します。
+            </summary>
+        </member>
+        <member name="P:Metroit.StateKnownItemBase.State">
+            <summary>
+            アイテムの状態を取得します。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.#ctor">
+            <summary>
+            新しいインスタンスを生成します。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.SetInitialData">
+            <summary>
+            初期データを設定します。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.NewItem">
+            <summary>
+            アイテムを新規データ扱いにします。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.NewModifiedItem">
+            <summary>
+            アイテムを新規編集データ扱いにします。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.ModifedItem">
+            <summary>
+            アイテムを修正データ扱いにします。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.NotMidifiedItem">
+            <summary>
+            アイテムを未修正データ扱いにします。
+            </summary>
+        </member>
+        <member name="E:Metroit.StateKnownItemBase.PropertyChanged">
+            <summary>
+            変更の通知が行われた時に発生します。
+            </summary>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            値の設定を行い、変更を通知します。
+            </summary>
+            <typeparam name="T">設定するプロパティ情報</typeparam>
+            <param name="field">値を設定する変数。</param>
+            <param name="value">値。</param>
+            <param name="propertyName">プロパティ名。</param>
+            <returns>true:値の設定を行った, false:値の設定を行わなかった。</returns>
+        </member>
+        <member name="M:Metroit.StateKnownItemBase.NotifyChangedValue``1(System.String,``0)">
+            <summary>
+            変更された値を通知します。
+            </summary>
+            <typeparam name="T">設定するプロパティ情報</typeparam>
+            <param name="propertyName">プロパティ名。</param>
+            <param name="value">値。</param>
         </member>
         <member name="T:Metroit.Win32.Api.DisplayDeviceReference.WinDef.Rect">
             <summary>
@@ -1648,96 +1888,6 @@
             <summary>
             ユーザーがカレンダーの次または前に移動しても、選択は変更されません。これにより、ユーザーは表示されているよりも広い範囲を選択できます。
             </summary>
-        </member>
-        <member name="T:Metroit.Collections.Generic.LimitedList`1">
-            <summary>
-            管理上限を有する List を提供します。
-            </summary>
-            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor">
-            <summary>
-            LimitedList クラスの新しいインスタンスを初期化します。
-            </summary>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedList`1.#ctor(System.Int32)">
-            <summary>
-            LimitedList クラスの新しいインスタンスを初期化します。
-            </summary>
-            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedList`1.MaxSize">
-            <summary>
-            管理可能な最大インスタンス数を取得します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedList`1.LastAccessItem">
-            <summary>
-            直前で操作した値を取得します。
-            </summary>
-            <returns>直前で操作した値。</returns>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedList`1.Item(System.Int32)">
-            <summary>指定されたインデックスの値を取得または設定します。</summary>
-            <param name="index">インデックス。</param>
-            <returns>指定されたインデックスの値。</returns>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedList`1.Add(`0)">
-            <summary>指定した値をリストに追加します。</summary>
-            <param name="value">追加する要素の値。</param>
-            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedList`1.CanAdd">
-            <summary>
-            追加が可能かどうかを取得します。
-            </summary>
-            <returns>true:追加可能, false:追加不可。</returns>
-        </member>
-        <member name="T:Metroit.Collections.Generic.LimitedDictionary`2">
-            <summary>
-            管理上限を有する Dictionary を提供します。
-            </summary>
-            <typeparam name="TKey">キーオブジェクト。</typeparam>
-            <typeparam name="TValue">管理を行うオブジェクト。</typeparam>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor">
-            <summary>
-            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
-            </summary>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.#ctor(System.Int32)">
-            <summary>
-            UpperLimitDictionary クラスの新しいインスタンスを初期化します。
-            </summary>
-            <param name="maxSize">管理する最大数。0を指定すると無制限になります。</param>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.MaxSize">
-            <summary>
-            管理可能な最大インスタンス数を取得します。
-            </summary>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.LastAccessItem">
-            <summary>
-            直前で操作した値を取得します。
-            </summary>
-            <returns>直前で操作した値。</returns>
-        </member>
-        <member name="P:Metroit.Collections.Generic.LimitedDictionary`2.Item(`0)">
-            <summary>指定されたキーに関連付けられている値を取得または設定します。</summary>
-            <param name="key">取得または設定する値のキー。</param>
-            <returns>指定されたキーに関連付けられている値。</returns>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.Add(`0,`1)">
-            <summary>指定したキーと値をディクショナリに追加します。</summary>
-            <param name="key">追加する要素のキー。</param>
-            <param name="value">追加する要素の値。</param>
-            <exception cref="T:System.ArgumentException">管理上限に達したため、追加できません。</exception>
-        </member>
-        <member name="M:Metroit.Collections.Generic.LimitedDictionary`2.CanAdd">
-            <summary>
-            追加が可能かどうかを取得します。
-            </summary>
-            <returns>true:追加可能, false:追加不可。</returns>
         </member>
         <member name="T:Metroit.ExceptionResources">
             <summary>

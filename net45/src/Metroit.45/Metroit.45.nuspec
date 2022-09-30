@@ -11,9 +11,11 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        - MetMath
-            - In Round(), Ceiling(), Floor(), Truncate(), the error does not occur in the case of the maximum value of the type without decimal digits value.
+      add:
+        - StateKnownItemBase
+            - You can know the state of the object when the value changes.
+        - ItemRemovedKnownList
+            - When an item is removed, you can keep track of which item was removed by the Removed property.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

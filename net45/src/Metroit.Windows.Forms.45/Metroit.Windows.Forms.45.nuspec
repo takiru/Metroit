@@ -11,15 +11,13 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      bugs:
-        - MetForm
-            - EscPush could not be changed when inheriting multiple levels.
-              Reset or set all to false to revert to inherited values. When inheriting multiple levels, subclasses cannot set everything to false.
+      others:
+        - Changed support for Metroit.Windows.Forms.45 1.5.0.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>
     <dependencies>
-      <dependency id="Metroit.45" version="1.4.4.1" />
+      <dependency id="Metroit.45" version="1.5.0" />
     </dependencies>
   </metadata>
 </package>
