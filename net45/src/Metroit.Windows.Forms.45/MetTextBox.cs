@@ -694,6 +694,9 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        // Text プロパティをコードから変更したかどうか
+        private bool changeTextProp = false;
+
         /// <summary>
         /// コントロールに関連付けられたテキストです。
         /// </summary>
@@ -722,7 +725,9 @@ namespace Metroit.Windows.Forms
                             string.Format(ExceptionResources.GetString("InvalidValue"), inputText), inputText);
                 }
 
+                changeTextProp = true;
                 base.Text = value;
+                changeTextProp = false;
 
                 if (this.IsDesignMode())
                 {
@@ -1479,6 +1484,12 @@ namespace Metroit.Windows.Forms
 
             // オートコンプリート指定がある場合はオートフォーカスしない
             if (this.AutoCompleteMode != AutoCompleteMode.None)
+            {
+                return;
+            }
+
+            // Text プロパティの直接変更時オートフォーカスしない
+            if (changeTextProp)
             {
                 return;
             }

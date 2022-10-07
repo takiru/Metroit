@@ -617,6 +617,11 @@ namespace Test
         private void button28_Click(object sender, EventArgs e)
         {
         }
+
+        private void button28_Click_1(object sender, EventArgs e)
+        {
+            metTextBox14.Text = "NNNNN";
+        }
     }
 
     class RowItem

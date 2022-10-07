@@ -11,8 +11,9 @@
     <projectUrl>https://github.com/takiru/Metroit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      others:
-        - Changed support for Metroit.Windows.Forms.45 1.5.0.
+      bugs:
+        - MetTextBox
+          - When AutoFocus = true, changing the Text property works.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

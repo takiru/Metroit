@@ -32,7 +32,6 @@
             Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern1 = new Metroit.Windows.Forms.NumericPositivePattern();
             Metroit.Windows.Forms.NumericNegativePattern numericNegativePattern2 = new Metroit.Windows.Forms.NumericNegativePattern();
             Metroit.Windows.Forms.NumericPositivePattern numericPositivePattern2 = new Metroit.Windows.Forms.NumericPositivePattern();
-            Metroit.Windows.Forms.FormEscapeBehavior formEscapeBehavior1 = new Metroit.Windows.Forms.FormEscapeBehavior();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -110,6 +109,8 @@
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
             this.metTextBox13 = new Metroit.Windows.Forms.MetTextBox();
+            this.metTextBox14 = new Metroit.Windows.Forms.MetTextBox();
+            this.button28 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
@@ -135,6 +136,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -361,6 +363,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button28);
+            this.groupBox1.Controls.Add(this.metTextBox14);
             this.groupBox1.Controls.Add(this.button18);
             this.groupBox1.Controls.Add(this.metTextBox1);
             this.groupBox1.Controls.Add(this.button15);
@@ -1162,6 +1166,29 @@
             this.metTextBox13.Size = new System.Drawing.Size(100, 25);
             this.metTextBox13.TabIndex = 62;
             // 
+            // metTextBox14
+            // 
+            this.metTextBox14.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metTextBox14.CustomAutoCompleteBox.TargetControl = this.metTextBox14;
+            this.metTextBox14.Location = new System.Drawing.Point(390, 128);
+            this.metTextBox14.MaxLength = 5;
+            this.metTextBox14.Name = "metTextBox14";
+            this.metTextBox14.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox14.TabIndex = 28;
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(309, 125);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(75, 23);
+            this.button28.TabIndex = 29;
+            this.button28.Text = "値変更";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -1210,10 +1237,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
-            formEscapeBehavior1.ControlLeave = true;
-            formEscapeBehavior1.ControlRollback = true;
-            formEscapeBehavior1.FormClose = true;
-            this.EscPush = formEscapeBehavior1;
+            this.EscPush.ControlLeave = true;
+            this.EscPush.ControlRollback = true;
+            this.EscPush.FormClose = true;
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -1251,6 +1277,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1334,5 +1361,7 @@
         private System.Windows.Forms.Button button27;
         private Metroit.Windows.Forms.MetMultilineLimitedTextBox metMultilineLimitedTextBox1;
         private Metroit.Windows.Forms.MetTextBox metTextBox13;
+        private System.Windows.Forms.Button button28;
+        private Metroit.Windows.Forms.MetTextBox metTextBox14;
     }
 }
