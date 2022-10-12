@@ -80,7 +80,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         ~MetTextBox()
         {
-            this.Dispose(true);
+            this.Dispose(false);
         }
 
         #region イベント
@@ -1956,6 +1956,11 @@ namespace Metroit.Windows.Forms
         /// <param name="disposing">マネージリソースの破棄を行うかどうか。</param>
         protected override void Dispose(bool disposing)
         {
+            if (IsDisposed)
+            {
+                return;
+            }
+
             if (disposing)
             {
                 if (this.label != null)
