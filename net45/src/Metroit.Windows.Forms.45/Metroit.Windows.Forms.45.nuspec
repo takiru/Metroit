@@ -13,7 +13,7 @@
     <releaseNotes>
       bugs:
         - MetTextBox
-          - Incorrect finalization causes an exception when the form in which the control resides closes the owner after being opened modeless with an owner.
+          - When CustomAutoCompleteMode was set to Suggest or KeysSuggest and Text was changed from code, a pull-down of suggestions was displayed.
     </releaseNotes>
     <copyright>Copyright 2017 Takeru Yamaguchi.</copyright>
     <tags>Metroit winforms converter database textbox datetimepicker</tags>

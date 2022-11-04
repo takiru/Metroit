@@ -622,6 +622,11 @@ namespace Test
         {
             metTextBox14.Text = "NNNNN";
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            metTextBox1.Text = "AAA COLUMN2";
+        }
     }
 
     class RowItem

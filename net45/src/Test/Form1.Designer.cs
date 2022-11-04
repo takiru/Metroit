@@ -50,6 +50,9 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.metTextBox14 = new Metroit.Windows.Forms.MetTextBox();
             this.button18 = new System.Windows.Forms.Button();
             this.metTextBox1 = new Metroit.Windows.Forms.MetTextBox();
             this.button15 = new System.Windows.Forms.Button();
@@ -102,21 +105,20 @@
             this.metNumericLabel1 = new Metroit.Windows.Forms.MetNumericLabel();
             this.button27 = new System.Windows.Forms.Button();
             this.metMultilineLimitedTextBox1 = new Metroit.Windows.Forms.MetMultilineLimitedTextBox();
+            this.metTextBox13 = new Metroit.Windows.Forms.MetTextBox();
             this.numericUpDownEx1 = new Test.NumericUpDownEx();
             this.dateTimePickerEx1 = new Test.DateTimePickerEx();
             this.textBoxEx4 = new Test.TextBoxEx();
             this.textBoxEx3 = new Test.TextBoxEx();
             this.textBoxEx2 = new Test.TextBoxEx();
             this.textBoxEx1 = new Test.TextBoxEx();
-            this.metTextBox13 = new Metroit.Windows.Forms.MetTextBox();
-            this.metTextBox14 = new Metroit.Windows.Forms.MetTextBox();
-            this.button28 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metDateTimePicker1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metLimitedTextBox1)).BeginInit();
@@ -133,10 +135,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metMultilineLimitedTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -363,6 +364,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button29);
             this.groupBox1.Controls.Add(this.button28);
             this.groupBox1.Controls.Add(this.metTextBox14);
             this.groupBox1.Controls.Add(this.button18);
@@ -380,6 +382,39 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // button29
+            // 
+            this.button29.Location = new System.Drawing.Point(248, 25);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(75, 23);
+            this.button29.TabIndex = 30;
+            this.button29.Text = "button29";
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(309, 125);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(75, 23);
+            this.button28.TabIndex = 29;
+            this.button28.Text = "値変更";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click_1);
+            // 
+            // metTextBox14
+            // 
+            this.metTextBox14.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metTextBox14.CustomAutoCompleteBox.TargetControl = this.metTextBox14;
+            this.metTextBox14.Location = new System.Drawing.Point(390, 128);
+            this.metTextBox14.MaxLength = 5;
+            this.metTextBox14.Name = "metTextBox14";
+            this.metTextBox14.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox14.TabIndex = 28;
             // 
             // button18
             // 
@@ -1084,6 +1119,19 @@
             this.metMultilineLimitedTextBox1.Size = new System.Drawing.Size(100, 50);
             this.metMultilineLimitedTextBox1.TabIndex = 61;
             // 
+            // metTextBox13
+            // 
+            this.metTextBox13.AutoFocus = true;
+            // 
+            // 
+            // 
+            this.metTextBox13.CustomAutoCompleteBox.TargetControl = this.metTextBox13;
+            this.metTextBox13.Location = new System.Drawing.Point(39, 626);
+            this.metTextBox13.MaxLength = 5;
+            this.metTextBox13.Name = "metTextBox13";
+            this.metTextBox13.Size = new System.Drawing.Size(100, 25);
+            this.metTextBox13.TabIndex = 62;
+            // 
             // numericUpDownEx1
             // 
             this.numericUpDownEx1.DecimalPlaces = 3;
@@ -1153,42 +1201,6 @@
             this.textBoxEx1.Size = new System.Drawing.Size(117, 18);
             this.textBoxEx1.TabIndex = 20;
             // 
-            // metTextBox13
-            // 
-            this.metTextBox13.AutoFocus = true;
-            // 
-            // 
-            // 
-            this.metTextBox13.CustomAutoCompleteBox.TargetControl = this.metTextBox13;
-            this.metTextBox13.Location = new System.Drawing.Point(39, 626);
-            this.metTextBox13.MaxLength = 5;
-            this.metTextBox13.Name = "metTextBox13";
-            this.metTextBox13.Size = new System.Drawing.Size(100, 25);
-            this.metTextBox13.TabIndex = 62;
-            // 
-            // metTextBox14
-            // 
-            this.metTextBox14.AutoFocus = true;
-            // 
-            // 
-            // 
-            this.metTextBox14.CustomAutoCompleteBox.TargetControl = this.metTextBox14;
-            this.metTextBox14.Location = new System.Drawing.Point(390, 128);
-            this.metTextBox14.MaxLength = 5;
-            this.metTextBox14.Name = "metTextBox14";
-            this.metTextBox14.Size = new System.Drawing.Size(100, 25);
-            this.metTextBox14.TabIndex = 28;
-            // 
-            // button28
-            // 
-            this.button28.Location = new System.Drawing.Point(309, 125);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(75, 23);
-            this.button28.TabIndex = 29;
-            this.button28.Text = "値変更";
-            this.button28.UseVisualStyleBackColor = true;
-            this.button28.Click += new System.EventHandler(this.button28_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -1256,6 +1268,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1274,10 +1287,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metTextBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metMultilineLimitedTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEx1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimePickerEx1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metTextBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metTextBox14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1363,5 +1375,6 @@
         private Metroit.Windows.Forms.MetTextBox metTextBox13;
         private System.Windows.Forms.Button button28;
         private Metroit.Windows.Forms.MetTextBox metTextBox14;
+        private System.Windows.Forms.Button button29;
     }
 }

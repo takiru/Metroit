@@ -1437,8 +1437,8 @@ namespace Metroit.Windows.Forms
                 {
                     this.CustomAutoCompleteBox.SelectItem(this.Text);
 
-                    // 入力値によって選択が決定されていない場合のみサジェストを開く
-                    if (this.CustomAutoCompleteBox.SelectedItem == null)
+                    // Text プロパティの直接変更ではなく、入力値によって選択が決定されていない場合のみサジェストを開く
+                    if (this.CustomAutoCompleteBox.SelectedItem == null && !changeTextProp)
                     {
                         this.OpenSuggest();
                     }
