@@ -2,18 +2,25 @@
 
 [チュートリアル](Tutorial/TUTORIAL.ja.md "チュートリアル")
 
-|Module                 |NuGet                                                                                                                       |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
-|Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
-|Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.2.6.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Module                |NuGet | Target Framework |
+|----------------------|------|------------------|
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net462` |
+
+旧バージョン  
+
+|Module                 |NuGet | Target Framework |
+|-----------------------|------|------------------|
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/) | `net20` |
+|Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/) | `net20` |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/) | `net20` |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.5.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/) | `net45` |
+|Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.2.6-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/) | `net45` |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/) | `net45` |
 
 # Metroit #
 ロジックをサポートするいくつかのクラス、およびWinFormsの拡張機能コントロール。  
-ターゲットフレームワークは.NET 2.0, 4.5です。  
 WinFormsを利用した開発を行っている環境において、いくつかの手助けをします。  
 よくありそうな動作を抜き出すことにより、面倒な実装を省きます。  
 よく困ることや、WPF、EntityFrameworkの利用に制限がある時に、少しだけ問題をクリアにしてくれるかもしれません。
@@ -193,6 +200,8 @@ using (var conn = pf.CreateConnection()) {
     conn.Open();
 }
 ```
+
+    MetDbProviderFactories.GetFactory() は、netstandard20 では利用できません。
 
 #### クエリを発行する ####
 DbConnection.CreateQueryCommand()は、自動的にBindByName()を実施します。
@@ -450,3 +459,58 @@ WinForms アプリケーションの作成を助けるライブラリです。
         ReadOnly は、TextBox に置き換えます。
         ReadOnlyLabel は、 Label に置き換えます。
         DropDownStyle=DropDownList の時、DrawModeはOwnerDrawFixedまたはOwnerDrawVariableでなければなりません。
+
+#### 開閉アイコンを表現するボタン ####
+- MetExpanderButton  
+  開閉アイコンを表現します。
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    |State          |開閉状態。 |
+    |Svg            |SVGイメージ。 |
+    |Image          |通常画像イメージ。 |
+    |IconStyle      |利用するイメージのスタイル。 |
+    |ShowIcon       |アイコンを表示するかどうか。 |
+    |ShowLine       |区切り線を表示するかどうか。 |
+    |Text           |タイトル。 |
+    |LineColor      |区切り線の色。 |
+    |LineThickness  |区切り線の太さ。 |
+    |HoverForeColor |マウスが表域内に入った時のタイトルの色。 |
+
+  - イベント  
+
+    |名前               |意味                             |
+    |-------------------|---------------------------------|
+    |ExpandStateChanged |開閉状態が変更した時に発生する。 |
+
+#### 開閉アイコンを表現するボタンを有するパネル ####
+- MetExpanderPanel  
+  開閉アイコンを表現してパネルの開閉を可能にする。
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    |State          |開閉状態。 |
+    |Svg            |SVGイメージ。 |
+    |Image          |通常画像イメージ。 |
+    |IconStyle      |利用するイメージのスタイル。 |
+    |ShowIcon       |アイコンを表示するかどうか。 |
+    |ShowLine       |区切り線を表示するかどうか。 |
+    |Text           |タイトル。 |
+    |LineColor      |区切り線の色。 |
+    |LineThickness  |区切り線の太さ。 |
+    |HoverForeColor |マウスが表域内に入った時のタイトルの色。 |
+    |HeaderFont |ヘッダーテキストのフォント。 |
+    |HeaderForeColor |ヘッダーテキストの文字色。 |
+    |HeaderPadding |ヘッダーのパディング。 |
+    |UseAnimation |開閉にアニメーションを利用するかどうか。 |
+    |Acceleration |アニメーションの加速度。 |
+    |CollapsedHeaderLineVisibled |閉じた時に区切り線を表示するかどうか。 |
+
+  - メソッド
+
+    |名前           |意味 |
+    |---------------|-----|
+    |Expand(bool)   |パネルを開く。 |
+    |Collapse(bool) |パネルを閉じる。 |

@@ -1,0 +1,888 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptsAll" xml:space="preserve">
+    <value>Allow All</value>
+  </data>
+  <data name="AcceptsAll.ja" xml:space="preserve">
+    <value>全て許可</value>
+  </data>
+  <data name="AcceptsAlpha" xml:space="preserve">
+    <value>Alpha</value>
+  </data>
+  <data name="AcceptsAlpha.ja" xml:space="preserve">
+    <value>英字</value>
+  </data>
+  <data name="AcceptsFull" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="AcceptsFull.ja" xml:space="preserve">
+    <value>全角</value>
+  </data>
+  <data name="AcceptsHalf" xml:space="preserve">
+    <value>Half</value>
+  </data>
+  <data name="AcceptsHalf.ja" xml:space="preserve">
+    <value>半角</value>
+  </data>
+  <data name="AcceptsNum" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="AcceptsNum.ja" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="AcceptsSign" xml:space="preserve">
+    <value>Sign</value>
+  </data>
+  <data name="AcceptsSign.ja" xml:space="preserve">
+    <value>記号</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxClosed" xml:space="preserve">
+    <value>This event occurs when the dropdown closes.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxClosed.ja" xml:space="preserve">
+    <value>ドロップダウンが閉じた時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpened" xml:space="preserve">
+    <value>This event occurs when a dropdown is opened.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpened.ja" xml:space="preserve">
+    <value>ドロップダウンが開いた時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpening" xml:space="preserve">
+    <value>This event occurs before the dropdown opens.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateBoxOpening.ja" xml:space="preserve">
+    <value>ドロップダウンが開く前に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateSelected" xml:space="preserve">
+    <value>This is an event that occurs when candidate values are selected.</value>
+  </data>
+  <data name="AutoCompleteBoxCandidateSelected.ja" xml:space="preserve">
+    <value>候補の値が選択された時に発生するイベントです。</value>
+  </data>
+  <data name="AutoCompleteBoxCompareOptions" xml:space="preserve">
+    <value>Gets or sets the option to decide candidate narrowing down.</value>
+  </data>
+  <data name="AutoCompleteBoxCompareOptions.ja" xml:space="preserve">
+    <value>候補の絞込みに判断するオプションを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxDataBindings" xml:space="preserve">
+    <value>Data binding of the control. You can bind a DataSource.</value>
+  </data>
+  <data name="AutoCompleteBoxDataBindings.ja" xml:space="preserve">
+    <value>コントロールのデータバインドです。DataSource をバインドすることができます。</value>
+  </data>
+  <data name="AutoCompleteBoxDataSource" xml:space="preserve">
+    <value>Gets or sets the data source including all data used for autocomplete.</value>
+  </data>
+  <data name="AutoCompleteBoxDataSource.ja" xml:space="preserve">
+    <value>オートコンプリートに利用される全データを含むデータソースを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxDisplayMember" xml:space="preserve">
+    <value>Indicates the properties to display for items in this control.</value>
+  </data>
+  <data name="AutoCompleteBoxDisplayMember.ja" xml:space="preserve">
+    <value>このコントロール内の項目に対して表示するプロパティを示します。</value>
+  </data>
+  <data name="AutoCompleteBoxMatchPattern" xml:space="preserve">
+    <value>Get or set a pattern to narrow down candidates.</value>
+  </data>
+  <data name="AutoCompleteBoxMatchPattern.ja" xml:space="preserve">
+    <value>候補の絞込みを行うパターンを取得または設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxMaxDropDownItems" xml:space="preserve">
+    <value>Set the number of items to display in Autocomplete.</value>
+  </data>
+  <data name="AutoCompleteBoxMaxDropDownItems.ja" xml:space="preserve">
+    <value>オートコンプリートの表示するアイテム数を設定します。</value>
+  </data>
+  <data name="AutoCompleteBoxValueMember" xml:space="preserve">
+    <value>Indicates the property to use as the actual value for the item in the control.</value>
+  </data>
+  <data name="AutoCompleteBoxValueMember.ja" xml:space="preserve">
+    <value>コントロール内のアイテムに対して、実際の値として使用するプロパティを示します。</value>
+  </data>
+  <data name="ControlAcceptNegative" xml:space="preserve">
+    <value>Indicates whether input of a negative value is permitted.</value>
+  </data>
+  <data name="ControlAcceptNegative.ja" xml:space="preserve">
+    <value>マイナス値の入力を許可するかどうかを表します。</value>
+  </data>
+  <data name="ControlAcceptNull" xml:space="preserve">
+    <value>Gets / sets whether or not to accept NULL input.</value>
+  </data>
+  <data name="ControlAcceptNull.ja" xml:space="preserve">
+    <value>NULLの入力を受け入れるかどうかを取得または設定します。</value>
+  </data>
+  <data name="ControlAcceptsChar" xml:space="preserve">
+    <value>Sets the type of input permitted characters.</value>
+  </data>
+  <data name="ControlAcceptsChar.ja" xml:space="preserve">
+    <value>入力許可文字の種類を設定します。</value>
+  </data>
+  <data name="ControlAutoFocus" xml:space="preserve">
+    <value>Sets whether to shift the focus to the next control when it is done up to the maximum input.</value>
+  </data>
+  <data name="ControlAutoFocus.ja" xml:space="preserve">
+    <value>最大入力まで行われた時、次のコントロールへフォーカスを遷移するかを設定します。</value>
+  </data>
+  <data name="ControlBaseBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the control.</value>
+  </data>
+  <data name="ControlBaseBackColor.ja" xml:space="preserve">
+    <value>コントロールの背景色を取得または設定します。</value>
+  </data>
+  <data name="ControlBaseBorderColor" xml:space="preserve">
+    <value>Gets or sets the frame color of the control.</value>
+  </data>
+  <data name="ControlBaseBorderColor.ja" xml:space="preserve">
+    <value>コントロールの枠色を取得または設定します。</value>
+  </data>
+  <data name="ControlBaseForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the control.</value>
+  </data>
+  <data name="ControlBaseForeColor.ja" xml:space="preserve">
+    <value>コントロールの前景色を取得または設定します。</value>
+  </data>
+  <data name="ControlByteEncoding" xml:space="preserve">
+    <value>Specify the character encoding that implements the maximum byte limit.</value>
+  </data>
+  <data name="ControlByteEncoding.ja" xml:space="preserve">
+    <value>最大バイト数制限を実施する文字エンコーディングを指定します。</value>
+  </data>
+  <data name="ControlCurrencySymbol" xml:space="preserve">
+    <value>Represents the symbol when currency is expressed.</value>
+  </data>
+  <data name="ControlCurrencySymbol.ja" xml:space="preserve">
+    <value>通貨表現の時の記号を表します。</value>
+  </data>
+  <data name="ControlCustomChars" xml:space="preserve">
+    <value>When the character type is custom, set a single character to be entered on a line-by-line basis.</value>
+  </data>
+  <data name="ControlCustomChars.ja" xml:space="preserve">
+    <value>文字種類がカスタムな場合に、入力を許可する単一文字を1行単位で設定します。</value>
+  </data>
+  <data name="ControlDateTimeMinCalendarType" xml:space="preserve">
+    <value>Get or set the date type that can be selected in the calendar control and the date type that can be actually set.</value>
+  </data>
+  <data name="ControlDateTimeMinCalendarType.ja" xml:space="preserve">
+    <value>カレンダーコントロールで選べる年月日タイプと、実際に設定できる年月日タイプを取得または設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowToday" xml:space="preserve">
+    <value>Sets whether to display the "Today" date at the bottom of the calendar control.</value>
+  </data>
+  <data name="ControlDateTimeShowToday.ja" xml:space="preserve">
+    <value>カレンダーコントロールの下部に「今日」の日付を表示するかどうかを設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowTodayCircle" xml:space="preserve">
+    <value>Sets whether to circle the "Today" date in the calendar control.</value>
+  </data>
+  <data name="ControlDateTimeShowTodayCircle.ja" xml:space="preserve">
+    <value>カレンダーコントロールの「今日」の日付を丸で囲むかどうかを設定します。</value>
+  </data>
+  <data name="ControlDateTimeShowTorailingDates" xml:space="preserve">
+    <value>In the calendar control, set whether the dates of the previous month and the next month are displayed in the calendar of the current month.</value>
+  </data>
+  <data name="ControlDateTimeShowTorailingDates.ja" xml:space="preserve">
+    <value>カレンダーコントロールで、前月と翌月の日付は、当月のカレンダーには表示するかどうかを設定します。</value>
+  </data>
+  <data name="ControlDateTimeValue" xml:space="preserve">
+    <value>The current date and time value for this control.</value>
+  </data>
+  <data name="ControlDateTimeValue.ja" xml:space="preserve">
+    <value>このコントロールの現在の日付/時間の値です。</value>
+  </data>
+  <data name="ControlDecimalDigits" xml:space="preserve">
+    <value>Represents the number of decimal places that can be entered.</value>
+  </data>
+  <data name="ControlDecimalDigits.ja" xml:space="preserve">
+    <value>入力可能な小数桁数を表します。</value>
+  </data>
+  <data name="ControlDecimalSeparator" xml:space="preserve">
+    <value>Represents the delimiter between the integer part and the decimal part.</value>
+  </data>
+  <data name="ControlDecimalSeparator.ja" xml:space="preserve">
+    <value>整数部と小数部の区切り文字を表します。</value>
+  </data>
+  <data name="ControlEnterFocus" xml:space="preserve">
+    <value>Set whether to shift the focus when the Enter key is pressed.</value>
+  </data>
+  <data name="ControlEnterFocus.ja" xml:space="preserve">
+    <value>Enterキーが押された時にフォーカスを遷移するかを設定します。</value>
+  </data>
+  <data name="ControlError" xml:space="preserve">
+    <value>Gets or sets whether the control is error.</value>
+  </data>
+  <data name="ControlError.ja" xml:space="preserve">
+    <value>コントロールがエラーかどうかを取得または設定します。</value>
+  </data>
+  <data name="ControlErrorBorderColor" xml:space="preserve">
+    <value>Gets or sets the frame color of control at error.</value>
+  </data>
+  <data name="ControlErrorBorderColor.ja" xml:space="preserve">
+    <value>エラー時のコントロールの枠色を取得または設定します。</value>
+  </data>
+  <data name="ControlEscPush" xml:space="preserve">
+    <value>Set the behavior when the ESC key is pressed.</value>
+  </data>
+  <data name="ControlEscPush.ja" xml:space="preserve">
+    <value>ESCキーが押された時の振る舞いを設定します。</value>
+  </data>
+  <data name="ControlExcludeChars" xml:space="preserve">
+    <value>Set a single character to reject input on a line-by-line basis.</value>
+  </data>
+  <data name="ControlExcludeChars.ja" xml:space="preserve">
+    <value>入力を拒否する単一文字を1行単位で設定します。</value>
+  </data>
+  <data name="ControlFocusBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusBackColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの背景色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusBorderColor" xml:space="preserve">
+    <value>Gets or sets the frame color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusBorderColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの枠色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the control at focus.</value>
+  </data>
+  <data name="ControlFocusForeColor.ja" xml:space="preserve">
+    <value>フォーカス時のコントロールの前景色を取得または設定します。</value>
+  </data>
+  <data name="ControlFocusSelect" xml:space="preserve">
+    <value>Sets whether to invert text when getting focus.</value>
+  </data>
+  <data name="ControlFocusSelect.ja" xml:space="preserve">
+    <value>フォーカスを得た時、テキストを反転させるかを設定します。</value>
+  </data>
+  <data name="ControlFormClose" xml:space="preserve">
+    <value>Close the form.</value>
+  </data>
+  <data name="ControlFormClose.ja" xml:space="preserve">
+    <value>フォームを閉じます。</value>
+  </data>
+  <data name="ControlFullSignSpecialChars" xml:space="preserve">
+    <value>Separately specify the double-byte symbols to be set on a line-by-line basis.</value>
+  </data>
+  <data name="ControlFullSignSpecialChars.ja" xml:space="preserve">
+    <value>個別で許可する全角記号を1行単位で設定します。</value>
+  </data>
+  <data name="ControlGroupSeparator" xml:space="preserve">
+    <value>Represents a digit separator character in the integer part.</value>
+  </data>
+  <data name="ControlGroupSeparator.ja" xml:space="preserve">
+    <value>整数部の桁区切り文字を表します。</value>
+  </data>
+  <data name="ControlGroupSizes" xml:space="preserve">
+    <value>Represents the number of delimited digits in the integer part.</value>
+  </data>
+  <data name="ControlGroupSizes.ja" xml:space="preserve">
+    <value>整数部の区切り桁数を表します。</value>
+  </data>
+  <data name="ControlLeave" xml:space="preserve">
+    <value>Deactivate the control.</value>
+  </data>
+  <data name="ControlLeave.ja" xml:space="preserve">
+    <value>コントロールを非アクティブにします。</value>
+  </data>
+  <data name="ControlLineColor" xml:space="preserve">
+    <value>Set the color of the line to draw.</value>
+  </data>
+  <data name="ControlLineColor.ja" xml:space="preserve">
+    <value>描画する線の色を設定します。</value>
+  </data>
+  <data name="ControlLineDashStyle" xml:space="preserve">
+    <value>Set the type of line to draw.</value>
+  </data>
+  <data name="ControlLineDashStyle.ja" xml:space="preserve">
+    <value>描画する線の種類を設定します。</value>
+  </data>
+  <data name="ControlLinePosition" xml:space="preserve">
+    <value>Set the position of the line to draw.</value>
+  </data>
+  <data name="ControlLinePosition.ja" xml:space="preserve">
+    <value>描画する線の位置を設定します。</value>
+  </data>
+  <data name="ControlLineWidth" xml:space="preserve">
+    <value>Set the width of the line to draw.</value>
+  </data>
+  <data name="ControlLineWidth.ja" xml:space="preserve">
+    <value>描画する線の幅を設定します。</value>
+  </data>
+  <data name="ControlMaxByteLength" xml:space="preserve">
+    <value>Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited.</value>
+  </data>
+  <data name="ControlMaxByteLength.ja" xml:space="preserve">
+    <value>エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxLineByteLength" xml:space="preserve">
+    <value>Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineByteLength.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxLineCount" xml:space="preserve">
+    <value>Specifies the number of lines that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineCount.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる行数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxLineLength" xml:space="preserve">
+    <value>Specifies the maximum number of characters per line that can be entered in the text box control. If you specify 0, there is no limit.</value>
+  </data>
+  <data name="ControlMaxLineLength.ja" xml:space="preserve">
+    <value>テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。</value>
+  </data>
+  <data name="ControlMaxValue" xml:space="preserve">
+    <value>It represents the maximum value that can be entered.</value>
+  </data>
+  <data name="ControlMaxValue.ja" xml:space="preserve">
+    <value>入力可能な最大値を表します。</value>
+  </data>
+  <data name="ControlMetForm" xml:space="preserve">
+    <value>We extend the standard Form and provide a form with some new functions.</value>
+  </data>
+  <data name="ControlMetForm.ja" xml:space="preserve">
+    <value>標準Formを拡張し、新たにいくつかの機能を設けたフォームを提供します。</value>
+  </data>
+  <data name="ControlMinValue" xml:space="preserve">
+    <value>It represents the minimum value that can be entered.</value>
+  </data>
+  <data name="ControlMinValue.ja" xml:space="preserve">
+    <value>入力可能な最小値を表します。</value>
+  </data>
+  <data name="ControlMode" xml:space="preserve">
+    <value>It represents the format displayed when there is no focus.</value>
+  </data>
+  <data name="ControlMode.ja" xml:space="preserve">
+    <value>フォーカスがない時に表示される形式を表します。</value>
+  </data>
+  <data name="ControlNegativeForeColor" xml:space="preserve">
+    <value>It represents the character color at minus.</value>
+  </data>
+  <data name="ControlNegativeForeColor.ja" xml:space="preserve">
+    <value>マイナス時の文字色を表します。</value>
+  </data>
+  <data name="ControlNegativePattern" xml:space="preserve">
+    <value>Represents a symbolic representation when it is a negative number.</value>
+  </data>
+  <data name="ControlNegativePattern.ja" xml:space="preserve">
+    <value>負数の時の記号表現を表します。</value>
+  </data>
+  <data name="ControlNegativeSign" xml:space="preserve">
+    <value>Represents the sign when it is a negative number.</value>
+  </data>
+  <data name="ControlNegativeSign.ja" xml:space="preserve">
+    <value>負数の時の記号を表します。</value>
+  </data>
+  <data name="ControlPercentSymbol" xml:space="preserve">
+    <value>Represents the symbol for percent representation.</value>
+  </data>
+  <data name="ControlPercentSymbol.ja" xml:space="preserve">
+    <value>パーセント表現の時の記号を表します。</value>
+  </data>
+  <data name="ControlPositivePattern" xml:space="preserve">
+    <value>Represents a symbolic representation when it is a positive number.</value>
+  </data>
+  <data name="ControlPositivePattern.ja" xml:space="preserve">
+    <value>正数の時の記号表現を表します。</value>
+  </data>
+  <data name="ControlReadOnly" xml:space="preserve">
+    <value>Replace the control with a text box.</value>
+  </data>
+  <data name="ControlReadOnly.ja" xml:space="preserve">
+    <value>コントロールをテキストボックスで置き換えます。</value>
+  </data>
+  <data name="ControlReadOnlyLabel" xml:space="preserve">
+    <value>Replace the control with a label.</value>
+  </data>
+  <data name="ControlReadOnlyLabel.ja" xml:space="preserve">
+    <value>コントロールをラベルで置き換えます。</value>
+  </data>
+  <data name="ControlRollback" xml:space="preserve">
+    <value>When implementing the ILeaveRollback interface for this form or each control, roll back control information.</value>
+  </data>
+  <data name="ControlRollback.ja" xml:space="preserve">
+    <value>このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。</value>
+  </data>
+  <data name="ControlValue" xml:space="preserve">
+    <value>The number associated with the control.</value>
+  </data>
+  <data name="ControlValue.ja" xml:space="preserve">
+    <value>コントロールに関連付けられた数値です。</value>
+  </data>
+  <data name="CurrencyPattern" xml:space="preserve">
+    <value>Currency Pattern</value>
+  </data>
+  <data name="CurrencyPattern.ja" xml:space="preserve">
+    <value>通貨表記時</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Custom.ja" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="MetAppearance" xml:space="preserve">
+    <value>Metroit Extension Appearance</value>
+  </data>
+  <data name="MetAppearance.ja" xml:space="preserve">
+    <value>Metroit拡張 表示</value>
+  </data>
+  <data name="MetArrangement" xml:space="preserve">
+    <value>Metroit Extension Arrangement</value>
+  </data>
+  <data name="MetArrangement.ja" xml:space="preserve">
+    <value>Metroit拡張 配置</value>
+  </data>
+  <data name="MetBehavior" xml:space="preserve">
+    <value>Metroit Extension Behavior</value>
+  </data>
+  <data name="MetBehavior.ja" xml:space="preserve">
+    <value>Metroit拡張 動作</value>
+  </data>
+  <data name="MetDateTimePicker" xml:space="preserve">
+    <value>Represents a Windows control that allows the user to select a date and time, specify the format and display the date and time.</value>
+  </data>
+  <data name="MetDateTimePicker.ja" xml:space="preserve">
+    <value>ユーザーが日時を選択し、書式を指定して日時を表示できる Windows コントロールを表します。</value>
+  </data>
+  <data name="MetExpanderButtonExpandStateChanged" xml:space="preserve">
+    <value>Occurs when the deployment state changes.</value>
+  </data>
+  <data name="MetExpanderButtonExpandStateChanged.ja" xml:space="preserve">
+    <value>展開状態が変更された時に発生します。</value>
+  </data>
+  <data name="MetExpanderButtonHoverForeColor" xml:space="preserve">
+    <value>Gets or sets the font color of the title when the mouse enters the icon or title display area.</value>
+  </data>
+  <data name="MetExpanderButtonHoverForeColor.ja" xml:space="preserve">
+    <value>マウスがアイコンやタイトルの表示領域に入った時のタイトルの文字色を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonIconStyle" xml:space="preserve">
+    <value>Gets or sets the style used for icon images.</value>
+  </data>
+  <data name="MetExpanderButtonIconStyle.ja" xml:space="preserve">
+    <value>アイコンイメージに利用するスタイルを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonImage" xml:space="preserve">
+    <value>Get the settings when using the image. Used when ImageStyle = Image. The size is stretched to fit the image area.</value>
+  </data>
+  <data name="MetExpanderButtonImage.ja" xml:space="preserve">
+    <value>イメージを利用する時の設定を取得します。ImageStyle = Image の時に利用されます。サイズはイメージ領域に合わせて引き伸ばされます。</value>
+  </data>
+  <data name="MetExpanderButtonLineColor" xml:space="preserve">
+    <value>Gets or sets the separator line color.</value>
+  </data>
+  <data name="MetExpanderButtonLineColor.ja" xml:space="preserve">
+    <value>区切り線の色を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonLineThickness" xml:space="preserve">
+    <value>Gets or sets the thickness of the separator line.</value>
+  </data>
+  <data name="MetExpanderButtonLineThickness.ja" xml:space="preserve">
+    <value>区切り線の太さを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonShowIcon" xml:space="preserve">
+    <value>Gets or sets whether to display the icon image.</value>
+  </data>
+  <data name="MetExpanderButtonShowIcon.ja" xml:space="preserve">
+    <value>アイコンイメージを表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonShowLine" xml:space="preserve">
+    <value>Gets or sets whether to display separator lines.</value>
+  </data>
+  <data name="MetExpanderButtonShowLine.ja" xml:space="preserve">
+    <value>区切り線を表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonState" xml:space="preserve">
+    <value>Gets or sets the open/closed state.</value>
+  </data>
+  <data name="MetExpanderButtonState.ja" xml:space="preserve">
+    <value>開閉状態を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderButtonSvg" xml:space="preserve">
+    <value>Gets the settings when using SVG images. Used when ImageStyle = Svg.</value>
+  </data>
+  <data name="MetExpanderButtonSvg.ja" xml:space="preserve">
+    <value>SVGイメージを利用する時の設定を取得します。ImageStyle = Svg の時に利用されます。</value>
+  </data>
+  <data name="MetExpanderButtonText" xml:space="preserve">
+    <value>Gets or sets the title.</value>
+  </data>
+  <data name="MetExpanderButtonText.ja" xml:space="preserve">
+    <value>タイトルを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelAcceleration" xml:space="preserve">
+    <value>Gets or sets animation acceleration.</value>
+  </data>
+  <data name="MetExpanderPanelAccelerationja" xml:space="preserve">
+    <value>アニメーション加速度を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelCollapsedHeaderLineVisibled" xml:space="preserve">
+    <value>Gets or sets whether the header line is displayed when closed.</value>
+  </data>
+  <data name="MetExpanderPanelCollapsedHeaderLineVisibled.ja" xml:space="preserve">
+    <value>閉じた時にヘッダーラインを表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelHeaderFont" xml:space="preserve">
+    <value>Gets or sets the title font.</value>
+  </data>
+  <data name="MetExpanderPanelHeaderFont.ja" xml:space="preserve">
+    <value>タイトルのフォントを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelHeaderForeColor" xml:space="preserve">
+    <value>Gets or sets the title text color.</value>
+  </data>
+  <data name="MetExpanderPanelHeaderForeColor.ja" xml:space="preserve">
+    <value>タイトルの文字色を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelHeaderPadding" xml:space="preserve">
+    <value>Gets or sets the title padding.</value>
+  </data>
+  <data name="MetExpanderPanelHeaderPadding.ja" xml:space="preserve">
+    <value>タイトルのパディングを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelHoverForeColor" xml:space="preserve">
+    <value>Gets or sets the font color of the title when the mouse enters the icon or title display area.</value>
+  </data>
+  <data name="MetExpanderPanelHoverForeColor.ja" xml:space="preserve">
+    <value>マウスがアイコンやタイトルの表示領域に入った時のタイトルの文字色を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelIconStyle" xml:space="preserve">
+    <value>Gets or sets the style used for icon images.</value>
+  </data>
+  <data name="MetExpanderPanelIconStyle.ja" xml:space="preserve">
+    <value>アイコンイメージに利用するスタイルを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelImage" xml:space="preserve">
+    <value>Get the settings when using the image. Used when ImageStyle = Image. The size is stretched to fit the image area.</value>
+  </data>
+  <data name="MetExpanderPanelImage.ja" xml:space="preserve">
+    <value>イメージを利用する時の設定を取得します。ImageStyle = Image の時に利用されます。サイズはイメージ領域に合わせて引き伸ばされます。</value>
+  </data>
+  <data name="MetExpanderPanelLineColor" xml:space="preserve">
+    <value>Gets or sets the separator line color.</value>
+  </data>
+  <data name="MetExpanderPanelLineColor.ja" xml:space="preserve">
+    <value>区切り線の色を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelLineThickness" xml:space="preserve">
+    <value>Gets or sets the thickness of the separator line.</value>
+  </data>
+  <data name="MetExpanderPanelLineThickness.ja" xml:space="preserve">
+    <value>区切り線の太さを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelShowIcon" xml:space="preserve">
+    <value>Gets or sets whether to display the icon image.</value>
+  </data>
+  <data name="MetExpanderPanelShowIcon.ja" xml:space="preserve">
+    <value>アイコンイメージを表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelShowLine" xml:space="preserve">
+    <value>Gets or sets whether to display separator lines.</value>
+  </data>
+  <data name="MetExpanderPanelShowLine.ja" xml:space="preserve">
+    <value>区切り線を表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelState" xml:space="preserve">
+    <value>Gets or sets the open/closed state.</value>
+  </data>
+  <data name="MetExpanderPanelState.ja" xml:space="preserve">
+    <value>開閉状態を取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelSvg" xml:space="preserve">
+    <value>Gets the settings when using SVG images. Used when ImageStyle = Svg.</value>
+  </data>
+  <data name="MetExpanderPanelSvg.ja" xml:space="preserve">
+    <value>SVGイメージを利用する時の設定を取得します。ImageStyle = Svg の時に利用されます。</value>
+  </data>
+  <data name="MetExpanderPanelText" xml:space="preserve">
+    <value>Gets or sets the title.</value>
+  </data>
+  <data name="MetExpanderPanelText.ja" xml:space="preserve">
+    <value>タイトルを取得または設定します。</value>
+  </data>
+  <data name="MetExpanderPanelUseAnimation" xml:space="preserve">
+    <value>Gets or sets whether to use animation to open and close the button.</value>
+  </data>
+  <data name="MetExpanderPanelUseAnimation.ja" xml:space="preserve">
+    <value>ボタン開閉にアニメーションを利用するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetFormControlLeaving" xml:space="preserve">
+    <value>This event occurs when ESC key loses focus.</value>
+  </data>
+  <data name="MetFormControlLeaving.ja" xml:space="preserve">
+    <value>ESCキーによってフォーカスを失う時に発生するイベントです。</value>
+  </data>
+  <data name="MetFormControlRollbacking" xml:space="preserve">
+    <value>This event occurs when rollback is performed by the ESC key.</value>
+  </data>
+  <data name="MetFormControlRollbacking.ja" xml:space="preserve">
+    <value>ESCキーによってロールバックを行う時に発生するイベントです。</value>
+  </data>
+  <data name="MetLimitedTextBox" xml:space="preserve">
+    <value>Provides a text area with input character type and input byte count limiting function.</value>
+  </data>
+  <data name="MetLimitedTextBox.ja" xml:space="preserve">
+    <value>入力文字種、入力バイト数制限機能を設けたテキストエリアを提供します。</value>
+  </data>
+  <data name="MetNumericTextBox" xml:space="preserve">
+    <value>Provide a text area that allows users to enter numerical values only.</value>
+  </data>
+  <data name="MetNumericTextBox.ja" xml:space="preserve">
+    <value>ユーザーが数値のみを入力できるようにしたテキストエリアを提供します。</value>
+  </data>
+  <data name="MetNumericTextBoxTextValueChanged" xml:space="preserve">
+    <value>Occurs when the value changes.</value>
+  </data>
+  <data name="MetNumericTextBoxTextValueChanged.ja" xml:space="preserve">
+    <value>値が変更された時に発生します。</value>
+  </data>
+  <data name="MetOther" xml:space="preserve">
+    <value>Metroit Extension Other</value>
+  </data>
+  <data name="MetOther.ja" xml:space="preserve">
+    <value>Metroit拡張 その他</value>
+  </data>
+  <data name="MetPropertyChange" xml:space="preserve">
+    <value>Metroit Extension Property Changed</value>
+  </data>
+  <data name="MetPropertyChange.ja" xml:space="preserve">
+    <value>Metroit拡張 プロパティ変更</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteBox" xml:space="preserve">
+    <value>Set custom autocomplete information.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteBox.ja" xml:space="preserve">
+    <value>カスタムオートコンプリート情報を設定します。</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteDisplayKeys" xml:space="preserve">
+    <value>Set the key to display the custom autocomplete candidate pulldown.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteDisplayKeys.ja" xml:space="preserve">
+    <value>カスタムオートコンプリート候補プルダウンを表示するキーを設定します。</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteMode" xml:space="preserve">
+    <value>Set up how to use custom autocomplete.</value>
+  </data>
+  <data name="MetTextBoxCustomAutoCompleteMode.ja" xml:space="preserve">
+    <value>カスタムオートコンプリートの利用方法を設定します。</value>
+  </data>
+  <data name="MetTextBoxMultilineSelectAll" xml:space="preserve">
+    <value>In multi-line text editing, you can set whether to select all text by pressing Ctrl + A.</value>
+  </data>
+  <data name="MetTextBoxMultilineSelectAll.ja" xml:space="preserve">
+    <value>複数行テキストエディットの時、Ctrl+Aを押すことでテキストを全選択するかを設定します。</value>
+  </data>
+  <data name="MetTextBoxTextChangeValidation" xml:space="preserve">
+    <value>occurs when the value of the Text property is added or inserted. You can verify the value and reject the change.</value>
+  </data>
+  <data name="MetTextBoxTextChangeValidation.ja" xml:space="preserve">
+    <value>Text プロパティの値が追加／挿入されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
+  </data>
+  <data name="MetTextBoxWatermark" xml:space="preserve">
+    <value>Get or set watermark.</value>
+  </data>
+  <data name="MetTextBoxWatermark.ja" xml:space="preserve">
+    <value>ウォーターマークの取得または設定します。</value>
+  </data>
+  <data name="MetTextBoxWatermarkColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the watermark.</value>
+  </data>
+  <data name="MetTextBoxWatermarkColor.ja" xml:space="preserve">
+    <value>ウォーターマークの前景色を取得または設定します。</value>
+  </data>
+  <data name="NumericPattern" xml:space="preserve">
+    <value>Numeric Pattern</value>
+  </data>
+  <data name="NumericPattern.ja" xml:space="preserve">
+    <value>数値表記時</value>
+  </data>
+  <data name="PercentPattern" xml:space="preserve">
+    <value>Percent Pattern</value>
+  </data>
+  <data name="PercentPattern.ja" xml:space="preserve">
+    <value>パーセント表記時</value>
+  </data>
+  <data name="SvgConfigurationCollapsed" xml:space="preserve">
+    <value>Set the SVG image settings when closed.</value>
+  </data>
+  <data name="SvgConfigurationCollapsed.ja" xml:space="preserve">
+    <value>閉じた時のSVGイメージ設定を設定します。</value>
+  </data>
+  <data name="SvgConfigurationExpanded" xml:space="preserve">
+    <value>Set the SVG image settings when opening.</value>
+  </data>
+  <data name="SvgConfigurationExpanded.ja" xml:space="preserve">
+    <value>開いた時のSVGイメージ設定を設定します。</value>
+  </data>
+  <data name="SvgConfigurationPropertyChanged" xml:space="preserve">
+    <value>Occurs when SVG settings are changed.</value>
+  </data>
+  <data name="SvgConfigurationPropertyChanged.ja" xml:space="preserve">
+    <value>SVG設定が変更された時に発生します。</value>
+  </data>
+  <data name="SvgSettingColor" xml:space="preserve">
+    <value>Sets the fill color of the SVG image.</value>
+  </data>
+  <data name="SvgSettingColor.ja" xml:space="preserve">
+    <value>SVGイメージのFillカラーを設定します。</value>
+  </data>
+  <data name="SvgSettingImage" xml:space="preserve">
+    <value>Set the default SVG image.</value>
+  </data>
+  <data name="SvgSettingImage.ja" xml:space="preserve">
+    <value>既定のSVGイメージを設定します。</value>
+  </data>
+  <data name="SvgSettingPropertyChanged" xml:space="preserve">
+    <value>Occurs when SVG image settings are changed.</value>
+  </data>
+  <data name="SvgSettingPropertyChanged.ja" xml:space="preserve">
+    <value>SVGイメージ設定が変更された時に発生します。</value>
+  </data>
+  <data name="SvgSettingRotation" xml:space="preserve">
+    <value>Set the rotation angle of the SVG image.</value>
+  </data>
+  <data name="SvgSettingRotation.ja" xml:space="preserve">
+    <value>SVGイメージの回転角度を設定します。</value>
+  </data>
+  <data name="SvgSettingUseColor" xml:space="preserve">
+    <value>Set whether to use colors in SVG images.</value>
+  </data>
+  <data name="SvgSettingUseColor.ja" xml:space="preserve">
+    <value>SVGイメージに色を利用するかを設定します。</value>
+  </data>
+  <data name="ValueChanged" xml:space="preserve">
+    <value>Occurs when the value changes.</value>
+  </data>
+  <data name="ValueChanged.ja" xml:space="preserve">
+    <value>値が変更された時に発生します。</value>
+  </data>
+  <data name="ValueChangeValidating" xml:space="preserve">
+    <value>occurs when the value of the Value property is changing. You can verify the value and reject the change.</value>
+  </data>
+  <data name="ValueChangeValidating.ja" xml:space="preserve">
+    <value>Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
+  </data>
+</root>

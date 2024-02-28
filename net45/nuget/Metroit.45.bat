@@ -1,1 +1,0 @@
-nuget pack "..\src\Metroit.45\Metroit.45.csproj" -Prop Configuration=Release

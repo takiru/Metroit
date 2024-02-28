@@ -1,0 +1,7 @@
+bin
+obj
+*.vs
+*.suo
+*.user
+[Tt]humbs.db
+packages

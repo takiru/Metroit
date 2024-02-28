@@ -2,17 +2,25 @@
 
 [Tutorial](Tutorial/TUTORIAL.ja.md "Tutorial")
 
-|Module                 |NuGet                                                                                                                       |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------|
-|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/)                   |
-|Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/)              |
-|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/)     |
-|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/)                  |
-|Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.2.6.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/)             |
-|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/)    |
+|Module                |NuGet | Target Framework |
+|----------------------|------|------------------|
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net462` |
+
+Older Version  
+
+|Module                 |NuGet | Target Framework |
+|-----------------------|------|------------------|
+|Metroit.2              |[![NuGet](https://img.shields.io/badge/nuget-v1.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.2/) | `net20` |
+|Metroit.Data.2         |[![NuGet](https://img.shields.io/badge/nuget-v1.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Data.2/) | `net20` |
+|Metroit.Windows.Forms2 |[![NuGet](https://img.shields.io/badge/nuget-v1.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.2/) | `net20` |
+|Metroit.45             |[![NuGet](https://img.shields.io/badge/nuget-v1.5.0-blue.svg)](https://www.nuget.org/packages/Metroit.45/) | `net45` |
+|Metroit.Data.45        |[![NuGet](https://img.shields.io/badge/nuget-v1.2.6-blue.svg)](https://www.nuget.org/packages/Metroit.Data.45/) | `net45` |
+|Metroit.Windows.Forms45|[![NuGet](https://img.shields.io/badge/nuget-v1.5.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.45/) | `net45` |
 
 # Metroit #
-Several classes to support logic, and WinForms extension control. Target framework is .NET 2.0, 4.5.  
+Several classes to support logic, and WinForms extension control.  
 We will do some help in an environment where development using WinForms is done.  
 It eliminates troublesome implementation by pulling out what is likely to be good.  
 It may be a little cleared of the problem if there are problems that you are having troubles, or if you have restrictions on using WPF or EntityFramework.
@@ -193,6 +201,8 @@ using (var conn = pf.CreateConnection()) {
     conn.Open();
 }
 ```
+
+    MetDbProviderFactories.GetFactory() is not available in netstandard20.
 
 #### Execute the query ####
 DbConnection.CreateQueryCommand() will automatically enforce BindByName().
@@ -452,3 +462,57 @@ It is a library that helps to create WinForms application.
         Replace ReadOnlyLabel with Label.
         When DropDownStyle = DropDownList, DrawMode must be OwnerDrawFixed or OwnerDrawVariable.
 
+#### Button representing open/close icon ####
+- MetExpanderButton  
+  Represents an open/close icon.
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    |State          |Open/closed state. |
+    |Svg            |SVG image. |
+    |Image          |Normal image. |
+    |IconStyle      |The style of image to use. |
+    |ShowIcon       |Whether to display the icon. |
+    |ShowLine       |Whether to display separator lines. |
+    |Text           |title. |
+    |LineColor      |Separator line color. |
+    |LineThickness  |Thickness of the separator line. |
+    |HoverForeColor |The color of the title when the mouse enters the table area. |
+
+  - Events  
+
+    |Name               |Meaning                             |
+    |-------------------|---------------------------------|
+    |ExpandStateChanged |Occurs when the open/closed state changes. |
+
+#### Panel with buttons representing open/close icons ####
+- MetExpanderPanel  
+  Express the open/close icon to enable opening/closing of the panel.
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    |State          |Open/closed state. |
+    |Svg            |SVG image. |
+    |Image          |Normal image. |
+    |IconStyle      |The style of image to use. |
+    |ShowIcon       |Whether to display the icon. |
+    |ShowLine       |Whether to display separator lines. |
+    |Text           |title. |
+    |LineColor      |Separator line color. |
+    |LineThickness  |Thickness of the separator line. |
+    |HoverForeColor |The color of the title when the mouse enters the table area. |
+    |HeaderFont |Header text font. |
+    |HeaderForeColor |Header text font color. |
+    |HeaderPadding |Header padding. |
+    |UseAnimation |Whether to use animation for opening and closing. |
+    |Acceleration |Animation acceleration. |
+    |CollapsedHeaderLineVisibled |Whether to display a separator line when closed. |
+
+  - メソッド
+
+    |Name           |Meaning |
+    |---------------|-----|
+    |Expand(bool)   |Open the panel. |
+    |Collapse(bool) |Close the panel. |

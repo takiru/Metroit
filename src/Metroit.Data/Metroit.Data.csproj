@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net45</TargetFrameworks>
+    <Authors>Takeru Yamaguchi</Authors>
+    <Description>A library that contains functions to aid database operation.</Description>
+    <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
+    <VersionPrefix>2.0.0.0</VersionPrefix>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix)</FileVersion>
+    <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/takiru/Metroit</RepositoryUrl>
+    <PackageTags>database;sql;query</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
