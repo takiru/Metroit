@@ -25,8 +25,6 @@ namespace Metroit.Windows.Forms
         /// </summary>
         public AutoCompleteBox()
         {
-            this.CompareOptions = this.defaultCompareOptions;
-
             if (this.IsDesignMode())
             {
                 return;
@@ -43,8 +41,6 @@ namespace Metroit.Windows.Forms
         /// <param name="control">利用するコントロール。</param>
         public AutoCompleteBox(Control control)
         {
-            this.CompareOptions = this.defaultCompareOptions;
-
             // 紐づくコントロールを保持
             this.TargetControl = control;
             this.isAssociatedControl = true;
@@ -260,25 +256,13 @@ namespace Metroit.Windows.Forms
         [MetDescription("AutoCompleteBoxMatchPattern")]
         public MatchPatternType MatchPattern { get; set; } = MatchPatternType.StartsWith;
 
-        private CompareOptions[] defaultCompareOptions = new CompareOptions[] { System.Globalization.CompareOptions.None };
-
         /// <summary>
         /// 候補の絞込みに判断するオプションを取得または設定します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetDescription("AutoCompleteBoxCompareOptions")]
-        public CompareOptions[] CompareOptions { get; set; }
-
-        /// <summary>
-        /// CompareOptions が既定値から変更されたかどうかを返却する。
-        /// </summary>
-        /// <returns>true:変更された, false:変更されていない</returns>
-        private bool ShouldSerializeCompareOptions() => this.CompareOptions != null && this.CompareOptions != this.defaultCompareOptions;
-
-        /// <summary>
-        /// CompareOptions のリセット操作を行う。
-        /// </summary>
-        private void ResetCompareOptions() => this.CompareOptions = defaultCompareOptions;
+        public List<CompareOptions> CompareOptions { get; set; } = new List<CompareOptions>();
 
         private Control targetControl = null;
 

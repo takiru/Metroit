@@ -1191,6 +1191,7 @@ namespace Metroit.Windows.Forms
         /// ロールバック済みかどうかを取得します。
         /// </summary>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        [Browsable(false)]
         public bool IsRollbacked => this.Value == this.enterValue;
 
         /// <summary>

@@ -115,6 +115,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Key combination is not valid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string KeysConverterInvalidKeyCombination {
+            get {
+                return ResourceManager.GetString("KeysConverterInvalidKeyCombination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   キーの組み合わせが有効ではありません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string KeysConverterInvalidKeyCombination_ja {
+            get {
+                return ResourceManager.GetString("KeysConverterInvalidKeyCombination.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Values larger than MaxValue can not be set. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MaxValueSmallerCanNotChange {

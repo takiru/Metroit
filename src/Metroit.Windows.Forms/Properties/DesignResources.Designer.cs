@@ -2185,6 +2185,60 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Reset(&amp;R) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ResetText {
+            get {
+                return ResourceManager.GetString("ResetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   リセット(&amp;R) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ResetText_ja {
+            get {
+                return ResourceManager.GetString("ResetText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Key(&amp;K): に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ShortcutKeysControl_KeyText {
+            get {
+                return ResourceManager.GetString("ShortcutKeysControl.KeyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   キー(&amp;K)： に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ShortcutKeysControl_KeyText_ja {
+            get {
+                return ResourceManager.GetString("ShortcutKeysControl.KeyText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   modifier: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ShortcutKeysControl_SystemKeyText {
+            get {
+                return ResourceManager.GetString("ShortcutKeysControl.SystemKeyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   修飾子： に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ShortcutKeysControl_SystemKeyText_ja {
+            get {
+                return ResourceManager.GetString("ShortcutKeysControl.SystemKeyText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Set the SVG image settings when closed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string SvgConfigurationCollapsed {

@@ -825,6 +825,24 @@
   <data name="PercentPattern.ja" xml:space="preserve">
     <value>パーセント表記時</value>
   </data>
+  <data name="ResetText" xml:space="preserve">
+    <value>Reset(&amp;R)</value>
+  </data>
+  <data name="ResetText.ja" xml:space="preserve">
+    <value>リセット(&amp;R)</value>
+  </data>
+  <data name="ShortcutKeysControl.KeyText" xml:space="preserve">
+    <value>Key(&amp;K):</value>
+  </data>
+  <data name="ShortcutKeysControl.KeyText.ja" xml:space="preserve">
+    <value>キー(&amp;K)：</value>
+  </data>
+  <data name="ShortcutKeysControl.SystemKeyText" xml:space="preserve">
+    <value>modifier:</value>
+  </data>
+  <data name="ShortcutKeysControl.SystemKeyText.ja" xml:space="preserve">
+    <value>修飾子：</value>
+  </data>
   <data name="SvgConfigurationCollapsed" xml:space="preserve">
     <value>Set the SVG image settings when closed.</value>
   </data>

@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v2.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
 
 旧バージョン  
 

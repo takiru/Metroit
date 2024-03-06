@@ -1,6 +1,4 @@
-﻿using System.Web.WebSockets;
-
-namespace Metroit.Windows.Forms
+﻿namespace Metroit.Windows.Forms
 {
     partial class MetExpanderPanel
     {

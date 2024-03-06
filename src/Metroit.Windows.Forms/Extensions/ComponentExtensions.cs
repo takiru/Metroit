@@ -1,7 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Deployment.Application;
+﻿using System.ComponentModel;
 using System.Diagnostics;
+using System;
+
+#if (NET462_OR_GREATER)
+using System.Deployment.Application;
+#endif
 
 namespace Metroit.Windows.Forms.Extensions
 {
@@ -30,6 +33,7 @@ namespace Metroit.Windows.Forms.Extensions
                 return true;
             }
 
+#if (NET462_OR_GREATER)
             // ClickOnceでの実行はDefaultDomainのため、ClickOnce時は検証しない
             if (!ApplicationDeployment.IsNetworkDeployed)
             {
@@ -38,7 +42,7 @@ namespace Metroit.Windows.Forms.Extensions
                     return true;
                 }
             }
-
+#endif
             return false;
         }
     }

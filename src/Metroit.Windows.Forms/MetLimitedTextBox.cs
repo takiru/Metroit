@@ -90,7 +90,7 @@ namespace Metroit.Windows.Forms
                     return false;
                 }
 
-                int afterTextByte = this.ByteEncoding.GetByteCount(this.Text);
+                int afterTextByte = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(this.Text);
                 if (afterTextByte == this.MaxByteLength)
                 {
                     return true;
@@ -112,7 +112,7 @@ namespace Metroit.Windows.Forms
         protected virtual bool IsValidTextLength(string value)
         {
             // 最大バイト長制御
-            int byteCount = this.ByteEncoding.GetByteCount(value);
+            int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(value);
             if (this.MaxByteLength > 0 && byteCount > this.MaxByteLength)
             {
                 return false;
@@ -649,25 +649,16 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        private Encoding byteEncoding = Encoding.Default;
+
         /// <summary>
         /// 最大バイト数制限を実施する文字エンコーディングを指定します。
         /// </summary>
         [Browsable(true)]
+        [DefaultValue(65001)]
         [MetCategory("MetBehavior")]
-        [TypeConverter(typeof(EncodingNameConverter))]
         [MetDescription("ControlByteEncoding")]
-        public Encoding ByteEncoding { get; set; } = Encoding.Default;
-
-        /// <summary>
-        /// ByteEncoding が既定値から変更されたかどうかを返却する。
-        /// </summary>
-        /// <returns>true:変更された, false:変更されていない</returns>
-        private bool ShouldSerializeByteEncoding() => this.ByteEncoding != Encoding.Default;
-
-        /// <summary>
-        /// ByteEncoding のリセット操作を行う。
-        /// </summary>
-        private void ResetByteEncoding() => this.ByteEncoding = Encoding.Default;
+        public int ByteEncodingCodePage { get; set; } = 65001;
 
         /// <summary>
         /// 入力が許可される文字の種類を設定します。

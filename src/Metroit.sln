@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metroit", "Metroit\Metroit.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metroit.Data", "Metroit.Data\Metroit.Data.csproj", "{190EA7DE-55AD-4C73-9064-3C4A446AFD91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms", "Metroit.Windows.Forms\Metroit.Windows.Forms.csproj", "{86031422-34AF-4628-95DF-4A70EAA2CE93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metroit.Windows.Forms", "Metroit.Windows.Forms\Metroit.Windows.Forms.csproj", "{39627A45-DB21-4C26-B0E4-DF09179DBFA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{190EA7DE-55AD-4C73-9064-3C4A446AFD91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{190EA7DE-55AD-4C73-9064-3C4A446AFD91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190EA7DE-55AD-4C73-9064-3C4A446AFD91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86031422-34AF-4628-95DF-4A70EAA2CE93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86031422-34AF-4628-95DF-4A70EAA2CE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86031422-34AF-4628-95DF-4A70EAA2CE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86031422-34AF-4628-95DF-4A70EAA2CE93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39627A45-DB21-4C26-B0E4-DF09179DBFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39627A45-DB21-4C26-B0E4-DF09179DBFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39627A45-DB21-4C26-B0E4-DF09179DBFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39627A45-DB21-4C26-B0E4-DF09179DBFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

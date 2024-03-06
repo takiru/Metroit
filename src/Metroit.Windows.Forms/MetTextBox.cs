@@ -2,6 +2,7 @@
 using Metroit.Win32.Api.WindowsGdi.WinUser;
 using Metroit.Windows.Forms.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -38,23 +39,11 @@ namespace Metroit.Windows.Forms
     public class MetTextBox : TextBox, ISupportInitialize, IControlRollback, IBorder
     {
         /// <summary>
-        /// Keys プロパティエディタにEnterなどが含まれないため、全キーを含めるためにKeysを生成し直します。
-        /// </summary>
-        static MetTextBox()
-        {
-            // ShortcutKeysEditor に Enter, Back, Home を追加する。
-            ShortcutKeysEditorHack.AddKeys(new Keys[] { Keys.Enter, Keys.Back, Keys.Home }, true);
-        }
-
-        /// <summary>
         /// MetTextBox の新しいインスタンスを初期化します。
         /// </summary>
         public MetTextBox()
             : base()
         {
-            // プロパティのデフォルト値の設定
-            this.CustomAutoCompleteKeys = this.defaultCustomAutoCompleteKeys;
-
             this.CustomAutoCompleteBox = new AutoCompleteBox(this);
 
             // デザイン時は制御しない
@@ -255,8 +244,8 @@ namespace Metroit.Windows.Forms
                     return;
                 }
                 // 指定されたキーが押下された時、候補コンボボックスを表示する
-                var matchKey = CustomAutoCompleteKeys.FirstOrDefault((value) => value == e.KeyData);
-                if (matchKey == Keys.None)
+                var matchKey = CustomAutoCompleteKeys.FirstOrDefault((value) => (int)value == (int)e.KeyData);
+                if (matchKey == MetKeys.None)
                 {
                     return;
                 }
@@ -803,12 +792,12 @@ namespace Metroit.Windows.Forms
         private bool readOnlyLabel = false;
         private Label label = null;
         private CustomAutoCompleteMode customAutoCompleteMode = CustomAutoCompleteMode.None;
-        private Keys[] defaultCustomAutoCompleteKeys = new Keys[] {
-                Keys.Alt | Keys.Up,
-                Keys.Alt | Keys.Down,
-                Keys.F4,
-                Keys.Control | Keys.F4,
-                Keys.Shift | Keys.F4
+        private MetKeys[] defaultCustomAutoCompleteKeys = new MetKeys[] {
+                MetKeys.Alt | MetKeys.Up,
+                MetKeys.Alt | MetKeys.Down,
+                MetKeys.F4,
+                MetKeys.Control | MetKeys.F4,
+                MetKeys.Shift | MetKeys.F4
         };
         private string watermark = "";
         private Color watermarkColor = Color.LightGray;
@@ -1011,20 +1000,29 @@ namespace Metroit.Windows.Forms
         /// オートコンプリート候補プルダウンを表示するキーを設定します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetOther")]
         [MetDescription("MetTextBoxCustomAutoCompleteDisplayKeys")]
-        public Keys[] CustomAutoCompleteKeys { get; set; }
+        public List<MetKeys> CustomAutoCompleteKeys { get; set; } = new List<MetKeys>();
 
         /// <summary>
         /// CustomAutoCompleteKeys が既定値から変更されたかどうかを返却する。
         /// </summary>
         /// <returns>true:変更された, false:変更されていない</returns>
-        private bool ShouldSerializeCustomAutoCompleteKeys() => this.CustomAutoCompleteKeys != this.defaultCustomAutoCompleteKeys;
+        private bool ShouldSerializeCustomAutoCompleteKeys()
+        {
+            if (CustomAutoCompleteKeys.Count != defaultCustomAutoCompleteKeys.Length)
+            {
+                return true;
+            }
+
+            return defaultCustomAutoCompleteKeys.Where((x, index) => x != CustomAutoCompleteKeys[index]).Any();
+        }
 
         /// <summary>
         /// CustomAutoCompleteKeys のリセット操作を行う。
         /// </summary>
-        private void ResetCustomAutoCompleteKeys() => this.CustomAutoCompleteKeys = this.defaultCustomAutoCompleteKeys;
+        private void ResetCustomAutoCompleteKeys() => CustomAutoCompleteKeys = defaultCustomAutoCompleteKeys.ToList();
 
         /// <summary>
         /// カスタムオートコンプリート情報を設定または取得します。
@@ -1303,6 +1301,7 @@ namespace Metroit.Windows.Forms
         /// ロールバック済みかどうかを取得します。
         /// </summary>
         /// <returns>true:ロールバック済み, false:未ロールバック。</returns>
+        [Browsable(false)]
         public virtual bool IsRollbacked => this.Text == this.enterText;
 
         /// <summary>

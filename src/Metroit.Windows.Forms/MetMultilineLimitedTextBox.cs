@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 
 namespace Metroit.Windows.Forms
 {
@@ -143,7 +144,7 @@ namespace Metroit.Windows.Forms
             // 1行単位の文字数の制限
             foreach (var lineText in value.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None))
             {
-                int byteCount = ByteEncoding.GetByteCount(lineText);
+                int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(lineText);
                 if ((MaxLineLength > 0 && lineText.Length > MaxLineLength) ||
                     (MaxLineByteLength > 0 && byteCount > MaxLineByteLength))
                 {
@@ -178,7 +179,7 @@ namespace Metroit.Windows.Forms
                 return false;
             }
             var lastLineText = Text.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None).Last();
-            int byteCount = ByteEncoding.GetByteCount(lastLineText);
+            int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(lastLineText);
             if (!(MaxLineLength > 0 && lastLineText.Length == MaxLineLength) &&
                 !(MaxLineByteLength > 0 && byteCount == MaxLineByteLength))
             {
