@@ -68,7 +68,7 @@ namespace Metroit
         /// <summary>
         /// アイテムを未修正データ扱いにします。
         /// </summary>
-        public void NotMidifiedItem()
+        public void NotModifedItem()
         {
             State = ItemState.NotModified;
         }
