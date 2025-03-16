@@ -429,11 +429,11 @@
   <data name="ControlLineWidth.ja" xml:space="preserve">
     <value>描画する線の幅を設定します。</value>
   </data>
-  <data name="ControlMaxByteLength" xml:space="preserve">
-    <value>Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited.</value>
+  <data name="ControlTwoFullWidthChar" xml:space="preserve">
+    <value>Specifies whether full-width characters are counted as two characters.</value>
   </data>
-  <data name="ControlMaxByteLength.ja" xml:space="preserve">
-    <value>エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。</value>
+  <data name="ControlTwoFullWidthChar.ja" xml:space="preserve">
+    <value>全角文字を2文字としてカウントするかどうかを指定します。</value>
   </data>
   <data name="ControlMaxLineByteLength" xml:space="preserve">
     <value>Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit.</value>

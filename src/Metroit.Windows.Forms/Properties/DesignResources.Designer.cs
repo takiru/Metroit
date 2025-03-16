@@ -997,24 +997,6 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   Specify the maximum number of bytes that can be entered in the edit control. If 0 is specified, it is unlimited. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlMaxByteLength {
-            get {
-                return ResourceManager.GetString("ControlMaxByteLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlMaxByteLength_ja {
-            get {
-                return ResourceManager.GetString("ControlMaxByteLength.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Specifies the maximum number of bytes per line that can be entered in the text box control. If you specify 0, there is no limit. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlMaxLineByteLength {
@@ -1281,6 +1263,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlRollback_ja {
             get {
                 return ResourceManager.GetString("ControlRollback.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specifies whether full-width characters are counted as two characters. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlTwoFullWidthChar {
+            get {
+                return ResourceManager.GetString("ControlTwoFullWidthChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   全角文字を2文字としてカウントするかどうかを指定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlTwoFullWidthChar_ja {
+            get {
+                return ResourceManager.GetString("ControlTwoFullWidthChar.ja", resourceCulture);
             }
         }
         

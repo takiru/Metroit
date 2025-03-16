@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing.Design;
+using System.Globalization;
 using System.Text;
 
 namespace Metroit.Windows.Forms
@@ -78,47 +79,93 @@ namespace Metroit.Windows.Forms
         #region メソッド
 
         /// <summary>
-        /// バイト数を考慮して、オートフォーカスを行うか確認します。
+        /// 文字幅を考慮して、オートフォーカスを行うか確認します。
         /// </summary>
         /// <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
         protected override bool CanAutoFocus()
         {
-            if (!base.CanAutoFocus())
+            if (base.CanAutoFocus())
             {
-                if (this.MaxByteLength == 0)
-                {
-                    return false;
-                }
+                return true;
+            }
 
-                int afterTextByte = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(this.Text);
-                if (afterTextByte == this.MaxByteLength)
+            if (MaxLength == GetTextCount(Text))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 入力後の文字列の長さを取得する。
+        /// </summary>
+        /// <param name="text">文字列。</param>
+        /// <returns><see cref="TwoFullWidthChar"/> を考慮した文字列の長さを取得する。</returns>
+        private int GetTextCount(string text)
+        {
+            // 全角文字を2文字としてカウントしないなら素の文字列長を返却
+            if (!TwoFullWidthChar)
+            {
+                return text.Length;
+            }
+
+            // 全角を2文字としてカウントした文字列長を返却
+            int count = 0;
+            StringInfo stringInfo = new StringInfo(text);
+
+            for (int i = 0; i < stringInfo.LengthInTextElements; i++)
+            {
+                string character = stringInfo.SubstringByTextElements(i, 1);
+
+                // 文字幅が2なら2文字とカウント
+                count++;
+                if (IsFullWidth(character))
                 {
-                    return true;
+                    count++;
                 }
-                else
-                {
-                    return false;
-                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// 入力後の文字列の長さが有効かチェックします。
+        /// </summary>
+        /// <param name="text">文字列。</param>
+        /// <returns>true:有効, false:無効。</returns>
+        protected virtual bool IsValidTextLength(string text)
+        {
+            // 全角文字を2文字としてカウントしないなら何も制御しない
+            if (!TwoFullWidthChar)
+            {
+                return true;
+            }
+
+            if (MaxLength > GetTextCount(text))
+            {
+                return false;
             }
 
             return true;
         }
 
         /// <summary>
-        /// 入力後の文字列の長さが有効かチェックします。
+        /// 1文字が全角文字かどうかを判定する。
         /// </summary>
-        /// <param name="value">文字列。</param>
-        /// <returns>true:有効, false:無効。</returns>
-        protected virtual bool IsValidTextLength(string value)
+        /// <param name="character">1文字の値。</param>
+        /// <returns>全角文字の場合は true, 半角文字の場合は false を返却する。</returns>
+        private static bool IsFullWidth(string character)
         {
-            // 最大バイト長制御
-            int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(value);
-            if (this.MaxByteLength > 0 && byteCount > this.MaxByteLength)
+            // Unicodeカテゴリで判断（CJK Unified Ideographs や全角カタカナ・ひらがななど）
+            if (character.Length == 1)
             {
-                return false;
+                char c = character[0];
+                return char.GetUnicodeCategory(c) == UnicodeCategory.OtherLetter ||
+                       char.GetUnicodeCategory(c) == UnicodeCategory.OtherSymbol;
             }
 
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -622,43 +669,14 @@ namespace Metroit.Windows.Forms
 
         #region 追加プロパティ
 
-        private int maxByteLength = 0;
-
         /// <summary>
-        /// エディット コントロールに入力できる最大バイト数を指定します。0を指定した場合、無制限となります。
-        /// </summary>
-        /// <remarks>
-        /// 0を指定した場合、無制限となります。<br />
-        /// 半角1バイト、全角2バイトとして制限されます。<br />
-        /// 当プロパティを設定することによってMaxLengthが無視されるわけではありません。
-        /// </remarks>
-        [Browsable(true)]
-        [MetCategory("MetBehavior")]
-        [DefaultValue(0)]
-        [MetDescription("ControlMaxByteLength")]
-        public int MaxByteLength
-        {
-            get => maxByteLength;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(MaxByteLength));
-                }
-                maxByteLength = value;
-            }
-        }
-
-        private Encoding byteEncoding = Encoding.Default;
-
-        /// <summary>
-        /// 最大バイト数制限を実施する文字エンコーディングを指定します。
+        /// 全角文字を2文字としてカウントするかどうかを指定します。
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(65001)]
         [MetCategory("MetBehavior")]
-        [MetDescription("ControlByteEncoding")]
-        public int ByteEncodingCodePage { get; set; } = 65001;
+        [DefaultValue(false)]
+        [MetDescription("ControlTwoFullWidthChar")]
+        public bool TwoFullWidthChar { get; set; } = false;
 
         /// <summary>
         /// 入力が許可される文字の種類を設定します。

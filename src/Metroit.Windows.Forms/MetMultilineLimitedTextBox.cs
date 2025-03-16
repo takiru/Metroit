@@ -24,7 +24,6 @@ namespace Metroit.Windows.Forms
             base.Multiline = true;
             base.Height = 50;
             base.MaxLength = 0;
-            base.MaxByteLength = 0;
         }
 
         /// <summary>
@@ -50,22 +49,11 @@ namespace Metroit.Windows.Forms
             get => base.MaxLength;
         }
 
-        /// <summary>
-        /// テキストボックスコントロールのバイト数制限は無制限です。
-        /// </summary>
-        [Browsable(false)]
-        [ReadOnly(true)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new int MaxByteLength
-        {
-            get => base.MaxByteLength;
-        }
-
         private int maxLineLength = 0;
 
         /// <summary>
         /// テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。
+        /// <see cref="MetLimitedTextBox.TwoFullWidthChar"/> が true の場合、全角文字は2文字としてカウントします。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0)]
