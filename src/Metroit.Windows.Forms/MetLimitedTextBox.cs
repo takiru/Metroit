@@ -52,7 +52,7 @@ namespace Metroit.Windows.Forms
         #region イベント
 
         /// <summary>
-        /// テキスト変更中、バイト数チェック、許可文字チェックを行います。
+        /// テキスト変更中、文字数チェック、許可文字チェックを行います。
         /// </summary>
         /// <param name="e">入力値許可イベントオブジェクト。</param>
         protected override void OnTextChangeValidation(TextChangeValidationEventArgs e)
@@ -101,11 +101,11 @@ namespace Metroit.Windows.Forms
         /// 入力後の文字列の長さを取得する。
         /// </summary>
         /// <param name="text">文字列。</param>
-        /// <returns><see cref="TwoFullWidthChar"/> を考慮した文字列の長さを取得する。</returns>
-        private int GetTextCount(string text)
+        /// <returns><see cref="FullWidthCharTwo"/> を考慮した文字列の長さを取得する。</returns>
+        protected int GetTextCount(string text)
         {
             // 全角文字を2文字としてカウントしないなら素の文字列長を返却
-            if (!TwoFullWidthChar)
+            if (!FullWidthCharTwo)
             {
                 return text.Length;
             }
@@ -136,12 +136,6 @@ namespace Metroit.Windows.Forms
         /// <returns>true:有効, false:無効。</returns>
         protected virtual bool IsValidTextLength(string text)
         {
-            // 全角文字を2文字としてカウントしないなら何も制御しない
-            if (!TwoFullWidthChar)
-            {
-                return true;
-            }
-
             if (MaxLength > GetTextCount(text))
             {
                 return false;
@@ -675,8 +669,8 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [MetCategory("MetBehavior")]
         [DefaultValue(false)]
-        [MetDescription("ControlTwoFullWidthChar")]
-        public bool TwoFullWidthChar { get; set; } = false;
+        [MetDescription("ControlFullWidthCharTwo")]
+        public bool FullWidthCharTwo { get; set; } = false;
 
         /// <summary>
         /// 入力が許可される文字の種類を設定します。

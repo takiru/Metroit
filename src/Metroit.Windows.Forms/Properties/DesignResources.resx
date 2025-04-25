@@ -429,10 +429,10 @@
   <data name="ControlLineWidth.ja" xml:space="preserve">
     <value>描画する線の幅を設定します。</value>
   </data>
-  <data name="ControlTwoFullWidthChar" xml:space="preserve">
+  <data name="ControlFullWidthCharTwo" xml:space="preserve">
     <value>Specifies whether full-width characters are counted as two characters.</value>
   </data>
-  <data name="ControlTwoFullWidthChar.ja" xml:space="preserve">
+  <data name="ControlFullWidthCharTwo.ja" xml:space="preserve">
     <value>全角文字を2文字としてカウントするかどうかを指定します。</value>
   </data>
   <data name="ControlMaxLineByteLength" xml:space="preserve">

@@ -871,6 +871,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Specifies whether full-width characters are counted as two characters. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFullWidthCharTwo {
+            get {
+                return ResourceManager.GetString("ControlFullWidthCharTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   全角文字を2文字としてカウントするかどうかを指定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlFullWidthCharTwo_ja {
+            get {
+                return ResourceManager.GetString("ControlFullWidthCharTwo.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Represents a digit separator character in the integer part. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlGroupSeparator {
@@ -1263,24 +1281,6 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ControlRollback_ja {
             get {
                 return ResourceManager.GetString("ControlRollback.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Specifies whether full-width characters are counted as two characters. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlTwoFullWidthChar {
-            get {
-                return ResourceManager.GetString("ControlTwoFullWidthChar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   全角文字を2文字としてカウントするかどうかを指定します。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ControlTwoFullWidthChar_ja {
-            get {
-                return ResourceManager.GetString("ControlTwoFullWidthChar.ja", resourceCulture);
             }
         }
         

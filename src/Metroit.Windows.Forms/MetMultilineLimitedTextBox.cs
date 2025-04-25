@@ -53,7 +53,7 @@ namespace Metroit.Windows.Forms
 
         /// <summary>
         /// テキストボックスコントロールに入力できる1行あたりの最大文字数を指定します。0を指定した場合、無制限となります。
-        /// <see cref="MetLimitedTextBox.TwoFullWidthChar"/> が true の場合、全角文字は2文字としてカウントします。
+        /// <see cref="MetLimitedTextBox.FullWidthCharTwo"/> が true の場合、全角文字は2文字としてカウントします。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0)]
@@ -69,28 +69,6 @@ namespace Metroit.Windows.Forms
                     throw new ArgumentOutOfRangeException(nameof(MaxLineLength));
                 }
                 maxLineLength = value;
-            }
-        }
-
-        private int maxLineByteLength = 0;
-
-        /// <summary>
-        /// テキストボックスコントロールに入力できる1行あたりの最大バイト数を指定します。0を指定した場合、無制限となります。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(0)]
-        [MetCategory("MetBehavior")]
-        [MetDescription("ControlMaxLineByteLength")]
-        public int MaxLineByteLength
-        {
-            get => maxLineByteLength;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(MaxLineByteLength));
-                }
-                maxLineByteLength = value;
             }
         }
 
@@ -130,11 +108,15 @@ namespace Metroit.Windows.Forms
             }
 
             // 1行単位の文字数の制限
+            if (MaxLineLength == 0)
+            {
+                return true;
+            }
+
             foreach (var lineText in value.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None))
             {
-                int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(lineText);
-                if ((MaxLineLength > 0 && lineText.Length > MaxLineLength) ||
-                    (MaxLineByteLength > 0 && byteCount > MaxLineByteLength))
+                var textLength = GetTextCount(lineText);
+                if (MaxLineLength < textLength)
                 {
                     return false;
                 }
