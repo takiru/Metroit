@@ -113,10 +113,11 @@ namespace Metroit.Windows.Forms
                 return true;
             }
 
+            // 入力後の文字列の長さが1行の文字数を超過ｓている場合は許可しない
             foreach (var lineText in value.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None))
             {
                 var textLength = GetTextCount(lineText);
-                if (MaxLineLength < textLength)
+                if (textLength > MaxLineLength)
                 {
                     return false;
                 }
@@ -126,7 +127,7 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// バイト数を考慮して、オートフォーカスを行うか確認します。
+        /// 文字数を考慮して、オートフォーカスを行うか確認します。
         /// </summary>
         /// <returns>true:オートフォーカス可, false:オートフォーカス不可</returns>
         protected override bool CanAutoFocus()
@@ -143,15 +144,22 @@ namespace Metroit.Windows.Forms
                 return false;
             }
 
-            // 最終行の文字数制限でない時は行わない
+            // 1行の最大文字数が未指定の時は行わない
+            if (MaxLineLength == 0)
+            {
+                return false;
+            }
+
+            // キャレット位置が最終文字位置にない時は行わない
             if (SelectionStart != Text.Length)
             {
                 return false;
             }
+
+            // 最終文字の入力でない時は行わない
             var lastLineText = Text.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None).Last();
-            int byteCount = Encoding.GetEncoding(ByteEncodingCodePage).GetByteCount(lastLineText);
-            if (!(MaxLineLength > 0 && lastLineText.Length == MaxLineLength) &&
-                !(MaxLineByteLength > 0 && byteCount == MaxLineByteLength))
+            var textLength = GetTextCount(lastLineText);
+            if (textLength < MaxLineLength)
             {
                 return false;
             }

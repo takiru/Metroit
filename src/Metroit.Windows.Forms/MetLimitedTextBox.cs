@@ -1,9 +1,8 @@
-﻿using Metroit.Windows.Forms.ComponentModel;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing.Design;
 using System.Globalization;
-using System.Text;
+using System.Windows.Forms;
 
 namespace Metroit.Windows.Forms
 {
@@ -136,7 +135,7 @@ namespace Metroit.Windows.Forms
         /// <returns>true:有効, false:無効。</returns>
         protected virtual bool IsValidTextLength(string text)
         {
-            if (MaxLength > GetTextCount(text))
+            if (GetTextCount(text) > MaxLength)
             {
                 return false;
             }
