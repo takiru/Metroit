@@ -281,6 +281,7 @@ namespace Metroit.Windows.Forms
                 if (isDenyImeKeyChar)
                 {
                     e.Handled = true;
+                    isDenyImeKeyChar = false;
 
                     // 途中の文字が拒否された場合、OnTextChanged()の走行にはならないので、ここでサジェスト対応
                     this.OpenSuggest();
@@ -1678,7 +1679,6 @@ namespace Metroit.Windows.Forms
             // IMEの文字入力が完了したことを認識させる、IME入力中の認識を初期化する
             if (m.Msg == WindowMessage.WM_IME_ENDCOMPOSITION)
             {
-                MessageBox.Show("IME END");
                 isImeEndComposition = true;
                 endCompositionCharCount = 0;
                 isImeStartComposition = false;

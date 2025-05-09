@@ -30,18 +30,31 @@
         {
             Forms.NumericNegativePattern numericNegativePattern1 = new Forms.NumericNegativePattern();
             Forms.NumericPositivePattern numericPositivePattern1 = new Forms.NumericPositivePattern();
+            Forms.NumericNegativePattern numericNegativePattern2 = new Forms.NumericNegativePattern();
+            Forms.NumericPositivePattern numericPositivePattern2 = new Forms.NumericPositivePattern();
+            Forms.NumericNegativePattern numericNegativePattern3 = new Forms.NumericNegativePattern();
+            Forms.NumericPositivePattern numericPositivePattern3 = new Forms.NumericPositivePattern();
             metLimitedTextBox1 = new Metroit.Windows.Forms.MetLimitedTextBox();
             metMultilineLimitedTextBox1 = new Metroit.Windows.Forms.MetMultilineLimitedTextBox();
-            label2 = new Label();
             groupBox1 = new GroupBox();
             label3 = new Label();
             metNumericTextBox1 = new Metroit.Windows.Forms.MetNumericTextBox();
             checkBox2 = new CheckBox();
             checkBox1 = new CheckBox();
+            groupBox2 = new GroupBox();
+            label2 = new Label();
+            metNumericTextBox3 = new Metroit.Windows.Forms.MetNumericTextBox();
+            label1 = new Label();
+            metNumericTextBox2 = new Metroit.Windows.Forms.MetNumericTextBox();
+            checkBox3 = new CheckBox();
+            checkBox4 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)metLimitedTextBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)metMultilineLimitedTextBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)metNumericTextBox1).BeginInit();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)metNumericTextBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)metNumericTextBox2).BeginInit();
             SuspendLayout();
             // 
             // metLimitedTextBox1
@@ -58,7 +71,6 @@
             metLimitedTextBox1.Name = "metLimitedTextBox1";
             metLimitedTextBox1.Size = new Size(100, 19);
             metLimitedTextBox1.TabIndex = 0;
-            metLimitedTextBox1.TextChanged += metLimitedTextBox1_TextChanged;
             // 
             // metMultilineLimitedTextBox1
             // 
@@ -69,21 +81,13 @@
             metMultilineLimitedTextBox1.CustomAutoCompleteBox.TargetControl = metMultilineLimitedTextBox1;
             metMultilineLimitedTextBox1.Font = new Font("ＭＳ ゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
             metMultilineLimitedTextBox1.FullWidthCharTwo = true;
-            metMultilineLimitedTextBox1.Location = new Point(257, 187);
+            metMultilineLimitedTextBox1.Location = new Point(6, 47);
             metMultilineLimitedTextBox1.MaxLineCount = 2;
             metMultilineLimitedTextBox1.MaxLineLength = 6;
             metMultilineLimitedTextBox1.Name = "metMultilineLimitedTextBox1";
-            metMultilineLimitedTextBox1.Size = new Size(100, 50);
+            metMultilineLimitedTextBox1.ScrollBars = ScrollBars.Both;
+            metMultilineLimitedTextBox1.Size = new Size(468, 64);
             metMultilineLimitedTextBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(96, 187);
-            label2.Name = "label2";
-            label2.Size = new Size(155, 15);
-            label2.TabIndex = 2;
-            label2.Text = "MetMultilineLimitedTextBox";
             // 
             // groupBox1
             // 
@@ -156,36 +160,148 @@
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(metNumericTextBox3);
+            groupBox2.Controls.Add(label1);
+            groupBox2.Controls.Add(metNumericTextBox2);
+            groupBox2.Controls.Add(checkBox3);
+            groupBox2.Controls.Add(checkBox4);
+            groupBox2.Controls.Add(metMultilineLimitedTextBox1);
+            groupBox2.Location = new Point(12, 96);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(482, 120);
+            groupBox2.TabIndex = 4;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "MetMultilineLimitedTextBox";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(222, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(84, 15);
+            label2.TabIndex = 9;
+            label2.Text = "MaxLineCount";
+            // 
+            // metNumericTextBox3
+            // 
+            metNumericTextBox3.AcceptNegative = false;
+            // 
+            // 
+            // 
+            metNumericTextBox3.CustomAutoCompleteBox.TargetControl = metNumericTextBox3;
+            metNumericTextBox3.GroupSizes = new int[]
+    {
+    3
+    };
+            metNumericTextBox3.Location = new Point(312, 20);
+            metNumericTextBox3.MaxValue = new decimal(new int[] { 32767, 0, 0, 0 });
+            metNumericTextBox3.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
+            metNumericTextBox3.Name = "metNumericTextBox3";
+            metNumericTextBox3.NegativePattern = numericNegativePattern2;
+            metNumericTextBox3.PositivePattern = numericPositivePattern2;
+            metNumericTextBox3.Size = new Size(33, 23);
+            metNumericTextBox3.TabIndex = 8;
+            metNumericTextBox3.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            metNumericTextBox3.TextChanged += metNumericTextBox3_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(351, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(89, 15);
+            label1.TabIndex = 7;
+            label1.Text = "MaxLineLength";
+            // 
+            // metNumericTextBox2
+            // 
+            metNumericTextBox2.AcceptNegative = false;
+            // 
+            // 
+            // 
+            metNumericTextBox2.CustomAutoCompleteBox.TargetControl = metNumericTextBox2;
+            metNumericTextBox2.GroupSizes = new int[]
+    {
+    3
+    };
+            metNumericTextBox2.Location = new Point(441, 19);
+            metNumericTextBox2.MaxValue = new decimal(new int[] { 32767, 0, 0, 0 });
+            metNumericTextBox2.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
+            metNumericTextBox2.Name = "metNumericTextBox2";
+            metNumericTextBox2.NegativePattern = numericNegativePattern3;
+            metNumericTextBox2.PositivePattern = numericPositivePattern3;
+            metNumericTextBox2.Size = new Size(33, 23);
+            metNumericTextBox2.TabIndex = 6;
+            metNumericTextBox2.Value = new decimal(new int[] { 6, 0, 0, 0 });
+            metNumericTextBox2.TextChanged += metNumericTextBox2_TextChanged;
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Checked = true;
+            checkBox3.CheckState = CheckState.Checked;
+            checkBox3.Location = new Point(95, 22);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(121, 19);
+            checkBox3.TabIndex = 4;
+            checkBox3.Text = "FullWidthCharTwo";
+            checkBox3.UseVisualStyleBackColor = true;
+            checkBox3.CheckedChanged += checkBox3_CheckedChanged;
+            // 
+            // checkBox4
+            // 
+            checkBox4.AutoSize = true;
+            checkBox4.Checked = true;
+            checkBox4.CheckState = CheckState.Checked;
+            checkBox4.Location = new Point(6, 22);
+            checkBox4.Name = "checkBox4";
+            checkBox4.Size = new Size(83, 19);
+            checkBox4.TabIndex = 5;
+            checkBox4.Text = "AutoFocus";
+            checkBox4.UseVisualStyleBackColor = true;
+            checkBox4.CheckedChanged += checkBox4_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(598, 270);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(label2);
-            Controls.Add(metMultilineLimitedTextBox1);
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Metroit.WindowsForms Sample";
             ((System.ComponentModel.ISupportInitialize)metLimitedTextBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)metMultilineLimitedTextBox1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)metNumericTextBox1).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)metNumericTextBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)metNumericTextBox2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Forms.MetLimitedTextBox metLimitedTextBox1;
         private Forms.MetMultilineLimitedTextBox metMultilineLimitedTextBox1;
-        private Label label2;
         private GroupBox groupBox1;
         private Forms.MetNumericTextBox metNumericTextBox1;
         private CheckBox checkBox2;
         private CheckBox checkBox1;
         private Label label3;
+        private GroupBox groupBox2;
+        private Label label2;
+        private Forms.MetNumericTextBox metNumericTextBox3;
+        private Label label1;
+        private Forms.MetNumericTextBox metNumericTextBox2;
+        private CheckBox checkBox3;
+        private CheckBox checkBox4;
     }
 }

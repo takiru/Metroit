@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 
 namespace Metroit.Windows.Forms
 {
@@ -113,7 +112,7 @@ namespace Metroit.Windows.Forms
                 return true;
             }
 
-            // 入力後の文字列の長さが1行の文字数を超過ｓている場合は許可しない
+            // 入力後の文字列の長さが1行の文字数を超過している場合は許可しない
             foreach (var lineText in value.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None))
             {
                 var textLength = GetTextCount(lineText);

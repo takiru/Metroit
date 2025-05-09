@@ -1,5 +1,4 @@
 using Metroit.Windows.Forms;
-using System.Diagnostics;
 
 namespace Metroit.Windows.FormsTest
 {
@@ -22,12 +21,27 @@ namespace Metroit.Windows.FormsTest
 
         private void metNumericTextBox1_TextChanged(object sender, EventArgs e)
         {
-            metLimitedTextBox1.MaxLength = (int)metNumericTextBox1.Value;
+            metLimitedTextBox1.MaxLength = (int)(metNumericTextBox1.Value ?? 0m);
         }
 
-        private void metLimitedTextBox1_TextChanged(object sender, EventArgs e)
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            //MessageBox.Show(metLimitedTextBox1.Text);
+            metMultilineLimitedTextBox1.AutoFocus = checkBox4.Checked;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            metMultilineLimitedTextBox1.FullWidthCharTwo = checkBox3.Checked;
+        }
+
+        private void metNumericTextBox3_TextChanged(object sender, EventArgs e)
+        {
+            metMultilineLimitedTextBox1.MaxLineCount = (int)(metNumericTextBox3.Value ?? 0m);
+        }
+
+        private void metNumericTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            metMultilineLimitedTextBox1.MaxLineLength = (int)(metNumericTextBox2.Value ?? 0m);
         }
     }
 }
