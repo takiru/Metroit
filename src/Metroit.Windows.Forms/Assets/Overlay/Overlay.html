@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Animation</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        #transparency {
+            z-index: 10;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            opacity: %Opacity%;
+        }
+
+        #animation {
+            z-index: 20;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: %Display%;
+            justify-content: center;
+            align-items: center;
+            background-image: url("data:image/svg+xml;base64,%Base64SvgImage%");
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            background-size: %BackgroundSize%;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener('keydown', function (event) {
+            if (event.key == "Tab" && !event.shiftKey) {
+                event.preventDefault();
+                window.chrome.webview.postMessage("Tab");
+            }
+            if (event.key == "Tab" && event.shiftKey) {
+                event.preventDefault();
+                window.chrome.webview.postMessage("ShiftTab");
+            }
+            if (event.key == "Escape") {
+                window.chrome.webview.postMessage("Escape");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="transparency"></div>
+    <div id="animation"></div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Metroit.Windows.Forms\AcceptsCharType.cs" Link="AcceptsCharType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\AutoCompleteBox.cs" Link="AutoCompleteBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\AutoCompleteCandidateBox.cs" Link="AutoCompleteCandidateBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CalendarType.cs" Link="CalendarType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CandidateSelectedEventArgs.cs" Link="CandidateSelectedEventArgs.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CandidateSelectedEventHandler.cs" Link="CandidateSelectedEventHandler.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\AcceptsCharControl.cs" Link="ComponentModel\AcceptsCharControl.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\AcceptsCharControl.designer.cs" Link="ComponentModel\AcceptsCharControl.designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\AcceptsCharEditor.cs" Link="ComponentModel\AcceptsCharEditor.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\MetKeysConverter.cs" Link="ComponentModel\MetKeysConverter.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericNegativePatternControl.cs" Link="ComponentModel\NumericNegativePatternControl.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericNegativePatternControl.designer.cs" Link="ComponentModel\NumericNegativePatternControl.designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericNegativePatternEditor.cs" Link="ComponentModel\NumericNegativePatternEditor.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericPositivePatternControl.cs" Link="ComponentModel\NumericPositivePatternControl.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericPositivePatternControl.designer.cs" Link="ComponentModel\NumericPositivePatternControl.designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericPositivePatternEditor.cs" Link="ComponentModel\NumericPositivePatternEditor.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\ShortcutKeysControl.cs" Link="ComponentModel\ShortcutKeysControl.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\ShortcutKeysControl.designer.cs" Link="ComponentModel\ShortcutKeysControl.designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ComponentModel\ShortcutKeysEditor.cs" Link="ComponentModel\ShortcutKeysEditor.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CurrencyNegativePatternType.cs" Link="CurrencyNegativePatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CurrencyPositivePatternType.cs" Link="CurrencyPositivePatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\CustomAutoCompleteMode.cs" Link="CustomAutoCompleteMode.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\DeniedTextException.cs" Link="DeniedTextException.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\DesignResources.cs" Link="DesignResources.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ExceptionResources.cs" Link="ExceptionResources.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ExpanderIconStyle.cs" Link="ExpanderIconStyle.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ExpandState.cs" Link="ExpandState.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ExpandStateEventArgs.cs" Link="ExpandStateEventArgs.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ExpandStateEventHandler.cs" Link="ExpandStateEventHandler.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\Extensions\ComponentExtensions.cs" Link="Extensions\ComponentExtensions.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\Extensions\ControlExtensions.cs" Link="Extensions\ControlExtensions.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\FormEscapeBehavior.cs" Link="FormEscapeBehavior.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\IBorder.cs" Link="IBorder.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\IControlRollback.cs" Link="IControlRollback.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ImageConfiguration.cs" Link="ImageConfiguration.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ImageSetting.cs" Link="ImageSetting.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\LinePosition.cs" Link="LinePosition.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\LoadingAnimationImage.cs" Link="LoadingAnimationImage.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\LoadingAnimationSetting.cs" Link="LoadingAnimationSetting.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\LoadingAnimationSizeUnit.cs" Link="LoadingAnimationSizeUnit.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MatchPatternType.cs" Link="MatchPatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MessageFilter.cs" Link="MessageFilter.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MessageFilterAction.cs" Link="MessageFilterAction.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MessageFilterActionParams.cs" Link="MessageFilterActionParams.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MessageFilterParams.cs" Link="MessageFilterParams.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetCategoryAttribute.cs" Link="MetCategoryAttribute.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetComboBox.cs" Link="MetComboBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetDateTimePicker.cs" Link="MetDateTimePicker.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetDescriptionAttribute.cs" Link="MetDescriptionAttribute.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetExpanderButton.cs" Link="MetExpanderButton.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetExpanderButton.Designer.cs" Link="MetExpanderButton.Designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetExpanderPanel.cs" Link="MetExpanderPanel.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetExpanderPanel.Designer.cs" Link="MetExpanderPanel.Designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetForm.cs" Link="MetForm.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetForm.designer.cs" Link="MetForm.designer.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetKeys.cs" Link="MetKeys.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetLabel.cs" Link="MetLabel.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetLimitedTextBox.cs" Link="MetLimitedTextBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetMultilineLimitedTextBox.cs" Link="MetMultilineLimitedTextBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetNumericLabel.cs" Link="MetNumericLabel.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetNumericTextBox.cs" Link="MetNumericTextBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetOverlay.cs" Link="MetOverlay.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\MetTextBox.cs" Link="MetTextBox.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\NumericFormatMode.cs" Link="NumericFormatMode.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\NumericNegativePattern.cs" Link="NumericNegativePattern.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\NumericNegativePatternType.cs" Link="NumericNegativePatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\NumericPositivePattern.cs" Link="NumericPositivePattern.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\PercentNegativePatternType.cs" Link="PercentNegativePatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\PercentPositivePatternType.cs" Link="PercentPositivePatternType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\Properties\DesignResources.Designer.cs" Link="Properties\DesignResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DesignResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Metroit.Windows.Forms\Properties\ExceptionResources.Designer.cs" Link="Properties\ExceptionResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExceptionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Metroit.Windows.Forms\Properties\OverlayResources.Designer.cs" Link="Properties\OverlayResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OverlayResources.resx</DependentUpon>
+    </Compile>    
+    <Compile Include="..\..\Metroit.Windows.Forms\Properties\Resources.Designer.cs" Link="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Metroit.Windows.Forms\SvgConfiguration.cs" Link="SvgConfiguration.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\SvgImages.cs" Link="SvgImages.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\SvgSetting.cs" Link="SvgSetting.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\TextChangeValidationEventArgs.cs" Link="TextChangeValidationEventArgs.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\TextChangeValidationEventHandler.cs" Link="TextChangeValidationEventHandler.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\TypingKeyType.cs" Link="TypingKeyType.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ValueChangeValidatingEventArgs.cs" Link="ValueChangeValidatingEventArgs.cs" />
+    <Compile Include="..\..\Metroit.Windows.Forms\ValueChangeValidatingEventHandler.cs" Link="ValueChangeValidatingEventHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Overlay.html" Link="Overlay.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\ComponentModel\AcceptsCharControl.resx" Link="ComponentModel\AcceptsCharControl.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericNegativePatternControl.resx" Link="ComponentModel\NumericNegativePatternControl.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\ComponentModel\NumericPositivePatternControl.resx" Link="ComponentModel\NumericPositivePatternControl.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\ComponentModel\ShortcutKeysControl.resx" Link="ComponentModel\ShortcutKeysControl.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\MetExpanderButton.resx" Link="MetExpanderButton.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\MetExpanderPanel.resx" Link="MetExpanderPanel.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\MetForm.resx" Link="MetForm.resx" />
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\Properties\DesignResources.resx" Link="Properties\DesignResources.resx">
+      <LogicalName>Metroit.Windows.Forms.Properties.DesignResources.resources</LogicalName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DesignResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\Properties\ExceptionResources.resx" Link="Properties\ExceptionResources.resx">
+      <LogicalName>Metroit.Windows.Forms.Properties.ExceptionResources.resources</LogicalName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\Properties\OverlayResources.resx" Link="Properties\OverlayResources.resx">
+      <LogicalName>Metroit.Windows.Forms.Properties.OverlayResources.resources</LogicalName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OverlayResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Metroit.Windows.Forms\Properties\Resources.resx" Link="Properties\Resources.resx">
+      <LogicalName>Metroit.Windows.Forms.Properties.Resources.resources</LogicalName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Overlay\" />
+    <Folder Include="Properties\" />
+    <Folder Include="ComponentModel\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ArrowCircleDownFilled.svg" Link="Assets\ArrowCircleDownFilled.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ArrowCircleDownOutlined.svg" Link="Assets\ArrowCircleDownOutlined.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ArrowDown.svg" Link="Assets\ArrowDown.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\CaretDownFilled.svg" Link="Assets\CaretDownFilled.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\CaretDownOutlined.svg" Link="Assets\CaretDownOutlined.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ChevronCircleDownFilled.svg" Link="Assets\ChevronCircleDownFilled.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ChevronCircleDownOutlined.svg" Link="Assets\ChevronCircleDownOutlined.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\ChevronDown.svg" Link="Assets\ChevronDown.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\DualRing.svg" Link="DualRing.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Eclipse.svg" Link="Eclipse.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Ripple.svg" Link="Ripple.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Rolling.svg" Link="Rolling.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Spin.svg" Link="Spin.svg" />
+    <None Include="..\..\Metroit.Windows.Forms\Assets\Overlay\Spinner.svg" Link="Spinner.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Metroit" Version="2.0.0.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
+    <PackageReference Include="Svg" Version="3.4.7" />
+  </ItemGroup>
+
+  <!-- WebView2 を UseWindowsForms を条件に、WindowsForms のみとする -->
+  <Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
+      <Reference Remove="@(ReferenceToBeRemoved)" />
+    </ItemGroup>
+  </Target>
+</Project>

@@ -21,21 +21,18 @@
     <PackageReleaseNotes>- MetForm's AutoScaleMode did not work, and it was always set to Font, making it impossible to support high DPI.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Metroit" Version="2.0.0.1" />
-    <PackageReference Include="Svg" Version="3.4.7" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
     <Reference Include="System.Deployment" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Design" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Metroit" Version="2.0.0.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
+    <PackageReference Include="Svg" Version="3.4.7" />
+  </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ComponentModel\ShortcutKeyUIControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Properties\DesignResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -45,6 +42,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ExceptionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\OverlayResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OverlayResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -62,10 +64,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExceptionResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\OverlayResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OverlayResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
+  <!-- WebView2 を UseWindowsForms を条件に、WindowsForms のみとする -->
+  <Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
+      <Reference Remove="@(ReferenceToBeRemoved)" />
+    </ItemGroup>
+  </Target>
 </Project>

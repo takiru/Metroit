@@ -1,4 +1,4 @@
-﻿namespace Metroit.Windows.FormsTest
+﻿namespace Metroit.Windows.FormsTestNet80
 {
     partial class Form1
     {
@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Forms.NumericNegativePattern numericNegativePattern4 = new Forms.NumericNegativePattern();
+            Forms.NumericPositivePattern numericPositivePattern4 = new Forms.NumericPositivePattern();
             Forms.NumericNegativePattern numericNegativePattern1 = new Forms.NumericNegativePattern();
             Forms.NumericPositivePattern numericPositivePattern1 = new Forms.NumericPositivePattern();
             Forms.NumericNegativePattern numericNegativePattern2 = new Forms.NumericNegativePattern();
             Forms.NumericPositivePattern numericPositivePattern2 = new Forms.NumericPositivePattern();
-            Forms.NumericNegativePattern numericNegativePattern3 = new Forms.NumericNegativePattern();
-            Forms.NumericPositivePattern numericPositivePattern3 = new Forms.NumericPositivePattern();
             metLimitedTextBox1 = new Metroit.Windows.Forms.MetLimitedTextBox();
             metMultilineLimitedTextBox1 = new Metroit.Windows.Forms.MetMultilineLimitedTextBox();
             groupBox1 = new GroupBox();
@@ -48,6 +48,7 @@
             metNumericTextBox2 = new Metroit.Windows.Forms.MetNumericTextBox();
             checkBox3 = new CheckBox();
             checkBox4 = new CheckBox();
+            OverlayShowButton = new Button();
             ((System.ComponentModel.ISupportInitialize)metLimitedTextBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)metMultilineLimitedTextBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -127,8 +128,8 @@
             metNumericTextBox1.MaxValue = new decimal(new int[] { 32767, 0, 0, 0 });
             metNumericTextBox1.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
             metNumericTextBox1.Name = "metNumericTextBox1";
-            metNumericTextBox1.NegativePattern = numericNegativePattern1;
-            metNumericTextBox1.PositivePattern = numericPositivePattern1;
+            metNumericTextBox1.NegativePattern = numericNegativePattern4;
+            metNumericTextBox1.PositivePattern = numericPositivePattern4;
             metNumericTextBox1.Size = new Size(33, 23);
             metNumericTextBox1.TabIndex = 2;
             metNumericTextBox1.Value = new decimal(new int[] { 6, 0, 0, 0 });
@@ -200,8 +201,8 @@
             metNumericTextBox3.MaxValue = new decimal(new int[] { 32767, 0, 0, 0 });
             metNumericTextBox3.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
             metNumericTextBox3.Name = "metNumericTextBox3";
-            metNumericTextBox3.NegativePattern = numericNegativePattern2;
-            metNumericTextBox3.PositivePattern = numericPositivePattern2;
+            metNumericTextBox3.NegativePattern = numericNegativePattern1;
+            metNumericTextBox3.PositivePattern = numericPositivePattern1;
             metNumericTextBox3.Size = new Size(33, 23);
             metNumericTextBox3.TabIndex = 8;
             metNumericTextBox3.Value = new decimal(new int[] { 2, 0, 0, 0 });
@@ -231,8 +232,8 @@
             metNumericTextBox2.MaxValue = new decimal(new int[] { 32767, 0, 0, 0 });
             metNumericTextBox2.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
             metNumericTextBox2.Name = "metNumericTextBox2";
-            metNumericTextBox2.NegativePattern = numericNegativePattern3;
-            metNumericTextBox2.PositivePattern = numericPositivePattern3;
+            metNumericTextBox2.NegativePattern = numericNegativePattern2;
+            metNumericTextBox2.PositivePattern = numericPositivePattern2;
             metNumericTextBox2.Size = new Size(33, 23);
             metNumericTextBox2.TabIndex = 6;
             metNumericTextBox2.Value = new decimal(new int[] { 6, 0, 0, 0 });
@@ -264,11 +265,22 @@
             checkBox4.UseVisualStyleBackColor = true;
             checkBox4.CheckedChanged += checkBox4_CheckedChanged;
             // 
+            // OverlayShowButton
+            // 
+            OverlayShowButton.Location = new Point(12, 222);
+            OverlayShowButton.Name = "OverlayShowButton";
+            OverlayShowButton.Size = new Size(93, 23);
+            OverlayShowButton.TabIndex = 5;
+            OverlayShowButton.Text = "Show Overlay";
+            OverlayShowButton.UseVisualStyleBackColor = true;
+            OverlayShowButton.Click += OverlayShowButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(598, 270);
+            Controls.Add(OverlayShowButton);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             MaximizeBox = false;
@@ -303,5 +315,6 @@
         private Forms.MetNumericTextBox metNumericTextBox2;
         private CheckBox checkBox3;
         private CheckBox checkBox4;
+        private Button OverlayShowButton;
     }
 }

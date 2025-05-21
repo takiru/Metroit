@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net462</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Metroit.Windows.FormsTestNet462Stub\Metroit.Windows.FormsTestNet462Stub.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
+  </ItemGroup>
+
+  <!-- WebView2 を UseWindowsForms を条件に、WindowsForms のみとする -->
+  <Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
+      <Reference Remove="@(ReferenceToBeRemoved)" />
+    </ItemGroup>
+  </Target>
+</Project>

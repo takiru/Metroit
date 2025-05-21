@@ -1,6 +1,6 @@
 using Metroit.Windows.Forms;
 
-namespace Metroit.Windows.FormsTest
+namespace Metroit.Windows.FormsTestNet80
 {
     public partial class Form1 : MetForm
     {
@@ -42,6 +42,21 @@ namespace Metroit.Windows.FormsTest
         private void metNumericTextBox2_TextChanged(object sender, EventArgs e)
         {
             metMultilineLimitedTextBox1.MaxLineLength = (int)(metNumericTextBox2.Value ?? 0m);
+        }
+
+        private void OverlayShowButton_Click(object sender, EventArgs e)
+        {
+            var overlay = new MetOverlay();
+            overlay.Show(groupBox2, (token) =>
+            {
+                for (int i = 0; i <= 3000; i++)
+                {
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        metMultilineLimitedTextBox1.Text = i.ToString();
+                    }));
+                }
+            });
         }
     }
 }
