@@ -68,9 +68,9 @@ namespace Metroit.Windows.Forms
         public Action ProcessCancelled { get; set; } = null;
 
         /// <summary>
-        /// メインスレッドのコンテキスト。
+        /// UIスレッドの同期コンテキストを取得します。
         /// </summary>
-        private SynchronizationContext _mainContext;
+        public SynchronizationContext SynchronizationContext { get; private set; } = null;
 
         /// <summary>
         /// オーバーレイを表示させるコントロール。
@@ -85,7 +85,7 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// オーバーレイを表示中に行う制御。
         /// </summary>
-        private Action<CancellationToken> _action = null;
+        private Func<CancellationToken, bool> _process = null;
 
         /// <summary>
         /// WebView。
@@ -109,18 +109,18 @@ namespace Metroit.Windows.Forms
         /// オーバーレイを表示します。
         /// </summary>
         /// <param name="onControl">オーバーレイを表示するコントロール。</param>
-        /// <param name="action">オーバーレイを表示中に行う制御。</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        public async void Show(Control onControl, Action<CancellationToken> action = null)
+        /// <param name="process">オーバーレイを表示中に行う制御。</param>
+        /// <exception cref="ArgumentNullException"><paramref name="onControl"/> が null です。</exception>
+        /// <exception cref="ArgumentException"><paramref name="onControl"/> が オーバーレイを表示可能なコントロールではありません。</exception>
+        /// <exception cref="InvalidOperationException">オーバーレイが表示済みか、<paramref name="onControl"/> に親フォームが存在しません。</exception>
+        public async void Show(Control onControl, Func<CancellationToken, bool> process = null)
         {
             if (_isOverlayShowed)
             {
                 throw new InvalidOperationException("オーバーレイは表示済みです。");
             }
 
-            _mainContext = SynchronizationContext.Current;
+            SynchronizationContext = SynchronizationContext.Current;
 
             if (onControl == null)
             {
@@ -143,12 +143,12 @@ namespace Metroit.Windows.Forms
             var parentForm = onControl.FindForm();
             if (parentForm == null)
             {
-                throw new InvalidOperationException("OnControl の親フォームが取得できません。");
+                throw new InvalidOperationException($"{nameof(onControl)} の親フォームが取得できません。");
             }
 
             _onControl = onControl;
             _parentForm = parentForm;
-            _action = action;
+            _process = process;
 
             _onControl.Enter += OnControlEnter;
             _parentForm.Resize += ParentFormResize;
@@ -288,10 +288,16 @@ namespace Metroit.Windows.Forms
             await Task.Run(() =>
             {
                 _cancellationTokenSource = new CancellationTokenSource();
-                _action?.Invoke(_cancellationTokenSource.Token);
+                if (_process != null)
+                {
+                    if (!_process.Invoke(_cancellationTokenSource.Token))
+                    {
+                        _cancellationTokenSource.Cancel();
+                    }
+                }
             });
 
-            _mainContext.Post(_ => FinalizeProcess(), null);
+            SynchronizationContext.Post(_ => FinalizeProcess(), null);
         }
 
         /// <summary>

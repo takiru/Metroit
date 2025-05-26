@@ -51,11 +51,13 @@ namespace Metroit.Windows.FormsTestNet80
             {
                 for (int i = 0; i <= 3000; i++)
                 {
-                    this.Invoke((MethodInvoker)(() =>
+                    overlay.SynchronizationContext.Send((_) =>
                     {
                         metMultilineLimitedTextBox1.Text = i.ToString();
-                    }));
+                    }, null);
                 }
+
+                return true;
             });
         }
     }
