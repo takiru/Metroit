@@ -79,6 +79,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   {0} cannot be overlaid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotUseOverlayControl {
+            get {
+                return ResourceManager.GetString("CannotUseOverlayControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0} はオーバーレイできません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotUseOverlayControl_ja {
+            get {
+                return ResourceManager.GetString("CannotUseOverlayControl.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   An unacceptable value has been set. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DeniedTextException {
@@ -165,6 +183,42 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MinValueSmallerCanNotChange_ja {
             get {
                 return ResourceManager.GetString("MinValueSmallerCanNotChange.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The overlay is already displayed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string OverlayAlreadyDisplayed {
+            get {
+                return ResourceManager.GetString("OverlayAlreadyDisplayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   オーバーレイは表示済みです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string OverlayAlreadyDisplayed_ja {
+            get {
+                return ResourceManager.GetString("OverlayAlreadyDisplayed.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I can&apos;t get the parent form of {0}. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnableFindParentForm {
+            get {
+                return ResourceManager.GetString("UnableFindParentForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0} の親フォームが取得できません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnableFindParentForm_ja {
+            get {
+                return ResourceManager.GetString("UnableFindParentForm.ja", resourceCulture);
             }
         }
         

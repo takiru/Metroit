@@ -117,7 +117,7 @@ namespace Metroit.Windows.Forms
         {
             if (_isOverlayShowed)
             {
-                throw new InvalidOperationException("オーバーレイは表示済みです。");
+                throw new InvalidOperationException(ExceptionResources.GetString("OverlayAlreadyDisplayed"));
             }
 
             SynchronizationContext = SynchronizationContext.Current;
@@ -129,21 +129,21 @@ namespace Metroit.Windows.Forms
 
             if (onControl is FlowLayoutPanel)
             {
-                throw new ArgumentException($"{nameof(FlowLayoutPanel)} はオーバーレイできません。", nameof(onControl));
+                throw new ArgumentException(string.Format(ExceptionResources.GetString("CannotUseOverlayControl"), nameof(FlowLayoutPanel)), nameof(onControl));
             }
             if (onControl is TableLayoutPanel)
             {
-                throw new ArgumentException($"{nameof(TableLayoutPanel)} はオーバーレイできません。", nameof(onControl));
+                throw new ArgumentException(string.Format(ExceptionResources.GetString("CannotUseOverlayControl"), nameof(TableLayoutPanel)), nameof(onControl));
             }
             if (onControl is SplitContainer)
             {
-                throw new ArgumentException($"{nameof(SplitContainer)} はオーバーレイできません。", nameof(onControl));
+                throw new ArgumentException(string.Format(ExceptionResources.GetString("CannotUseOverlayControl"), nameof(SplitContainer)), nameof(onControl));
             }
 
             var parentForm = onControl.FindForm();
             if (parentForm == null)
             {
-                throw new InvalidOperationException($"{nameof(onControl)} の親フォームが取得できません。");
+                throw new InvalidOperationException(string.Format(ExceptionResources.GetString("CannotUseOverlayControl"), nameof(onControl)));
             }
 
             _onControl = onControl;

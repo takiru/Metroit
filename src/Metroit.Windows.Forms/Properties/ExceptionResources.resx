@@ -123,6 +123,12 @@
   <data name="AcceptNegativeCanNotChange.ja" xml:space="preserve">
     <value>Valueが負数のため、変更できません。</value>
   </data>
+  <data name="CannotUseOverlayControl" xml:space="preserve">
+    <value>{0} cannot be overlaid.</value>
+  </data>
+  <data name="CannotUseOverlayControl.ja" xml:space="preserve">
+    <value>{0} はオーバーレイできません。</value>
+  </data>
   <data name="DeniedTextException" xml:space="preserve">
     <value>An unacceptable value has been set.</value>
   </data>
@@ -152,6 +158,18 @@
   </data>
   <data name="MinValueSmallerCanNotChange.ja" xml:space="preserve">
     <value>MinValueの値より小さい値は設定できません。</value>
+  </data>
+  <data name="OverlayAlreadyDisplayed" xml:space="preserve">
+    <value>The overlay is already displayed.</value>
+  </data>
+  <data name="OverlayAlreadyDisplayed.ja" xml:space="preserve">
+    <value>オーバーレイは表示済みです。</value>
+  </data>
+  <data name="UnableFindParentForm" xml:space="preserve">
+    <value>I can't get the parent form of {0}.</value>
+  </data>
+  <data name="UnableFindParentForm.ja" xml:space="preserve">
+    <value>{0} の親フォームが取得できません。</value>
   </data>
   <data name="ValueLargerCanNotChange" xml:space="preserve">
     <value>Values larger than Value can not be set.</value>
