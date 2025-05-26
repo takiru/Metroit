@@ -143,7 +143,7 @@ namespace Metroit.Windows.Forms
             var parentForm = onControl.FindForm();
             if (parentForm == null)
             {
-                throw new InvalidOperationException(string.Format(ExceptionResources.GetString("CannotUseOverlayControl"), nameof(onControl)));
+                throw new InvalidOperationException(string.Format(ExceptionResources.GetString("UnableFindParentForm"), nameof(onControl)));
             }
 
             _onControl = onControl;
