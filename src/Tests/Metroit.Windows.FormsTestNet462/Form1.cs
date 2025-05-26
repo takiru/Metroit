@@ -53,6 +53,11 @@ namespace Metroit.Windows.FormsTestNet462
             {
                 for (int i = 0; i <= 3000; i++)
                 {
+                    if (token.IsCancellationRequested)
+                    {
+                        return false;
+                    }
+
                     overlay.SynchronizationContext.Send((_) =>
                     {
                         metMultilineLimitedTextBox1.Text = i.ToString();
