@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net45</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <!-- Designer.cs 以外の .cs を追加 -->
+  <ItemGroup>
+    <!-- 一旦すべての .cs をリンク -->
+    <Compile Include="..\..\Metroit\*.cs">
+      <Link>%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+    </Compile>
+    <Compile Include="..\..\Metroit\Collections\**\*.cs">
+      <Link>Collections\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+    </Compile>
+    <Compile Include="..\..\Metroit\Extensions\*.cs">
+      <Link>Extensions\%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+    </Compile>
+    <Compile Include="..\..\Metroit\IO\*.cs">
+      <Link>IO\%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+    </Compile>
+    <Compile Include="..\..\Metroit\Win32\**\*.cs">
+      <Link>Win32\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+    </Compile>
+    
+    <!-- .Designer.cs を除去 -->
+    <Compile Remove="..\..\Metroit\**\*.Designer.cs" />
+  </ItemGroup>
+
+  <!-- Properties フォルダー内に含まれている .Designer.cs と .resx を追加 -->
+  <ItemGroup>
+    <!-- Properties フォルダー内の .Designer.cs をリンク -->
+    <Compile Include="..\..\Metroit\Properties\*.Designer.cs">
+      <Link>Properties\%(Filename)%(Extension)</Link>
+      <DesignTime>False</DesignTime>
+      <AutoGen>False</AutoGen>
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Replace('.Designer', '').Replace('.designer', '')).resx</DependentUpon>
+    </Compile>
+
+    <!-- Properties フォルダー内の .resx をリンク -->
+    <EmbeddedResource Include="..\..\Metroit\Properties\*.resx">
+      <Link>Properties\%(Filename)%(Extension)</Link>
+      <LogicalName>Metroit.Properties.%(Filename).resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

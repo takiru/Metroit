@@ -76,9 +76,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Metroit" Version="2.0.0.1" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
     <PackageReference Include="Svg" Version="3.4.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetroitTestNet80Stub\MetroitTestNet80Stub.csproj" />
   </ItemGroup>
 
   <!-- WebView2 を UseWindowsForms を条件に、WindowsForms のみとする -->

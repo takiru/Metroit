@@ -18,7 +18,22 @@
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>disable</ImplicitUsings>
-    <PackageReleaseNotes>- MetForm's AutoScaleMode did not work, and it was always set to Font, making it impossible to support high DPI.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      MetLimitedTextBox
+       - Fixed an issue where input was rejected correctly when trying to change the value to another value while all values ​​were selected. (Same for MetMultilineLimitedTextBox)
+       - Added FullWidthCharTwo property.
+         MaxLength is now controlled according to the FullWidthCharTwo property.
+       - Added MaxLineLength and MaxLineCount properties.
+         Control is now controlled according to the FullWidthCharTwo property.
+
+      MetExpanderPanel
+       - Added ExpandStateChanged event.
+       - Fixed an issue where an edited state was displayed when an installed design was opened in the designer.
+
+      MetOverlay
+       - Added a new class that overlays controls. (Can only be controlled by code)
+         This is achieved using WebView2.
+    </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
