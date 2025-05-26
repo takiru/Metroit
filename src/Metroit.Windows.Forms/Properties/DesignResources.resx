@@ -903,4 +903,10 @@
   <data name="ValueChangeValidating.ja" xml:space="preserve">
     <value>Value プロパティの値が変更されているときに発生するイベントです。値を検証し、変更を拒否することができます。</value>
   </data>
+  <data name="MetExpanderPanelExpandStateChanged" xml:space="preserve">
+    <value>Occurs when the deployment state changes.</value>
+  </data>
+  <data name="MetExpanderPanelExpandStateChanged.ja" xml:space="preserve">
+    <value>展開状態が変更された時に発生します。</value>
+  </data>
 </root>

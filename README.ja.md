@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
 
 旧バージョン  
 
@@ -514,3 +514,37 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |---------------|-----|
     |Expand(bool)   |パネルを開く。 |
     |Collapse(bool) |パネルを閉じる。 |
+
+  - イベント  
+
+    |名前               |意味                             |
+    |-------------------|---------------------------------|
+    |ExpandStateChanged |開閉状態が変更して開閉が完了した時に発生する。 |
+
+#### オーバーレイ ####
+- MetOverlay  
+  指定したコントロールを、制御が完了するまでオーバーレイで覆う。  
+  
+      MetOverlay は、コードで直接利用する必要があります。
+
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | Opacity | オーバーレイの不透明度。 |
+    | UseAnimation | ローディングアニメーションを表示するかどうか。 |
+    | LoadingAnimationSetting | ローディングアニメーションの設定。 |
+    | Cancellation | キャンセル可能かどうか。 |
+    | OverlayShown | オーバーレイが表示されたときに走行。 |
+    | ProcessCompleted | 制御が完了したときに走行。 |
+    | ProcessCancelled | 制御がキャンセルされたときに走行。 |
+    | SynchronizationContext | UIスレッドの同期コンテキスト。 |
+
+  - メソッド
+
+    |名前           |意味 |
+    |---------------|-----|
+    | Show(Control, Func<CancellationToken, bool>) | オーバーレイを表示します。 |
+    | Cancel() | オーバーレイをキャンセルします。 |
+    | Dispose() | オーバーレイを非表示にして、オブジェクトを破棄します。 |

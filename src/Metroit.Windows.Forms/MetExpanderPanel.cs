@@ -246,19 +246,17 @@ namespace Metroit.Windows.Forms
         {
             InitializeComponent();
 
-            wrapPanel.Controls.Add(expanderButton);
             PanelHeight = Height;
         }
 
         /// <summary>
         /// とにかく開閉ボタンを最上部に位置させる。
         /// </summary>
-        /// <param name="e"></param>
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnCreateControl()
         {
-            wrapPanel.SendToBack();
+            base.OnCreateControl();
 
-            base.OnPaint(e);
+            wrapPanel.SendToBack();
         }
 
         /// <summary>
@@ -345,6 +343,7 @@ namespace Metroit.Windows.Forms
                     }
                     Height = wrapPanel.Height;
                 }
+                OnExpandStateChanged();
                 return;
             }
 
@@ -399,6 +398,10 @@ namespace Metroit.Windows.Forms
             }
 
             animationTimer.Enabled = !animationEnded;
+            if (animationEnded)
+            {
+                OnExpandStateChanged();
+            }
         }
 
         /// <summary>
@@ -409,6 +412,22 @@ namespace Metroit.Windows.Forms
         private void expanderButton_SizeChanged(object sender, EventArgs e)
         {
             wrapPanel.Height = expanderButton.Height + wrapPanel.Padding.Top + wrapPanel.Padding.Bottom;
+        }
+
+        /// <summary>
+        /// 展開状態が変更された時に発生します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetPropertyChange")]
+        [MetDescription("MetExpanderPanelExpandStateChanged")]
+        public event ExpandStateEventHandler ExpandStateChanged;
+
+        /// <summary>
+        /// 展開状態が変更された時にイベントを発生させます。
+        /// </summary>
+        protected virtual void OnExpandStateChanged()
+        {
+            ExpandStateChanged?.Invoke(this, new ExpandStateEventArgs(State));
         }
     }
 }

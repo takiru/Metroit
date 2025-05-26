@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
 
 Older Version  
 
@@ -510,9 +510,43 @@ It is a library that helps to create WinForms application.
     |Acceleration |Animation acceleration. |
     |CollapsedHeaderLineVisibled |Whether to display a separator line when closed. |
 
-  - メソッド
+  - Methods  
 
     |Name           |Meaning |
     |---------------|-----|
     |Expand(bool)   |Open the panel. |
     |Collapse(bool) |Close the panel. |
+
+  - Events  
+
+    |Name               |Meaning                          |
+    |-------------------|---------------------------------|
+    |ExpandStateChanged |Occurs when the open/close state changes and the open/close is completed. |
+
+#### Overlay ####
+- MetOverlay  
+  Covers the specified control with an overlay until the control is completed.  
+  
+      MetOverlay must be used directly in your code.
+
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | Opacity | The opacity of the overlay. |
+    | UseAnimation | Whether to show the loading animation. |
+    | LoadingAnimationSetting | Loading animation settings. |
+    | Cancellation | Whether cancellation is possible. |
+    | OverlayShown | Running when the overlay appears. |
+    | ProcessCompleted | Run when control is complete. |
+    | ProcessCancelled | Running when control is cancelled. |
+    | SynchronizationContext | The synchronization context for the UI thread. |
+
+  - Methods
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | Show(Control, Func<CancellationToken, bool>) | Show the overlay. |
+    | Cancel() | Cancel the overlay. |
+    | Dispose() | Hides the overlay and destroys the object. |

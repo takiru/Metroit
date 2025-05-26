@@ -1645,6 +1645,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Occurs when the deployment state changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetExpanderPanelExpandStateChanged {
+            get {
+                return ResourceManager.GetString("MetExpanderPanelExpandStateChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   展開状態が変更された時に発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetExpanderPanelExpandStateChanged_ja {
+            get {
+                return ResourceManager.GetString("MetExpanderPanelExpandStateChanged.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the title font. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetExpanderPanelHeaderFont {

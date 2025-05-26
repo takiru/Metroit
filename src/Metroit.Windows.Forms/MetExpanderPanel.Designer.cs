@@ -60,7 +60,7 @@
             this.expanderButton.Size = new System.Drawing.Size(365, 13);
             this.expanderButton.Svg.Collapsed.Rotation = 0F;
             this.expanderButton.Svg.Collapsed.SvgStream = null;
-            this.expanderButton.Svg.Expanded.Rotation = 0F;
+            this.expanderButton.Svg.Expanded.Rotation = 180F;
             this.expanderButton.Svg.Expanded.SvgStream = null;
             this.expanderButton.TabIndex = 0;
             this.expanderButton.TabStop = false;
