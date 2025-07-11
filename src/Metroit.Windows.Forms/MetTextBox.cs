@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -1737,6 +1738,19 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// 指定したシステム メトリックまたはシステム構成設定を取得する。
+        /// </summary>
+        /// <param name="nIndex">取得するシステム メトリックまたは構成設定。</param>
+        /// <returns>要求されたシステム メトリックまたは構成設定。</returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetSystemMetrics(int nIndex);
+
+        /// <summary>
+        /// 垂直スクロール バーの幅 (ピクセル単位)。
+        /// </summary>
+        private static readonly int SM_CXVSCROLL = 2;
+
+        /// <summary>
         /// 外枠を描画する。
         /// </summary>
         /// <param name="g"></param>
@@ -1776,7 +1790,15 @@ namespace Metroit.Windows.Forms
                 borderColor = this.Parent.BackColor;
             }
 
-            g.DrawRectangle(new Pen(borderColor), 0, 0, Width - 1, Height - 1);
+            if (ScrollBars == ScrollBars.Both || ScrollBars == ScrollBars.Vertical)
+            {
+                var vScrollWidth = GetSystemMetrics(SM_CXVSCROLL);
+                g.DrawRectangle(new Pen(borderColor), 0, 0, Width - vScrollWidth - 1, Height - 1);
+            }
+            else
+            {
+                g.DrawRectangle(new Pen(borderColor), 0, 0, Width - 1, Height - 1);
+            }
         }
 
         /// <summary>

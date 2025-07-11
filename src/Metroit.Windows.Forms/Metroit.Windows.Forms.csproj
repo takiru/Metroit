@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net5.0-windows;net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.1.0.0</VersionPrefix>
+    <VersionPrefix>3.1.1.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -19,20 +19,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      MetLimitedTextBox
-       - Fixed an issue where input was rejected correctly when trying to change the value to another value while all values ​​were selected. (Same for MetMultilineLimitedTextBox)
-       - Added FullWidthCharTwo property.
-         MaxLength is now controlled according to the FullWidthCharTwo property.
-       - Added MaxLineLength and MaxLineCount properties.
-         Control is now controlled according to the FullWidthCharTwo property.
-
-      MetExpanderPanel
-       - Added ExpandStateChanged event.
-       - Fixed an issue where an edited state was displayed when an installed design was opened in the designer.
-
-      MetOverlay
-       - Added a new class that overlays controls. (Can only be controlled by code)
-         This is achieved using WebView2.
+      Add
+      - ApplicationMutex
+      - ApplicationMutexInfo
+      - ApplicationMutexBehavior
+      Bug Fixes
+      - When the MetTextBox ScrollBars was Both or Vertical, the border was not drawn correctly.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

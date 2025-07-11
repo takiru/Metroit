@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0.1-blue.svg)](https://www.nuget.org/packages/Metroit/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net5.0-windows` `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 Older Version  
 
@@ -307,6 +307,17 @@ query = op.GetOptimizedText(query, QueryBindVariableType.ColonWithParam); // SEL
 
 ## Metroit.Windows.Forms ##
 It is a library that helps to create WinForms application.
+
+Since we are using [Microsoft.Web.WebView2](https://www.nuget.org/packages/Microsoft.Web.WebView2), you can suppress the warning by writing the following in the project file according to your project.
+```xml
+  <Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
+      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
+      <Reference Remove="@(ReferenceToBeRemoved)" />
+    </ItemGroup>
+  </Target>
+```
 
 #### Extended Form ####
 - MetForm  
