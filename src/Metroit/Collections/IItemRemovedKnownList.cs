@@ -9,7 +9,7 @@ namespace Metroit.Collections
     public interface IItemRemovedKnownList : IBindingList
     {
         /// <summary>
-        /// 削除されたリストデータ を取得します。
+        /// 削除されたリストデータを取得します。
         /// </summary>
         IList Removed { get; }
     }
