@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>2.1.0.0</VersionPrefix>
+    <VersionPrefix>3.0.0.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -15,14 +15,20 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Add
-      - NoTrackingAttribute
-      - PropertyChangeEntry
+      Abolished
+      - IItemRemovedKnownList
+      - ItemRemovedKnownList
+
+      Reviewed
       - PropertyChangeTracker
-      - IStateObject
-      Modify
-      - The Removed property of IItemRemovedKnownList is now an IReadOnlyList&lt;T&gt;.
-      - ItemRemovedKnownList&lt;T&gt; now calls the ChangeState() method of IStateObject when the ListChanged event occurs.Generic classes should implement IStateObject and retain the notified state.
+
+      Added
+      - IPropertyChangeTrackerProvider
+      - ITrackingItem
+      - IRemoveTrackingList
+      - TrackingList
+      - TrackingObject
+      - TrackingObjectWithState
     </PackageReleaseNotes>
   </PropertyGroup>
 

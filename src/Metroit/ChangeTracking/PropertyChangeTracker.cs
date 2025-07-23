@@ -1,7 +1,6 @@
 ﻿using Metroit.Annotations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -14,19 +13,18 @@ namespace Metroit.ChangeTracking
     ///   - <see cref="NoTrackings"/> で指定されていないプロパティまたはフィールド<br/>
     /// プロパティは get アクセサーが必要です。
     /// </summary>
-    /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public class PropertyChangeTracker<T> where T : class
+    public class PropertyChangeTracker
     {
         /// <summary>
         /// 変更追跡を行うオブジェクト。
         /// </summary>
-        private T Instance { get; }
+        protected object Instance { get; }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
         /// <param name="instance">変更追跡を行うオブジェクト。</param>
-        public PropertyChangeTracker(T instance)
+        public PropertyChangeTracker(object instance)
         {
             Instance = instance;
         }
@@ -47,6 +45,16 @@ namespace Metroit.ChangeTracking
         public IEnumerable<PropertyChangeEntry> Entries => _entries;
 
         /// <summary>
+        /// 直前でトラッキングしたプロパティ名を取得します。
+        /// </summary>
+        public string LastTrackingProperty { get; private set; } = string.Empty;
+
+        /// <summary>
+        /// 変更追跡が行われているかどうかを取得します。
+        /// </summary>
+        public bool IsTracking { get; private set; } = false;
+
+        /// <summary>
         /// 公開しているすべてのプロパティまたはフィールドの既定値と変更追跡をリセットします。
         /// </summary>
         public virtual void Reset()
@@ -61,6 +69,7 @@ namespace Metroit.ChangeTracking
             {
                 _entries.Add(new PropertyChangeEntry(property.Name, property.GetValue(Instance)));
             }
+            IsTracking = true;
         }
 
         /// <summary>
@@ -111,8 +120,10 @@ namespace Metroit.ChangeTracking
                 .Single()
                 .ChangeValue(changedValue);
 
+            LastTrackingProperty = propertyName;
+
             // 既定値に戻ってすべてのエントリが無変更となったとき、変更状態を初期化する
-            if (object.Equals(changedValue, defaultValue))
+            if (Equals(changedValue, defaultValue))
             {
                 if (_entries.Where(x => x.Changed).Count() == 0)
                 {
@@ -129,7 +140,7 @@ namespace Metroit.ChangeTracking
         /// <summary>
         /// プロパティまたはフィールドの値に変更があったかを取得します。
         /// </summary>
-        protected bool IsSomethingValueChanged
+        public bool IsSomethingValueChanged
         {
             get => _isSomethingValueChanged;
             private set

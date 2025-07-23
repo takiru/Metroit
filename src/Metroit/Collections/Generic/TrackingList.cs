@@ -1,14 +1,16 @@
-﻿using System.Collections;
+﻿using Metroit.ChangeTracking;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Metroit.Collections.Generic
 {
     /// <summary>
-    /// 削除されたアイテムを把握可能なリストを提供します。
+    /// アイテムの状態と削除されたアイテムを把握可能なリストを提供します。
     /// </summary>
-    /// <typeparam name="T">把握可能とするクラス。</typeparam>
-    public class ItemRemovedKnownList<T> : BindingList<T>, IItemRemovedKnownList<T> where T : IStateObject
+    /// <typeparam name="T">把握可能にするクラス。</typeparam>
+    public class TrackingList<T> : BindingList<T>, IRemoveTrackingList<T>, ITrackingItem<T> where T : IPropertyChangeTrackerProvider, IStateObject
     {
         /// <summary>
         /// 削除されたリストデータ。
@@ -22,24 +24,27 @@ namespace Metroit.Collections.Generic
 
         /// <summary>
         /// 削除されたリストデータ を取得します。
-        /// 外部からの利用は不要です。
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        IList IItemRemovedKnownList.Removed => (IList)_removed;
+        IList IRemoveTrackingList.Removed => (IList)_removed;
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public ItemRemovedKnownList()
+        public TrackingList()
         {
-            AddingNew += ItemRemovedKnownList_AddingNew;
-            ListChanged += ItemRemovedKnownList_ListChanged;
+            AddingNew += TrackingList_AddingNew;
+            ListChanged += TrackingList_ListChanged;
         }
 
         /// <summary>
         /// 削除指示を受けたアイテム。
         /// </summary>
         private T _removingItem;
+
+        /// <summary>
+        /// 最後に指示を受けたアイテムを取得します。
+        /// </summary>
+        public T LastAccessItem { get; private set; } = default(T);
 
         /// <summary>
         /// リストが削除された時に必ず走行する。削除されたオブジェクトを把握する。
@@ -59,7 +64,7 @@ namespace Metroit.Collections.Generic
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <exception cref="System.NotImplementedException"></exception>
-        private void ItemRemovedKnownList_AddingNew(object sender, AddingNewEventArgs e)
+        private void TrackingList_AddingNew(object sender, AddingNewEventArgs e)
         {
             _isAddingNew = true;
         }
@@ -69,7 +74,7 @@ namespace Metroit.Collections.Generic
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ItemRemovedKnownList_ListChanged(object sender, ListChangedEventArgs e)
+        private void TrackingList_ListChanged(object sender, ListChangedEventArgs e)
         {
             switch (e.ListChangedType)
             {
@@ -82,7 +87,7 @@ namespace Metroit.Collections.Generic
                     // ResetItem(), INotifyPropertyChangedによって値変更が通知されたときに走行する
                     // ResetItem() による制御は行わない。
                     // NOTE: ResetItem() で走行する場合、OldIndexは -1 になる。
-                    if (e.OldIndex == -1)
+                    if (WasResetItem(e))
                     {
                         return;
                     }
@@ -112,11 +117,28 @@ namespace Metroit.Collections.Generic
             {
                 this[index].ChangeState(ItemState.New);
                 _isAddingNew = false;
+                LastAccessItem = this[index];
                 return;
             }
 
             // Add(), Insert() による行追加したとき
             this[index].ChangeState(ItemState.NotModified);
+            LastAccessItem = this[index];
+        }
+
+        /// <summary>
+        /// <see cref="BindingList{T}.ResetItem(int)"/> を行ったかどうかを取得します。
+        /// </summary>
+        /// <param name="e"><see cref="ListChangedEventArgs"/>。</param>
+        /// <returns><see cref="BindingList{T}.ResetItem(int)"/> を行った場合は true, それ以外は false を返却します。</returns>
+        protected virtual bool WasResetItem(ListChangedEventArgs e)
+        {
+            if (e.OldIndex == -1)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -131,12 +153,36 @@ namespace Metroit.Collections.Generic
             if (item.State == ItemState.New)
             {
                 item.ChangeState(ItemState.NewModified);
+                LastAccessItem = this[index];
+                return;
             }
 
             // 無変更行の値を変更したとき
             if (item.State == ItemState.NotModified)
             {
                 item.ChangeState(ItemState.Modified);
+                LastAccessItem = this[index];
+                return;
+            }
+
+            // 新規行の値を編集して元の値に戻ったとき
+            if (item.State == ItemState.NewModified)
+            {
+                if (item.ChangeTracker.Entries.Where(x => x.Changed).Count() == 0)
+                {
+                    item.ChangeState(ItemState.New);
+                }
+                return;
+            }
+
+            // 無変更行の値を編集して元の値に戻ったとき
+            if (item.State == ItemState.Modified)
+            {
+                if (item.ChangeTracker.Entries.Where(x => x.Changed).Count() == 0)
+                {
+                    item.ChangeState(ItemState.NotModified);
+                }
+                return;
             }
         }
 
@@ -148,15 +194,18 @@ namespace Metroit.Collections.Generic
         {
             if (_removingItem.State == ItemState.New)
             {
+                LastAccessItem = _removingItem;
                 return;
             }
 
             if (_removingItem.State == ItemState.NewModified)
             {
+                LastAccessItem = _removingItem;
                 return;
             }
 
             _removed.Add(_removingItem);
+            LastAccessItem = _removingItem;
         }
     }
 }
