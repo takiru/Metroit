@@ -213,12 +213,33 @@ namespace Metroit.Windows.Forms
         private IControlRollback GetControlRollbackObject()
         {
             // 対象コントロールにIControlRollback が実装されていない場合は、フォームに実装されているかまで見る
-            var rollback = this.ActiveControl as IControlRollback;
+            var rollback = GetFocusedControl() as IControlRollback;
             if (rollback == null)
             {
                 rollback = this as IControlRollback;
             }
             return rollback;
+        }
+
+        /// <summary>
+        /// フォーカスを得ているコントロールを取得します。
+        /// </summary>
+        /// <returns>フォーカスを得ているコントロールを返却します。どのコントロールにもフォーカスがない場合、<see langword="null"/> を返却します。</returns>
+        public Control GetFocusedControl()
+        {
+            Control targetControl = ActiveControl;
+
+            if (targetControl == null)
+            {
+                return null;
+            }
+
+            while (targetControl is ContainerControl container && container.ActiveControl != null)
+            {
+                targetControl = container.ActiveControl;
+            }
+
+            return targetControl;
         }
 
         /// <summary>
