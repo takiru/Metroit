@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.0.1-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.5.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 旧バージョン  
 
@@ -559,3 +559,88 @@ WinForms アプリケーションの作成を助けるライブラリです。
     | Show(Control, Func<CancellationToken, bool>) | オーバーレイを表示します。 |
     | Cancel() | オーバーレイをキャンセルします。 |
     | Dispose() | オーバーレイを非表示にして、オブジェクトを破棄します。 |
+
+#### 拡張された Panel ####
+- MetPanel  
+  パネルの表現について、いくつかの手助けをします。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | ScrollPreserve | Controls にコントロールが追加または削除されたとき、スクロールバーの位置を保持するかどうかを取得または設定します。 |
+
+#### 角丸の Panel ####
+- MetRoundedPanel  
+  パネルのボーダーに角丸を表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | Radius | 角丸の半径を取得または設定します。 |
+    | BorderColor | 枠線の色を取得または設定します。 |
+    | BorderWidth | 枠線の幅を取得または設定します。 |
+    | FillColor | 塗りつぶし色を取得または設定します。 |
+
+#### 通知 Panel ####
+- MetNotificationPanel  
+  情報の通知を行うパネルを表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | ShowTitle | タイトルを表示するかどうかを取得または設定します。 |
+    | Title | タイトルを取得または設定します。 |
+    | TitleForeColor | タイトルの文字色を取得または設定します。 |
+    | TitleFont | タイトルのフォントを取得または設定します。 |
+    | BorderColor | 枠線の色を取得または設定します。 |
+    | BorderWidth | 枠線の太さを取得または設定します。 |
+    | BorderDashStyle | 枠線のスタイルを取得または設定します。 |
+    | VerticalScrollPolicy | 縦スクロールバーの表示方法を取得または設定します。 |
+    | HorizontalScrollPolicy | 横スクロールバーの表示方法を取得または設定します。 |
+    | NotificationBackColor | 通知領域の背景色を取得または設定します。 |
+    | SeparatorColor | 通知情報ごとに表示される区切り線の色を取得または設定します。 |
+    | SeparatorDashStyle | 区切り線のスタイルを取得または設定します。 |
+    | NotificationFont | 通知情報のフォントを取得または設定します。 |
+    | NotificationForeColor | 通知情報の文字色を取得または設定します。 |
+    | NotificationHoverForeColor | 通知情報をホバーしたときの文字色を取得または設定します。 |
+
+  - メソッド
+
+    |名前           |意味 |
+    |---------------|-----|
+    | AddNotification(NotificationInfo) | 通知を追加します。 |
+    | AddNotifications(IEnumerable<NotificationInfo>) | 通知のコレクションを追加します。 |
+    | RemoveNotification(int) | 通知を削除します。 |
+    | GetNotificationCount() | 通知の件数を取得します。 |
+    | Clear() | すべての通知をクリアします。 |
+
+#### トグルスイッチ ####
+- MetToggleSwitch  
+  トグルスイッチを表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | Checked | トグルスイッチの状態を取得または設定します。 |
+    | OnText | トグルスイッチのON状態を示すテキストを取得または設定します。 |
+    | OffText | トグルスイッチのOFF状態を示すテキストを取得または設定します。 |
+    | ShowState | トグルスイッチの状態を表示するかどうかを示す値を取得または設定します。 |
+    | StatePosition | トグルスイッチの状態を表示する位置を取得または設定します。 |
+    | OnTextForeColor | トグルスイッチのON状態のテキストの前景色を取得または設定します。 |
+    | OffTextForeColor | トグルスイッチのOFF状態のテキストの前景色を取得または設定します。 |
+    | OnSwitchBorderColor | トグルスイッチのON状態のボーダー色を取得または設定します。 |
+    | OffSwitchBorderColor | トグルスイッチのOFF状態のボーダー色を取得または設定します。 |
+    | OnBackColor | トグルスイッチのON状態の背景色を取得または設定します。 |
+    | OnDisabledBackColor | トグルスイッチが無効でON状態の背景色を取得または設定します。 |
+    | OffBackColor | トグルスイッチのOFF状態の背景色を取得または設定します。 |
+    | OffDisabledBackColor | トグルスイッチが無効でOFF状態の背景色を取得または設定します。 |
+    | OnThumbColor | トグルスイッチのON状態のサムの色を取得または設定します。 |
+    | OnDisabledThumbColor | トグルスイッチが無効でON状態のサムの色を取得または設定します。 |
+    | OffThumbColor | トグルスイッチのOFF状態のサムの色を取得または設定します。 |
+    | OffDisabledThumbColor | トグルスイッチが無効でOFF状態のサムの色を取得または設定します。 |
+    | AutoSize | トグルスイッチの自動サイズ調整を有効または無効にします。 |
+    | CornerRadius | トグルスイッチの角丸半径を取得または設定します。 |

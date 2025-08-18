@@ -45,10 +45,17 @@ namespace Metroit.Windows.Forms
             return loader.resources.GetString(name + "." + Culture.TwoLetterISOLanguageName) ?? loader.resources.GetString(name);
         }
 
+        public static string GetString(string name, params object[] param)
+        {
+            ExceptionResources loader = GetLoader();
+            return string.Format(loader.resources.GetString(name + "." + Culture.TwoLetterISOLanguageName) ?? loader.resources.GetString(name), param);
+        }
+
         public static object GetObject(string name)
         {
             ExceptionResources loader = GetLoader();
             return loader.resources.GetObject(name + "." + Culture.TwoLetterISOLanguageName) ?? loader.resources.GetString(name);
         }
+
     }
 }

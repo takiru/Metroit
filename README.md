@@ -6,7 +6,7 @@
 |----------------------|------|------------------|
 |Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.0.1-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.1.5.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 Older Version  
 
@@ -561,3 +561,88 @@ Since we are using [Microsoft.Web.WebView2](https://www.nuget.org/packages/Micro
     | Show(Control, Func<CancellationToken, bool>) | Show the overlay. |
     | Cancel() | Cancel the overlay. |
     | Dispose() | Hides the overlay and destroys the object. |
+
+#### Extended Panel ####
+- MetPanel  
+  Here's some help with the panel representation.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | ScrollPreserve | Gets or sets whether the scrollbar position is preserved when controls are added or removed from Controls. |
+
+#### Rounded Corner Panel ####
+- MetRoundedPanel  
+  Creates rounded corners on the panel border.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | Radius | Gets or sets the corner radius. |
+    | BorderColor | Gets or sets the border color. |
+    | BorderWidth | Gets or sets the border width. |
+    | FillColor | Gets or sets the fill color. |
+
+#### Notification Panel ####
+- MetNotificationPanel  
+  Represents a panel that notifies users of information.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | ShowTitle | Gets or sets whether the title is displayed. |
+    | Title | Gets or sets the title. |
+    | TitleForeColor | Gets or sets the title text color. |
+    | TitleFont | Gets or sets the title font. |
+    | BorderColor | Gets or sets the border color. |
+    | BorderWidth | Gets or sets the border thickness. |
+    | BorderDashStyle | Gets or sets the border style. |
+    | VerticalScrollPolicy | Gets or sets the display mode of the vertical scroll bar. |
+    | HorizontalScrollPolicy | Gets or sets the visibility of the horizontal scroll bar. |
+    | NotificationBackColor | Gets or sets the background color of the notification area. |
+    | SeparatorColor | Gets or sets the color of the separator line that appears for each notification. |
+    | SeparatorDashStyle | Gets or sets the style of the separator line. |
+    | NotificationFont | Gets or sets the font of the notification. |
+    | NotificationForeColor | Gets or sets the text color of the notification. |
+    | NotificationHoverForeColor | Gets or sets the text color of the notification when hovered over. |
+
+  - Methods
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | AddNotification(NotificationInfo) | Add a notification. |
+    | AddNotifications(IEnumerable<NotificationInfo>) | Add a collection of notifications. |
+    | RemoveNotification(int) | Delete the notification. |
+    | GetNotificationCount() | Gets the number of notifications. |
+    | Clear() | Clear all notifications. |
+
+#### Toggle Switch ####
+- MetToggleSwitch  
+  Represents a toggle switch.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | Checked | Gets or sets the state of the toggle switch. |
+    | OnText | Gets or sets the text that indicates the ON state of a toggle switch. |
+    | OffText | Gets or sets the text that indicates the OFF state of a toggle switch. |
+    | ShowState | Gets or sets a value indicating whether to display the state of the toggle switch. |
+    | StatePosition | Gets or sets the position at which the toggle switch state is displayed. |
+    | OnTextForeColor | Gets or sets the foreground color of the text in the ON state of a toggle switch. |
+    | OffTextForeColor | Gets or sets the foreground color of the text in the OFF state of a toggle switch. |
+    | OnSwitchBorderColor | Gets or sets the border color of the toggle switch when it is in the ON state. |
+    | OffSwitchBorderColor | Gets or sets the border color of the toggle switch when it is in the OFF state. |
+    | OnBackColor | Gets or sets the background color of the toggle switch when it is in the ON state. |
+    | OnDisabledBackColor | Gets or sets the background color of the toggle switch when it is in the disabled, on state. |
+    | OffBackColor | Gets or sets the background color of the toggle switch when it is in the OFF state. |
+    | OffDisabledBackColor | Gets or sets the background color of the toggle switch when it is disabled and in the OFF state. |
+    | OnThumbColor | Gets or sets the color of the thumb for the toggle switch's ON state. |
+    | OnDisabledThumbColor | Gets or sets the color of the thumb when the toggle switch is in the disabled, on state. |
+    | OffThumbColor | Gets or sets the color of the toggle switch thumb in the OFF state. |
+    | OffDisabledThumbColor | Gets or sets the thumb color when the toggle switch is disabled and in the OFF state. |
+    | AutoSize | Toggle switch to enable or disable autosize. |
+    | CornerRadius | Gets or sets the corner radius of the toggle switch. |

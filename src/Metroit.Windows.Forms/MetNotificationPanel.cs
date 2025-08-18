@@ -115,8 +115,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(true)]
-        [Category("Metroit 表示")]
-        [Description("タイトルを表示するかどうかを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationShowTitle")]
         public bool ShowTitle
         {
             get => TitleLabel.Visible;
@@ -127,8 +127,8 @@ namespace Metroit.Windows.Forms
         /// タイトルを取得または設定します。
         /// </summary>
         [Browsable(true)]
-        [Category("Metroit 表示")]
-        [Description("タイトルを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationTitle")]
         public string Title
         {
             get => TitleLabel.Text;
@@ -140,8 +140,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "ControlText")]
-        [Category("Metroit 表示")]
-        [Description("タイトルの文字色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationTitleForeColor")]
         public Color TitleForeColor
         {
             get => TitleLabel.ForeColor;
@@ -152,8 +152,8 @@ namespace Metroit.Windows.Forms
         /// タイトルのフォントを取得または設定します。
         /// </summary>
         [Browsable(true)]
-        [Category("Metroit 表示")]
-        [Description("タイトルのフォントを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationTitleFont")]
         public Font TitleFont
         {
             get => TitleLabel.Font;
@@ -184,8 +184,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Gray")]
-        [Category("Metroit 表示")]
-        [Description("枠線の色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationBorderColor")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -203,8 +203,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(1)]
-        [Category("Metroit 表示")]
-        [Description("枠線の太さを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationBorderWidth")]
         public int BorderWidth
         {
             get => _borderWidth;
@@ -220,8 +220,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(DashStyle), "Solid")]
-        [Category("Metroit 表示")]
-        [Description("枠線のスタイルを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationBorderDashStyle")]
         public DashStyle BorderDashStyle { get; set; } = DashStyle.Solid;
 
         private ScrollBarPolicy _verticalScroll = ScrollBarPolicy.AsNeeded;
@@ -231,8 +231,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(ScrollBarPolicy), "AsNeeded")]
-        [Category("Metroit 表示")]
-        [Description("縦スクロールバーの表示方法を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationVerticalScrollPolicy")]
         public ScrollBarPolicy VerticalScrollPolicy
         {
             get => _verticalScroll;
@@ -250,8 +250,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(ScrollBarPolicy), "Never")]
-        [Category("Metroit 表示")]
-        [Description("横スクロールバーの表示方法を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationHorizontalScrollPolicy")]
         public ScrollBarPolicy HorizontalScrollPolicy
         {
             get => _horizontalScroll;
@@ -267,8 +267,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "White")]
-        [Category("Metroit 表示")]
-        [Description("通知領域の背景色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationNotificationBackColor")]
         public Color NotificationBackColor
         {
             get => ScrollablePanel.BackColor;
@@ -282,8 +282,8 @@ namespace Metroit.Windows.Forms
         /// 通知情報ごとに表示される区切り線の色を取得または設定します。
         /// </summary>
         [Browsable(true)]
-        [Category("Metroit 表示")]
-        [Description("通知情報ごとに表示される区切り線の色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationSeparatorColor")]
         public Color SeparatorColor
         {
             get => _separatorColor;
@@ -311,16 +311,16 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(DashStyle), "Dash")]
-        [Category("Metroit 表示")]
-        [Description("通知情報ごとに表示される区切り線の色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationSeparatorDashStyle")]
         public DashStyle SeparatorDashStyle { get; set; } = DashStyle.Dash;
 
         /// <summary>
         /// 通知情報のフォントを取得または設定します。
         /// </summary>
         [Browsable(true)]
-        [Category("Metroit 表示")]
-        [Description("通知情報のフォントを取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationNotificationFont")]
         public Font NotificationFont
         {
             get => NotificationLabelStyle.Font;
@@ -356,8 +356,8 @@ namespace Metroit.Windows.Forms
         /// 通知情報の文字色を取得または設定します。
         /// </summary>
         [Browsable(true)]
-        [Category("Metroit 表示")]
-        [Description("通知情報の文字色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationNotificationForeColor")]
         public Color NotificationForeColor
         {
             get => NotificationLabelStyle.ForeColor;
@@ -396,8 +396,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "RoyalBlue")]
-        [Category("Metroit 表示")]
-        [Description("通知情報をホバーしたときの文字色を取得または設定します。")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetNotificationNotificationHoverForeColor")]
         public Color NotificationHoverForeColor
         {
             get => _notificationHoverForeColor;
@@ -459,7 +459,7 @@ namespace Metroit.Windows.Forms
         {
             if (index < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(index), "インデックスは0から始まらなければなりません。");
+                throw new ArgumentOutOfRangeException(nameof(index), ExceptionResources.GetString("IndexMustFrom", 0));
             }
 
             // 通知ラベルのみを走査して、対象ラベルを求める
@@ -470,7 +470,7 @@ namespace Metroit.Windows.Forms
 
             if (index > labels.Count - 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(index), "インデックスが大きすぎます");
+                throw new ArgumentOutOfRangeException(nameof(index), ExceptionResources.GetString("IndexTooLarge"));
             }
 
             var label = labels.Where(x => x.Index == index).Single();
@@ -742,42 +742,6 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void AdjustAllNotificationArea()
         {
-            //// ラベルの最大幅
-            //var labelMaxWidth = ScrollablePanel.Controls.OfType<Label>().Max(x => x.Width);
-
-            //int lineWidth = default;
-            //if (ScrollablePanel.VerticalScroll.Visible)
-            //{
-            //    // コントロール全体の幅の方が大きい場合
-            //    if (labelMaxWidth < ScrollablePanel.Width - SystemInformation.VerticalScrollBarWidth)
-            //    {
-            //        lineWidth = ScrollablePanel.Width - SystemInformation.VerticalScrollBarWidth;
-            //    }
-            //    else
-            //    {
-            //        // 横スクロールの表示を行わないときに、縦スクロールを除いた描画領域より大きい場合は狭める
-            //        if (HorizontalScrollPolicy == ScrollBarPolicy.Never)
-            //        {
-            //            lineWidth = ScrollablePanel.Width - SystemInformation.VerticalScrollBarWidth;
-            //        }
-            //        else
-            //        {
-            //            lineWidth = labelMaxWidth;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    if (labelMaxWidth < ScrollablePanel.Width)
-            //    {
-            //        lineWidth = ScrollablePanel.Width;
-            //    }
-            //    else
-            //    {
-            //        lineWidth = labelMaxWidth;
-            //    }
-            //}
-
             var lineWidth = GetDrawNotificationFixedWidth();
             foreach (var control in ScrollablePanel.Controls.OfType<Control>())
             {

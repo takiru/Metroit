@@ -135,6 +135,18 @@
   <data name="DeniedTextException.ja" xml:space="preserve">
     <value>許可されない値が設定されました。</value>
   </data>
+  <data name="IndexMustFrom" xml:space="preserve">
+    <value>The index must start from {0}.</value>
+  </data>
+  <data name="IndexMustFrom.ja" xml:space="preserve">
+    <value>インデックスは {0} から始まらなければなりません。</value>
+  </data>
+  <data name="IndexTooLarge" xml:space="preserve">
+    <value>The index is too large.</value>
+  </data>
+  <data name="IndexTooLarge.ja" xml:space="preserve">
+    <value>インデックスが大きすぎます。</value>
+  </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>An unacceptable value has been set.</value>
   </data>

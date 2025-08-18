@@ -38,7 +38,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(10)]
         [MetCategory("MetAppearance")]
-        [Description("角丸の半径を取得または指定します。")]
+        [MetDescription("MetRoundedPanelRadius")]
         public int Radius
         {
             get => _radius;
@@ -60,7 +60,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Black")]
         [MetCategory("MetAppearance")]
-        [Description("枠線の色を取得または設定します。")]
+        [MetDescription("MetRoundedPanelBorderColor")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -82,7 +82,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(1)]
         [MetCategory("MetAppearance")]
-        [Description("枠線の幅を取得または設定します。")]
+        [MetDescription("MetRoundedPanelBorderWidth")]
         public int BorderWidth
         {
             get => _borderWidth;
@@ -104,7 +104,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "White")]
         [MetCategory("MetAppearance")]
-        [Description("塗りつぶし色を取得または設定します。")]
+        [MetDescription("MetRoundedPanelFillColor")]
         public Color FillColor
         {
             get => _fillColor;

@@ -909,4 +909,235 @@
   <data name="MetExpanderPanelExpandStateChanged.ja" xml:space="preserve">
     <value>展開状態が変更された時に発生します。</value>
   </data>
+  <data name="MetNotificationBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color.</value>
+  </data>
+  <data name="MetNotificationBorderColor.ja" xml:space="preserve">
+    <value>枠線の色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationBorderDashStyle" xml:space="preserve">
+    <value>Gets or sets the border style.</value>
+  </data>
+  <data name="MetNotificationBorderDashStyle.ja" xml:space="preserve">
+    <value>枠線のスタイルを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationBorderWidth" xml:space="preserve">
+    <value>Gets or sets the border thickness.</value>
+  </data>
+  <data name="MetNotificationBorderWidth.ja" xml:space="preserve">
+    <value>枠線の太さを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationHorizontalScrollPolicy" xml:space="preserve">
+    <value>Gets or sets the visibility of the horizontal scroll bar.</value>
+  </data>
+  <data name="MetNotificationHorizontalScrollPolicy.ja" xml:space="preserve">
+    <value>横スクロールバーの表示方法を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationNotificationBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the notification area.</value>
+  </data>
+  <data name="MetNotificationNotificationBackColor.ja" xml:space="preserve">
+    <value>通知領域の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationNotificationFont" xml:space="preserve">
+    <value>Gets or sets the font of the notification.</value>
+  </data>
+  <data name="MetNotificationNotificationFont.ja" xml:space="preserve">
+    <value>通知情報のフォントを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationNotificationForeColor" xml:space="preserve">
+    <value>Gets or sets the text color of the notification.</value>
+  </data>
+  <data name="MetNotificationNotificationForeColor.ja" xml:space="preserve">
+    <value>通知情報の文字色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationNotificationHoverForeColor" xml:space="preserve">
+    <value>Gets or sets the text color of the notification when hovered over.</value>
+  </data>
+  <data name="MetNotificationNotificationHoverForeColor.ja" xml:space="preserve">
+    <value>通知情報をホバーしたときの文字色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationSeparatorColor" xml:space="preserve">
+    <value>Gets or sets the color of the separator line that appears for each notification.</value>
+  </data>
+  <data name="MetNotificationSeparatorColor.ja" xml:space="preserve">
+    <value>通知情報ごとに表示される区切り線の色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationSeparatorDashStyle" xml:space="preserve">
+    <value>Gets or sets the style of the separator line.</value>
+  </data>
+  <data name="MetNotificationSeparatorDashStyle.ja" xml:space="preserve">
+    <value>区切り線のスタイルを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationShowTitle" xml:space="preserve">
+    <value>Gets or sets whether the title is displayed.</value>
+  </data>
+  <data name="MetNotificationShowTitle.ja" xml:space="preserve">
+    <value>タイトルを表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationShowTitleja" xml:space="preserve">
+    <value>タイトルを表示するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationTitle" xml:space="preserve">
+    <value>Gets or sets the title.</value>
+  </data>
+  <data name="MetNotificationTitle.ja" xml:space="preserve">
+    <value>タイトルを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationTitleFont" xml:space="preserve">
+    <value>Gets or sets the title font.</value>
+  </data>
+  <data name="MetNotificationTitleFont.ja" xml:space="preserve">
+    <value>タイトルのフォントを取得または設定します。</value>
+  </data>
+  <data name="MetNotificationTitleForeColor" xml:space="preserve">
+    <value>Gets or sets the title text color.</value>
+  </data>
+  <data name="MetNotificationTitleForeColor.ja" xml:space="preserve">
+    <value>タイトルの文字色を取得または設定します。</value>
+  </data>
+  <data name="MetNotificationVerticalScrollPolicy" xml:space="preserve">
+    <value>Gets or sets the display mode of the vertical scroll bar.</value>
+  </data>
+  <data name="MetNotificationVerticalScrollPolicy.ja" xml:space="preserve">
+    <value>縦スクロールバーの表示方法を取得または設定します。</value>
+  </data>
+  <data name="MetPanelScrollPreserve" xml:space="preserve">
+    <value>Gets or sets whether the scrollbar position is preserved when controls are added or removed from Controls.</value>
+  </data>
+  <data name="MetPanelScrollPreserve.ja" xml:space="preserve">
+    <value>Controls にコントロールが追加または削除されたとき、スクロールバーの位置を保持するかどうかを取得または設定します。</value>
+  </data>
+  <data name="MetRoundedPanelBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color.</value>
+  </data>
+  <data name="MetRoundedPanelBorderColor.ja" xml:space="preserve">
+    <value>枠線の色を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedPanelBorderWidth" xml:space="preserve">
+    <value>Gets or sets the border width.</value>
+  </data>
+  <data name="MetRoundedPanelBorderWidth.ja" xml:space="preserve">
+    <value>枠線の幅を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedPanelFillColor" xml:space="preserve">
+    <value>Gets or sets the fill color.</value>
+  </data>
+  <data name="MetRoundedPanelFillColor.ja" xml:space="preserve">
+    <value>塗りつぶし色を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedPanelRadius" xml:space="preserve">
+    <value>Gets or sets the corner radius.</value>
+  </data>
+  <data name="MetRoundedPanelRadius.ja" xml:space="preserve">
+    <value>角丸の半径を取得または指定します。</value>
+  </data>
+  <data name="MetToggleSwitchChecked" xml:space="preserve">
+    <value>Gets or sets the state of the toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchChecked.ja" xml:space="preserve">
+    <value>トグルスイッチの状態を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchCornerRadius" xml:space="preserve">
+    <value>Gets or sets the corner radius of the toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchCornerRadius.ja" xml:space="preserve">
+    <value>トグルスイッチの角丸半径を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the toggle switch when it is in the OFF state.</value>
+  </data>
+  <data name="MetToggleSwitchOffBackColor.ja" xml:space="preserve">
+    <value>トグルスイッチのOFF状態の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffDisabledBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the toggle switch when it is disabled and in the OFF state.</value>
+  </data>
+  <data name="MetToggleSwitchOffDisabledBackColor.ja" xml:space="preserve">
+    <value>トグルスイッチが無効でOFF状態の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffDisabledThumbColor" xml:space="preserve">
+    <value>Gets or sets the color of the thumb circle when the toggle switch is disabled and in the OFF state.</value>
+  </data>
+  <data name="MetToggleSwitchOffDisabledThumbColor.ja" xml:space="preserve">
+    <value>トグルスイッチが無効でOFF状態のサム円の色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffSwitchBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color of the toggle switch when it is in the OFF state.</value>
+  </data>
+  <data name="MetToggleSwitchOffSwitchBorderColor.ja" xml:space="preserve">
+    <value>トグルスイッチのOFF状態のボーダー色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffText" xml:space="preserve">
+    <value>Gets or sets the text that indicates the OFF state of a toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchOffText.ja" xml:space="preserve">
+    <value>トグルスイッチのOFF状態を示すテキストを取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffTextForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the text in the OFF state of a toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchOffTextForeColor.ja" xml:space="preserve">
+    <value>トグルスイッチのOFF状態のテキストの前景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffThumbColor" xml:space="preserve">
+    <value>Gets or sets the color of the thumb circle for the toggle switch's OFF state.</value>
+  </data>
+  <data name="MetToggleSwitchOffThumbColor.ja" xml:space="preserve">
+    <value>トグルスイッチのOFF状態のサム円の色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the toggle switch when it is in the ON state.</value>
+  </data>
+  <data name="MetToggleSwitchOnBackColor.ja" xml:space="preserve">
+    <value>トグルスイッチのON状態の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnDisabledBackColor" xml:space="preserve">
+    <value>Gets or sets the background color of the toggle switch when it is in the disabled, on state.</value>
+  </data>
+  <data name="MetToggleSwitchOnDisabledBackColor.ja" xml:space="preserve">
+    <value>トグルスイッチが無効でON状態の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnDisabledThumbColor" xml:space="preserve">
+    <value>Gets or sets the color of the thumb circle when the toggle switch is in the disabled, on state.</value>
+  </data>
+  <data name="MetToggleSwitchOnDisabledThumbColor.ja" xml:space="preserve">
+    <value>トグルスイッチが無効でON状態のサム円の色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnSwitchBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color of the toggle switch when it is in the ON state.</value>
+  </data>
+  <data name="MetToggleSwitchOnSwitchBorderColor.ja" xml:space="preserve">
+    <value>トグルスイッチのON状態のボーダー色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnText" xml:space="preserve">
+    <value>Gets or sets the text that indicates the ON state of a toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchOnText.ja" xml:space="preserve">
+    <value>トグルスイッチのON状態を示すテキストを取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnTextForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color of the text in the ON state of a toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchOnTextForeColor.ja" xml:space="preserve">
+    <value>トグルスイッチのON状態のテキストの前景色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnThumbColor" xml:space="preserve">
+    <value>Gets or sets the color of the thumb circle for the ON state of a toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchOnThumbColor.ja" xml:space="preserve">
+    <value>トグルスイッチのON状態のサム円の色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchShowState" xml:space="preserve">
+    <value>Gets or sets a value indicating whether to display the state of the toggle switch.</value>
+  </data>
+  <data name="MetToggleSwitchShowState.ja" xml:space="preserve">
+    <value>トグルスイッチの状態を表示するかどうかを示す値を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchStatePosition" xml:space="preserve">
+    <value>Gets or sets the position at which the toggle switch state is displayed.</value>
+  </data>
+  <data name="MetToggleSwitchStatePosition.ja" xml:space="preserve">
+    <value>トグルスイッチの状態を表示する位置を取得または設定します。</value>
+  </data>
 </root>

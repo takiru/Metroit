@@ -23,7 +23,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(false)]
         [MetCategory("MetBehavior")]
-        [Description("Controls にコントロールが追加または削除されたとき、スクロールバーの位置を保持するかどうかを取得または設定します。")]
+        [MetDescription("MetPanelScrollPreserve")]
         public bool ScrollPreserve { get; set; } = false;
 
         /// <summary>

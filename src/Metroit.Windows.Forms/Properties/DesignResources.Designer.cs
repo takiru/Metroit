@@ -1969,6 +1969,285 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the border color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderColor {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   枠線の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border style. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderDashStyle {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   枠線のスタイルを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderDashStyle_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderDashStyle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border thickness. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderWidth {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   枠線の太さを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationBorderWidth_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationBorderWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the visibility of the horizontal scroll bar. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationHorizontalScrollPolicy {
+            get {
+                return ResourceManager.GetString("MetNotificationHorizontalScrollPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   横スクロールバーの表示方法を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationHorizontalScrollPolicy_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationHorizontalScrollPolicy.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color of the notification area. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationBackColor {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   通知領域の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the font of the notification. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationFont {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   通知情報のフォントを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationFont_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationFont.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the text color of the notification. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationForeColor {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   通知情報の文字色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the text color of the notification when hovered over. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationHoverForeColor {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationHoverForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   通知情報をホバーしたときの文字色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationNotificationHoverForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationNotificationHoverForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the separator line that appears for each notification. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationSeparatorColor {
+            get {
+                return ResourceManager.GetString("MetNotificationSeparatorColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   通知情報ごとに表示される区切り線の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationSeparatorColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationSeparatorColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the style of the separator line. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationSeparatorDashStyle {
+            get {
+                return ResourceManager.GetString("MetNotificationSeparatorDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   区切り線のスタイルを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationSeparatorDashStyle_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationSeparatorDashStyle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets whether the title is displayed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationShowTitle {
+            get {
+                return ResourceManager.GetString("MetNotificationShowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイトルを表示するかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationShowTitle_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationShowTitle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイトルを表示するかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationShowTitleja {
+            get {
+                return ResourceManager.GetString("MetNotificationShowTitleja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the title. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitle {
+            get {
+                return ResourceManager.GetString("MetNotificationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイトルを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitle_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationTitle.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the title font. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitleFont {
+            get {
+                return ResourceManager.GetString("MetNotificationTitleFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイトルのフォントを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitleFont_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationTitleFont.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the title text color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitleForeColor {
+            get {
+                return ResourceManager.GetString("MetNotificationTitleForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイトルの文字色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationTitleForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationTitleForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the display mode of the vertical scroll bar. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationVerticalScrollPolicy {
+            get {
+                return ResourceManager.GetString("MetNotificationVerticalScrollPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   縦スクロールバーの表示方法を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetNotificationVerticalScrollPolicy_ja {
+            get {
+                return ResourceManager.GetString("MetNotificationVerticalScrollPolicy.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Provide a text area that allows users to enter numerical values only. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetNumericTextBox {
@@ -2023,6 +2302,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets whether the scrollbar position is preserved when controls are added or removed from Controls. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetPanelScrollPreserve {
+            get {
+                return ResourceManager.GetString("MetPanelScrollPreserve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Controls にコントロールが追加または削除されたとき、スクロールバーの位置を保持するかどうかを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetPanelScrollPreserve_ja {
+            get {
+                return ResourceManager.GetString("MetPanelScrollPreserve.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Metroit Extension Property Changed に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetPropertyChange {
@@ -2037,6 +2334,78 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetPropertyChange_ja {
             get {
                 return ResourceManager.GetString("MetPropertyChange.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelBorderColor {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   枠線の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelBorderColor_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border width. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelBorderWidth {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelBorderWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   枠線の幅を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelBorderWidth_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelBorderWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the fill color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelFillColor {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelFillColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   塗りつぶし色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelFillColor_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelFillColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the corner radius. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelRadius {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   角丸の半径を取得または指定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedPanelRadius_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedPanelRadius.ja", resourceCulture);
             }
         }
         
@@ -2163,6 +2532,330 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetTextBoxWatermarkColor_ja {
             get {
                 return ResourceManager.GetString("MetTextBoxWatermarkColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the state of the toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchChecked {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの状態を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchChecked_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchChecked.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the corner radius of the toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCornerRadius {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCornerRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの角丸半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCornerRadius_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCornerRadius.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color of the toggle switch when it is in the OFF state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffBackColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのOFF状態の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color of the toggle switch when it is disabled and in the OFF state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffDisabledBackColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffDisabledBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチが無効でOFF状態の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffDisabledBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffDisabledBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the thumb circle when the toggle switch is disabled and in the OFF state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffDisabledThumbColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffDisabledThumbColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチが無効でOFF状態のサム円の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffDisabledThumbColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffDisabledThumbColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color of the toggle switch when it is in the OFF state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffSwitchBorderColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffSwitchBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのOFF状態のボーダー色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffSwitchBorderColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffSwitchBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the text that indicates the OFF state of a toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffText {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのOFF状態を示すテキストを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffText_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color of the text in the OFF state of a toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffTextForeColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffTextForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのOFF状態のテキストの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffTextForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffTextForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the thumb circle for the toggle switch&apos;s OFF state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffThumbColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffThumbColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのOFF状態のサム円の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffThumbColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffThumbColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color of the toggle switch when it is in the ON state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnBackColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのON状態の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color of the toggle switch when it is in the disabled, on state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnDisabledBackColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnDisabledBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチが無効でON状態の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnDisabledBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnDisabledBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the thumb circle when the toggle switch is in the disabled, on state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnDisabledThumbColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnDisabledThumbColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチが無効でON状態のサム円の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnDisabledThumbColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnDisabledThumbColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color of the toggle switch when it is in the ON state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnSwitchBorderColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnSwitchBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのON状態のボーダー色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnSwitchBorderColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnSwitchBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the text that indicates the ON state of a toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnText {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのON状態を示すテキストを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnText_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color of the text in the ON state of a toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnTextForeColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnTextForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのON状態のテキストの前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnTextForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnTextForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the thumb circle for the ON state of a toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnThumbColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnThumbColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチのON状態のサム円の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnThumbColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnThumbColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets a value indicating whether to display the state of the toggle switch. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchShowState {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchShowState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの状態を表示するかどうかを示す値を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchShowState_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchShowState.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the position at which the toggle switch state is displayed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchStatePosition {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchStatePosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの状態を表示する位置を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchStatePosition_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchStatePosition.ja", resourceCulture);
             }
         }
         

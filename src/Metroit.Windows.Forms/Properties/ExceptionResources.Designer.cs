@@ -115,6 +115,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   The index must start from {0}. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string IndexMustFrom {
+            get {
+                return ResourceManager.GetString("IndexMustFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   インデックスは {0} から始まらなければなりません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string IndexMustFrom_ja {
+            get {
+                return ResourceManager.GetString("IndexMustFrom.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The index is too large. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string IndexTooLarge {
+            get {
+                return ResourceManager.GetString("IndexTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   インデックスが大きすぎます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string IndexTooLarge_ja {
+            get {
+                return ResourceManager.GetString("IndexTooLarge.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   An unacceptable value has been set. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string InvalidValue {

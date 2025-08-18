@@ -68,7 +68,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(false)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチの状態を取得または設定します。")]
+        [MetDescription("MetToggleSwitchChecked")]
         public bool Checked
         {
             get { return _checked; }
@@ -90,7 +90,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのON状態を示すテキストを取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnText")]
         public string OnText
         {
             get { return _onText; }
@@ -115,7 +115,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのOFF状態を示すテキストを取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffText")]
         public string OffText
         {
             get { return _offText; }
@@ -141,7 +141,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(false)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチの状態を表示するかどうかを示す値を取得または設定します。")]
+        [MetDescription("MetToggleSwitchShowState")]
         public bool ShowState
         {
             get { return _showState; }
@@ -167,7 +167,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(ToggleSwitchStatePosition), "Left")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチの状態を表示する位置を取得または設定します。")]
+        [MetDescription("MetToggleSwitchStatePosition")]
         public ToggleSwitchStatePosition StatePosition
         {
             get { return _statePosition; }
@@ -192,7 +192,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのON状態のテキストの前景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnTextForeColor")]
         public Color OnTextForeColor
         {
             get { return _onTextForeColor; }
@@ -230,7 +230,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのOFF状態のテキストの前景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffTextForeColor")]
         public Color OffTextForeColor
         {
             get { return _offTextForeColor; }
@@ -269,7 +269,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "0, 120, 212")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのON状態のボーダー色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnSwitchBorderColor")]
         public Color OnSwitchBorderColor
         {
             get { return _onSwitchBorderColor; }
@@ -291,7 +291,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "118, 118, 118")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのOFF状態のボーダー色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffSwitchBorderColor")]
         public Color OffSwitchBorderColor
         {
             get { return _offSwitchBorderColor; }
@@ -313,7 +313,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "0, 120, 212")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのON状態の背景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnBackColor")]
         public Color OnBackColor
         {
             get { return _onBackColor; }
@@ -335,7 +335,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "191, 191, 191")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチが無効でON状態の背景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnDisabledBackColor")]
         public Color OnDisabledBackColor
         {
             get { return _onDisabledBackColor; }
@@ -357,7 +357,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "255, 255, 255")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのOFF状態の背景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffBackColor")]
         public Color OffBackColor
         {
             get { return _offBackColor; }
@@ -379,7 +379,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "243, 243, 243")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチが無効でOFF状態の背景色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffDisabledBackColor")]
         public Color OffDisabledBackColor
         {
             get { return _offDisabledBackColor; }
@@ -402,7 +402,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Empty")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのON状態のサムの色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnThumbColor")]
         public Color OnThumbColor
         {
             get { return _onThumbColor; }
@@ -424,7 +424,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "255, 255,255")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチが無効でON状態のサムの色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOnDisabledThumbColor")]
         public Color OnDisabledThumbColor
         {
             get { return _onDisabledThumbColor; }
@@ -447,7 +447,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "Empty")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチのOFF状態のサムの色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffThumbColor")]
         public Color OffThumbColor
         {
             get { return _offThumbColor; }
@@ -469,7 +469,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(typeof(Color), "155, 155, 155")]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチが無効でOFF状態のサムの色を取得または設定します。")]
+        [MetDescription("MetToggleSwitchOffDisabledThumbColor")]
         public Color OffDisabledThumbColor
         {
             get { return _offDisabledThumbColor; }
@@ -519,7 +519,7 @@ namespace Metroit.Windows.Forms
         [Browsable(true)]
         [DefaultValue(-1)]
         [MetCategory("MetAppearance")]
-        [Description("トグルスイッチの角丸半径を取得または設定します。")]
+        [MetDescription("MetToggleSwitchCornerRadius")]
         public int CornerRadius
         {
             get { return _cornerRadius; }
@@ -827,30 +827,30 @@ namespace Metroit.Windows.Forms
                 }
             }
 
-            // サムの位置計算（動的スイッチサイズに対応）
-            var switchRect2 = GetSwitchRectangle();
-
-            // AutoSize = false の場合は Height に基づいてサムサイズを調整
-            float thumbSize;
-            if (!_autoSize)
-            {
-                // 余白を考慮してサムサイズを計算（上下3pxずつの余白）
-                thumbSize = Math.Max(4, Math.Min(switchRect2.Height - 6, switchRect2.Width / 3));
-            }
-            else
-            {
-                // 従来の計算方式
-                thumbSize = Math.Min(switchRect2.Height - 6, switchRect2.Width / 3);
-            }
-
-            var thumbX = rect.X + (switchRect2.Width - thumbSize - 6) * _animationProgress + 3;
-            var thumbY = rect.Y + (rect.Height - thumbSize) / 2f;
-            var thumbRect = new RectangleF(thumbX, thumbY, thumbSize, thumbSize);
-
             // サムの描画
             using (var brush = new SolidBrush(thumbColor))
             {
-                g.FillEllipse(brush, thumbRect);
+                // CornerRadius が 0 の場合は縦長の長方形、それ以外は円形
+                if (_cornerRadius == 0)
+                {
+                    // 縦長の長方形のサムを描画（上下左右3pxの余白）
+                    var thumbWidth = (switchRect.Height - 6) * 0.6f; // 高さの60%程度の幅
+                    var thumbHeight = switchRect.Height - 6; // 上下3pxずつの余白
+                    var thumbX = rect.X + (switchRect.Width - thumbWidth - 6) * _animationProgress + 3;
+                    var thumbY = rect.Y + 3; // 上側3pxの余白
+                    var thumbRect = new RectangleF(thumbX, thumbY, thumbWidth, thumbHeight);
+
+                    g.FillRectangle(brush, thumbRect);
+                }
+                else
+                {
+                    float thumbSize = Math.Min(switchRect.Height - 6, switchRect.Width / 3);
+                    var thumbX = rect.X + (switchRect.Width - thumbSize - 6) * _animationProgress + 3;
+                    var thumbY = rect.Y + (rect.Height - thumbSize) / 2f;
+                    var thumbRect = new RectangleF(thumbX, thumbY, thumbSize, thumbSize);
+
+                    g.FillEllipse(brush, thumbRect);
+                }
             }
 
             // テキストの描画
