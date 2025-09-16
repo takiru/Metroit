@@ -4,9 +4,9 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.0.1-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 Older Version  
 
@@ -628,21 +628,127 @@ Since we are using [Microsoft.Web.WebView2](https://www.nuget.org/packages/Micro
     |Name           |Meaning |
     |---------------|-----|
     | Checked | Gets or sets the state of the toggle switch. |
-    | OnText | Gets or sets the text that indicates the ON state of a toggle switch. |
-    | OffText | Gets or sets the text that indicates the OFF state of a toggle switch. |
+    | CornerRadius | Gets or sets the corner radius of the toggle switch. |
+    | FocusColor | Gets or sets the border color of the frame when it has focus. |
+    | OffAppearance | Determines the appearance when OFF. |
+    | OnAppearance | Determines the appearance when ON. |
     | ShowState | Gets or sets a value indicating whether to display the state of the toggle switch. |
     | StatePosition | Gets or sets the position at which the toggle switch state is displayed. |
-    | OnTextForeColor | Gets or sets the foreground color of the text in the ON state of a toggle switch. |
-    | OffTextForeColor | Gets or sets the foreground color of the text in the OFF state of a toggle switch. |
-    | OnSwitchBorderColor | Gets or sets the border color of the toggle switch when it is in the ON state. |
-    | OffSwitchBorderColor | Gets or sets the border color of the toggle switch when it is in the OFF state. |
-    | OnBackColor | Gets or sets the background color of the toggle switch when it is in the ON state. |
-    | OnDisabledBackColor | Gets or sets the background color of the toggle switch when it is in the disabled, on state. |
-    | OffBackColor | Gets or sets the background color of the toggle switch when it is in the OFF state. |
-    | OffDisabledBackColor | Gets or sets the background color of the toggle switch when it is disabled and in the OFF state. |
-    | OnThumbColor | Gets or sets the color of the thumb for the toggle switch's ON state. |
-    | OnDisabledThumbColor | Gets or sets the color of the thumb when the toggle switch is in the disabled, on state. |
-    | OffThumbColor | Gets or sets the color of the toggle switch thumb in the OFF state. |
-    | OffDisabledThumbColor | Gets or sets the thumb color when the toggle switch is disabled and in the OFF state. |
     | AutoSize | Toggle switch to enable or disable autosize. |
-    | CornerRadius | Gets or sets the corner radius of the toggle switch. |
+
+  OffAppearance and OnAppearance each have the following properties.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | BackColor | Gets or sets the background color of the toggle switch. |
+    | BorderColor | Gets or sets the border color of the toggle switch. |
+    | DisabledBackColor | Gets or sets the background color of the toggle switch when Enabled = false. |
+    | DisabledThumbColor | Gets or sets the color of the thumb circle when Enabled = false. |
+    | Text | Gets or sets the text. |
+    | TextForeColor | Gets or sets the foreground color of the text. |
+    | ThumbColor | Gets or sets the color of the thumb circle. |
+
+  - Events  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | CheckedChanging | Occurs when the Checked property changing. |
+    | CheckedChanged | Occurs when the Checked property changes. |
+
+#### Extended Button ####
+- MetRoundedButton  
+  Represents a button with rounded corners.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | ExtendsAppearance | Determines the extended appearance. |
+    | Radius | Gets or sets the radius of the rounded corners. |
+
+  ExtendsAppearance has the following properties.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | BorderColor | Gets or sets the color of the border that surrounds the button. |
+    | BorderSize | Gets or sets the size of the border that surrounds the button. |
+    | FocusOverlayColor | Gets or sets the color of the overlay that is displayed when the control has focus. |
+    | FocusOverlayWidth | Gets or sets the width of the overlay that is displayed when it has focus. |
+    | MouseDownBackColor | Gets or sets the background color when the mouse is clicked within the bounds of the control. |
+    | MouseDownForeColor | Gets or sets the foreground color when the mouse is clicked within the bounds of the control. |
+    | MouseOverBackColor | Gets or sets the background color when the mouse is within the bounds of the control. |
+    | MouseOverForeColor | Gets or sets the foreground color when the mouse is within the bounds of the control. |
+
+#### Extended CheckBox ####
+- MetCheckBox  
+  Represents an expanded checkbox.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | CheckBoxRadius | Gets or sets the corner radius for drawing check boxes. |
+    | CheckColor | Gets or sets the check color. |
+    | CheckedAppearance | Gets or sets the appearance that the control appears when checked. |
+    | FocusColor | Gets or sets the border color of the frame when it has focus. |
+    | FocusWidth | Gets or sets the width of the frame that is displayed when it has focus. |
+    | UncheckedAppearapce | Gets or sets the appearance when unchecked. |
+
+  CheckedAppearance and UncheckedAppearance each have the following properties.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | Default | Gets or sets the default appearance. |
+    | MouseDown | Gets or sets the appearance when the mouse is clicked. |
+    | MouseOver | Gets or sets the appearance when the mouse cursor enters the region. |
+
+  Default, MouseDown, and MouseOver each have the following properties.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | BackColor | Gets or sets the background color. |
+    | BorderColor | Gets or sets the border color. |
+
+  - イベント  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | CheckedChanging | Occurs when the Checked property changes. |
+    | CheckStateChanging | Occurs when the CheckState property changes. |
+
+
+#### Extended RadioButton ####
+- MetRoundedRadioButton  
+  Represents an extended radio button.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | CheckedBackColor | Gets or sets the background color when checked. |
+    | CheckedForeColor | Gets or sets the foreground color when checked. |
+    | ExtendsAppearance | Gets or sets the appearance. |
+    | Radius | Gets or sets the radius of the rounded corners. |
+
+  ExtendsAppearapce has the following properties.
+
+  - Properties  
+
+    |Name           |Meaning |
+    |---------------|-----|
+    | BorderColor | Gets or sets the color of the border that surrounds the button. |
+    | BorderSize | Gets or sets the size of the border that surrounds the button. |
+    | FocusOverlayColor | Gets or sets the color of the overlay that is displayed when the control has focus. |
+    | FocusOverlayWidth | Gets or sets the width of the overlay that is displayed when it has focus. |
+    | MouseDownBackColor | Gets or sets the background color when the mouse is clicked within the bounds of the control. |
+    | MouseDownForeColor | Gets or sets the foreground color when the mouse is clicked within the bounds of the control. |
+    | MouseOverBackColor | Gets or sets the background color when the mouse is within the bounds of the control. |
+    | MouseOverForeColor | Gets or sets the foreground color when the mouse is within the bounds of the control. |
