@@ -4,9 +4,9 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.0.1-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
-|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.2.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 旧バージョン  
 
@@ -626,21 +626,127 @@ WinForms アプリケーションの作成を助けるライブラリです。
     |名前           |意味 |
     |---------------|-----|
     | Checked | トグルスイッチの状態を取得または設定します。 |
-    | OnText | トグルスイッチのON状態を示すテキストを取得または設定します。 |
-    | OffText | トグルスイッチのOFF状態を示すテキストを取得または設定します。 |
+    | CornerRadius | トグルスイッチの角丸半径を取得または設定します。 |
+    | FocusColor | フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。 |
+    | OffAppearance | OFFのときの外観を決定します。 |
+    | OnAppearance | ONのときの外観を決定します。 |
     | ShowState | トグルスイッチの状態を表示するかどうかを示す値を取得または設定します。 |
     | StatePosition | トグルスイッチの状態を表示する位置を取得または設定します。 |
-    | OnTextForeColor | トグルスイッチのON状態のテキストの前景色を取得または設定します。 |
-    | OffTextForeColor | トグルスイッチのOFF状態のテキストの前景色を取得または設定します。 |
-    | OnSwitchBorderColor | トグルスイッチのON状態のボーダー色を取得または設定します。 |
-    | OffSwitchBorderColor | トグルスイッチのOFF状態のボーダー色を取得または設定します。 |
-    | OnBackColor | トグルスイッチのON状態の背景色を取得または設定します。 |
-    | OnDisabledBackColor | トグルスイッチが無効でON状態の背景色を取得または設定します。 |
-    | OffBackColor | トグルスイッチのOFF状態の背景色を取得または設定します。 |
-    | OffDisabledBackColor | トグルスイッチが無効でOFF状態の背景色を取得または設定します。 |
-    | OnThumbColor | トグルスイッチのON状態のサムの色を取得または設定します。 |
-    | OnDisabledThumbColor | トグルスイッチが無効でON状態のサムの色を取得または設定します。 |
-    | OffThumbColor | トグルスイッチのOFF状態のサムの色を取得または設定します。 |
-    | OffDisabledThumbColor | トグルスイッチが無効でOFF状態のサムの色を取得または設定します。 |
     | AutoSize | トグルスイッチの自動サイズ調整を有効または無効にします。 |
-    | CornerRadius | トグルスイッチの角丸半径を取得または設定します。 |
+
+  OffAppearance, OnAppearance はそれぞれ、下記プロパティを持ちます。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | BackColor | トグルスイッチの背景色を取得または設定します。 |
+    | BorderColor | トグルスイッチのボーダー色を取得または設定します。 |
+    | DisabledBackColor | Enabled = false のときのトグルスイッチの背景色を取得または設定します。 |
+    | DisabledThumbColor | Enabled = false のときのサム円の色を取得または設定します。 |
+    | Text | テキストを取得または設定します。 |
+    | TextForeColor | テキストの前景色を取得または設定します。 |
+    | ThumbColor | サム円の色を取得または設定します。 |
+
+  - イベント  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | CheckedChanging | Checked プロパティが変更されるときに発生します。 |
+    | CheckedChanged | Checked プロパティが変更されたときに発生します。 |
+
+#### 拡張されたボタン ####
+- MetRoundedButton  
+  角丸なボタンを表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | ExtendsAppearance | 拡張された外観を決定します。 |
+    | Radius | 角丸の丸みの半径を取得または設定します。 |
+
+  ExtendsAppearance は下記プロパティを持ちます。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | BorderColor | ボタンを囲む境界線の色を取得または設定します。 |
+    | BorderSize | ボタンを囲む境界線のサイズを取得または設定します。 |
+    | FocusOverlayColor | フォーカスを得たときに表示されるオーバーレイの色を取得または設定します。 |
+    | FocusOverlayWidth | フォーカスを得たときに表示されるオーバーレイの幅を取得または設定します。 |
+    | MouseDownBackColor | マウスがコントロールの境界内でクリックされたときの背景色を取得または設定します。 |
+    | MouseDownForeColor | マウスがコントロールの境界内でクリックされたときの前景色を取得または設定します。 |
+    | MouseOverBackColor | マウスがコントロールの境界内にあるときの背景色を取得または設定します。 |
+    | MouseOverForeColor | マウスがコントロールの境界内にあるときの前景色を取得または設定します。 |
+
+#### 拡張されたチェックボックス ####
+- MetCheckBox  
+  拡張されたチェックボックスを表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | CheckBoxRadius | チェックボックス描画の角丸半径を取得または設定します。 |
+    | CheckColor | チェックの色を取得または設定します。 |
+    | CheckedAppearance | チェックされたときの外観を取得または設定します。 |
+    | FocusColor | フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。 |
+    | FocusWidth | フォーカスを得たときに表示されるフレームの幅を取得または設定します。 |
+    | UncheckedAppearapce | チェックされていないときの外観を取得または設定します。 |
+
+  CheckedAppearance, UncheckedAppearapce はそれぞれ、下記プロパティを持ちます。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | Default | 既定の外観を取得または設定します。 |
+    | MouseDown | マウスがクリックされたときの外観を取得または設定します。 |
+    | MouseOver | マウスカーソルが領域内に入ったときの外観を取得または設定します。 |
+
+  Default, MouseDown, MouseOver はそれぞれ、下記プロパティを持ちます。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | BackColor | 背景色を取得または設定します。 |
+    | BorderColor | ボーダー色を取得または設定します。 |
+
+  - イベント  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | CheckedChanging | Checked プロパティが変更されるときに発生します。 |
+    | CheckStateChanging | CheckState プロパティが変更されるときに発生します。 |
+
+
+#### 拡張されたラジオボタン ####
+- MetRoundedRadioButton  
+  拡張されたラジオボタンを表現します。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | CheckedBackColor | チェック時の背景色を取得または設定します。 |
+    | CheckedForeColor | チェック時の前景色を取得または設定します。 |
+    | ExtendsAppearance | 外観を取得または設定します。 |
+    | Radius | 角丸の丸みの半径を取得または設定します。 |
+
+  ExtendsAppearapce は下記プロパティを持ちます。
+
+  - プロパティ  
+
+    |名前           |意味 |
+    |---------------|-----|
+    | BorderColor | ボタンを囲む境界線の色を取得または設定します。 |
+    | BorderSize | ボタンを囲む境界線のサイズを取得または設定します。 |
+    | FocusOverlayColor | フォーカスを得たときに表示されるオーバーレイの色を取得または設定します。 |
+    | FocusOverlayWidth | フォーカスを得たときに表示されるオーバーレイの幅を取得または設定します。 |
+    | MouseDownBackColor | マウスがコントロールの境界内でクリックされたときの背景色を取得または設定します。 |
+    | MouseDownForeColor | マウスがコントロールの境界内でクリックされたときの前景色を取得または設定します。 |
+    | MouseOverBackColor | マウスがコントロールの境界内にあるときの背景色を取得または設定します。 |
+    | MouseOverForeColor | マウスがコントロールの境界内にあるときの前景色を取得または設定します。 |

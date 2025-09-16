@@ -580,20 +580,25 @@ namespace Metroit.Windows.Forms
                 Text = notification.Text,
                 Font = NotificationFont,
                 ForeColor = NotificationForeColor,
-                Cursor = Cursors.Hand,
+                Cursor = notification.Selected == null ? Cursors.Default : Cursors.Hand,
                 Tag = notification,
                 AutoSize = false
             };
 
             notificatonLabel.Click += (s, e) =>
             {
-                var clickedItem = (NotificationInfo)((Control)s).Tag;
-                clickedItem.Selected?.Invoke();
+                var clickedInfo = (NotificationInfo)((Control)s).Tag;
+                var infoParameter = new NotificationInfoParameter(clickedInfo.DateTime, clickedInfo.Text, clickedInfo.Args);
+                clickedInfo.Selected?.Invoke(infoParameter);
             };
 
             notificatonLabel.MouseEnter += (s, e) =>
             {
-                ((Control)s).ForeColor = NotificationHoverForeColor;
+                var enterItem = (NotificationInfo)((Control)s).Tag;
+                if (enterItem.Selected != null)
+                {
+                    ((Control)s).ForeColor = NotificationHoverForeColor;
+                }
             };
 
             notificatonLabel.MouseLeave += (s, e) =>
@@ -604,7 +609,8 @@ namespace Metroit.Windows.Forms
             additionalControls.Add(notificatonLabel);
 
             ScrollablePanel.Controls.AddRange(additionalControls.ToArray());
-            notification.Registered?.Invoke();
+            var parameter = new NotificationInfoParameter(notification.DateTime, notification.Text, notification.Args);
+            notification.Registered?.Invoke(parameter);
         }
 
         /// <summary>

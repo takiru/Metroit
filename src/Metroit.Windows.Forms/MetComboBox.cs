@@ -701,7 +701,7 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
-        public void Rollback()
+        public virtual void Rollback()
         {
             this.SelectedItem = this.enterSelectedItem;
         }

@@ -1140,4 +1140,244 @@
   <data name="MetToggleSwitchStatePosition.ja" xml:space="preserve">
     <value>トグルスイッチの状態を表示する位置を取得または設定します。</value>
   </data>
+  <data name="MetToggleSwitchAutoSize" xml:space="preserve">
+    <value>Toggle switch to enable or disable autosize.</value>
+  </data>
+  <data name="MetToggleSwitchAutoSize.ja" xml:space="preserve">
+    <value>トグルスイッチの自動サイズ調整を有効または無効にします。</value>
+  </data>
+  <data name="MetToggleSwitchCheckedChanged" xml:space="preserve">
+    <value>Occurs when the state of the toggle switch changes.</value>
+  </data>
+  <data name="MetToggleSwitchCheckedChanged.ja" xml:space="preserve">
+    <value>トグルスイッチの状態が変更されたときに発生します。</value>
+  </data>
+  <data name="MetToggleSwitchCheckedChanging" xml:space="preserve">
+    <value>Occurs when the state of a toggle switch changes.</value>
+  </data>
+  <data name="MetToggleSwitchCheckedChanging.ja" xml:space="preserve">
+    <value>トグルスイッチの状態が変更されるときに発生します。</value>
+  </data>
+  <data name="MetToggleSwitchFocusColor" xml:space="preserve">
+    <value>Gets or sets the border color of the frame when it has focus.</value>
+  </data>
+  <data name="MetToggleSwitchFocusColor.ja" xml:space="preserve">
+    <value>フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。</value>
+  </data>
+  <data name="MetToggleSwitchOffAppearance" xml:space="preserve">
+    <value>Determines the appearance when OFF.</value>
+  </data>
+  <data name="MetToggleSwitchOffAppearance.ja" xml:space="preserve">
+    <value>OFFのときの外観を決定します。</value>
+  </data>
+  <data name="MetToggleSwitchOnAppearance" xml:space="preserve">
+    <value>Determines the appearance when ON.</value>
+  </data>
+  <data name="MetToggleSwitchOnAppearance.ja" xml:space="preserve">
+    <value>ONのときの外観を決定します。</value>
+  </data>
+  <data name="CheckBoxAppearanceDefault" xml:space="preserve">
+    <value>Gets or sets the default appearance.</value>
+  </data>
+  <data name="CheckBoxAppearanceDefault.ja" xml:space="preserve">
+    <value>既定の外観を取得または設定します。</value>
+  </data>
+  <data name="CheckBoxAppearanceMouseDown" xml:space="preserve">
+    <value>Gets or sets the appearance when the mouse is clicked.</value>
+  </data>
+  <data name="CheckBoxAppearanceMouseDown.ja" xml:space="preserve">
+    <value>マウスがクリックされたときの外観を取得または設定します。</value>
+  </data>
+  <data name="CheckBoxAppearanceMouseOver" xml:space="preserve">
+    <value>Gets or sets the appearance when the mouse cursor enters the region.</value>
+  </data>
+  <data name="CheckBoxAppearanceMouseOver.ja" xml:space="preserve">
+    <value>マウスカーソルが領域内に入ったときの外観を取得または設定します。</value>
+  </data>
+  <data name="CheckBoxColorAppearanceBackColor" xml:space="preserve">
+    <value>Gets or sets the background color.</value>
+  </data>
+  <data name="CheckBoxColorAppearanceBackColor.ja" xml:space="preserve">
+    <value>背景色を取得または設定します。</value>
+  </data>
+  <data name="CheckBoxColorAppearanceBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color.</value>
+  </data>
+  <data name="CheckBoxColorAppearanceBorderColor.ja" xml:space="preserve">
+    <value>ボーダー色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseBorderColor" xml:space="preserve">
+    <value>Gets or sets the color of the border that surrounds the button.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseBorderColor.ja" xml:space="preserve">
+    <value>ボタンを囲む境界線の色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseBorderSize" xml:space="preserve">
+    <value>Gets or sets a value that specifies the size, in pixels, of the border that surrounds the button.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseBorderSize.ja" xml:space="preserve">
+    <value>ボタンを囲む境界線のサイズをピクセル単位で指定する値を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseFocusOverlayColor" xml:space="preserve">
+    <value>Gets or sets the color of the overlay that is displayed when the control has focus.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseFocusOverlayColor.ja" xml:space="preserve">
+    <value>フォーカスを得た時に表示されるオーバーレイの色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseFocusOverlayWidth" xml:space="preserve">
+    <value>Gets or sets the width of the overlay that is displayed when it has focus.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseFocusOverlayWidth.ja" xml:space="preserve">
+    <value>フォーカスを得た時に表示されるオーバーレイの幅を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseDownBackColor" xml:space="preserve">
+    <value>Gets or sets the color of the client area of ​​a button when the mouse is clicked within the bounds of the control.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseDownBackColor.ja" xml:space="preserve">
+    <value>マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseDownForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color when the mouse is clicked within the bounds of the control.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseDownForeColor.ja" xml:space="preserve">
+    <value>マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseOverBackColor" xml:space="preserve">
+    <value>Gets or sets the color of the client area of ​​the button when the mouse pointer is within the bounds of the control.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseOverBackColor.ja" xml:space="preserve">
+    <value>マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseOverForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color when the mouse pointer is within the bounds of the control.</value>
+  </data>
+  <data name="ExtendsAppearanceBaseMouseOverForeColor.ja" xml:space="preserve">
+    <value>マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxCheckBoxRadius" xml:space="preserve">
+    <value>Gets or sets the corner radius for drawing check boxes.</value>
+  </data>
+  <data name="MetCheckBoxCheckBoxRadius.ja" xml:space="preserve">
+    <value>チェックボックス描画の角丸半径を取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxCheckColor" xml:space="preserve">
+    <value>Gets or sets the check color.</value>
+  </data>
+  <data name="MetCheckBoxCheckColor.ja" xml:space="preserve">
+    <value>チェックの色を取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxChecked" xml:space="preserve">
+    <value>Indicates whether the component is in a checked state.</value>
+  </data>
+  <data name="MetCheckBoxChecked.ja" xml:space="preserve">
+    <value>コンポーネントがチェックされた状態かどうかを示します。</value>
+  </data>
+  <data name="MetCheckBoxCheckedAppearance" xml:space="preserve">
+    <value>Gets or sets the appearance that the control appears when checked.</value>
+  </data>
+  <data name="MetCheckBoxCheckedAppearance.ja" xml:space="preserve">
+    <value>チェックされたときの外観を取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxCheckedChanging" xml:space="preserve">
+    <value>Occurs when the Checked property changes.</value>
+  </data>
+  <data name="MetCheckBoxCheckedChanging.ja" xml:space="preserve">
+    <value>Checked プロパティが変更されるときに発生します。</value>
+  </data>
+  <data name="MetCheckBoxCheckState" xml:space="preserve">
+    <value>Indicates the state of the component.</value>
+  </data>
+  <data name="MetCheckBoxCheckState.ja" xml:space="preserve">
+    <value>コンポーネントの状態を示します。</value>
+  </data>
+  <data name="MetCheckBoxCheckStateChanging" xml:space="preserve">
+    <value>Occurs when the CheckState property changes.</value>
+  </data>
+  <data name="MetCheckBoxCheckStateChanging.ja" xml:space="preserve">
+    <value>CheckState プロパティが変更されたときの発生します。</value>
+  </data>
+  <data name="MetCheckBoxFocusColor" xml:space="preserve">
+    <value>Gets or sets the border color of the frame when it has focus.</value>
+  </data>
+  <data name="MetCheckBoxFocusColor.ja" xml:space="preserve">
+    <value>フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxFocusWidth" xml:space="preserve">
+    <value>Gets or sets the size of the frame that is displayed when it has focus.</value>
+  </data>
+  <data name="MetCheckBoxFocusWidth.ja" xml:space="preserve">
+    <value>フォーカスを得た時に表示されるフレームのサイズを取得または設定します。</value>
+  </data>
+  <data name="MetCheckBoxUncheckedAppearance" xml:space="preserve">
+    <value>Gets or sets the appearance when unchecked.</value>
+  </data>
+  <data name="MetCheckBoxUncheckedAppearance.ja" xml:space="preserve">
+    <value>チェックされていないときの外観を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedButtonExtendsAppearance" xml:space="preserve">
+    <value>Determines the extended appearance.</value>
+  </data>
+  <data name="MetRoundedButtonExtendsAppearance.ja" xml:space="preserve">
+    <value>拡張された外観を決定します。</value>
+  </data>
+  <data name="MetRoundedButtonRadius" xml:space="preserve">
+    <value>Gets or sets the radius of each rounded corner.</value>
+  </data>
+  <data name="MetRoundedButtonRadius.ja" xml:space="preserve">
+    <value>各角の丸みの半径を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedRadioButtonCheckedBackColor" xml:space="preserve">
+    <value>Gets or sets the background color when checked.</value>
+  </data>
+  <data name="MetRoundedRadioButtonCheckedBackColor.ja" xml:space="preserve">
+    <value>チェック時の背景色を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedRadioButtonCheckedForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color when checked.</value>
+  </data>
+  <data name="MetRoundedRadioButtonCheckedForeColor.ja" xml:space="preserve">
+    <value>チェック時の前景色を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedRadioButtonExtendsAppearance" xml:space="preserve">
+    <value>Gets or sets the appearance.</value>
+  </data>
+  <data name="MetRoundedRadioButtonExtendsAppearance.ja" xml:space="preserve">
+    <value>外観を取得または設定します。</value>
+  </data>
+  <data name="MetRoundedRadioButtonRadius" xml:space="preserve">
+    <value>Gets or sets the radius of each rounded corner.</value>
+  </data>
+  <data name="MetRoundedRadioButtonRadius.ja" xml:space="preserve">
+    <value>各角の丸みの半径を取得または設定します。</value>
+  </data>
+  <data name="RoundedCornerRadiusAll" xml:space="preserve">
+    <value>Gets or sets the value if all radii should be the same.</value>
+  </data>
+  <data name="RoundedCornerRadiusAll.ja" xml:space="preserve">
+    <value>すべての半径を同じ値にする場合、その値を取得または設定します。</value>
+  </data>
+  <data name="RoundedCornerRadiusBottomLeft" xml:space="preserve">
+    <value>Gets or sets the bottom left radius.</value>
+  </data>
+  <data name="RoundedCornerRadiusBottomLeft.ja" xml:space="preserve">
+    <value>左下の半径を取得または設定します。</value>
+  </data>
+  <data name="RoundedCornerRadiusBottomRight" xml:space="preserve">
+    <value>Gets or sets the bottom right radius.</value>
+  </data>
+  <data name="RoundedCornerRadiusBottomRight.ja" xml:space="preserve">
+    <value>右下の半径を取得または設定します。</value>
+  </data>
+  <data name="RoundedCornerRadiusTopLeft" xml:space="preserve">
+    <value>Gets or sets the top-left radius.</value>
+  </data>
+  <data name="RoundedCornerRadiusTopLeft.ja" xml:space="preserve">
+    <value>左上の半径を取得または設定します。</value>
+  </data>
+  <data name="RoundedCornerRadiusTopRight" xml:space="preserve">
+    <value>Gets or sets the top right radius.</value>
+  </data>
+  <data name="RoundedCornerRadiusTopRight.ja" xml:space="preserve">
+    <value>右上の半径を取得または設定します。</value>
+  </data>
 </root>

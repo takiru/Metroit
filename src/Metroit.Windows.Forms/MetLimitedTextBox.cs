@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing.Design;
-using System.Globalization;
+using Metroit.Extensions;
 
 namespace Metroit.Windows.Forms
 {
@@ -87,44 +87,12 @@ namespace Metroit.Windows.Forms
                 return true;
             }
 
-            if (MaxLength == GetTextCount(Text))
+            if (MaxLength == Text.GetTextCount(FullWidthCharTwo))
             {
                 return true;
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// 入力後の文字列の長さを取得する。
-        /// </summary>
-        /// <param name="text">文字列。</param>
-        /// <returns><see cref="FullWidthCharTwo"/> を考慮した文字列の長さを取得する。</returns>
-        protected int GetTextCount(string text)
-        {
-            // 全角文字を2文字としてカウントしないなら素の文字列長を返却
-            if (!FullWidthCharTwo)
-            {
-                return text.Length;
-            }
-
-            // 全角を2文字としてカウントした文字列長を返却
-            int count = 0;
-            StringInfo stringInfo = new StringInfo(text);
-
-            for (int i = 0; i < stringInfo.LengthInTextElements; i++)
-            {
-                string character = stringInfo.SubstringByTextElements(i, 1);
-
-                // 文字幅が2なら2文字とカウント
-                count++;
-                if (IsFullWidth(character))
-                {
-                    count++;
-                }
-            }
-
-            return count;
         }
 
         /// <summary>
@@ -134,30 +102,12 @@ namespace Metroit.Windows.Forms
         /// <returns>true:有効, false:無効。</returns>
         protected virtual bool IsValidTextLength(string text)
         {
-            if (GetTextCount(text) > MaxLength)
+            if (text.GetTextCount(FullWidthCharTwo) > MaxLength)
             {
                 return false;
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// 1文字が全角文字かどうかを判定する。
-        /// </summary>
-        /// <param name="character">1文字の値。</param>
-        /// <returns>全角文字の場合は true, 半角文字の場合は false を返却する。</returns>
-        private static bool IsFullWidth(string character)
-        {
-            // Unicodeカテゴリで判断（CJK Unified Ideographs や全角カタカナ・ひらがななど）
-            if (character.Length == 1)
-            {
-                char c = character[0];
-                return char.GetUnicodeCategory(c) == UnicodeCategory.OtherLetter ||
-                       char.GetUnicodeCategory(c) == UnicodeCategory.OtherSymbol;
-            }
-
-            return false;
         }
 
         /// <summary>

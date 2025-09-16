@@ -97,6 +97,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   The control is not placed on a form. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlIsNotOnForm {
+            get {
+                return ResourceManager.GetString("ControlIsNotOnForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   このコントロールはフォームに配置されていません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlIsNotOnForm_ja {
+            get {
+                return ResourceManager.GetString("ControlIsNotOnForm.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   An unacceptable value has been set. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DeniedTextException {
@@ -111,6 +129,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string DeniedTextException_ja {
             get {
                 return ResourceManager.GetString("DeniedTextException.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0} is empty. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0} が空です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Empty_ja {
+            get {
+                return ResourceManager.GetString("Empty.ja", resourceCulture);
             }
         }
         
@@ -147,6 +183,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string IndexTooLarge_ja {
             get {
                 return ResourceManager.GetString("IndexTooLarge.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot be set to less than {0}. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidIndex {
+            get {
+                return ResourceManager.GetString("InvalidIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   {0} 未満は設定できません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidIndex_ja {
+            get {
+                return ResourceManager.GetString("InvalidIndex.ja", resourceCulture);
             }
         }
         
@@ -219,6 +273,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MinValueSmallerCanNotChange_ja {
             get {
                 return ResourceManager.GetString("MinValueSmallerCanNotChange.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Invalid color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NotSupportedColor {
+            get {
+                return ResourceManager.GetString("NotSupportedColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   無効な色です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NotSupportedColor_ja {
+            get {
+                return ResourceManager.GetString("NotSupportedColor.ja", resourceCulture);
             }
         }
         

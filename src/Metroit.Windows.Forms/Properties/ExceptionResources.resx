@@ -129,11 +129,23 @@
   <data name="CannotUseOverlayControl.ja" xml:space="preserve">
     <value>{0} はオーバーレイできません。</value>
   </data>
+  <data name="ControlIsNotOnForm" xml:space="preserve">
+    <value>The control is not placed on a form.</value>
+  </data>
+  <data name="ControlIsNotOnForm.ja" xml:space="preserve">
+    <value>このコントロールはフォームに配置されていません。</value>
+  </data>
   <data name="DeniedTextException" xml:space="preserve">
     <value>An unacceptable value has been set.</value>
   </data>
   <data name="DeniedTextException.ja" xml:space="preserve">
     <value>許可されない値が設定されました。</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>{0} is empty.</value>
+  </data>
+  <data name="Empty.ja" xml:space="preserve">
+    <value>{0} が空です。</value>
   </data>
   <data name="IndexMustFrom" xml:space="preserve">
     <value>The index must start from {0}.</value>
@@ -146,6 +158,12 @@
   </data>
   <data name="IndexTooLarge.ja" xml:space="preserve">
     <value>インデックスが大きすぎます。</value>
+  </data>
+  <data name="InvalidIndex" xml:space="preserve">
+    <value>Cannot be set to less than {0}.</value>
+  </data>
+  <data name="InvalidIndex.ja" xml:space="preserve">
+    <value>{0} 未満は設定できません。</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>An unacceptable value has been set.</value>
@@ -170,6 +188,12 @@
   </data>
   <data name="MinValueSmallerCanNotChange.ja" xml:space="preserve">
     <value>MinValueの値より小さい値は設定できません。</value>
+  </data>
+  <data name="NotSupportedColor" xml:space="preserve">
+    <value>Invalid color.</value>
+  </data>
+  <data name="NotSupportedColor.ja" xml:space="preserve">
+    <value>無効な色です。</value>
   </data>
   <data name="OverlayAlreadyDisplayed" xml:space="preserve">
     <value>The overlay is already displayed.</value>

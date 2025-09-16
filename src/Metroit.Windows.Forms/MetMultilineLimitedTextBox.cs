@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using Metroit.Extensions;
 
 namespace Metroit.Windows.Forms
 {
@@ -115,7 +116,7 @@ namespace Metroit.Windows.Forms
             // 入力後の文字列の長さが1行の文字数を超過している場合は許可しない
             foreach (var lineText in value.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None))
             {
-                var textLength = GetTextCount(lineText);
+                var textLength = lineText.GetTextCount(FullWidthCharTwo);
                 if (textLength > MaxLineLength)
                 {
                     return false;
@@ -157,7 +158,7 @@ namespace Metroit.Windows.Forms
 
             // 最終文字の入力でない時は行わない
             var lastLineText = Text.Split(new string[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None).Last();
-            var textLength = GetTextCount(lastLineText);
+            var textLength = lastLineText.GetTextCount(FullWidthCharTwo);
             if (textLength < MaxLineLength)
             {
                 return false;

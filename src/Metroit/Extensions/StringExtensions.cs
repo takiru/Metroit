@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 
 namespace Metroit.Extensions
@@ -141,6 +142,63 @@ namespace Metroit.Extensions
         public static string GetEnclosedText(this string value, bool includeBracket = false, char startBracket = '(', char endBracket = ')')
         {
             return GetEnclosedText(value, startBracket.ToString(), endBracket.ToString(), includeBracket);
+        }
+
+        /// <summary>
+        /// 文字列の長さを取得します。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="fullWidthCharTwo">全角文字を2文字としてカウントするかどうか。</param>
+        /// <returns>
+        /// 文字列の長さを返却します。<br/>
+        /// <paramref name="fullWidthCharTwo"/> が <see langword="true"/> の場合は、全角文字を2文字としてカウントした文字列の長さを返却します。
+        /// </returns>
+        public static int GetTextCount(this string value, bool fullWidthCharTwo)
+        {
+            // 全角文字を2文字としてカウントしないなら素の文字列長を返却
+            if (!fullWidthCharTwo)
+            {
+                return value.Length;
+            }
+
+            // 全角を2文字としてカウントした文字列長を返却
+            int count = 0;
+            StringInfo stringInfo = new StringInfo(value);
+
+            for (int i = 0; i < stringInfo.LengthInTextElements; i++)
+            {
+                string oneCharacterString = stringInfo.SubstringByTextElements(i, 1);
+
+                // 文字幅が2なら2文字とカウント
+                count++;
+                if (oneCharacterString.IsFullWidth())
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// 1文字が全角文字かどうかを判定します。
+        /// </summary>
+        /// <param name="value">1文字の文字列。</param>
+        /// <returns>
+        /// 全角文字の場合は <see langword="true"/>, それ以外の場合は <see langword="false"/> を返却します。<br/>
+        /// <paramref name="value"/> が 1文字でないときは <see langword="false"/> を返却します。
+        /// </returns>
+        public static bool IsFullWidth(this string value)
+        {
+            // Unicodeカテゴリで判断（CJK Unified Ideographs や全角カタカナ・ひらがななど）
+            if (value.Length == 1)
+            {
+                char c = value[0];
+                return char.GetUnicodeCategory(c) == UnicodeCategory.OtherLetter ||
+                       char.GetUnicodeCategory(c) == UnicodeCategory.OtherSymbol;
+            }
+
+            return false;
         }
     }
 }

@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.0.1.0</VersionPrefix>
+    <VersionPrefix>3.3.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -15,20 +15,10 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Abolished
-      - IItemRemovedKnownList
-      - ItemRemovedKnownList
-
-      Reviewed
-      - PropertyChangeTracker
-
-      Added
-      - IPropertyChangeTrackerProvider
-      - ITrackingItem
-      - IRemoveTrackingList
-      - TrackingList
-      - TrackingObject
-      - StatefulTrackingObject
+      Add
+      - MetEnum
+      - The GetTextCount() method has been added to the string extension methods.
+      - The IsFullWidth() method has been added to the string extension methods.
     </PackageReleaseNotes>
   </PropertyGroup>
 

@@ -1,5 +1,4 @@
-﻿using Metroit.Windows.Forms.Extensions;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -10,6 +9,7 @@ namespace Metroit.Windows.Forms
     /// <summary>
     /// トグルスイッチを提供します。
     /// </summary>
+    [DefaultEvent("CheckedChanged")]
     public class MetToggleSwitch : Control, IControlRollback
     {
         private Timer _animationTimer;
@@ -19,22 +19,30 @@ namespace Metroit.Windows.Forms
         private DateTime _animationStartTime;
         private bool _isAnimating = false;
 
-        private readonly int SwitchWidth = 40;
-        private readonly int SiwtchHeight = 20;
-        private readonly int BorderWidth = 1;
-
-        private readonly Color DefaultOffThumbColor = Color.FromArgb(51, 51, 51);
-        private readonly Color DefaultOnThumbColor = Color.FromArgb(255, 255, 255);
-        private readonly Color HoverOverlayColor = Color.FromArgb(20, 0, 0, 0);
-        private readonly Color DisabledBorderColor = Color.FromArgb(200, 200, 200);
-        private readonly Color DisabledTextColor = Color.FromArgb(150, 150, 150);
-
-        private bool _isHovered = false;
+        /// <summary>
+        /// 最低トグルスイッチ幅。
+        /// </summary>
+        private readonly int MinSwitchWidth = 40;
 
         /// <summary>
-        /// トグルスイッチの状態が変更されたときに発生します。
+        /// 最低トグルスイッチ高さ。
         /// </summary>
-        public event EventHandler CheckedChanged;
+        private readonly int MinSwitchHeight = 20;
+
+        /// <summary>
+        /// サム円のマージン。
+        /// </summary>
+        private readonly int ThumbMargin = 1;
+
+        /// <summary>
+        /// フォーカス枠の幅
+        /// </summary>
+        private static readonly int FocusWidth = 4;
+
+        /// <summary>
+        /// トグルスイッチの枠幅。
+        /// </summary>
+        private static readonly int SwitchBorderWidth = 1;
 
         /// <summary>
         /// 新しいインスタンスを生成します。
@@ -47,17 +55,64 @@ namespace Metroit.Windows.Forms
                      ControlStyles.ResizeRedraw |
                      ControlStyles.SupportsTransparentBackColor, true);
 
-            Size = new Size(SwitchWidth, SiwtchHeight);
-            BackColor = Color.Transparent;
+            Size = new Size(MinSwitchWidth, MinSwitchHeight);
+            base.BackColor = Color.Transparent;
             Cursor = Cursors.Hand;
 
             _animationTimer = new Timer();
             _animationTimer.Interval = 1000 / AnimationFps;
             _animationTimer.Tick += AnimationTimer_Tick;
 
-            UpdateControlSize();
-
             Enter += MetToggleSwitch_Enter;
+        }
+
+        /// <summary>
+        /// BackColorプロパティを隠します（このコントロールでは使用しません）
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Obsolete("BackColorは使用できません。", true)]
+#pragma warning disable CS0809
+        public override Color BackColor
+#pragma warning restore CS0809
+        {
+            get => base.BackColor;
+            set { }
+        }
+
+        /// <summary>
+        /// トグルスイッチの状態が変更されるときに発生します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetToggleSwitchCheckedChanging")]
+        public event CheckedChangingEventHandler CheckedChanging;
+
+        /// <summary>
+        /// <see cref="CheckedChanging"/> イベントを発生させます。
+        /// </summary>
+        /// <param name="e">イベントデータ。</param>
+        protected virtual void OnCheckedChanging(CheckedChangingEventArgs e)
+        {
+            CheckedChanging?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// トグルスイッチの状態が変更されたときに発生します。
+        /// </summary>
+        [Browsable(true)]
+        [MetCategory("MetOther")]
+        [MetDescription("MetToggleSwitchCheckedChanged")]
+        public event EventHandler CheckedChanged;
+
+        /// <summary>
+        /// <see cref="CheckedChanged"/> イベントを発生させます。
+        /// </summary>
+        /// <param name="e">イベントデータ。</param>
+        protected virtual void OnCheckedChanged(EventArgs e)
+        {
+            CheckedChanged?.Invoke(this, e);
         }
 
         private bool _checked = false;
@@ -67,6 +122,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [Browsable(true)]
         [DefaultValue(false)]
+        [Bindable(true)]
         [MetCategory("MetAppearance")]
         [MetDescription("MetToggleSwitchChecked")]
         public bool Checked
@@ -76,60 +132,61 @@ namespace Metroit.Windows.Forms
             {
                 if (_checked != value)
                 {
+                    var checkedCancelArgs = new CheckedChangingEventArgs(Checked, !Checked);
+                    OnCheckedChanging(checkedCancelArgs);
+                    if (checkedCancelArgs.Cancel)
+                    {
+                        return;
+                    }
+
                     _checked = value;
                     StartAnimation();
-                    CheckedChanged?.Invoke(this, EventArgs.Empty);
+                    OnCheckedChanged(EventArgs.Empty);
                 }
             }
         }
 
-        private string _onText = "ON";
+        private OnToggleButtonAppearance _onToggleButtonAppearance;
 
         /// <summary>
-        /// トグルスイッチのON状態を示すテキストを取得または設定します。
+        /// ONのときの外観を決定します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnText")]
-        public string OnText
+        [MetDescription("MetToggleSwitchOnAppearance")]
+        public OnToggleButtonAppearance OnAppearance
         {
-            get { return _onText; }
-            set
+            get
             {
-                if (_onText != value)
+                if (_onToggleButtonAppearance == null)
                 {
-                    _onText = value;
-                    if (_autoSize)
-                    {
-                        UpdateControlSize();
-                    }
-                    Invalidate();
+                    _onToggleButtonAppearance = new OnToggleButtonAppearance(this);
                 }
+
+                return _onToggleButtonAppearance;
             }
         }
 
-        private string _offText = "OFF";
+        private OffToggleButtonAppearance _offToggleButtonAppearance;
 
         /// <summary>
-        /// トグルスイッチのOFF状態を示すテキストを取得または設定します。
+        /// OFFのときの外観を決定します。
         /// </summary>
         [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffText")]
-        public string OffText
+        [MetDescription("MetToggleSwitchOffAppearance")]
+        public OffToggleButtonAppearance OffAppearance
         {
-            get { return _offText; }
-            set
+            get
             {
-                if (_offText != value)
+                if (_offToggleButtonAppearance == null)
                 {
-                    _offText = value;
-                    if (_autoSize)
-                    {
-                        UpdateControlSize();
-                    }
-                    Invalidate();
+                    _offToggleButtonAppearance = new OffToggleButtonAppearance(this);
                 }
+
+                return _offToggleButtonAppearance;
             }
         }
 
@@ -150,10 +207,6 @@ namespace Metroit.Windows.Forms
                 if (_showState != value)
                 {
                     _showState = value;
-                    if (_autoSize)
-                    {
-                        UpdateControlSize();
-                    }
                     Invalidate();
                 }
             }
@@ -176,308 +229,6 @@ namespace Metroit.Windows.Forms
                 if (_statePosition != value)
                 {
                     _statePosition = value;
-                    if (_autoSize)
-                    {
-                        UpdateControlSize();
-                    }
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _onTextForeColor = SystemColors.ControlText;
-
-        /// <summary>
-        /// トグルスイッチのON状態のテキストの前景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnTextForeColor")]
-        public Color OnTextForeColor
-        {
-            get { return _onTextForeColor; }
-            set
-            {
-                if (_onTextForeColor != value)
-                {
-                    _onTextForeColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        /// <summary>
-        /// OnTextForeColor プロパティがデフォルト値でない場合に true を返します。
-        /// </summary>
-        /// <returns>変更があった場合は true, それ以外は false を返却する。</returns>
-        private bool ShouldSerializeOnTextForeColor()
-        {
-            return _onTextForeColor != SystemColors.ControlText;
-        }
-
-        /// <summary>
-        /// OnTextForeColor プロパティをデフォルト値にリセットします。
-        /// </summary>
-        private void ResetOnTextForeColor()
-        {
-            OnTextForeColor = SystemColors.ControlText;
-        }
-
-        private Color _offTextForeColor = SystemColors.ControlText;
-
-        /// <summary>
-        /// トグルスイッチのOFF状態のテキストの前景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffTextForeColor")]
-        public Color OffTextForeColor
-        {
-            get { return _offTextForeColor; }
-            set
-            {
-                if (_offTextForeColor != value)
-                {
-                    _offTextForeColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        /// <summary>
-        /// OffTextForeColor プロパティがデフォルト値でない場合に true を返します。
-        /// </summary>
-        /// <returns>変更がある場合は true, それ以外は false を返却すうｒ。</returns>
-        private bool ShouldSerializeOffTextForeColor()
-        {
-            return _offTextForeColor != SystemColors.ControlText;
-        }
-
-        /// <summary>
-        /// OffTextForeColor プロパティをデフォルト値にリセットします。
-        /// </summary>
-        private void ResetOffTextForeColor()
-        {
-            OffTextForeColor = SystemColors.ControlText;
-        }
-
-        private Color _onSwitchBorderColor = Color.FromArgb(0, 120, 212);
-
-        /// <summary>
-        /// トグルスイッチのON状態のボーダー色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "0, 120, 212")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnSwitchBorderColor")]
-        public Color OnSwitchBorderColor
-        {
-            get { return _onSwitchBorderColor; }
-            set
-            {
-                if (_onSwitchBorderColor != value)
-                {
-                    _onSwitchBorderColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _offSwitchBorderColor = Color.FromArgb(118, 118, 118);
-
-        /// <summary>
-        /// トグルスイッチのOFF状態のボーダー色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "118, 118, 118")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffSwitchBorderColor")]
-        public Color OffSwitchBorderColor
-        {
-            get { return _offSwitchBorderColor; }
-            set
-            {
-                if (_offSwitchBorderColor != value)
-                {
-                    _offSwitchBorderColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _onBackColor = Color.FromArgb(0, 120, 212);
-
-        /// <summary>
-        /// トグルスイッチのON状態の背景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "0, 120, 212")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnBackColor")]
-        public Color OnBackColor
-        {
-            get { return _onBackColor; }
-            set
-            {
-                if (_onBackColor != value)
-                {
-                    _onBackColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _onDisabledBackColor = Color.FromArgb(191, 191, 191);
-
-        /// <summary>
-        /// トグルスイッチが無効でON状態の背景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "191, 191, 191")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnDisabledBackColor")]
-        public Color OnDisabledBackColor
-        {
-            get { return _onDisabledBackColor; }
-            set
-            {
-                if (_onDisabledBackColor != value)
-                {
-                    _onDisabledBackColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _offBackColor = Color.FromArgb(255, 255, 255);
-
-        /// <summary>
-        /// トグルスイッチのOFF状態の背景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "255, 255, 255")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffBackColor")]
-        public Color OffBackColor
-        {
-            get { return _offBackColor; }
-            set
-            {
-                if (_offBackColor != value)
-                {
-                    _offBackColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _offDisabledBackColor = Color.FromArgb(243, 243, 243);
-
-        /// <summary>
-        /// トグルスイッチが無効でOFF状態の背景色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "243, 243, 243")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffDisabledBackColor")]
-        public Color OffDisabledBackColor
-        {
-            get { return _offDisabledBackColor; }
-            set
-            {
-                if (_offDisabledBackColor != value)
-                {
-                    _offDisabledBackColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        // Empty の場合は自動色
-        private Color _onThumbColor = Color.Empty;
-
-        /// <summary>
-        /// トグルスイッチのON状態のサムの色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "Empty")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnThumbColor")]
-        public Color OnThumbColor
-        {
-            get { return _onThumbColor; }
-            set
-            {
-                if (_onThumbColor != value)
-                {
-                    _onThumbColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _onDisabledThumbColor = Color.FromArgb(255, 255, 255);
-
-        /// <summary>
-        /// トグルスイッチが無効でON状態のサムの色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "255, 255,255")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOnDisabledThumbColor")]
-        public Color OnDisabledThumbColor
-        {
-            get { return _onDisabledThumbColor; }
-            set
-            {
-                if (_onDisabledThumbColor != value)
-                {
-                    _onDisabledThumbColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        // Empty の場合は自動色
-        private Color _offThumbColor = Color.Empty;
-
-        /// <summary>
-        /// トグルスイッチのOFF状態のサムの色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "Empty")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffThumbColor")]
-        public Color OffThumbColor
-        {
-            get { return _offThumbColor; }
-            set
-            {
-                if (_offThumbColor != value)
-                {
-                    _offThumbColor = value;
-                    Invalidate();
-                }
-            }
-        }
-
-        private Color _offDisabledThumbColor = Color.FromArgb(155, 155, 155);
-
-        /// <summary>
-        /// トグルスイッチが無効でOFF状態のサムの色を取得または設定します。
-        /// </summary>
-        [Browsable(true)]
-        [DefaultValue(typeof(Color), "155, 155, 155")]
-        [MetCategory("MetAppearance")]
-        [MetDescription("MetToggleSwitchOffDisabledThumbColor")]
-        public Color OffDisabledThumbColor
-        {
-            get { return _offDisabledThumbColor; }
-            set
-            {
-                if (_offDisabledThumbColor != value)
-                {
-                    _offDisabledThumbColor = value;
                     Invalidate();
                 }
             }
@@ -490,6 +241,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         [DefaultValue(true)]
         [Browsable(true)]
+        [MetDescription("MetToggleSwitchAutoSize")]
         [RefreshProperties(RefreshProperties.All)]
         [EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -501,10 +253,6 @@ namespace Metroit.Windows.Forms
                 if (_autoSize != value)
                 {
                     _autoSize = value;
-                    if (_autoSize)
-                    {
-                        UpdateControlSize();
-                    }
                     Invalidate();
                 }
             }
@@ -533,6 +281,28 @@ namespace Metroit.Windows.Forms
             }
         }
 
+        private Color _focusColor = Color.FromArgb(152, 193, 254);
+
+        /// <summary>
+        /// フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(typeof(Color), "152, 193, 254")]
+        [MetCategory("MetAppearance")]
+        [MetDescription("MetToggleSwitchFocusColor")]
+        public Color FocusColor
+        {
+            get => _focusColor;
+            set
+            {
+                if (_focusColor != value)
+                {
+                    _focusColor = value;
+                    Invalidate();
+                }
+            }
+        }
+
         /// <summary>
         /// アニメーションを開始します。
         /// </summary>
@@ -547,7 +317,7 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// アニメーションタイマーのティックイベントハンドラーです。
+        /// アニメーションしてトグルスイッチを切り替える。
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -574,173 +344,108 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
-        /// イージング関数：EaseOutCubic
+        /// アニメーションのイージング位置を求める。
         /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        private float EaseOutCubic(float t)
+        /// <param name="progress">現在の描画位置。</param>
+        /// <returns>描画する位置。</returns>
+        private float EaseOutCubic(float progress)
         {
-            return 1f - (float)Math.Pow(1 - t, 3);
+            return 1f - (float)Math.Pow(1 - progress, 3);
         }
 
         /// <summary>
         /// コントロールのサイズを自動的に更新します。
         /// </summary>
-        private void UpdateControlSize()
+        internal void UpdateControlSize(Graphics g)
         {
-            if (!_autoSize)
+            if (!AutoSize)
             {
-                return; // AutoSize = false の場合はサイズ変更しない
-            }
-
-            int baseHeight = SiwtchHeight;
-
-            if (!_showState)
-            {
-                Size = new Size(SwitchWidth, baseHeight);
                 return;
             }
 
-            // テキストサイズを測定
-            using (var g = CreateGraphics())
-            {
-                var textFont = Font;
-                var onTextSize = g.MeasureString(_onText, textFont);
-                var offTextSize = g.MeasureString(_offText, textFont);
-                var maxTextWidth = Math.Max(onTextSize.Width, offTextSize.Width);
-                var maxTextHeight = Math.Max(onTextSize.Height, offTextSize.Height);
+            var textSize = GetTextSize(g);
+            var thumbSize = GetThumbSize(textSize.Height);
+            var switchBorderSize = GetSwitchBorderSize(textSize, thumbSize);
+            var focusSize = GetFocusSize(switchBorderSize);
 
-                if (_statePosition == ToggleSwitchStatePosition.Inside)
+            if (ShowState && StatePosition == ToggleSwitchStatePosition.Inside)
+            {
+                Size = new Size(
+                    (int)Math.Ceiling(focusSize.Width),
+                    (int)Math.Ceiling(focusSize.Height));
+                return;
+            }
+
+            Size = new Size(
+                (int)Math.Ceiling((ShowState ? textSize.Width : 0) + focusSize.Width),
+                (int)Math.Ceiling(focusSize.Height));
+        }
+
+        /// <summary>
+        /// サム円が左にあるときと右にあるときの中間間隔。
+        /// </summary>
+        private static readonly int ThumbInterval = 4;
+
+        /// <summary>
+        /// スイッチボーダー領域のサイズを求める。
+        /// </summary>
+        /// <param name="textSize">テキストサイズ。</param>
+        /// <param name="thumbSize">サム円サイズ。</param>
+        /// <returns>スイッチボーダーサイズ。</returns>
+        private SizeF GetSwitchBorderSize(SizeF textSize, SizeF thumbSize)
+        {
+            // 高さはテキストの高さと一緒
+            var height = textSize.Height;
+
+            float width;
+            // 幅はサム円のサイズと中間間隔, サム円のマージン, スイッチボーダーの合算
+            if (StatePosition == ToggleSwitchStatePosition.Left || StatePosition == ToggleSwitchStatePosition.Right)
+            {
+                width = (thumbSize.Width * 2 / (CornerRadius == 0 ? 0.6f : 1)) +
+                    ThumbInterval + (ThumbMargin * 2) + (SwitchBorderWidth * 2);
+            }
+            else
+            {
+                // 内部のときは幅全体
+                if (AutoSize)
                 {
-                    // Inner表示の場合：OnText, OffTextの文字長を考慮した幅を計算
-                    // サム円のサイズ（高さ-6px）とテキスト幅とマージンを考慮
-                    var thumbSize = baseHeight - 6;
-                    var requiredWidth = thumbSize + 6 + (int)Math.Ceiling(maxTextWidth) + 10; // 余白10px
-                    var totalWidth = Math.Max(SwitchWidth, requiredWidth);
-                    var totalHeight = Math.Max(baseHeight, (int)Math.Ceiling(maxTextHeight));
-                    Size = new Size(totalWidth, totalHeight);
+                    width = textSize.Width +
+                        (thumbSize.Width * 2 / (CornerRadius == 0 ? 0.6f : 1)) +
+                        (ThumbMargin * 2) + (SwitchBorderWidth * 2);
                 }
                 else
                 {
-                    // Left/Right表示の場合：従来通り
-                    var totalWidth = SwitchWidth + (int)Math.Ceiling(maxTextWidth) + 8; // 8px間隔
-                    var totalHeight = Math.Max(baseHeight, (int)Math.Ceiling(maxTextHeight));
-                    Size = new Size(totalWidth, totalHeight);
+                    width = Width - (FocusWidth * 2);
                 }
             }
+
+            return new SizeF(width, height);
         }
 
         /// <summary>
-        /// コントロールのサイズが変更されたときに呼び出されます。
-        /// </summary>
-        private void UpdateSwitchSizeForCustomSize()
-        {
-            if (!_showState || _statePosition == ToggleSwitchStatePosition.Inside || !_autoSize)
-            {
-                return; // テキスト表示なし、内部表示、またはAutoSize = false の場合はスイッチサイズ固定
-            }
-
-            // 現在のコントロールサイズからテキスト幅を逆算してスイッチサイズを調整
-            using (var g = CreateGraphics())
-            {
-                var textFont = Font;
-                var onTextSize = g.MeasureString(_onText, textFont);
-                var offTextSize = g.MeasureString(_offText, textFont);
-                var maxTextWidth = Math.Max(onTextSize.Width, offTextSize.Width);
-
-                var availableWidthForSwitch = Width - (int)Math.Ceiling(maxTextWidth) - 8;
-
-                if (availableWidthForSwitch > 20) // 最小スイッチ幅を確保
-                {
-                    // 実際のスイッチ幅を動的に設定（ただし、この実装では比率調整のみ）
-                    // より高度な実装では、SWITCH_WIDTH を動的に変更することも可能
-                }
-            }
-        }
-
-        /// <summary>
-        /// スイッチの矩形を取得します。
+        /// ボーダーも含めたスイッチの矩形を取得する。
+        /// テキストサイズの高さに合わせたスイッチとする。
         /// </summary>
         /// <returns>スイッチの矩形。</returns>
-        private Rectangle GetSwitchRectangle()
+        private RectangleF GetSwitchBorderRectangle(SizeF switchBorderSize)
         {
-            int switchWidth = SwitchWidth;
-            int switchHeight = SiwtchHeight;
+            var y = (Height - switchBorderSize.Height) / 2f;
 
-            // カスタムサイズの場合は、コントロールサイズに基づいてスイッチサイズを調整
-            if (!_showState || _statePosition == ToggleSwitchStatePosition.Inside)
+            float x = 0;
+            if (StatePosition == ToggleSwitchStatePosition.Left)
             {
-                // テキスト表示なしの場合は、コントロール全体をスイッチとして使用
-                switchWidth = Math.Max(20, Width - 1);
-                switchHeight = Math.Max(10, Height - 1);
-                return new Rectangle(0, 0, switchWidth, switchHeight);
+                x = Width - FocusWidth - switchBorderSize.Width;
+            }
+            if (StatePosition == ToggleSwitchStatePosition.Right)
+            {
+                x = FocusWidth;
+            }
+            if (StatePosition == ToggleSwitchStatePosition.Inside)
+            {
+                x = FocusWidth;
             }
 
-            // テキスト表示ありの場合の動的スイッチサイズ計算
-            using (var g = CreateGraphics())
-            {
-                var textFont = Font;
-                var onTextSize = g.MeasureString(_onText, textFont);
-                var offTextSize = g.MeasureString(_offText, textFont);
-                var maxTextWidth = Math.Max(onTextSize.Width, offTextSize.Width);
-
-                var availableWidthForSwitch = Width - (int)Math.Ceiling(maxTextWidth) - 8;
-                if (availableWidthForSwitch > 20)
-                {
-                    switchWidth = Math.Max(20, Math.Min(availableWidthForSwitch, Width - 8));
-                }
-                switchHeight = Math.Max(10, Height - 1);
-            }
-
-            // ShowState = true かつ StatePosition != Inner のとき、スイッチ幅を1ピクセル縮小
-            if (_showState && _statePosition != ToggleSwitchStatePosition.Inside)
-            {
-                switchWidth = Math.Max(20, switchWidth - 1);
-            }
-
-            var switchY = (Height - switchHeight) / 2;
-
-            if (_statePosition == ToggleSwitchStatePosition.Left)
-            {
-                using (var g = CreateGraphics())
-                {
-                    var textFont = Font;
-                    var onTextSize = g.MeasureString(_onText, textFont);
-                    var offTextSize = g.MeasureString(_offText, textFont);
-                    var maxTextWidth = Math.Max(onTextSize.Width, offTextSize.Width);
-                    var textWidth = (int)Math.Ceiling(maxTextWidth);
-                    return new Rectangle(textWidth + 8, switchY, switchWidth, switchHeight);
-                }
-            }
-            else // Right
-            {
-                return new Rectangle(0, switchY, switchWidth, switchHeight);
-            }
-        }
-
-        /// <summary>
-        /// テキストの描画領域を取得します。
-        /// </summary>
-        /// <returns>テキストの描画領域。</returns>
-        private Rectangle GetTextRectangle()
-        {
-            if (!_showState || _statePosition == ToggleSwitchStatePosition.Inside)
-            {
-                return Rectangle.Empty;
-            }
-
-            var switchRect = GetSwitchRectangle();
-            var textFont = Font;
-            var textY = (Height - (int)Math.Ceiling(textFont.GetHeight())) / 2;
-
-            if (_statePosition == ToggleSwitchStatePosition.Left)
-            {
-                return new Rectangle(0, textY, switchRect.X - 8, (int)Math.Ceiling(textFont.GetHeight()));
-            }
-            else // Right
-            {
-                return new Rectangle(switchRect.Right + 8, textY, Width - switchRect.Right - 8, (int)Math.Ceiling(textFont.GetHeight()));
-            }
+            return new RectangleF(x, y, switchBorderSize.Width, switchBorderSize.Height);
         }
 
         /// <summary>
@@ -749,216 +454,530 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            var g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            if (AutoSize)
+            {
+                UpdateControlSize(e.Graphics);
+            }
 
-            var switchRect = GetSwitchRectangle();
-            var rect = new RectangleF(switchRect.X, switchRect.Y, switchRect.Width, switchRect.Height);
+            DrawRoundedShape(e.Graphics);
+        }
 
-            // 背景とボーダーの色を計算
-            Color backgroundColor, borderColor, thumbColor;
+        /// <summary>
+        /// 角丸図形を描画する。
+        /// フォーカス時の枠線、境界線、背景色を描画する。
+        /// </summary>
+        /// <param name="g">グラフィックス。</param>
+        public void DrawRoundedShape(Graphics g)
+        {
+            if (Width <= 0 || Height <= 0)
+            {
+                return;
+            }
 
-            if (!Enabled)
+            var oldSmoothing = g.SmoothingMode;
+            var oldInterpolation = g.InterpolationMode;
+            var oldCompositing = g.CompositingQuality;
+            var oldPixelOffset = g.PixelOffsetMode;
+            var oldTextRenderingHint = g.TextRenderingHint;
+
+            try
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+                var contentRect = new RectangleF(0, 0, Width, Height);
+
+                // 描画領域を親の背景で塗りつぶす
+                DrawTransparentBackground(g, new Region(contentRect));
+
+                // コンテンツ領域
+                using (GraphicsPath contentPath = CreateRoundedPath(contentRect, 0, 0, 0, 0))
+                {
+                    var textSize = GetTextSize(g);
+                    var thumbSize = GetThumbSize(textSize.Height);
+                    var switchBorderSize = GetSwitchBorderSize(textSize, thumbSize);
+                    var switchBorderRect = GetSwitchBorderRectangle(switchBorderSize);
+                    var cornerRadius = CornerRadius == -1 ? Height / 2 : CornerRadius;
+
+                    // フォーカス枠の描画
+                    var focusSize = GetFocusSize(switchBorderSize);
+                    var focusRect = GetFocusRect(switchBorderRect, focusSize);
+                    if (Focused)
+                    {
+                        using (GraphicsPath borderPath = CreateRoundedPath(focusRect,
+                            cornerRadius, cornerRadius, cornerRadius, cornerRadius))
+                        {
+                            using (SolidBrush borderBrush = new SolidBrush(FocusColor))
+                            {
+                                g.FillPath(borderBrush, borderPath);
+                            }
+                        }
+                    }
+
+                    // トグルスイッチ枠の描画
+                    using (GraphicsPath borderPath = CreateRoundedPath(switchBorderRect,
+                        cornerRadius, cornerRadius, cornerRadius, cornerRadius))
+                    {
+
+                        using (SolidBrush borderBrush = new SolidBrush(GetCurrentBorderColor()))
+                        {
+                            g.FillPath(borderBrush, borderPath);
+                        }
+                    }
+
+                    // トグルスイッチのボーダーを除いたトグルスイッチ背景の描画
+                    var switchBackgroundRect = new RectangleF(
+                        switchBorderRect.X + SwitchBorderWidth,
+                        switchBorderRect.Y + SwitchBorderWidth,
+                        switchBorderRect.Width - (SwitchBorderWidth * 2),
+                        switchBorderRect.Height - (SwitchBorderWidth * 2));
+                    using (GraphicsPath borderPath = CreateRoundedPath(
+                        switchBackgroundRect, cornerRadius, cornerRadius, cornerRadius, cornerRadius))
+                    {
+                        using (SolidBrush borderBrush = new SolidBrush(GetCurrentBackColor()))
+                        {
+                            g.FillPath(borderBrush, borderPath);
+                        }
+                    }
+
+                    // サムの描画
+                    var thumbDrawingAreaRect = new RectangleF(
+                        switchBackgroundRect.X + ThumbMargin,
+                        switchBackgroundRect.Y + ThumbMargin,
+                        switchBackgroundRect.Width - (ThumbMargin * 2),
+                        switchBackgroundRect.Height - (ThumbMargin * 2));
+                    using (var brush = new SolidBrush(GetCurrentThumbColor()))
+                    {
+                        var thumbX = thumbDrawingAreaRect.X +
+                            (thumbDrawingAreaRect.Width - thumbSize.Width) * _animationProgress;
+                        if (CornerRadius == 0)
+                        {
+                            g.FillRectangle(brush, new RectangleF(
+                                thumbX, thumbDrawingAreaRect.Y, thumbSize.Width, thumbSize.Height));
+                        }
+                        else
+                        {
+                            g.FillEllipse(brush, new RectangleF(
+                                thumbX, thumbDrawingAreaRect.Y, thumbSize.Width, thumbSize.Height));
+                        }
+                    }
+
+                    // テキストの描画
+                    if (ShowState)
+                    {
+                        var textRect = GetTextRect(focusRect, textSize);
+                        DrawStateText(g, textRect);
+                    }
+                }
+            }
+            finally
+            {
+                g.SmoothingMode = oldSmoothing;
+                g.InterpolationMode = oldInterpolation;
+                g.CompositingQuality = oldCompositing;
+                g.PixelOffsetMode = oldPixelOffset;
+                g.TextRenderingHint = oldTextRenderingHint;
+            }
+        }
+
+        /// <summary>
+        /// フォーカスサイズを求める。
+        /// </summary>
+        /// <param name="switchBorderSize">スイッチのボーダーサイズ。</param>
+        /// <returns>フォーカスサイズ。</returns>
+        private static SizeF GetFocusSize(SizeF switchBorderSize)
+        {
+            return new SizeF(switchBorderSize.Width + (FocusWidth * 2), switchBorderSize.Height + (FocusWidth * 2));
+        }
+
+        /// <summary>
+        /// フォーカス枠描画位置を求める
+        /// </summary>
+        /// <param name="switchBorderRect">スイッチボーダーの描画領域。</param>
+        /// <param name="focusSize">フォーカスサイズ。</param>
+        /// <returns>フォーカス描画領域。</returns>
+        private static RectangleF GetFocusRect(RectangleF switchBorderRect, SizeF focusSize)
+        {
+            return new RectangleF(
+                switchBorderRect.X - FocusWidth,
+                switchBorderRect.Y - FocusWidth,
+                focusSize.Width,
+                focusSize.Height);
+        }
+
+        /// <summary>
+        /// ON/OFFテキストの表示に必要なサイズを求める。
+        /// </summary>
+        /// <param name="g">グラフィックス。</param>
+        /// <returns>テキストの表示に必要なサイズ。</returns>
+        private SizeF GetTextSize(Graphics g)
+        {
+            var onTextSize = g.MeasureString(OnAppearance.Text, Font);
+            var offTextSize = g.MeasureString(OffAppearance.Text, Font);
+            var textWidth = Math.Max(onTextSize.Width, offTextSize.Width);
+            var textHeight = Math.Max(onTextSize.Height, offTextSize.Height);
+
+            // ON/OFFともにテキストがないとき、全体の描画のために高さを確保する
+            if (textHeight == 0)
+            {
+                var HeightOnlySize = g.MeasureString("A", Font);
+                return new SizeF(0, HeightOnlySize.Height);
+            }
+
+            return new SizeF(textWidth, textHeight);
+        }
+
+        /// <summary>
+        /// トグルスイッチの高さに合わせて、サム円のサイズを求める。
+        /// </summary>
+        /// <param name="textHeight">テキストの高さ。</param>
+        /// <returns>サム円のサイズ。</returns>
+        private SizeF GetThumbSize(float textHeight)
+        {
+            var thumbHeight = textHeight - (SwitchBorderWidth * 2) - (ThumbMargin * 2);
+
+            if (CornerRadius == 0)
+            {
+                return new SizeF(thumbHeight * 0.6f, thumbHeight);
+            }
+            else
+            {
+                return new SizeF(thumbHeight, thumbHeight);
+            }
+        }
+
+        /// <summary>
+        /// 親背景を正確に描画して、透明な背景をクリッピングによって描画する。
+        /// </summary>
+        /// <param name="g">グラフィックス。</param>
+        /// <param name="clipRegion">クリッピング領域。</param>
+        private void DrawTransparentBackground(Graphics g, Region clipRegion)
+        {
+            Region oldClip = g.Clip;
+            try
+            {
+                g.Clip = clipRegion;
+
+                // 親の背景を描画するために、座標を親の座標系に変換
+                g.TranslateTransform(-Location.X, -Location.Y);
+
+                // 親コントロールの背景描画を行う
+                var e = new PaintEventArgs(g, Bounds);
+                InvokePaintBackground(Parent, e);
+                InvokePaint(Parent, e);
+            }
+            finally
+            {
+                g.TranslateTransform(Location.X, Location.Y);
+                g.Clip = oldClip;
+            }
+        }
+
+        /// <summary>
+        /// 角丸パスを作成する。
+        /// </summary>
+        /// <param name="rect">描画領域。</param>
+        /// <param name="topLeftRadius">左上角の角丸半径。</param>
+        /// <param name="topRightRadius">右上角の角丸半径。</param>
+        /// <param name="bottomLeftRadius">左下角の角丸半径。</param>
+        /// <param name="bottomRightRadius">右下角の角丸半径。</param>
+        /// <returns>角丸パス。</returns>
+        private GraphicsPath CreateRoundedPath(RectangleF rect, float topLeftRadius, float topRightRadius,
+            float bottomLeftRadius, float bottomRightRadius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            if (rect.Width <= 0 || rect.Height <= 0)
+            {
+                return path;
+            }
+
+            if (topLeftRadius <= 0 && topRightRadius <= 0 && bottomLeftRadius <= 0 && bottomRightRadius <= 0)
+            {
+                path.AddRectangle(rect);
+                return path;
+            }
+
+            // 半径の境界チェック
+            float maxRadius = Math.Min(rect.Width, rect.Height) / 2f;
+            var drawTopLeftRadius = Math.Min(topLeftRadius, maxRadius);
+            var drawTopRightRadius = Math.Min(topRightRadius, maxRadius);
+            var drawBottomLeftRadius = Math.Min(bottomLeftRadius, maxRadius);
+            var drawBottomRightRadius = Math.Min(bottomRightRadius, maxRadius);
+
+            float x = rect.X;
+            float y = rect.Y;
+            float width = rect.Width;
+            float height = rect.Height;
+
+            // 角丸の直径
+            float topLeftDiameter = drawTopLeftRadius * 2f;
+            float topRightDiameter = drawTopRightRadius * 2f;
+            float bottomLeftDiameter = drawBottomLeftRadius * 2f;
+            float bottomRightDiameter = drawBottomRightRadius * 2f;
+
+            // 左上角から開始
+            if (drawTopLeftRadius > 0)
+            {
+                // 左上の円弧
+                path.AddArc(x, y,
+                    topLeftDiameter, topLeftDiameter, 180f, 90f);
+                // 上辺へ移動
+                path.AddLine(x + drawTopLeftRadius, y,
+                    x + width - drawTopRightRadius, y);
+            }
+            else
+            {
+                // 角丸なしの場合は左上角から上辺
+                path.AddLine(x, y,
+                    x + width - drawTopRightRadius, y);
+            }
+
+            // 右上角
+            if (drawTopRightRadius > 0)
+            {
+                // 右上の円弧
+                path.AddArc(x + width - topRightDiameter, y, topRightDiameter,
+                    topRightDiameter, 270f, 90f);
+                // 右辺へ移動
+                path.AddLine(x + width, y + drawTopRightRadius,
+                    x + width, y + height - drawBottomRightRadius);
+            }
+            else
+            {
+                // 角丸なしの場合は右上角から右辺
+                path.AddLine(x + width, y, x + width,
+                    y + height - drawBottomRightRadius);
+            }
+
+            // 右下角
+            if (drawBottomRightRadius > 0)
+            {
+                // 右下の円弧
+                path.AddArc(x + width - bottomRightDiameter, y + height - bottomRightDiameter,
+                    bottomRightDiameter, bottomRightDiameter, 0f, 90f);
+                // 下辺へ移動
+                path.AddLine(x + width - drawBottomRightRadius, y + height,
+                    x + drawBottomLeftRadius, y + height);
+            }
+            else
+            {
+                // 角丸なしの場合は右下角から下辺
+                path.AddLine(x + width, y + height,
+                    x + drawBottomLeftRadius, y + height);
+            }
+
+            // 左下角
+            if (drawBottomLeftRadius > 0)
+            {
+                // 左下の円弧
+                path.AddArc(x, y + height - bottomLeftDiameter,
+                    bottomLeftDiameter, bottomLeftDiameter, 90f, 90f);
+                // 左辺へ移動（開始点まで戻る）
+                path.AddLine(x, y + height - drawBottomLeftRadius,
+                    x, y + drawTopLeftRadius);
+            }
+            else
+            {
+                // 角丸なしの場合は左下角から左辺
+                path.AddLine(x, y + height,
+                    x, y + drawTopLeftRadius);
+            }
+
+            path.CloseFigure();
+            return path;
+        }
+
+
+        /// <summary>
+        /// テキストの描画位置を求める。
+        /// </summary>
+        /// <param name="focusRect">フォーカス描画領域。</param>
+        /// <param name="textSize">テキストサイズ。</param>
+        /// <returns>テキストの描画領域。</returns>
+        private RectangleF GetTextRect(RectangleF focusRect, SizeF textSize)
+        {
+            if (StatePosition == ToggleSwitchStatePosition.Left)
+            {
+                return new RectangleF(focusRect.X - textSize.Width, (Height - textSize.Height) / 2, textSize.Width, textSize.Height);
+            }
+
+            if (StatePosition == ToggleSwitchStatePosition.Right)
+            {
+                return new RectangleF(focusRect.X + focusRect.Width, (Height - textSize.Height) / 2, textSize.Width, textSize.Height);
+            }
+
+            return new RectangleF(focusRect.X + FocusWidth, (Height - textSize.Height) / 2, focusRect.Width - FocusWidth, textSize.Height);
+        }
+
+        /// <summary>
+        /// テキストを描画する。
+        /// </summary>
+        /// <param name="g">グラフィックス。</param>
+        /// <param name="textRect">テキストの描画位置。</param>
+        private void DrawStateText(Graphics g, RectangleF textRect)
+        {
+            var currentText = Checked ? OnAppearance.Text : OffAppearance.Text;
+            if (string.IsNullOrEmpty(currentText))
+            {
+                return;
+            }
+
+            var textColor = Checked ? OnAppearance.TextForeColor : OffAppearance.TextForeColor;
+            using (StringFormat stringFormat = CreateStringFormat())
+            {
+                using (SolidBrush textBrush = new SolidBrush(GetCurrentTextColor()))
+                {
+                    g.DrawString(currentText, Font, textBrush, textRect, stringFormat);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// StatePosition の設定値に基づいて StringFormat を作成する。
+        /// </summary>
+        /// <returns>StatePosition に対応した StringFormat。</returns>
+        private StringFormat CreateStringFormat()
+        {
+            StringFormat stringFormat = new StringFormat();
+
+            // 水平方向の位置
+            switch (StatePosition)
+            {
+                case ToggleSwitchStatePosition.Left:
+                    stringFormat.Alignment = StringAlignment.Far;
+                    break;
+                case ToggleSwitchStatePosition.Inside:
+                    stringFormat.Alignment = StringAlignment.Center;
+                    break;
+                case ToggleSwitchStatePosition.Right:
+                    stringFormat.Alignment = StringAlignment.Near;
+                    break;
+            }
+
+            // 垂直方向の配置
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            stringFormat.Trimming = StringTrimming.EllipsisCharacter;
+            stringFormat.FormatFlags = StringFormatFlags.NoWrap;
+
+            return stringFormat;
+        }
+
+        /// <summary>
+        /// 現在のコントロールとマウス状態に応じたボーダー色を取得する。
+        /// </summary>
+        /// <returns>現在のボーダー色。</returns>
+        private Color GetCurrentBorderColor()
+        {
+            if (Enabled)
             {
                 if (Checked)
                 {
-                    backgroundColor = OnDisabledBackColor;
-                    thumbColor = OnDisabledThumbColor;
+                    return OnAppearance.BorderColor;
                 }
                 else
                 {
-                    backgroundColor = OffDisabledBackColor;
-                    thumbColor = OffDisabledThumbColor;
+                    return OffAppearance.BorderColor;
                 }
-                borderColor = DisabledBorderColor;
+            }
+
+            if (Checked)
+            {
+                return ControlPaint.Light(OnAppearance.BorderColor);
             }
             else
             {
-                // カスタム色またはデフォルト色を使用
-                var offBgColor = _offBackColor;
-                var onBgColor = _onBackColor;
-
-                // アニメーション中の色の補間
-                backgroundColor = InterpolateColor(offBgColor, onBgColor, _animationProgress);
-                borderColor = InterpolateColor(_offSwitchBorderColor, _onSwitchBorderColor, _animationProgress);
-
-                // ThumbColor の設定
-                if (_onThumbColor == Color.Empty || _offThumbColor == Color.Empty)
-                {
-                    // 自動色：OFF時は暗い色、ON時は白
-                    var autoOffThumbColor = _offThumbColor == Color.Empty ? DefaultOffThumbColor : _offThumbColor;
-                    var autoOnThumbColor = _onThumbColor == Color.Empty ? DefaultOnThumbColor : _onThumbColor;
-                    thumbColor = InterpolateColor(autoOffThumbColor, autoOnThumbColor, _animationProgress);
-                }
-                else
-                {
-                    thumbColor = InterpolateColor(_offThumbColor, _onThumbColor, _animationProgress);
-                }
-            }
-
-            // 角丸半径の計算
-            var cornerRadius = _cornerRadius == -1 ? rect.Height / 2 : Math.Max(0, _cornerRadius);
-
-            // 背景の描画
-            using (var brush = new SolidBrush(backgroundColor))
-            {
-                g.FillRoundedRectangle(brush, rect, cornerRadius);
-            }
-
-            // ボーダーの描画
-            using (var pen = new Pen(borderColor, BorderWidth))
-            {
-                var borderRect = new RectangleF(
-                    rect.X + BorderWidth / 2f,
-                    rect.Y + BorderWidth / 2f,
-                    rect.Width - BorderWidth,
-                    rect.Height - BorderWidth);
-                var borderCornerRadius = Math.Max(0, cornerRadius - BorderWidth / 2f);
-                g.DrawRoundedRectangle(pen, borderRect, borderCornerRadius);
-            }
-
-            // ホバー効果
-            if (_isHovered && Enabled)
-            {
-                using (var brush = new SolidBrush(HoverOverlayColor))
-                {
-                    g.FillRoundedRectangle(brush, rect, cornerRadius);
-                }
-            }
-
-            // サムの描画
-            using (var brush = new SolidBrush(thumbColor))
-            {
-                // CornerRadius が 0 の場合は縦長の長方形、それ以外は円形
-                if (_cornerRadius == 0)
-                {
-                    // 縦長の長方形のサムを描画（上下左右3pxの余白）
-                    var thumbWidth = (switchRect.Height - 6) * 0.6f; // 高さの60%程度の幅
-                    var thumbHeight = switchRect.Height - 6; // 上下3pxずつの余白
-                    var thumbX = rect.X + (switchRect.Width - thumbWidth - 6) * _animationProgress + 3;
-                    var thumbY = rect.Y + 3; // 上側3pxの余白
-                    var thumbRect = new RectangleF(thumbX, thumbY, thumbWidth, thumbHeight);
-
-                    g.FillRectangle(brush, thumbRect);
-                }
-                else
-                {
-                    float thumbSize = Math.Min(switchRect.Height - 6, switchRect.Width / 3);
-                    var thumbX = rect.X + (switchRect.Width - thumbSize - 6) * _animationProgress + 3;
-                    var thumbY = rect.Y + (rect.Height - thumbSize) / 2f;
-                    var thumbRect = new RectangleF(thumbX, thumbY, thumbSize, thumbSize);
-
-                    g.FillEllipse(brush, thumbRect);
-                }
-            }
-
-            // テキストの描画
-            if (_showState)
-            {
-                DrawStateText(g, switchRect);
-            }
-
-            base.OnPaint(e);
-        }
-
-        /// <summary>
-        /// トグルスイッチの状態テキストを描画します。
-        /// </summary>
-        /// <param name="g">グラフィックス。</param>
-        /// <param name="switchRect">サム円の描画サイズ。</param>
-        private void DrawStateText(Graphics g, Rectangle switchRect)
-        {
-            var currentText = _checked ? _onText : _offText;
-            if (string.IsNullOrEmpty(currentText)) return;
-
-            var textFont = Font;
-            Color textColor;
-
-            if (!Enabled)
-            {
-                textColor = DisabledTextColor;
-            }
-            else if (_statePosition == ToggleSwitchStatePosition.Inside)
-            {
-                // Inner表示時もカスタム色を使用
-                textColor = _checked ? _onTextForeColor : _offTextForeColor;
-            }
-            else
-            {
-                // カスタム色を使用
-                textColor = _checked ? _onTextForeColor : _offTextForeColor;
-            }
-
-            using (var brush = new SolidBrush(textColor))
-            {
-                if (_statePosition == ToggleSwitchStatePosition.Inside)
-                {
-                    // スイッチ内部にテキストを描画（サム円を除いた領域で左右中央揃え）
-                    var textSize = g.MeasureString(currentText, textFont);
-
-                    // サム円のサイズと位置を計算
-                    var thumbSize = switchRect.Height - 6;
-                    var thumbX = (switchRect.Width - thumbSize - 6) * _animationProgress + 3;
-
-                    // テキスト表示可能領域を計算
-                    float availableStartX, availableEndX;
-                    if (_checked)
-                    {
-                        // ON状態：サム円の左側の領域
-                        availableStartX = switchRect.X + 3;
-                        availableEndX = switchRect.X + thumbX - 2;
-                    }
-                    else
-                    {
-                        // OFF状態：サム円の右側の領域
-                        availableStartX = switchRect.X + thumbX + thumbSize + 2;
-                        availableEndX = switchRect.X + switchRect.Width - 3;
-                    }
-
-                    var availableWidth = availableEndX - availableStartX;
-
-                    // テキストが表示可能領域に収まる場合のみ描画
-                    if (textSize.Width <= availableWidth && availableWidth > 10)
-                    {
-                        var textX = availableStartX + (availableWidth - textSize.Width) / 2;
-                        var textY = switchRect.Y + (switchRect.Height - textSize.Height) / 2;
-
-                        g.DrawString(currentText, textFont, brush, textX, textY);
-                    }
-                }
-                else
-                {
-                    // 外部のテキスト領域に描画
-                    var textRect = GetTextRectangle();
-                    if (!textRect.IsEmpty)
-                    {
-                        var format = new StringFormat();
-                        format.Alignment = _statePosition == ToggleSwitchStatePosition.Left ? StringAlignment.Far : StringAlignment.Near;
-                        format.LineAlignment = StringAlignment.Center;
-
-                        g.DrawString(currentText, textFont, brush, textRect, format);
-                    }
-                }
+                return ControlPaint.Light(OffAppearance.BorderColor);
             }
         }
 
         /// <summary>
-        /// 2つの色を指定された比率で補間します。
+        /// 現在のコントロールとマウス状態に応じた背景色を取得する。
         /// </summary>
-        /// <param name="color1"></param>
-        /// <param name="color2"></param>
-        /// <param name="ratio"></param>
-        /// <returns></returns>
-        private Color InterpolateColor(Color color1, Color color2, float ratio)
+        /// <returns>現在の背景色。</returns>
+        private Color GetCurrentBackColor()
         {
-            ratio = Math.Max(0, Math.Min(1, ratio));
+            if (Enabled)
+            {
+                if (Checked)
+                {
+                    return OnAppearance.BackColor;
+                }
+                else
+                {
+                    return OffAppearance.BackColor;
+                }
+            }
 
-            int r = (int)(color1.R + (color2.R - color1.R) * ratio);
-            int g = (int)(color1.G + (color2.G - color1.G) * ratio);
-            int b = (int)(color1.B + (color2.B - color1.B) * ratio);
+            if (Checked)
+            {
+                return OnAppearance.DisabledBackColor;
+            }
+            else
+            {
+                return OffAppearance.DisabledBackColor;
+            }
+        }
 
-            return Color.FromArgb(r, g, b);
+        /// <summary>
+        /// 現在のコントロールとマウス状態に応じたサム円色を取得する。
+        /// </summary>
+        /// <returns>現在のサム円色。</returns>
+        private Color GetCurrentThumbColor()
+        {
+            if (Enabled)
+            {
+                if (Checked)
+                {
+                    return OnAppearance.ThumbColor;
+                }
+                else
+                {
+                    return OffAppearance.ThumbColor;
+                }
+            }
+
+            if (Checked)
+            {
+                return OnAppearance.DisabledThumbColor;
+            }
+            else
+            {
+                return OffAppearance.DisabledThumbColor;
+            }
+        }
+
+        /// <summary>
+        /// 現在のコントロールとマウス状態に応じた文字色を取得する。
+        /// </summary>
+        /// <returns>現在の文字色。</returns>
+        private Color GetCurrentTextColor()
+        {
+            if (Enabled)
+            {
+                if (Checked)
+                {
+                    return OnAppearance.TextForeColor;
+                }
+                else
+                {
+                    return OffAppearance.TextForeColor;
+                }
+            }
+
+            if (Checked)
+            {
+                return ControlPaint.Light(OnAppearance.TextForeColor);
+            }
+            else
+            {
+                return ControlPaint.Light(OffAppearance.TextForeColor);
+            }
         }
 
         /// <summary>
@@ -983,85 +1002,32 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         protected override void OnClick(EventArgs e)
         {
+            Focus();
             if (Enabled)
             {
-                var switchRect = GetSwitchRectangle();
-                var mousePos = PointToClient(Cursor.Position);
-
-                // スイッチ部分またはテキスト部分のクリックで状態を切り替え
-                if (switchRect.Contains(mousePos) ||
-                    (_showState && _statePosition != ToggleSwitchStatePosition.Inside && GetTextRectangle().Contains(mousePos)))
-                {
-                    Checked = !Checked;
-                }
+                Checked = !Checked;
             }
             base.OnClick(e);
         }
 
         /// <summary>
-        /// マウスがコントロールに入ったときの処理を行います。
+        /// フォーカスを得たときに再描画します。
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseEnter(EventArgs e)
+        protected override void OnGotFocus(EventArgs e)
         {
-            _isHovered = true;
             Invalidate();
-            base.OnMouseEnter(e);
+            base.OnGotFocus(e);
         }
 
         /// <summary>
-        /// マウスがコントロールから離れたときの処理を行います。
+        /// フォーカスを失ったときに再描画します。
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            _isHovered = false;
-            Invalidate();
-            base.OnMouseLeave(e);
-        }
-
-        /// <summary>
-        /// マウスダウンイベントを処理します。
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseDown(MouseEventArgs e)
+        protected override void OnLostFocus(EventArgs e)
         {
             Invalidate();
-            base.OnMouseDown(e);
-        }
-
-        /// <summary>
-        /// マウスアップイベントを処理します。
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseUp(MouseEventArgs e)
-        {
-            Invalidate();
-            base.OnMouseUp(e);
-        }
-
-        /// <summary>
-        /// コントロールの有効状態が変更されたときの処理を行います。
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnEnabledChanged(EventArgs e)
-        {
-            Invalidate();
-            base.OnEnabledChanged(e);
-        }
-
-        /// <summary>
-        /// コントロールのサイズが変更されたときの処理を行います。
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            if (_showState && _statePosition != ToggleSwitchStatePosition.Inside && _autoSize)
-            {
-                UpdateSwitchSizeForCustomSize();
-            }
-            Invalidate();
-            base.OnSizeChanged(e);
+            base.OnLostFocus(e);
         }
 
         /// <summary>
@@ -1106,7 +1072,7 @@ namespace Metroit.Windows.Forms
         /// <summary>
         /// フォーカスを得た時の値にロールバックを行います。
         /// </summary>
-        public void Rollback()
+        public virtual void Rollback()
         {
             Rollbacking = true;
             Checked = _enterChecked;

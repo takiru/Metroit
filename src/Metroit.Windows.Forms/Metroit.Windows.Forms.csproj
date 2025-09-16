@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.2.0</VersionPrefix>
+    <VersionPrefix>3.3.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -17,17 +17,20 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Add
-      - Extensions.GraphicsExtensions
-      - MetNotificationPanel
-      - MetPanel
-      - MetRoundedPanel
-      - MetToggleSwitch
-      - NotificationInfo
-      - ScrollBarPolicy
-      - ToggleSwitchStatePosition
+      - MetRoundedButton
+      - MetRoundedRadioButton
+      - MetCheckBox
+      Fix
+      - MetNotificationPanel now allows you to pass parameters when registering notifications, which can be handled by the Registered and Selected actions.
+      - MetToggleSwitch now provides CheckedChanging and CheckedChanged events.
+      - MetToggleSwitch now has an overridable Rollback method.
+      - Notifications added to NotificationPanel now use the hand cursor and NotificationHoverForeColor only when the Selected action is set.
+      - You can now add parameters to NotificationInfo added to NotificationPanel, which allows you to reference those parameters in Registered and Selected actions.
+      - NotificationInfo has been changed so that DateTime and Text can be set in the constructor. Along with this change, DateTime and Text have been changed to read-only properties.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
@@ -37,9 +40,11 @@
     <Reference Include="System.Design" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Metroit" Version="3.0.1" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
     <PackageReference Include="Svg" Version="3.4.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Metroit\Metroit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,13 +88,4 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <!-- WebView2 を UseWindowsForms を条件に、WindowsForms のみとする -->
-  <Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
-    <ItemGroup>
-      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
-      <ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
-      <Reference Remove="@(ReferenceToBeRemoved)" />
-    </ItemGroup>
-  </Target>
 </Project>

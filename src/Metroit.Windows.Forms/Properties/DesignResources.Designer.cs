@@ -367,6 +367,96 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the default appearance. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceDefault {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   既定の外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceDefault_ja {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceDefault.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the appearance when the mouse is clicked. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceMouseDown {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceMouseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウスがクリックされたときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceMouseDown_ja {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceMouseDown.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the appearance when the mouse cursor enters the region. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceMouseOver {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceMouseOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウスカーソルが領域内に入ったときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxAppearanceMouseOver_ja {
+            get {
+                return ResourceManager.GetString("CheckBoxAppearanceMouseOver.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxColorAppearanceBackColor {
+            get {
+                return ResourceManager.GetString("CheckBoxColorAppearanceBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxColorAppearanceBackColor_ja {
+            get {
+                return ResourceManager.GetString("CheckBoxColorAppearanceBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxColorAppearanceBorderColor {
+            get {
+                return ResourceManager.GetString("CheckBoxColorAppearanceBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ボーダー色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CheckBoxColorAppearanceBorderColor_ja {
+            get {
+                return ResourceManager.GetString("CheckBoxColorAppearanceBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Indicates whether input of a negative value is permitted. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControlAcceptNegative {
@@ -1339,6 +1429,150 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the color of the border that surrounds the button. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseBorderColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ボタンを囲む境界線の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseBorderColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets a value that specifies the size, in pixels, of the border that surrounds the button. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseBorderSize {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseBorderSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ボタンを囲む境界線のサイズをピクセル単位で指定する値を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseBorderSize_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseBorderSize.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the overlay that is displayed when the control has focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusOverlayColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusOverlayColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを得た時に表示されるオーバーレイの色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusOverlayColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusOverlayColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the width of the overlay that is displayed when it has focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusOverlayWidth {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusOverlayWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを得た時に表示されるオーバーレイの幅を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusOverlayWidth_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusOverlayWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the client area of ​​a button when the mouse is clicked within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseDownBackColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseDownBackColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color when the mouse is clicked within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseDownForeColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseDownForeColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the client area of ​​the button when the mouse pointer is within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseOverBackColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseOverBackColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color when the mouse pointer is within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseOverForeColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseMouseOverForeColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Metroit Extension Appearance に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetAppearance {
@@ -1389,6 +1623,186 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetBehavior_ja {
             get {
                 return ResourceManager.GetString("MetBehavior.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the corner radius for drawing check boxes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckBoxRadius {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckBoxRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェックボックス描画の角丸半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckBoxRadius_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckBoxRadius.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the check color. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckColor {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェックの色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckColor_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Indicates whether the component is in a checked state. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxChecked {
+            get {
+                return ResourceManager.GetString("MetCheckBoxChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コンポーネントがチェックされた状態かどうかを示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxChecked_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxChecked.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the appearance that the control appears when checked. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckedAppearance {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckedAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェックされたときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckedAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckedAppearance.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Occurs when the Checked property changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckedChanging {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckedChanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Checked プロパティが変更されるときに発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckedChanging_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckedChanging.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Indicates the state of the component. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckState {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コンポーネントの状態を示します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckState_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckState.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Occurs when the CheckState property changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckStateChanging {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckStateChanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CheckState プロパティが変更されたときの発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxCheckStateChanging_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxCheckStateChanging.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color of the frame when it has focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxFocusColor {
+            get {
+                return ResourceManager.GetString("MetCheckBoxFocusColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxFocusColor_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxFocusColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the size of the frame that is displayed when it has focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxFocusWidth {
+            get {
+                return ResourceManager.GetString("MetCheckBoxFocusWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを得た時に表示されるフレームのサイズを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxFocusWidth_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxFocusWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the appearance when unchecked. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxUncheckedAppearance {
+            get {
+                return ResourceManager.GetString("MetCheckBoxUncheckedAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェックされていないときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetCheckBoxUncheckedAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetCheckBoxUncheckedAppearance.ja", resourceCulture);
             }
         }
         
@@ -2338,6 +2752,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Determines the extended appearance. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedButtonExtendsAppearance {
+            get {
+                return ResourceManager.GetString("MetRoundedButtonExtendsAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   拡張された外観を決定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedButtonExtendsAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedButtonExtendsAppearance.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the radius of each rounded corner. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedButtonRadius {
+            get {
+                return ResourceManager.GetString("MetRoundedButtonRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   各角の丸みの半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedButtonRadius_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedButtonRadius.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the border color. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetRoundedPanelBorderColor {
@@ -2406,6 +2856,78 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetRoundedPanelRadius_ja {
             get {
                 return ResourceManager.GetString("MetRoundedPanelRadius.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the background color when checked. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonCheckedBackColor {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonCheckedBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェック時の背景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonCheckedBackColor_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonCheckedBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color when checked. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonCheckedForeColor {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonCheckedForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェック時の前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonCheckedForeColor_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonCheckedForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the appearance. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonExtendsAppearance {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonExtendsAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonExtendsAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonExtendsAppearance.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the radius of each rounded corner. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonRadius {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   各角の丸みの半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetRoundedRadioButtonRadius_ja {
+            get {
+                return ResourceManager.GetString("MetRoundedRadioButtonRadius.ja", resourceCulture);
             }
         }
         
@@ -2536,6 +3058,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Toggle switch to enable or disable autosize. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchAutoSize {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchAutoSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの自動サイズ調整を有効または無効にします。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchAutoSize_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchAutoSize.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the state of the toggle switch. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetToggleSwitchChecked {
@@ -2554,6 +3094,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Occurs when the state of the toggle switch changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCheckedChanged {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCheckedChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの状態が変更されたときに発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCheckedChanged_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCheckedChanged.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Occurs when the state of a toggle switch changes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCheckedChanging {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCheckedChanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   トグルスイッチの状態が変更されるときに発生します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchCheckedChanging_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchCheckedChanging.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the corner radius of the toggle switch. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetToggleSwitchCornerRadius {
@@ -2568,6 +3144,42 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetToggleSwitchCornerRadius_ja {
             get {
                 return ResourceManager.GetString("MetToggleSwitchCornerRadius.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the border color of the frame when it has focus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchFocusColor {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchFocusColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを得たときに表示されるフレームの境界線色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchFocusColor_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchFocusColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Determines the appearance when OFF. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffAppearance {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OFFのときの外観を決定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOffAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOffAppearance.ja", resourceCulture);
             }
         }
         
@@ -2694,6 +3306,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetToggleSwitchOffThumbColor_ja {
             get {
                 return ResourceManager.GetString("MetToggleSwitchOffThumbColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Determines the appearance when ON. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnAppearance {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnAppearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ONのときの外観を決定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetToggleSwitchOnAppearance_ja {
+            get {
+                return ResourceManager.GetString("MetToggleSwitchOnAppearance.ja", resourceCulture);
             }
         }
         
@@ -2910,6 +3540,96 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string ResetText_ja {
             get {
                 return ResourceManager.GetString("ResetText.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the value if all radii should be the same. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusAll {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   すべての半径を同じ値にする場合、その値を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusAll_ja {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusAll.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the bottom left radius. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusBottomLeft {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusBottomLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   左下の半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusBottomLeft_ja {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusBottomLeft.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the bottom right radius. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusBottomRight {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusBottomRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   右下の半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusBottomRight_ja {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusBottomRight.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the top-left radius. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusTopLeft {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusTopLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   左上の半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusTopLeft_ja {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusTopLeft.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the top right radius. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusTopRight {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusTopRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   右上の半径を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RoundedCornerRadiusTopRight_ja {
+            get {
+                return ResourceManager.GetString("RoundedCornerRadiusTopRight.ja", resourceCulture);
             }
         }
         

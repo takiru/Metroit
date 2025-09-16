@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
-using System;
 
 #if (NET462_OR_GREATER)
 using System.Deployment.Application;
@@ -22,13 +22,19 @@ namespace Metroit.Windows.Forms.Extensions
         /// <returns>true:デザインモード中、false:実行中</returns>
         public static bool IsDesignMode(this Component component)
         {
-            if (System.ComponentModel.LicenseManager.UsageMode
-                    == System.ComponentModel.LicenseUsageMode.Designtime)
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
                 return true;
             }
 
-            if (processName == "DEVENV" || processName == "VCSEXPRESS")
+            if (processName == "DEVENV" ||
+                processName == "VCSEXPRESS" ||
+                processName == "DESIGNTOOLSSERVER")
+            {
+                return true;
+            }
+
+            if (component.Site?.DesignMode == true)
             {
                 return true;
             }
