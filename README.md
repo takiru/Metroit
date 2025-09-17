@@ -4,7 +4,7 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.4.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
@@ -177,6 +177,84 @@ public class TestConverterFactory : IFileTypeConverterFactory
     }
 }
 ```
+
+#### Converting Enums ####
+Converts to a predefined enum reliably.
+
+```C#
+public enum ProcessType
+{
+    Succeed,
+    Failed
+}
+
+var result = MetEnum<ProcessType>.Parse("1"); // ProcessType.Failed
+var result = MetEnum<ProcessType>.Parse("Failed"); // ProcessType.Failed
+var result = MetEnum<ProcessType>.Parse(2); // System.ArgumentException
+```
+
+#### Get the length of a string ####
+This is mainly for Japanese and calculates the length by treating one full-width character as two characters.  
+This is effective when you want to limit the number of input characters based on the number of half-width characters.
+
+```C#
+using Metroit.Extensions;
+
+var text = "123あいう";
+var length = text.GetTextCount(true); // 9
+```
+
+#### Check if it is a full-width character ####
+This mainly targets Japanese and checks whether a specific character is a full-width character.
+
+```C#
+using Metroit.Extensions;
+
+var text = "あ";
+var isFullWidth = text.IsFullWidth(true); // true
+```
+
+#### Converts ASCII strings between half-width and full-width characters ####
+It mainly targets Japanese and converts ASCII characters between half-width and full-width.
+
+```C#
+using Metroit.Text;
+
+var halfText = @"aA=\";
+var result = AsciiConverter.ToFullWidth(halfText);  // ａＡ＝＼
+var result = AsciiConverter.ToFullWidth(halfText, true);  // ａＡ＝￥
+
+var fullText = "ａＡ＝＼￥";
+var result = AsciiConverter.ToHalfWidth(fullText);  // aA=\￥
+var result = AsciiConverter.ToHalfWidth(fullText, true);  // aA=\\
+```
+
+#### Converts kana strings between half-width and full-width ####
+It mainly targets Japanese and converts kana characters between half-width and full-width.
+
+```C#
+using Metroit.Text;
+
+var halfText = "ｶﾅｶﾞﾊﾞﾊﾟﾟ";
+var result = KatakanaConverter.ToFullWidth(halfText);  // カナガバパ゜
+
+var fullText = "カナガバパ゜";
+var result = KatakanaConverter.ToHalfWidth(fullText);  // ｶﾅｶﾞﾊﾞﾊﾟﾟ
+```
+
+#### Converting strings ####
+It mainly targets Japanese and converts ASCII characters in strings and kana characters between half-width and full-width.
+
+```C#
+using Metroit.Text;
+
+var halfText = @"aA=\ｶﾅｶﾞﾊﾞﾊﾟﾟ";
+var result = TextConverter.ToFullWidth(halfText, true, true, true);  // ａＡ＝￥カナガバパ゜
+
+var fullText = "ａＡ＝＼￥カナガバパ゜";
+var result = TextConverter.ToHalfWidth(fullText, true, true, true);  // aA=\\ｶﾅｶﾞﾊﾞﾊﾟﾟ
+```
+
 ---
 
 

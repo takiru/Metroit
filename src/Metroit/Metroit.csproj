@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.3.0</VersionPrefix>
+    <VersionPrefix>3.4.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -16,9 +16,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
       Add
-      - MetEnum
-      - The GetTextCount() method has been added to the string extension methods.
-      - The IsFullWidth() method has been added to the string extension methods.
+      - Text.AsciiConverter
+      - Text.KatakanaConverter
+      - Text.TextConverter
     </PackageReleaseNotes>
   </PropertyGroup>
 

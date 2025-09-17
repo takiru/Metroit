@@ -4,7 +4,7 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
+|Metroit               |[![NuGet](https://img.shields.io/badge/nuget-v3.4.0-blue.svg)](https://www.nuget.org/packages/Metroit/) | `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Data          |[![NuGet](https://img.shields.io/badge/nuget-v2.0.0-blue.svg)](https://www.nuget.org/packages/Metroit.Data/) | `netstandard2.0` `netstandard2.1` `net45` |
 |Metroit.Windows.Forms |[![NuGet](https://img.shields.io/badge/nuget-v3.3.0-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms/) | `net6.0-windows` `net8.0-windows` `net462` |
 
@@ -177,6 +177,84 @@ public class TestConverterFactory : IFileTypeConverterFactory
     }
 }
 ```
+
+#### Enum を変換する ####
+確実に定義済みEnumに変換します。
+
+```C#
+public enum ProcessType
+{
+    Succeed,
+    Failed
+}
+
+var result = MetEnum<ProcessType>.Parse("1"); // ProcessType.Failed
+var result = MetEnum<ProcessType>.Parse("Failed"); // ProcessType.Failed
+var result = MetEnum<ProcessType>.Parse(2); // System.ArgumentException
+```
+
+#### 文字列の長さを取得する ####
+主に日本語を対象として、全角1文字を2文字として扱って長さを求めます。  
+半角文字数を基準とした入力文字数を制限させる場合などに有効です。
+
+```C#
+using Metroit.Extensions;
+
+var text = "123あいう";
+var length = text.GetTextCount(true); // 9
+```
+
+#### 全角文字かどうか調べる ####
+主に日本語を対象として、特定の1文字が全角文字かどうかを求めます。
+
+```C#
+using Metroit.Extensions;
+
+var text = "あ";
+var isFullWidth = text.IsFullWidth(true); // true
+```
+
+#### ASCII文字列の半角／全角変換を行う ####
+主に日本語を対象として、ASCII文字の半角／全角変換を行います。
+
+```C#
+using Metroit.Text;
+
+var halfText = @"aA=\";
+var result = AsciiConverter.ToFullWidth(halfText);  // ａＡ＝＼
+var result = AsciiConverter.ToFullWidth(halfText, true);  // ａＡ＝￥
+
+var fullText = "ａＡ＝＼￥";
+var result = AsciiConverter.ToHalfWidth(fullText);  // aA=\￥
+var result = AsciiConverter.ToHalfWidth(fullText, true);  // aA=\\
+```
+
+#### カナ文字列の半角／全角変換を行う ####
+主に日本語を対象として、カナ文字の半角／全角変換を行います。
+
+```C#
+using Metroit.Text;
+
+var halfText = "ｶﾅｶﾞﾊﾞﾊﾟﾟ";
+var result = KatakanaConverter.ToFullWidth(halfText);  // カナガバパ゜
+
+var fullText = "カナガバパ゜";
+var result = KatakanaConverter.ToHalfWidth(fullText);  // ｶﾅｶﾞﾊﾞﾊﾟﾟ
+```
+
+#### 文字列の変換を行う ####
+主に日本語を対象として、文字列のASCII文字、カナ文字の半角／全角変換を行います。
+
+```C#
+using Metroit.Text;
+
+var halfText = @"aA=\ｶﾅｶﾞﾊﾞﾊﾟﾟ";
+var result = TextConverter.ToFullWidth(halfText, true, true, true);  // ａＡ＝￥カナガバパ゜
+
+var fullText = "ａＡ＝＼￥カナガバパ゜";
+var result = TextConverter.ToHalfWidth(fullText, true, true, true);  // aA=\\ｶﾅｶﾞﾊﾞﾊﾟﾟ
+```
+
 ---
 
 ## Metroit.Data ##
