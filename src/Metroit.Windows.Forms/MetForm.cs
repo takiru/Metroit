@@ -37,6 +37,13 @@ namespace Metroit.Windows.Forms
         [MetDescription("MetFormControlLeaving")]
         public event CancelEventHandler ControlLeaving;
 
+        /// <summary>
+        /// <see cref="EnterFocus"/> プロパティが true の場合に、Enterキーによって次のコントロールにフォーカスが移動する直前に発生するイベントです。
+        /// </summary>
+        [MetCategory("MetBehavior")]
+        [MetDescription("MetFormNextControlFocusing")]
+        public event ControlFocusingEventHandler NextControlFocusing;
+
         #endregion
 
         #region 追加プロパティ
@@ -157,6 +164,12 @@ namespace Metroit.Windows.Forms
             {
                 // 対象がボタンの時は通常制御とする
                 if (this.ActiveControl is Button)
+                {
+                    return base.ProcessCmdKey(ref msg, keyData);
+                }
+                var e = new ControlFocusingEventArgs(ActiveControl);
+                this.OnNextControlFocusing(e);
+                if (e.Cancel)
                 {
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
@@ -331,6 +344,15 @@ namespace Metroit.Windows.Forms
         protected virtual void OnControlLeaving(CancelEventArgs e)
         {
             this.ControlLeaving?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// <see cref="EnterFocus"/> プロパティが true の場合に、<see cref="NextControlFocusing"/> イベントを発生させます。
+        /// </summary>
+        /// <param name="e">キャンセルすると通常の制御を行います。</param>
+        protected virtual void OnNextControlFocusing(ControlFocusingEventArgs e)
+        {
+            this.NextControlFocusing?.Invoke(this, e);
         }
 
         /// <summary>

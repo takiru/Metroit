@@ -1380,4 +1380,16 @@
   <data name="RoundedCornerRadiusTopRight.ja" xml:space="preserve">
     <value>右上の半径を取得または設定します。</value>
   </data>
+  <data name="MetFlowLayoutSplitterMinSize" xml:space="preserve">
+    <value>Specifies the minimum size of the resizable control.</value>
+  </data>
+  <data name="MetFlowLayoutSplitterMinSize.ja" xml:space="preserve">
+    <value>サイズを変更するコントロールの最小サイズを指定します。</value>
+  </data>
+  <data name="MetFormNextControlFocusing" xml:space="preserve">
+    <value>An event that occurs immediately before the focus moves to the next control by pressing the Enter key if the EnterFocus property is true.</value>
+  </data>
+  <data name="MetFormNextControlFocusing.ja" xml:space="preserve">
+    <value>EnterFocus プロパティが true の場合に、Enterキーによって次のコントロールにフォーカスが移動する直前に発生するイベントです。</value>
+  </data>
 </root>

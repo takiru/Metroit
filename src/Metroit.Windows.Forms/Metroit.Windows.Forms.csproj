@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.3.0</VersionPrefix>
+    <VersionPrefix>3.4.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -21,16 +21,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Add
-      - MetRoundedButton
-      - MetRoundedRadioButton
-      - MetCheckBox
-      Fix
-      - MetNotificationPanel now allows you to pass parameters when registering notifications, which can be handled by the Registered and Selected actions.
-      - MetToggleSwitch now provides CheckedChanging and CheckedChanged events.
-      - MetToggleSwitch now has an overridable Rollback method.
-      - Notifications added to NotificationPanel now use the hand cursor and NotificationHoverForeColor only when the Selected action is set.
-      - You can now add parameters to NotificationInfo added to NotificationPanel, which allows you to reference those parameters in Registered and Selected actions.
-      - NotificationInfo has been changed so that DateTime and Text can be set in the constructor. Along with this change, DateTime and Text have been changed to read-only properties.
+      - MetForm::NextControlFocusing event.If you want to reject the focus transition caused by EnterFocus and convey normal key operations, set e.Cancel = true.
+      - MetFlowLayoutSplitter
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

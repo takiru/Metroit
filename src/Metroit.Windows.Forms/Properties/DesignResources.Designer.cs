@@ -2329,6 +2329,24 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Specifies the minimum size of the resizable control. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFlowLayoutSplitterMinSize {
+            get {
+                return ResourceManager.GetString("MetFlowLayoutSplitterMinSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   サイズを変更するコントロールの最小サイズを指定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFlowLayoutSplitterMinSize_ja {
+            get {
+                return ResourceManager.GetString("MetFlowLayoutSplitterMinSize.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   This event occurs when ESC key loses focus. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetFormControlLeaving {
@@ -2361,6 +2379,24 @@ namespace Metroit.Windows.Forms.Properties {
         internal static string MetFormControlRollbacking_ja {
             get {
                 return ResourceManager.GetString("MetFormControlRollbacking.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   An event that occurs immediately before the focus moves to the next control by pressing the Enter key if the EnterFocus property is true. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormNextControlFocusing {
+            get {
+                return ResourceManager.GetString("MetFormNextControlFocusing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   EnterFocus プロパティが true の場合に、Enterキーによって次のコントロールにフォーカスが移動する直前に発生するイベントです。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetFormNextControlFocusing_ja {
+            get {
+                return ResourceManager.GetString("MetFormNextControlFocusing.ja", resourceCulture);
             }
         }
         
