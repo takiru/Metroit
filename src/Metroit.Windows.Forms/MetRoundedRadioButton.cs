@@ -383,7 +383,7 @@ namespace Metroit.Windows.Forms
 
             // テキストの描画色を決定
             Color textColor = GetCurrentTextColor();
-
+            
             // テキストの描画範囲を計算（フォーカス枠は親に描画するため考慮しない）
             Rectangle textRect = ClientRectangle;
 
@@ -394,17 +394,96 @@ namespace Metroit.Windows.Forms
                 textRect.Inflate(-borderPadding, -borderPadding);
             }
 
-            // テキストの高品質描画設定
-            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-
-            // TextAlignに基づいてテキストを描画
-            using (StringFormat stringFormat = CreateStringFormat())
+            // UseMnemonicがtrueの場合は標準のニーモニック処理を使用
+            if (UseMnemonic)
             {
-                using (SolidBrush textBrush = new SolidBrush(textColor))
+                TextFormatFlags flags = CreateTextFormatFlags();
+                TextRenderer.DrawText(graphics, Text, Font, textRect, textColor, flags);
+            }
+            else
+            {
+                // テキストの高品質描画設定
+                graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+                // TextAlignに基づいてテキストを描画
+                using (StringFormat stringFormat = CreateStringFormat())
                 {
-                    graphics.DrawString(Text, Font, textBrush, textRect, stringFormat);
+                    using (SolidBrush textBrush = new SolidBrush(textColor))
+                    {
+                        graphics.DrawString(Text, Font, textBrush, textRect, stringFormat);
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// TextRendererで使用するTextFormatFlagsを作成します。
+        /// </summary>
+        /// <returns>作成されたTextFormatFlags。</returns>
+        private TextFormatFlags CreateTextFormatFlags()
+        {
+            TextFormatFlags flags = TextFormatFlags.TextBoxControl;
+
+            // 水平方向の配置
+            switch (TextAlign)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.BottomLeft:
+                    flags |= TextFormatFlags.Left;
+                    break;
+
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.BottomCenter:
+                    flags |= TextFormatFlags.HorizontalCenter;
+                    break;
+
+                case ContentAlignment.TopRight:
+                case ContentAlignment.MiddleRight:
+                case ContentAlignment.BottomRight:
+                    flags |= TextFormatFlags.Right;
+                    break;
+            }
+
+            // 垂直方向の配置
+            switch (TextAlign)
+            {
+                case ContentAlignment.TopLeft:
+                case ContentAlignment.TopCenter:
+                case ContentAlignment.TopRight:
+                    flags |= TextFormatFlags.Top;
+                    break;
+
+                case ContentAlignment.MiddleLeft:
+                case ContentAlignment.MiddleCenter:
+                case ContentAlignment.MiddleRight:
+                    flags |= TextFormatFlags.VerticalCenter;
+                    break;
+
+                case ContentAlignment.BottomLeft:
+                case ContentAlignment.BottomCenter:
+                case ContentAlignment.BottomRight:
+                    flags |= TextFormatFlags.Bottom;
+                    break;
+            }
+
+            // ニーモニック関連のフラグ設定
+            if (!UseMnemonic)
+            {
+                flags |= TextFormatFlags.NoPrefix; // &を通常の文字として表示
+            }
+
+            // キーボードキューの表示/非表示
+            if (!ShowKeyboardCues)
+            {
+                flags |= TextFormatFlags.HidePrefix; // アンダーラインを非表示
+            }
+
+            // 単一行表示
+            flags |= TextFormatFlags.SingleLine;
+
+            return flags;
         }
     }
 }
