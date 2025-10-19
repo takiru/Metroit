@@ -86,67 +86,6 @@ namespace Metroit.Windows.Forms
             this.EscPush = new FormEscapeBehavior();
         }
 
-        /// <summary>
-        /// 呼び元からのリクエストパラメータを取得または設定します。
-        /// </summary>
-        [Browsable(false)]
-        protected object Request { get; private set; } = null;
-
-        /// <summary>
-        /// 呼び元へのレスポンスパラメータを設定し、呼び元で取得可能にします。
-        /// </summary>
-        [Browsable(false)]
-        public object Response { get; protected set; } = null;
-
-        #endregion
-
-        #region 追加メソッド
-
-        /// <summary>
-        /// リクエストパラメーターを送り、コントロールをユーザーに対して表示します。
-        /// </summary>
-        /// <param name="request">リクエストパラメーター。</param>
-        public void Show(object request)
-        {
-            this.Request = request;
-            base.Show();
-        }
-
-        /// <summary>
-        /// リクエストパラメーターを送り、所有側フォームを指定してフォームをユーザーに表示します。
-        /// </summary>
-        /// <param name="owner">親ウィンドウオブジェクト</param>
-        /// <param name="request">リクエストパラメータ</param>
-        /// <remarks>パラメータを渡し、モードレスウィンドウを表示する。</remarks>
-        public void Show(IWin32Window owner, object request)
-        {
-            this.Request = request;
-            base.Show(owner);
-        }
-
-        /// <summary>
-        /// リクエストパラメーターを送り、フォームをモーダル ダイアログ ボックスとして表示します。
-        /// </summary>
-        /// <param name="request">リクエストパラメータ</param>
-        /// <returns>パラメータを渡し、モーダルウィンドウを表示する。</returns>
-        public DialogResult ShowDialog(object request)
-        {
-            this.Request = request;
-            return base.ShowDialog();
-        }
-
-        /// <summary>
-        /// リクエストパラメーターを送り、指定した所有者を持つモーダル ダイアログ ボックスとしてフォームを表示します。
-        /// </summary>
-        /// <param name="owner">親ウィンドウオブジェクト</param>
-        /// <param name="request">リクエストパラメータ</param>
-        /// <returns>パラメータを渡し、モーダルウィンドウを表示する。</returns>
-        public DialogResult ShowDialog(IWin32Window owner, object request)
-        {
-            this.Request = request;
-            return base.ShowDialog(owner);
-        }
-
         #endregion
 
         #region メソッド
