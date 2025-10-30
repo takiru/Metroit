@@ -10,7 +10,7 @@ namespace Metroit.Windows.Forms
     /// チェックボックスの外観の色を提供します。
     /// </summary>
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class CheckBoxColorAppearance
+    public class UncheckedColorAppearance
     {
         private readonly CheckBox Owner;
         private readonly string Key;
@@ -22,7 +22,7 @@ namespace Metroit.Windows.Forms
         /// <param name="owner">オーナーとなるチェックボックス。</param>
         /// <param name="key">親プロパティのキー値。</param>
         /// <param name="defaultControllers">既定値コントローラーのコレクション。</param>
-        internal CheckBoxColorAppearance(CheckBox owner, string key, IReadOnlyList<PropertyDefaultController> defaultControllers)
+        internal UncheckedColorAppearance(CheckBox owner, string key, IReadOnlyList<PropertyDefaultController> defaultControllers)
         {
             Owner = owner;
             Key = key;
