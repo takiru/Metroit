@@ -73,6 +73,7 @@ namespace Metroit.Windows.Forms
             ParentForm.Paint += (s, e) => Show();
             ParentForm.LocationChanged += (s, e) => Show();
             ParentForm.SizeChanged += (s, e) => Show();
+            ParentForm.VisibleChanged += (s, e) => Show();
 
             _focusOverlayWindow = new FocusOverlayWindow(OverlayWidth, OverlayColor, CornerRadius);
             _focusOverlayWindow.Show(clippedOverlayRect, contentRect);
@@ -88,6 +89,7 @@ namespace Metroit.Windows.Forms
                 ParentForm.Paint -= (s, e) => Show();
                 ParentForm.LocationChanged -= (s, e) => Show();
                 ParentForm.SizeChanged -= (s, e) => Show();
+                ParentForm.VisibleChanged -= (s, e) => Show();
             }
 
             if (_focusOverlayWindow != null && !_focusOverlayWindow.IsDisposed)

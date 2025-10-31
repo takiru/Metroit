@@ -207,7 +207,7 @@ namespace Metroit.Windows.Forms
         private new readonly static Color DefaultBackColor = Color.FromArgb(245, 245, 245);
 
 
-        private CheckBoxAppearance _checkedAppearance;
+        private CheckedAppearance _checkedAppearance;
 
         /// <summary>
         /// チェックされたときの外観を取得または設定します。
@@ -216,20 +216,20 @@ namespace Metroit.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetAppearance")]
         [MetDescription("MetCheckBoxCheckedAppearance")]
-        public CheckBoxAppearance CheckedAppearance
+        public CheckedAppearance CheckedAppearance
         {
             get
             {
                 if (_checkedAppearance == null)
                 {
-                    _checkedAppearance = new CheckBoxAppearance(this, "Checked", DefaultControllers);
+                    _checkedAppearance = new CheckedAppearance(this, "Checked", DefaultControllers);
                 }
 
                 return _checkedAppearance;
             }
         }
 
-        private CheckBoxAppearance _uncheckedAppearance;
+        private UncheckedAppearance _uncheckedAppearance;
 
         /// <summary>
         /// チェックされていないときの外観を取得または設定します。
@@ -238,13 +238,13 @@ namespace Metroit.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [MetCategory("MetAppearance")]
         [MetDescription("MetCheckBoxUncheckedAppearance")]
-        public CheckBoxAppearance UncheckedAppearance
+        public UncheckedAppearance UncheckedAppearance
         {
             get
             {
                 if (_uncheckedAppearance == null)
                 {
-                    _uncheckedAppearance = new CheckBoxAppearance(this, "Unchecked", DefaultControllers);
+                    _uncheckedAppearance = new UncheckedAppearance(this, "Unchecked", DefaultControllers);
                 }
 
                 return _uncheckedAppearance;
@@ -312,21 +312,12 @@ namespace Metroit.Windows.Forms
                 // Bootstrap5 に近しいデフォルトの色設定
                 DefaultControllers = new List<PropertyDefaultController>()
                 {
-                    new PropertyDefaultController("Checked.Default.BorderColor",
-                        () => CheckedAppearance.Default.BorderColor != Color.FromArgb(13, 110, 253),
-                        () => CheckedAppearance.Default.BorderColor = Color.FromArgb(13, 110, 253)),
                     new PropertyDefaultController("Checked.Default.BackColor",
                         () => CheckedAppearance.Default.BackColor != Color.FromArgb(13, 110, 253),
                         () => CheckedAppearance.Default.BackColor = Color.FromArgb(13, 110, 253)),
-                    new PropertyDefaultController("Checked.MouseOver.BorderColor",
-                        () => CheckedAppearance.MouseOver.BorderColor != Color.FromArgb(13, 110, 253),
-                        () => CheckedAppearance.MouseOver.BorderColor = Color.FromArgb(13, 110, 253)),
                     new PropertyDefaultController("Checked.MouseOver.BackColor",
                         () => CheckedAppearance.MouseOver.BackColor != Color.FromArgb(13, 110, 253),
                         () => CheckedAppearance.MouseOver.BackColor = Color.FromArgb(13, 110, 253)),
-                    new PropertyDefaultController("Checked.MouseDown.BorderColor",
-                        () => CheckedAppearance.MouseDown.BorderColor != Color.FromArgb(12, 99, 228),
-                        () => CheckedAppearance.MouseDown.BorderColor = Color.FromArgb(12, 99, 228)),
                     new PropertyDefaultController("Checked.MouseDown.BackColor",
                         () => CheckedAppearance.MouseDown.BackColor != Color.FromArgb(12, 99, 228),
                         () => CheckedAppearance.MouseDown.BackColor = Color.FromArgb(12, 99, 228)),
@@ -352,11 +343,8 @@ namespace Metroit.Windows.Forms
             }
 
             // 既定値
-            CheckedAppearance.Default.BorderColor = Color.FromArgb(13, 110, 253);
             CheckedAppearance.Default.BackColor = Color.FromArgb(13, 110, 253);
-            CheckedAppearance.MouseOver.BorderColor = Color.FromArgb(13, 110, 253);
             CheckedAppearance.MouseOver.BackColor = Color.FromArgb(13, 110, 253);
-            CheckedAppearance.MouseDown.BorderColor = Color.FromArgb(12, 99, 228);
             CheckedAppearance.MouseDown.BackColor = Color.FromArgb(12, 99, 228);
             UncheckedAppearance.Default.BorderColor = Color.FromArgb(222, 226, 230);
             UncheckedAppearance.Default.BackColor = Color.White;
@@ -986,35 +974,22 @@ namespace Metroit.Windows.Forms
         /// <param name="g">グラフィック。</param>
         private void DrawFocusFrame(Graphics g)
         {
-            Rectangle checkBoxRect = GetCheckBoxRectangle();
-            if (!checkBoxRect.IsEmpty)
+            var checkBoxRect = GetCheckBoxRectangle();
+            if (checkBoxRect.IsEmpty)
             {
-                // フォーカス枠の外側矩形（チェックボックスより4px大きく）
-                Rectangle focusOuterRect = new Rectangle(
-                    checkBoxRect.X - FocusWidth,
-                    checkBoxRect.Y - FocusWidth,
-                    checkBoxRect.Width + (FocusWidth * 2),
-                    checkBoxRect.Height + (FocusWidth * 2)
-                );
-
-                // フォーカス枠の内側矩形（チェックボックスと同じサイズ）
-                Rectangle focusInnerRect = checkBoxRect;
-
-                // フォーカス枠を描画（外側パス - 内側パス）
-                using (GraphicsPath outerPath = CreateRoundedRectanglePath(focusOuterRect,
-                    GetDrawableCheckBoxRadius() + FocusWidth))
-                using (GraphicsPath innerPath = CreateRoundedRectanglePath(focusInnerRect,
-                    GetDrawableCheckBoxRadius()))
-                using (Region focusRegion = new Region(outerPath))
-                {
-                    focusRegion.Exclude(innerPath);
-
-                    using (SolidBrush focusBrush = new SolidBrush(FocusColor))
-                    {
-                        g.FillRegion(focusBrush, focusRegion);
-                    }
-                }
+                return;
             }
+
+            // フォーカス枠の外側矩形（チェックボックスより4px大きく）
+            var focusRect = new Rectangle(
+                checkBoxRect.X - FocusWidth,
+                checkBoxRect.Y - FocusWidth,
+                checkBoxRect.Width + (FocusWidth * 2),
+                checkBoxRect.Height + (FocusWidth * 2)
+            );
+
+            var focusBrush = new SolidBrush(FocusColor);
+            g.FillRoundedRectangle(focusBrush, focusRect, GetDrawableCheckBoxRadius() + FocusWidth);
         }
 
         /// <summary>
@@ -1118,23 +1093,20 @@ namespace Metroit.Windows.Forms
         /// <returns>色の組み合わせ。</returns>
         private ElementColorCombination GetCheckedColorCombination()
         {
-            var borderColor = CheckedAppearance.Default.BorderColor != Color.Empty ?
-                CheckedAppearance.Default.BorderColor : DefaultBorderColor;
+            var borderColor = DefaultBorderColor;
             var fillColor = CheckedAppearance.Default.BackColor != Color.Empty ?
                 CheckedAppearance.Default.BackColor : DefaultBackColor;
 
             if (_isMouseOver)
             {
-                borderColor = CheckedAppearance.MouseOver.BorderColor != Color.Empty ?
-                    CheckedAppearance.MouseOver.BorderColor : DefaultBorderColor; ;
+                borderColor = DefaultBorderColor;
                 fillColor = CheckedAppearance.MouseOver.BackColor != Color.Empty ?
                     CheckedAppearance.MouseOver.BackColor : DefaultBorderColor; ;
             }
 
             if (_isPressed)
             {
-                borderColor = CheckedAppearance.MouseDown.BorderColor != Color.Empty ?
-                    CheckedAppearance.MouseDown.BorderColor : DefaultBorderColor; ;
+                borderColor = DefaultBorderColor;
                 fillColor = CheckedAppearance.MouseDown.BackColor != Color.Empty ?
                     CheckedAppearance.MouseDown.BackColor : DefaultBorderColor; ;
             }
@@ -1182,8 +1154,7 @@ namespace Metroit.Windows.Forms
             Color fillColor;
             if (Checked)
             {
-                borderColor = CheckedAppearance.Default.BorderColor != Color.Empty ?
-                    CheckedAppearance.Default.BorderColor : DefaultBorderColor;
+                borderColor = DefaultBorderColor;
                 fillColor = CheckedAppearance.Default.BackColor != Color.Empty ?
                     CheckedAppearance.Default.BackColor : DefaultBackColor;
             }
@@ -1210,10 +1181,7 @@ namespace Metroit.Windows.Forms
         /// <param name="radius">角丸半径。</param>
         private void FillRoundedRectangle(Graphics g, Brush brush, Rectangle rect, int radius)
         {
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, radius))
-            {
-                g.FillPath(brush, path);
-            }
+            g.FillRoundedRectangle(brush, rect, radius);
         }
 
         /// <summary>
@@ -1225,6 +1193,12 @@ namespace Metroit.Windows.Forms
         /// <param name="borderColor">境界線色。</param>
         private void DrawCheckBoxBorder(Graphics g, Rectangle rect, Color borderColor)
         {
+            // チェック済みの場合は境界ボーダーを描画しない
+            if (Checked)
+            {
+                return;
+            }
+
             using (Pen borderPen = new Pen(borderColor, 1))
             {
                 var oldSmoothing = g.SmoothingMode;
@@ -1236,95 +1210,19 @@ namespace Metroit.Windows.Forms
 
                     if (Focused)
                     {
-                        // フォーカスがある時は、フォーカス枠に対してアンチエイリアスを適用して描画
-                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.HighQuality;
                         g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                        // 角丸四角形として全体を描画（フォーカス枠との調和を重視）
-                        using (GraphicsPath borderPath = CreateRoundedRectanglePath(rect, drawableCheckBoxRadius))
-                        {
-                            g.DrawPath(borderPen, borderPath);
-                        }
-                        return;
-                    }
-
-                    // フォーカスがない時は、はっきりとした線で描画
-                    // 上辺（直線部分）
-                    if (CheckBoxRadius == 0)
-                    {
-                        g.DrawRectangle(borderPen, rect);
                     }
                     else
                     {
-                        var minDrawableCheckBoxRadius = (drawableCheckBoxRadius == 0 ? 0 : drawableCheckBoxRadius - 1);
-                        g.SmoothingMode = SmoothingMode.None;
-                        g.PixelOffsetMode = PixelOffsetMode.None;
-                        g.DrawLine(borderPen,
-                            rect.X + drawableCheckBoxRadius,
-                            rect.Y,
-                            rect.Right - minDrawableCheckBoxRadius,
-                            rect.Y);
-
-                        // 右辺（直線部分）
-                        g.DrawLine(borderPen,
-                            rect.Right - 1,
-                            rect.Y + drawableCheckBoxRadius,
-                            rect.Right - 1,
-                            rect.Bottom - minDrawableCheckBoxRadius);
-
-                        // 下辺（直線部分）
-                        g.DrawLine(borderPen,
-                            rect.Right - minDrawableCheckBoxRadius,
-                            rect.Bottom - 1,
-                            rect.X + drawableCheckBoxRadius,
-                            rect.Bottom - 1);
-
-                        // 左辺（直線部分）
-                        g.DrawLine(borderPen,
-                            rect.X,
-                            rect.Bottom - minDrawableCheckBoxRadius,
-                            rect.X,
-                            rect.Y + drawableCheckBoxRadius);
-
-                        // 角丸部分のみアンチエイリアスを有効にして描画
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.PixelOffsetMode = PixelOffsetMode.None;
+                        rect = new Rectangle(rect.X, rect.Y, rect.Width - 1, rect.Height - 1);
+                    }
 
-                        int diameter = drawableCheckBoxRadius * 2;
-                        var minDiameter = (diameter == 0 ? 0 : diameter - 1);
-                        float offset = 0.5f;
-
-                        // 左上角（矩形内に収める）
-                        RectangleF arcRect = new RectangleF(
-                            rect.X + offset,
-                            rect.Y + offset,
-                            minDiameter,
-                            minDiameter);
-                        g.DrawArc(borderPen, arcRect, 180, 90);
-
-                        // 右上角（矩形内に収める）
-                        arcRect = new RectangleF(
-                            rect.Right - diameter - offset,
-                            rect.Y + offset,
-                            minDiameter,
-                            minDiameter);
-                        g.DrawArc(borderPen, arcRect, 270, 90);
-
-                        // 右下角（矩形内に収める）
-                        arcRect = new RectangleF(
-                            rect.Right - diameter - offset,
-                            rect.Bottom - diameter - offset,
-                            minDiameter,
-                            minDiameter);
-                        g.DrawArc(borderPen, arcRect, 0, 90);
-
-                        // 左下角（矩形内に収める）
-                        arcRect = new RectangleF(
-                            rect.X + offset,
-                            rect.Bottom - diameter - offset,
-                            minDiameter,
-                            minDiameter);
-                        g.DrawArc(borderPen, arcRect, 90, 90);
+                    using (GraphicsPath borderPath = CreateRoundedRectanglePath(rect, drawableCheckBoxRadius))
+                    {
+                        g.DrawRoundedRectangle(borderPen, rect, drawableCheckBoxRadius);
                     }
                 }
                 finally

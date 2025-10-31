@@ -8,7 +8,7 @@ namespace Metroit.Windows.Forms
     /// チェックボックスの外観を提供します。
     /// </summary>
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class CheckBoxAppearance
+    public class UncheckedAppearance
     {
         private readonly CheckBox Owner;
         private readonly string Key;
@@ -20,14 +20,14 @@ namespace Metroit.Windows.Forms
         /// <param name="owner">オーナーとなるチェックボックス。</param>
         /// <param name="key">親プロパティのキー値。</param>
         /// <param name="defaultControllers">既定値コントローラーのコレクション。</param>
-        internal CheckBoxAppearance(CheckBox owner, string key, IReadOnlyList<PropertyDefaultController> defaultControllers)
+        internal UncheckedAppearance(CheckBox owner, string key, IReadOnlyList<PropertyDefaultController> defaultControllers)
         {
             Owner = owner;
             Key = key;
             DefaultControllers = defaultControllers;
         }
 
-        private CheckBoxColorAppearance _defaultAppearance;
+        private UncheckedColorAppearance _defaultAppearance;
 
         /// <summary>
         /// 既定の外観を取得または設定します。
@@ -36,19 +36,19 @@ namespace Metroit.Windows.Forms
         [MetCategory("MetAppearance")]
         [MetDescription("CheckBoxAppearanceDefault")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CheckBoxColorAppearance Default
+        public UncheckedColorAppearance Default
         {
             get
             {
                 if (_defaultAppearance == null)
                 {
-                    _defaultAppearance = new CheckBoxColorAppearance(Owner, $"{Key}.{nameof(Default)}", DefaultControllers);
+                    _defaultAppearance = new UncheckedColorAppearance(Owner, $"{Key}.{nameof(Default)}", DefaultControllers);
                 }
                 return _defaultAppearance;
             }
         }
 
-        private CheckBoxColorAppearance _mouseOverAppearance;
+        private UncheckedColorAppearance _mouseOverAppearance;
 
         /// <summary>
         /// マウスカーソルが領域内に入ったときの外観を取得または設定します。
@@ -57,19 +57,19 @@ namespace Metroit.Windows.Forms
         [MetCategory("MetAppearance")]
         [MetDescription("CheckBoxAppearanceMouseOver")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CheckBoxColorAppearance MouseOver
+        public UncheckedColorAppearance MouseOver
         {
             get
             {
                 if (_mouseOverAppearance == null)
                 {
-                    _mouseOverAppearance = new CheckBoxColorAppearance(Owner, $"{Key}.{nameof(MouseOver)}", DefaultControllers);
+                    _mouseOverAppearance = new UncheckedColorAppearance(Owner, $"{Key}.{nameof(MouseOver)}", DefaultControllers);
                 }
                 return _mouseOverAppearance;
             }
         }
 
-        private CheckBoxColorAppearance _mouseDownAppearance;
+        private UncheckedColorAppearance _mouseDownAppearance;
 
         /// <summary>
         /// マウスがクリックされたときの外観を取得または設定します。
@@ -78,13 +78,13 @@ namespace Metroit.Windows.Forms
         [MetCategory("MetAppearance")]
         [MetDescription("CheckBoxAppearanceMouseDown")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CheckBoxColorAppearance MouseDown
+        public UncheckedColorAppearance MouseDown
         {
             get
             {
                 if (_mouseDownAppearance == null)
                 {
-                    _mouseDownAppearance = new CheckBoxColorAppearance(Owner, $"{Key}.{nameof(MouseDown)}", DefaultControllers);
+                    _mouseDownAppearance = new UncheckedColorAppearance(Owner, $"{Key}.{nameof(MouseDown)}", DefaultControllers);
                 }
                 return _mouseDownAppearance;
             }
