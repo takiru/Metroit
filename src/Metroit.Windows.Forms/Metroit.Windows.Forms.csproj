@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.4.3</VersionPrefix>
+    <VersionPrefix>3.4.4</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -21,7 +21,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Fix
-      - This resolves an issue where, if a form was closed after Form.ShowDialog() was called and Dispose() was not called, the focus border displayed on MetRoundedButton and MetRoundedRadioButton would remain visible.
+      - Fixed an issue where the focus color would sometimes be applied to the MetComboBox even when it did not have focus.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

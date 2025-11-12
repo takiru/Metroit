@@ -554,16 +554,32 @@ namespace Metroit.Windows.Forms
         /// </summary>
         protected virtual void ChangeDisplayColor()
         {
-            // アクティブの時にアクティブ色に変更
-            var form = this.FindForm();
-            if (!this.IsDesignMode() && form != null && (form.ActiveControl == this || form.ActiveControl == this.textBox))
+            if (this.IsDesignMode())
             {
-                this.changeFocusColor();
+                changeBaseColor();
+                return;
             }
-            else
+
+            var form = FindForm();
+            if (form == null)
             {
-                this.changeBaseColor();
+                changeBaseColor();
+                return;
             }
+
+            if (form.ActiveControl == null)
+            {
+                changeBaseColor();
+                return;
+            }
+
+            if (form.ActiveControl != this && form.ActiveControl != textBox)
+            {
+                changeBaseColor();
+                return;
+            }
+
+            changeFocusColor();
         }
 
         /// <summary>
