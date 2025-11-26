@@ -26,6 +26,7 @@
       - MetSplitter
       Modify
       - MetForm.EscPush no longer has default value and reset function because the default value and reset function sometimes prevent you from freely changing the value when inherited.
+      - The way MetComboBox is drawn has been completely changed.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
@@ -43,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="MetComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Properties\DesignResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

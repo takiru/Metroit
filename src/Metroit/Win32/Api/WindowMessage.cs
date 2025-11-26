@@ -64,5 +64,15 @@
         /// イベントが発生したとき、またはコントロールが何らかの情報を必要とするときに、共通コントロールによってその親ウィンドウに送信されます。
         /// </summary>
         public const int WM_NOTIFY = 0x004E;
+
+        /// <summary>
+        /// フォーカスを取得したときに送信されるメッセージを定義します。
+        /// </summary>
+        public const int WM_SETFOCUS = 0x0007;
+
+        /// <summary>
+        /// フォーカスを失ったときに送信されるメッセージを定義します。
+        /// </summary>
+        public const int WM_KILLFOCUS = 0x0008;
     }
 }
