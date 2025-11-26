@@ -1392,4 +1392,34 @@
   <data name="MetFormNextControlFocusing.ja" xml:space="preserve">
     <value>EnterFocus プロパティが true の場合に、Enterキーによって次のコントロールにフォーカスが移動する直前に発生するイベントです。</value>
   </data>
+  <data name="MetSplitterBorderColor" xml:space="preserve">
+    <value>Gets or sets the border color. Used when BorderStyle is FixedSingle.</value>
+  </data>
+  <data name="MetSplitterBorderColor.ja" xml:space="preserve">
+    <value>ボーダー色を取得または設定します。BorderStyleがFixedSingleの場合に使用されます。</value>
+  </data>
+  <data name="MetSplitterKnobAlign" xml:space="preserve">
+    <value>Gets or sets the knob location.</value>
+  </data>
+  <data name="MetSplitterKnobAlign.ja" xml:space="preserve">
+    <value>ノブの配置位置を取得または設定します。</value>
+  </data>
+  <data name="MetSplitterKnobColor" xml:space="preserve">
+    <value>Gets or sets the color of the knob.</value>
+  </data>
+  <data name="MetSplitterKnobColor.ja" xml:space="preserve">
+    <value>ノブの色を取得または設定します。</value>
+  </data>
+  <data name="MetSplitterKnobThickness" xml:space="preserve">
+    <value>Gets or sets the knob line thickness.</value>
+  </data>
+  <data name="MetSplitterKnobThickness.ja" xml:space="preserve">
+    <value>ノブの線の太さを取得または設定します。</value>
+  </data>
+  <data name="MetSplitterKnobWidth" xml:space="preserve">
+    <value>Gets or sets the knob width.</value>
+  </data>
+  <data name="MetSplitterKnobWidth.ja" xml:space="preserve">
+    <value>ノブの幅を取得または設定します。</value>
+  </data>
 </root>

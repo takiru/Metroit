@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>3.4.4</VersionPrefix>
+    <VersionPrefix>4.0.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -20,8 +20,13 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      Fix
-      - Fixed an issue where the focus color would sometimes be applied to the MetComboBox even when it did not have focus.
+      Obsolete
+      - Request, Response, Show(object), Show(IWin32Window, object), ShowDialog(object), ShowDialog(IWin32Window, object) in MetForm have been discontinued. The policy has changed to optional implementation of IDialogRequest and IDialogResponse in Metroit.
+      Add
+      - MetSplitter
+      Modify
+      - MetForm.EscPush no longer has default value and reset function because the default value and reset function sometimes prevent you from freely changing the value when inherited.
+      - The way MetComboBox is drawn has been completely changed.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
@@ -39,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="MetComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Properties\DesignResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
