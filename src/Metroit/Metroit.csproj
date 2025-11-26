@@ -16,9 +16,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
       Add
-      - Text.AsciiConverter
-      - Text.KatakanaConverter
-      - Text.TextConverter
+      - Contracts.IDialogRequest, Contracts.IDialogResponse
+      - User32.ReleaseDC
     </PackageReleaseNotes>
   </PropertyGroup>
 

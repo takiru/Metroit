@@ -2968,6 +2968,96 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the border color. Used when BorderStyle is FixedSingle. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterBorderColor {
+            get {
+                return ResourceManager.GetString("MetSplitterBorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ボーダー色を取得または設定します。BorderStyleがFixedSingleの場合に使用されます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterBorderColor_ja {
+            get {
+                return ResourceManager.GetString("MetSplitterBorderColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the knob location. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobAlign {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobAlign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ノブの配置位置を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobAlign_ja {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobAlign.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the color of the knob. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobColor {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ノブの色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobColor_ja {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the knob line thickness. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobThickness {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobThickness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ノブの線の太さを取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobThickness_ja {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobThickness.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the knob width. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobWidth {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ノブの幅を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetSplitterKnobWidth_ja {
+            get {
+                return ResourceManager.GetString("MetSplitterKnobWidth.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Set custom autocomplete information. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MetTextBoxCustomAutoCompleteBox {

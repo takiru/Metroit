@@ -20,11 +20,12 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      Fix
-      - MetRoundedButton
-          - Mnemonics are now available for text.
-      - MetRoundedRadioButton
-          - Mnemonics are now available for text.
+      Obsolete
+      - Request, Response, Show(object), Show(IWin32Window, object), ShowDialog(object), ShowDialog(IWin32Window, object) in MetForm have been discontinued. The policy has changed to optional implementation of IDialogRequest and IDialogResponse in Metroit.
+      Add
+      - MetSplitter
+      Modify
+      - MetForm.EscPush no longer has default value and reset function because the default value and reset function sometimes prevent you from freely changing the value when inherited.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

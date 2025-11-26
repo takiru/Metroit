@@ -69,23 +69,6 @@ namespace Metroit.Windows.Forms
         [MetDescription("ControlEscPush")]
         public FormEscapeBehavior EscPush { get; set; } = new FormEscapeBehavior();
 
-        /// <summary>
-        /// EscPush が既定値から変更されたかどうかを返却する。
-        /// </summary>
-        /// <returns>true:変更された, false:変更されていない</returns>
-        private bool ShouldSerializeEscPush()
-        {
-            return this.EscPush.ControlRollback | this.EscPush.ControlLeave | this.EscPush.FormClose;
-        }
-
-        /// <summary>
-        /// EscPush のリセット操作を行う。
-        /// </summary>
-        private void ResetEscPush()
-        {
-            this.EscPush = new FormEscapeBehavior();
-        }
-
         #endregion
 
         #region メソッド

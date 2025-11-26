@@ -22,12 +22,21 @@ namespace Metroit.Win32.Api
         public static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
 
         /// <summary>
-        /// タイトルバー、メニュー、スクロールバーを含む、ウィンドウ全体のデバイスコンテキスト（DC）を取得します。
+        /// コントロールのデバイスコンテキストを取得します。
         /// </summary>
-        /// <param name="hwnd">ウィンドウのハンドル。</param>
+        /// <param name="hwnd">コントロールのハンドル。</param>
         /// <returns>null以外:ウィンドウのデバイスコンテキストのハンドル, null:取得エラー。</returns>
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowDC(IntPtr hwnd);
+
+        /// <summary>
+        /// デバイスコンテキストハンドルを解放します。
+        /// </summary>
+        /// <param name="hWnd">コントロールのハンドル。</param>
+        /// <param name="hDC">デバイスコンテキストハンドル。</param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        public static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
         /// <summary>
         /// 指定されたウィンドウに対して描画の準備をします。

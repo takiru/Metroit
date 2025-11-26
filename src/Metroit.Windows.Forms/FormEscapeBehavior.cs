@@ -13,7 +13,6 @@ namespace Metroit.Windows.Forms
         /// このフォームまたはそれぞれのコントロールにILeaveRollback インターフェースを実装している時、コントロールの情報をロールバックします。
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(false)]
         [MetDescription("ControlRollback")]
         public bool ControlRollback { get; set; } = false;
 
@@ -21,7 +20,6 @@ namespace Metroit.Windows.Forms
         /// コントロールを非アクティブにします。
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(false)]
         [MetDescription("ControlLeave")]
         public bool ControlLeave { get; set; } = false;
 
@@ -29,7 +27,6 @@ namespace Metroit.Windows.Forms
         /// フォームを閉じます。
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(false)]
         [MetDescription("ControlFormClose")]
         public bool FormClose { get; set; } = false;
 
