@@ -11,8 +11,6 @@ namespace Metroit.Windows.Forms
     /// </summary>
     public class MetSplitter : Splitter
     {
-        private static readonly int WM_NCPAINT = 0x85;
-
         private Color _borderColor = Color.Empty;
 
         /// <summary>
