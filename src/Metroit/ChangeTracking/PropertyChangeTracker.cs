@@ -8,23 +8,31 @@ namespace Metroit.ChangeTracking
 {
     /// <summary>
     /// オブジェクト内にあるプロパティおよびフィールドの変更追跡を提供します。<br/>
-    /// 変更追跡が行われるのは下記をすべて満たすプロパティまたはフィールドです。<br/>
-    ///   - <see cref="NoTrackingAttribute"/> が設定されていないプロパティまたはフィールド<br/>
-    ///   - <see cref="NoTrackings"/> で指定されていないプロパティまたはフィールド<br/>
-    /// プロパティは get アクセサーが必要です。
+    /// <see cref="NoTrackingAttribute"/>または<see cref="NoTrackings"/>が設定されたプロパティまたはフィールドは変更追跡をしません。<br/>
+    /// 追跡を必要とするプロパティまたはフィールドは get アクセサーが必要です。
     /// </summary>
     public class PropertyChangeTracker
     {
         /// <summary>
         /// 変更追跡を行うオブジェクト。
         /// </summary>
-        protected object Instance { get; }
+        protected object Instance { get; private set; }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
         /// <param name="instance">変更追跡を行うオブジェクト。</param>
         public PropertyChangeTracker(object instance)
+        {
+            Instance = instance;
+        }
+
+        public PropertyChangeTracker()
+        {
+            
+        }
+
+        internal void SetInstance(object instance)
         {
             Instance = instance;
         }
@@ -67,9 +75,35 @@ namespace Metroit.ChangeTracking
 
             foreach (var property in properties)
             {
-                _entries.Add(new PropertyChangeEntry(property.Name, property.GetValue(Instance)));
+                _entries.Add(new PropertyChangeEntry(property.Name, GetPropertyValue(property, Instance)));
             }
             IsTracking = true;
+            OnResetCompleted(EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// 変更追跡のリセットが完了したときに発生します。
+        /// </summary>
+        public event EventHandler ResetCompleted;
+
+        /// <summary>
+        /// 変更追跡のリセットが完了したときに呼び出されます。
+        /// </summary>
+        /// <param name="e">イベント情報を格納する<see cref="EventArgs"/>。</param>
+        protected virtual void OnResetCompleted(EventArgs e)
+        {
+            ResetCompleted?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 変更追跡しているプロパティまたはフィールドの値を取得します。
+        /// </summary>
+        /// <param name="propertyInfo">変更追跡対象のプロパティまたはフィールド。</param>
+        /// <param name="instance">変更追跡を行うオブジェクト。</param>
+        /// <returns>変更追跡しているプロパティまたはフィールドの値。</returns>
+        protected virtual object GetPropertyValue(PropertyInfo propertyInfo, object instance)
+        {
+            return propertyInfo.GetValue(instance);
         }
 
         /// <summary>
@@ -113,7 +147,7 @@ namespace Metroit.ChangeTracking
                 .Where(x => x.PropertyName == propertyName)
                 .Select(x => x.OriginalValue)
                 .Single();
-            var changedValue = Instance.GetType().GetProperty(propertyName).GetValue(Instance);
+            var changedValue = GetPropertyValue(Instance.GetType().GetProperty(propertyName), Instance);
 
             _entries
                 .Where(x => x.PropertyName == propertyName)
@@ -129,10 +163,26 @@ namespace Metroit.ChangeTracking
                 {
                     IsSomethingValueChanged = false;
                 }
+                OnTrackingPropertyValueChanged(new PropertyChangedTrackingEventArgs(propertyName, changedValue));
                 return;
             }
 
             IsSomethingValueChanged = true;
+            OnTrackingPropertyValueChanged(new PropertyChangedTrackingEventArgs(propertyName, changedValue));
+        }
+
+        /// <summary>
+        /// プロパティまたはフィールドの値が変更されたときに発生します。
+        /// </summary>
+        public event PropertyChangedTrackingEventHandler TrackingPropertyValueChanged;
+
+        /// <summary>
+        /// プロパティまたはフィールドの値が変更されたときに呼び出されます。
+        /// </summary>
+        /// <param name="e">イベント情報を格納する<see cref="PropertyChangedTrackingEventArgs"/>。</param>
+        protected virtual void OnTrackingPropertyValueChanged(PropertyChangedTrackingEventArgs e)
+        {
+            TrackingPropertyValueChanged?.Invoke(this, e);
         }
 
         private bool _isSomethingValueChanged = false;

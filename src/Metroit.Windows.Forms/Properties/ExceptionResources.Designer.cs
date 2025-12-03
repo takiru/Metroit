@@ -259,6 +259,60 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Already generated に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextAlreadyGenerated {
+            get {
+                return ResourceManager.GetString("MetApplicationContextAlreadyGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   すでにコンテキストは生成されています。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextAlreadyGenerated_ja {
+            get {
+                return ResourceManager.GetString("MetApplicationContextAlreadyGenerated.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Already disposed form. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextFormDisposed {
+            get {
+                return ResourceManager.GetString("MetApplicationContextFormDisposed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   すでに破棄された画面です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextFormDisposed_ja {
+            get {
+                return ResourceManager.GetString("MetApplicationContextFormDisposed.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The application context has not been started. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextNotStarted {
+            get {
+                return ResourceManager.GetString("MetApplicationContextNotStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   アプリケーションコンテキストが開始されていません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MetApplicationContextNotStarted_ja {
+            get {
+                return ResourceManager.GetString("MetApplicationContextNotStarted.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Values smaller than MinValue can not be set. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MinValueSmallerCanNotChange {

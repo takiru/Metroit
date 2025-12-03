@@ -1,11 +1,11 @@
-﻿namespace Metroit.ChangeTracking.Generic
+﻿using Metroit.Annotations;
+
+namespace Metroit.ChangeTracking.Generic
 {
     /// <summary>
     /// オブジェクト内にあるプロパティおよびフィールドの変更追跡を提供します。<br/>
-    /// 変更追跡が行われるのは下記をすべて満たすプロパティまたはフィールドです。<br/>
-    ///   - <see cref="Metroit.Annotations.NoTrackingAttribute"/> が設定されていないプロパティまたはフィールド<br/>
-    ///   - <see cref="NoTrackings"/> で指定されていないプロパティまたはフィールド<br/>
-    /// プロパティは get アクセサーが必要です。
+    /// <see cref="NoTrackingAttribute"/>または<see cref="PropertyChangeTracker.NoTrackings"/>が設定されたプロパティまたはフィールドは変更追跡をしません。<br/>
+    /// 追跡を必要とするプロパティまたはフィールドは get アクセサーが必要です。
     /// </summary>
     /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
     public class PropertyChangeTracker<T> : PropertyChangeTracker where T : class
@@ -15,5 +15,10 @@
         /// </summary>
         /// <param name="instance">変更追跡を行うオブジェクト。</param>
         public PropertyChangeTracker(T instance) : base(instance) { }
+
+        public PropertyChangeTracker() : base()
+        {
+
+        }
     }
 }

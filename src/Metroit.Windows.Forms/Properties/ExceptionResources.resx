@@ -183,6 +183,24 @@
   <data name="MaxValueSmallerCanNotChange.ja" xml:space="preserve">
     <value>MaxValueの値より小さい値は設定できません。</value>
   </data>
+  <data name="MetApplicationContextAlreadyGenerated" xml:space="preserve">
+    <value>Already generated</value>
+  </data>
+  <data name="MetApplicationContextAlreadyGenerated.ja" xml:space="preserve">
+    <value>すでにコンテキストは生成されています。</value>
+  </data>
+  <data name="MetApplicationContextFormDisposed" xml:space="preserve">
+    <value>Already disposed form.</value>
+  </data>
+  <data name="MetApplicationContextFormDisposed.ja" xml:space="preserve">
+    <value>すでに破棄された画面です。</value>
+  </data>
+  <data name="MetApplicationContextNotStarted" xml:space="preserve">
+    <value>The application context has not been started.</value>
+  </data>
+  <data name="MetApplicationContextNotStarted.ja" xml:space="preserve">
+    <value>アプリケーションコンテキストが開始されていません。</value>
+  </data>
   <data name="MinValueSmallerCanNotChange" xml:space="preserve">
     <value>Values smaller than MinValue can not be set.</value>
   </data>

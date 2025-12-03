@@ -1,17 +1,32 @@
 ﻿using Metroit.Annotations;
 using Metroit.ChangeTracking.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Metroit.ChangeTracking
 {
+    public class HogePropertyChangeTracker<T> : PropertyChangeTracker<T> where T : class
+    {
+        protected override object GetPropertyValue(PropertyInfo propertyInfo, object instance)
+        {
+            return base.GetPropertyValue(propertyInfo, instance);
+        }
+    }
+
+    public class Hoge : TrackingObject<Hoge, HogePropertyChangeTracker<Hoge>>
+    {
+
+    }
+
     /// <summary>
     /// 変更追跡が可能なオブジェクトを提供します。
     /// </summary>
     /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public class TrackingObject<T> : IPropertyChangeTrackerProvider<TrackingObject<T>>, INotifyPropertyChanged where T : class
+    public class TrackingObject<T, T2> : IPropertyChangeTrackerProvider<T>, INotifyPropertyChanged where T : class where T2 : PropertyChangeTracker<T>, new()
     {
-        private PropertyChangeTracker<TrackingObject<T>> _changeTracker;
+        //private PropertyChangeTracker<TrackingObject<T>> _changeTracker;
+        private T2 _changeTracker;
 
         /// <summary>
         /// プロパティの値が変更されたときに発生します。
@@ -22,7 +37,7 @@ namespace Metroit.ChangeTracking
         /// 変更追跡を取得します。
         /// </summary>
         [NoTracking]
-        public PropertyChangeTracker<TrackingObject<T>> ChangeTracker => _changeTracker;
+        public PropertyChangeTracker<T> ChangeTracker => _changeTracker;
 
         [NoTracking]
         PropertyChangeTracker IPropertyChangeTrackerProvider.ChangeTracker => ChangeTracker;
@@ -32,7 +47,9 @@ namespace Metroit.ChangeTracking
         /// </summary>
         public TrackingObject()
         {
-            _changeTracker = new PropertyChangeTracker<TrackingObject<T>>(this);
+            //_changeTracker = new PropertyChangeTracker<TrackingObject<T>>(this);
+            _changeTracker = new T2();
+            _changeTracker.SetInstance(this);
             PropertyChanged += TrackingObject_PropertyChanged;
         }
 
@@ -70,7 +87,7 @@ namespace Metroit.ChangeTracking
         /// 値変更の通知を行います。
         /// </summary>
         /// <param name="propertyName">プロパティ名。</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

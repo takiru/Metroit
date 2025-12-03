@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.0.0</VersionPrefix>
+    <VersionPrefix>4.2.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -15,9 +15,13 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Add
-      - Contracts.IDialogRequest, Contracts.IDialogResponse
-      - User32.ReleaseDC, WindowMessage.WM_SETFOCUS, WindowMessage.WM_KILLFOCUS
+      Add:
+      - PropertyChangedTrackingEventHandler, PropertyChangedTrackingEventArgs
+      Modify
+      - The PropertyChangedTracker can change how it determines the value to track by overriding GetPropertyValue().
+      - PropertyChangedTracker has been modified to raise the OnResetCompleted() and ResetCompleted events when Reset() is performed.
+      - PropertyChangedTracker has been modified to raise the OnTrackingPropertyValueChanged() and TrackingPropertyValueChanged events when TrackingProperty() is performed.
+      - TrackingObject's OnPropertyChanged() can now be overridden.
     </PackageReleaseNotes>
   </PropertyGroup>
 
