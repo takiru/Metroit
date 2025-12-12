@@ -13,12 +13,12 @@ namespace Metroit.ChangeTracking.Generic
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
+        public PropertyChangeTracker() : base() { }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
         /// <param name="instance">変更追跡を行うオブジェクト。</param>
         public PropertyChangeTracker(T instance) : base(instance) { }
-
-        public PropertyChangeTracker() : base()
-        {
-
-        }
     }
 }

@@ -3,8 +3,12 @@ using Metroit.ChangeTracking.Generic;
 
 namespace Metroit.ChangeTracking
 {
-    //public class StatefulTrackingObject<T> : TrackingObject<T>, IStateObject where T : class
-    public class StatefulTrackingObject<T, T2> : TrackingObject<T, T2>, IStateObject where T : class where T2 : PropertyChangeTracker<T>, new()
+    /// <summary>
+    /// 状態管理機能を備えた変更追跡が可能なオブジェクトを提供します。
+    /// </summary>
+    /// <typeparam name="T1">変更追跡対象となるオブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカーオブジェクト。</typeparam>
+    public class StatefulTrackingObject<T1, T2> : TrackingObject<T1, T2>, IStateObject where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
         private ItemState _state = ItemState.New;
 

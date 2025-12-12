@@ -1,31 +1,17 @@
 ﻿using Metroit.Annotations;
 using Metroit.ChangeTracking.Generic;
 using System.ComponentModel;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Metroit.ChangeTracking
 {
-    public class HogePropertyChangeTracker<T> : PropertyChangeTracker<T> where T : class
-    {
-        protected override object GetPropertyValue(PropertyInfo propertyInfo, object instance)
-        {
-            return base.GetPropertyValue(propertyInfo, instance);
-        }
-    }
-
-    public class Hoge : TrackingObject<Hoge, HogePropertyChangeTracker<Hoge>>
-    {
-
-    }
-
     /// <summary>
     /// 変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public class TrackingObject<T, T2> : IPropertyChangeTrackerProvider<T>, INotifyPropertyChanged where T : class where T2 : PropertyChangeTracker<T>, new()
+    /// <typeparam name="T1">変更追跡対象オブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカー。</typeparam>
+    public class TrackingObject<T1, T2> : IPropertyChangeTrackerProvider<T1>, INotifyPropertyChanged where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
-        //private PropertyChangeTracker<TrackingObject<T>> _changeTracker;
         private T2 _changeTracker;
 
         /// <summary>
@@ -37,7 +23,7 @@ namespace Metroit.ChangeTracking
         /// 変更追跡を取得します。
         /// </summary>
         [NoTracking]
-        public PropertyChangeTracker<T> ChangeTracker => _changeTracker;
+        public PropertyChangeTracker<T1> ChangeTracker => _changeTracker;
 
         [NoTracking]
         PropertyChangeTracker IPropertyChangeTrackerProvider.ChangeTracker => ChangeTracker;
@@ -47,7 +33,6 @@ namespace Metroit.ChangeTracking
         /// </summary>
         public TrackingObject()
         {
-            //_changeTracker = new PropertyChangeTracker<TrackingObject<T>>(this);
             _changeTracker = new T2();
             _changeTracker.SetInstance(this);
             PropertyChanged += TrackingObject_PropertyChanged;

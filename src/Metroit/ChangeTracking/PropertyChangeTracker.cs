@@ -21,17 +21,21 @@ namespace Metroit.ChangeTracking
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
+        public PropertyChangeTracker() { }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
         /// <param name="instance">変更追跡を行うオブジェクト。</param>
         public PropertyChangeTracker(object instance)
         {
             Instance = instance;
         }
 
-        public PropertyChangeTracker()
-        {
-            
-        }
-
+        /// <summary>
+        /// 変更追跡を行うオブジェクトを設定します。
+        /// </summary>
+        /// <param name="instance">変更追跡を行うオブジェクト。</param>
         internal void SetInstance(object instance)
         {
             Instance = instance;
