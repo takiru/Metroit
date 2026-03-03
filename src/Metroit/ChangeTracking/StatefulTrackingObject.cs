@@ -1,5 +1,6 @@
 ﻿using Metroit.Annotations;
 using Metroit.ChangeTracking.Generic;
+using System.ComponentModel;
 
 namespace Metroit.ChangeTracking
 {
@@ -21,7 +22,10 @@ namespace Metroit.ChangeTracking
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public StatefulTrackingObject() : base() { }
+        public StatefulTrackingObject() : base()
+        {
+            PropertyChanged += TrackingObject_PropertyChanged;
+        }
 
         /// <summary>
         /// 状態を変更します。
@@ -30,6 +34,56 @@ namespace Metroit.ChangeTracking
         public void ChangeState(ItemState state)
         {
             _state = state;
+        }
+
+        /// <summary>
+        /// 変更通知が行われたプロパティまたはフィールドを追跡する。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrackingObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            ChangeStateOnPropertyChanged();
+        }
+
+        /// <summary>
+        /// プロパティ変更時に状態を変更します。
+        /// </summary>
+        private void ChangeStateOnPropertyChanged()
+        {
+            // 新規オブジェクトの値を変更したとき
+            if (State == ItemState.New)
+            {
+                ChangeState(ItemState.NewModified);
+                return;
+            }
+
+            // 無変更オブジェクトの値を変更したとき
+            if (State == ItemState.NotModified)
+            {
+                ChangeState(ItemState.Modified);
+                return;
+            }
+
+            // 新規オブジェクトの値を編集して元の値に戻ったとき
+            if (State == ItemState.NewModified)
+            {
+                if (!ChangeTracker.IsSomethingValueChanged)
+                {
+                    ChangeState(ItemState.New);
+                }
+                return;
+            }
+
+            // 無変更オブジェクトの値を編集して元の値に戻ったとき
+            if (State == ItemState.Modified)
+            {
+                if (!ChangeTracker.IsSomethingValueChanged)
+                {
+                    ChangeState(ItemState.NotModified);
+                }
+                return;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Metroit.ChangeTracking
     /// <typeparam name="T2">トラッカー。</typeparam>
     public class TrackingObject<T1, T2> : IPropertyChangeTrackerProvider<T1>, INotifyPropertyChanged where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
-        private T2 _changeTracker;
+        private readonly T2 _changeTracker;
 
         /// <summary>
         /// プロパティの値が変更されたときに発生します。
@@ -64,17 +64,17 @@ namespace Metroit.ChangeTracking
             }
 
             field = value;
-            OnPropertyChanged(propertyName);
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
             return true;
         }
 
         /// <summary>
         /// 値変更の通知を行います。
         /// </summary>
-        /// <param name="propertyName">プロパティ名。</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <param name="e">プロパティ名。</param>
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, e);
         }
     }
 }
