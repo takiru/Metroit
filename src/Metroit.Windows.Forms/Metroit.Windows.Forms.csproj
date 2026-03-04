@@ -20,8 +20,18 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      Add:
+      Add
       - MetApplicationContext
+      Modify
+      - The MouseOverBackColor property has been replaced by the FocusedBackColor property.
+      - The MouseOverForeColor property has been replaced by the FocusedForeColor property.
+      - The MouseDownBackColor property has been replaced by the PressedBackColor property.
+      - The MouseDownForeColor property has been replaced by the PressedForeColor property.
+      - The MouseOver property has been replaced by the Focused property.
+      - The MouseDown property has been replaced by the Pressed property.
+      - For MetRoundedButton and MetRoundedRadioButton, the color is now reflected when the button has focus and when the space bar is pressed.
+      BugFix
+      - Fixed an issue where a NullReferenceException would occur when the overlay displayed by MetRoundedButton or MetRoundedRadioButton was hidden.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
