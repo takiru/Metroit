@@ -11,13 +11,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, byte? value)
         {
@@ -27,13 +27,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, int? value)
         {
@@ -43,13 +43,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, long? value)
         {
@@ -59,13 +59,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, sbyte? value)
         {
@@ -75,13 +75,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, short? value)
         {
@@ -91,13 +91,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, uint? value)
         {
@@ -107,13 +107,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, ulong? value)
         {
@@ -123,13 +123,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, ushort? value)
         {
@@ -140,13 +140,13 @@ namespace Metroit
         /// <see cref="Enum"/> 列挙型へ変換します。<br/>
         /// <paramref name="value"/> が <see cref="Enum"/> 列挙型の型へ変換できないとき、<see cref="Enum"/> 列挙型の定義名から求めようとします。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, string value)
         {
@@ -161,13 +161,12 @@ namespace Metroit
             }
 
             var enumType = Enum.GetUnderlyingType(type);
-            object convertedValue;
             try
             {
-                convertedValue = Convert.ChangeType(value, enumType);
+                var convertedValue = Convert.ChangeType(value, enumType);
                 if (!Enum.IsDefined(type, convertedValue))
                 {
-                    throw new ArgumentException($"{value} は {type.Name} に定義されていません。");
+                    throw new ArgumentException($"{value} is not defined for {type.Name}.");
                 }
             }
             catch
@@ -175,7 +174,7 @@ namespace Metroit
                 var enumNames = Enum.GetNames(type);
                 if (!enumNames.Contains(value))
                 {
-                    throw new ArgumentException($"{value} は {type.Name} に定義されていません。");
+                    throw new ArgumentException($"{value} is not defined for {type.Name}.");
                 }
             }
 
@@ -185,13 +184,13 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">変換結果となる <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException">
         /// <paramref name="type"/> が <see cref="Enum"/> 列挙型ではありません。 または<br/>
-        /// <paramref name="value"/> が <typeparamref name="T"/> に定義されていません。
+        /// <paramref name="value"/> が <paramref name="type"/> に定義されていません。
         /// </exception>
         public static object Parse(Type type, char? value)
         {
@@ -208,7 +207,7 @@ namespace Metroit
             var enumType = Enum.GetUnderlyingType(type);
             if (!Enum.IsDefined(type, Convert.ChangeType(value, enumType)))
             {
-                throw new ArgumentException($"{value} は {type.Name} に定義されていません。");
+                throw new ArgumentException($"{value} is not defined for {type.Name}.");
             }
 
             return Enum.ToObject(type, value.Value);
@@ -220,7 +219,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(byte? value) where T : Enum
         {
@@ -233,7 +232,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(int? value) where T : Enum
         {
@@ -246,7 +245,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(long? value) where T : Enum
         {
@@ -259,7 +258,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(sbyte? value) where T : Enum
         {
@@ -272,7 +271,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(short? value) where T : Enum
         {
@@ -285,7 +284,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(uint? value) where T : Enum
         {
@@ -298,7 +297,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(ulong? value) where T : Enum
         {
@@ -311,7 +310,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(ushort? value) where T : Enum
         {
@@ -325,7 +324,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(string value) where T : Enum
         {
@@ -338,7 +337,7 @@ namespace Metroit
         /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
         public static T Parse<T>(char? value) where T : Enum
         {
@@ -628,11 +627,11 @@ namespace Metroit
         /// <summary>
         /// <see cref="Enum"/> 列挙型へ変換します。
         /// </summary>
-        /// <typeparam name="T">変換結果となる <see cref="Enum"/> 列挙型。</typeparam>
+        /// <param name="type">検証を行う <see cref="Enum"/> 列挙型。</param>
         /// <param name="value">変換を行う値。</param>
         /// <returns>変換された <see cref="Enum"/> 列挙型。</returns>
-        /// <exception cref="ArgumentNullException"><see cref="value"/> が <see langword="null"/> です。</exception>
-        /// <exception cref="ArgumentException"><paramref name="value"/> が <typeparamref name="T"/> に定義されていません。</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> が <see langword="null"/> です。</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> が <paramref name="type"/> に定義されていません。</exception>
         private static object Parse(Type type, object value)
         {
             if (value == null)
@@ -647,7 +646,7 @@ namespace Metroit
 
             if (!Enum.IsDefined(type, value))
             {
-                throw new ArgumentException($"{value} は {type.Name} に定義されていません。");
+                throw new ArgumentException($"{value} is not defined for {type.Name}.");
             }
 
             return Enum.ToObject(type, value);

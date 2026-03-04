@@ -8,6 +8,9 @@ namespace Metroit.Annotations
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
     public class NoTrackingAttribute : Attribute
     {
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
         public NoTrackingAttribute()
         {
 
