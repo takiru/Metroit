@@ -315,43 +315,43 @@ namespace Metroit.Windows.Forms
                     new PropertyDefaultController("Checked.Default.BackColor",
                         () => CheckedAppearance.Default.BackColor != Color.FromArgb(13, 110, 253),
                         () => CheckedAppearance.Default.BackColor = Color.FromArgb(13, 110, 253)),
-                    new PropertyDefaultController("Checked.MouseOver.BackColor",
-                        () => CheckedAppearance.MouseOver.BackColor != Color.FromArgb(13, 110, 253),
-                        () => CheckedAppearance.MouseOver.BackColor = Color.FromArgb(13, 110, 253)),
-                    new PropertyDefaultController("Checked.MouseDown.BackColor",
-                        () => CheckedAppearance.MouseDown.BackColor != Color.FromArgb(12, 99, 228),
-                        () => CheckedAppearance.MouseDown.BackColor = Color.FromArgb(12, 99, 228)),
+                    new PropertyDefaultController("Checked.Focused.BackColor",
+                        () => CheckedAppearance.Focused.BackColor != Color.FromArgb(13, 110, 253),
+                        () => CheckedAppearance.Focused.BackColor = Color.FromArgb(13, 110, 253)),
+                    new PropertyDefaultController("Checked.Pressed.BackColor",
+                        () => CheckedAppearance.Pressed.BackColor != Color.FromArgb(12, 99, 228),
+                        () => CheckedAppearance.Pressed.BackColor = Color.FromArgb(12, 99, 228)),
                     new PropertyDefaultController("Unchecked.Default.BorderColor",
                         () => UncheckedAppearance.Default.BorderColor != Color.FromArgb(222, 226, 230),
                         () => UncheckedAppearance.Default.BorderColor = Color.FromArgb(222, 226, 230)),
                     new PropertyDefaultController("Unchecked.Default.BackColor",
                         () => UncheckedAppearance.Default.BackColor !=  Color.White,
                         () => UncheckedAppearance.Default.BackColor =  Color.White),
-                    new PropertyDefaultController("Unchecked.MouseOver.BorderColor",
-                        () => UncheckedAppearance.MouseOver.BorderColor != Color.FromArgb(222, 226, 230),
-                        () => UncheckedAppearance.MouseOver.BorderColor = Color.FromArgb(222, 226, 230)),
-                    new PropertyDefaultController("Unchecked.MouseOver.BackColor",
-                        () => UncheckedAppearance.MouseOver.BackColor != Color.White,
-                        () => UncheckedAppearance.MouseOver.BackColor = Color.White),
-                    new PropertyDefaultController("Unchecked.MouseDown.BorderColor",
-                        () => UncheckedAppearance.MouseDown.BorderColor != Color.FromArgb(121, 165, 229),
-                        () => UncheckedAppearance.MouseDown.BorderColor = Color.FromArgb(121, 165, 229)),
-                    new PropertyDefaultController("Unchecked.MouseDown.BackColor",
-                        () => UncheckedAppearance.MouseDown.BackColor != Color.FromArgb(230, 230, 230),
-                        () => UncheckedAppearance.MouseDown.BackColor = Color.FromArgb(230, 230, 230))
+                    new PropertyDefaultController("Unchecked.Focused.BorderColor",
+                        () => UncheckedAppearance.Focused.BorderColor != Color.FromArgb(222, 226, 230),
+                        () => UncheckedAppearance.Focused.BorderColor = Color.FromArgb(222, 226, 230)),
+                    new PropertyDefaultController("Unchecked.Focused.BackColor",
+                        () => UncheckedAppearance.Focused.BackColor != Color.White,
+                        () => UncheckedAppearance.Focused.BackColor = Color.White),
+                    new PropertyDefaultController("Unchecked.Pressed.BorderColor",
+                        () => UncheckedAppearance.Pressed.BorderColor != Color.FromArgb(121, 165, 229),
+                        () => UncheckedAppearance.Pressed.BorderColor = Color.FromArgb(121, 165, 229)),
+                    new PropertyDefaultController("Unchecked.Pressed.BackColor",
+                        () => UncheckedAppearance.Pressed.BackColor != Color.FromArgb(230, 230, 230),
+                        () => UncheckedAppearance.Pressed.BackColor = Color.FromArgb(230, 230, 230))
                 };
             }
 
             // 既定値
             CheckedAppearance.Default.BackColor = Color.FromArgb(13, 110, 253);
-            CheckedAppearance.MouseOver.BackColor = Color.FromArgb(13, 110, 253);
-            CheckedAppearance.MouseDown.BackColor = Color.FromArgb(12, 99, 228);
+            CheckedAppearance.Focused.BackColor = Color.FromArgb(13, 110, 253);
+            CheckedAppearance.Pressed.BackColor = Color.FromArgb(12, 99, 228);
             UncheckedAppearance.Default.BorderColor = Color.FromArgb(222, 226, 230);
             UncheckedAppearance.Default.BackColor = Color.White;
-            UncheckedAppearance.MouseOver.BorderColor = Color.FromArgb(222, 226, 230);
-            UncheckedAppearance.MouseOver.BackColor = Color.White;
-            UncheckedAppearance.MouseDown.BorderColor = Color.FromArgb(121, 165, 229);
-            UncheckedAppearance.MouseDown.BackColor = Color.FromArgb(230, 230, 230);
+            UncheckedAppearance.Focused.BorderColor = Color.FromArgb(222, 226, 230);
+            UncheckedAppearance.Focused.BackColor = Color.White;
+            UncheckedAppearance.Pressed.BorderColor = Color.FromArgb(121, 165, 229);
+            UncheckedAppearance.Pressed.BackColor = Color.FromArgb(230, 230, 230);
 
             Enter += MetCheckBox_Enter;
         }
@@ -1097,18 +1097,18 @@ namespace Metroit.Windows.Forms
             var fillColor = CheckedAppearance.Default.BackColor != Color.Empty ?
                 CheckedAppearance.Default.BackColor : DefaultBackColor;
 
-            if (_isMouseOver)
+            if (_isMouseOver || Focused)
             {
                 borderColor = DefaultBorderColor;
-                fillColor = CheckedAppearance.MouseOver.BackColor != Color.Empty ?
-                    CheckedAppearance.MouseOver.BackColor : DefaultBorderColor; ;
+                fillColor = CheckedAppearance.Focused.BackColor != Color.Empty ?
+                    CheckedAppearance.Focused.BackColor : DefaultBorderColor; ;
             }
 
             if (_isPressed)
             {
                 borderColor = DefaultBorderColor;
-                fillColor = CheckedAppearance.MouseDown.BackColor != Color.Empty ?
-                    CheckedAppearance.MouseDown.BackColor : DefaultBorderColor; ;
+                fillColor = CheckedAppearance.Pressed.BackColor != Color.Empty ?
+                    CheckedAppearance.Pressed.BackColor : DefaultBorderColor; ;
             }
 
             return new ElementColorCombination(borderColor, fillColor, Color.Empty);
@@ -1125,20 +1125,20 @@ namespace Metroit.Windows.Forms
             var fillColor = UncheckedAppearance.Default.BackColor != Color.Empty ?
                 UncheckedAppearance.Default.BackColor : DefaultBackColor;
 
-            if (_isMouseOver)
+            if (_isMouseOver || Focused)
             {
-                borderColor = UncheckedAppearance.MouseOver.BorderColor != Color.Empty ?
-                    UncheckedAppearance.MouseOver.BorderColor : DefaultBorderColor;
-                fillColor = UncheckedAppearance.MouseOver.BackColor != Color.Empty ?
-                    UncheckedAppearance.MouseOver.BackColor : DefaultBorderColor; ;
+                borderColor = UncheckedAppearance.Focused.BorderColor != Color.Empty ?
+                    UncheckedAppearance.Focused.BorderColor : DefaultBorderColor;
+                fillColor = UncheckedAppearance.Focused.BackColor != Color.Empty ?
+                    UncheckedAppearance.Focused.BackColor : DefaultBorderColor; ;
             }
 
             if (_isPressed)
             {
-                borderColor = UncheckedAppearance.MouseDown.BorderColor != Color.Empty ?
-                    UncheckedAppearance.MouseDown.BorderColor : DefaultBorderColor; ;
-                fillColor = UncheckedAppearance.MouseDown.BackColor != Color.Empty ?
-                    UncheckedAppearance.MouseDown.BackColor : DefaultBorderColor; ;
+                borderColor = UncheckedAppearance.Pressed.BorderColor != Color.Empty ?
+                    UncheckedAppearance.Pressed.BorderColor : DefaultBorderColor; ;
+                fillColor = UncheckedAppearance.Pressed.BackColor != Color.Empty ?
+                    UncheckedAppearance.Pressed.BackColor : DefaultBorderColor; ;
             }
 
             return new ElementColorCombination(borderColor, fillColor, Color.Empty);

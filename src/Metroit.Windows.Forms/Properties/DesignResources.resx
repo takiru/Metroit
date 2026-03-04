@@ -1182,17 +1182,17 @@
   <data name="CheckBoxAppearanceDefault.ja" xml:space="preserve">
     <value>既定の外観を取得または設定します。</value>
   </data>
-  <data name="CheckBoxAppearanceMouseDown" xml:space="preserve">
-    <value>Gets or sets the appearance when the mouse is clicked.</value>
+  <data name="CheckBoxAppearancePressed" xml:space="preserve">
+    <value>Gets or sets the appearance when the spacebar is pressed or the mouse is clicked.</value>
   </data>
-  <data name="CheckBoxAppearanceMouseDown.ja" xml:space="preserve">
-    <value>マウスがクリックされたときの外観を取得または設定します。</value>
+  <data name="CheckBoxAppearancePressed.ja" xml:space="preserve">
+    <value>スペースキーが押されたか、マウスがクリックされたときの外観を取得または設定します。</value>
   </data>
-  <data name="CheckBoxAppearanceMouseOver" xml:space="preserve">
-    <value>Gets or sets the appearance when the mouse cursor enters the region.</value>
+  <data name="CheckBoxAppearanceFocused" xml:space="preserve">
+    <value>Gets or sets the appearance when it has focus or when the mouse cursor is within the area.</value>
   </data>
-  <data name="CheckBoxAppearanceMouseOver.ja" xml:space="preserve">
-    <value>マウスカーソルが領域内に入ったときの外観を取得または設定します。</value>
+  <data name="CheckBoxAppearanceFocused.ja" xml:space="preserve">
+    <value>フォーカスを有しているか、マウスカーソルが領域内に入ったときの外観を取得または設定します。</value>
   </data>
   <data name="CheckBoxColorAppearanceBackColor" xml:space="preserve">
     <value>Gets or sets the background color.</value>
@@ -1230,29 +1230,29 @@
   <data name="ExtendsAppearanceBaseFocusOverlayWidth.ja" xml:space="preserve">
     <value>フォーカスを得た時に表示されるオーバーレイの幅を取得または設定します。</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseDownBackColor" xml:space="preserve">
-    <value>Gets or sets the color of the client area of ​​a button when the mouse is clicked within the bounds of the control.</value>
+  <data name="ExtendsAppearanceBasePressedBackColor" xml:space="preserve">
+    <value>Gets or sets the color of the client area of ​​the button when the spacebar is pressed or the mouse is clicked within the control's bounds.</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseDownBackColor.ja" xml:space="preserve">
-    <value>マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。</value>
+  <data name="ExtendsAppearanceBasePressedBackColor.ja" xml:space="preserve">
+    <value>スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseDownForeColor" xml:space="preserve">
-    <value>Gets or sets the foreground color when the mouse is clicked within the bounds of the control.</value>
+  <data name="ExtendsAppearanceBasePressedForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color when the spacebar is pressed or the mouse is clicked within the control's bounds.</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseDownForeColor.ja" xml:space="preserve">
-    <value>マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。</value>
+  <data name="ExtendsAppearanceBasePressedForeColor.ja" xml:space="preserve">
+    <value>スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseOverBackColor" xml:space="preserve">
-    <value>Gets or sets the color of the client area of ​​the button when the mouse pointer is within the bounds of the control.</value>
+  <data name="ExtendsAppearanceBaseFocusedBackColor" xml:space="preserve">
+    <value>Gets or sets the color of the client area of ​​the button when it has focus or the mouse pointer is within the control's bounds.</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseOverBackColor.ja" xml:space="preserve">
-    <value>マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。</value>
+  <data name="ExtendsAppearanceBaseFocusedBackColor.ja" xml:space="preserve">
+    <value>フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseOverForeColor" xml:space="preserve">
-    <value>Gets or sets the foreground color when the mouse pointer is within the bounds of the control.</value>
+  <data name="ExtendsAppearanceBaseFocusedForeColor" xml:space="preserve">
+    <value>Gets or sets the foreground color when the control has focus or the mouse pointer is within its bounds.</value>
   </data>
-  <data name="ExtendsAppearanceBaseMouseOverForeColor.ja" xml:space="preserve">
-    <value>マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。</value>
+  <data name="ExtendsAppearanceBaseFocusedForeColor.ja" xml:space="preserve">
+    <value>フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。</value>
   </data>
   <data name="MetCheckBoxCheckBoxRadius" xml:space="preserve">
     <value>Gets or sets the corner radius for drawing check boxes.</value>

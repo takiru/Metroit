@@ -94,9 +94,9 @@ namespace Metroit.Windows.Forms
 
             if (_focusOverlayWindow != null && !_focusOverlayWindow.IsDisposed)
             {
-                _focusOverlayWindow.Hide();
-                _focusOverlayWindow.Close();
-                _focusOverlayWindow.Dispose();
+                _focusOverlayWindow?.Hide();
+                _focusOverlayWindow?.Close();
+                _focusOverlayWindow?.Dispose();
                 _focusOverlayWindow = null;
             }
         }

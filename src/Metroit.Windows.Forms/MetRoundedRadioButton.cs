@@ -239,28 +239,30 @@ namespace Metroit.Windows.Forms
 
             if (Checked)
             {
-                switch (_focusOverlayController.MouseState)
-                {
-                    case MouseState.Hover:
-                        return ExtendsAppearance.MouseOverBackColor;
-                    case MouseState.Pressed:
-                        return ExtendsAppearance.MouseDownBackColor;
-                    default:
-                        return _checkedBackColor;
-                }
+                return _checkedBackColor;
             }
-            else
+
+            if (_focusOverlayController.IsSpaceKeyDown)
             {
-                switch (_focusOverlayController.MouseState)
-                {
-                    case MouseState.Hover:
-                        return ExtendsAppearance.MouseOverBackColor;
-                    case MouseState.Pressed:
-                        return ExtendsAppearance.MouseDownBackColor;
-                    default:
-                        return BackColor;
-                }
+                return ExtendsAppearance.PressedBackColor;
             }
+
+            if (_focusOverlayController.MouseState == MouseState.Pressed)
+            {
+                return ExtendsAppearance.PressedBackColor;
+            }
+
+            if (_focusOverlayController.MouseState == MouseState.Hover)
+            {
+                return ExtendsAppearance.FocusedBackColor;
+            }
+
+            if (Focused)
+            {
+                return ExtendsAppearance.FocusedBackColor;
+            }
+
+            return BackColor;
         }
 
         /// <summary>
@@ -294,28 +296,30 @@ namespace Metroit.Windows.Forms
 
             if (Checked)
             {
-                switch (_focusOverlayController.MouseState)
-                {
-                    case MouseState.Hover:
-                        return ExtendsAppearance.MouseOverForeColor;
-                    case MouseState.Pressed:
-                        return ExtendsAppearance.MouseDownForeColor;
-                    default:
-                        return _checkedForeColor;
-                }
+                return _checkedForeColor;
             }
-            else
+
+            if (_focusOverlayController.IsSpaceKeyDown)
             {
-                switch (_focusOverlayController.MouseState)
-                {
-                    case MouseState.Hover:
-                        return ExtendsAppearance.MouseOverForeColor;
-                    case MouseState.Pressed:
-                        return ExtendsAppearance.MouseDownForeColor;
-                    default:
-                        return ForeColor;
-                }
+                return ExtendsAppearance.PressedForeColor;
             }
+
+            if (_focusOverlayController.MouseState == MouseState.Pressed)
+            {
+                return ExtendsAppearance.PressedForeColor;
+            }
+
+            if (_focusOverlayController.MouseState == MouseState.Hover)
+            {
+                return ExtendsAppearance.FocusedForeColor;
+            }
+
+            if (Focused)
+            {
+                return ExtendsAppearance.FocusedForeColor;
+            }
+
+            return ForeColor;
         }
 
         /// <summary>

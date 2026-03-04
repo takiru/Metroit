@@ -385,38 +385,38 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   Gets or sets the appearance when the mouse is clicked. に類似しているローカライズされた文字列を検索します。
+        ///   Gets or sets the appearance when it has focus or when the mouse cursor is within the area. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string CheckBoxAppearanceMouseDown {
+        internal static string CheckBoxAppearanceFocused {
             get {
-                return ResourceManager.GetString("CheckBoxAppearanceMouseDown", resourceCulture);
+                return ResourceManager.GetString("CheckBoxAppearanceFocused", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   マウスがクリックされたときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   フォーカスを有しているか、マウスカーソルが領域内に入ったときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string CheckBoxAppearanceMouseDown_ja {
+        internal static string CheckBoxAppearanceFocused_ja {
             get {
-                return ResourceManager.GetString("CheckBoxAppearanceMouseDown.ja", resourceCulture);
+                return ResourceManager.GetString("CheckBoxAppearanceFocused.ja", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Gets or sets the appearance when the mouse cursor enters the region. に類似しているローカライズされた文字列を検索します。
+        ///   Gets or sets the appearance when the spacebar is pressed or the mouse is clicked. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string CheckBoxAppearanceMouseOver {
+        internal static string CheckBoxAppearancePressed {
             get {
-                return ResourceManager.GetString("CheckBoxAppearanceMouseOver", resourceCulture);
+                return ResourceManager.GetString("CheckBoxAppearancePressed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   マウスカーソルが領域内に入ったときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   スペースキーが押されたか、マウスがクリックされたときの外観を取得または設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string CheckBoxAppearanceMouseOver_ja {
+        internal static string CheckBoxAppearancePressed_ja {
             get {
-                return ResourceManager.GetString("CheckBoxAppearanceMouseOver.ja", resourceCulture);
+                return ResourceManager.GetString("CheckBoxAppearancePressed.ja", resourceCulture);
             }
         }
         
@@ -1465,6 +1465,42 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
+        ///   Gets or sets the color of the client area of ​​the button when it has focus or the mouse pointer is within the control&apos;s bounds. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusedBackColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusedBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusedBackColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusedBackColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gets or sets the foreground color when the control has focus or the mouse pointer is within its bounds. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusedForeColor {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusedForeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExtendsAppearanceBaseFocusedForeColor_ja {
+            get {
+                return ResourceManager.GetString("ExtendsAppearanceBaseFocusedForeColor.ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Gets or sets the color of the overlay that is displayed when the control has focus. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ExtendsAppearanceBaseFocusOverlayColor {
@@ -1501,74 +1537,38 @@ namespace Metroit.Windows.Forms.Properties {
         }
         
         /// <summary>
-        ///   Gets or sets the color of the client area of ​​a button when the mouse is clicked within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        ///   Gets or sets the color of the client area of ​​the button when the spacebar is pressed or the mouse is clicked within the control&apos;s bounds. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ExtendsAppearanceBaseMouseDownBackColor {
+        internal static string ExtendsAppearanceBasePressedBackColor {
             get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownBackColor", resourceCulture);
+                return ResourceManager.GetString("ExtendsAppearanceBasePressedBackColor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ExtendsAppearanceBaseMouseDownBackColor_ja {
+        internal static string ExtendsAppearanceBasePressedBackColor_ja {
             get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownBackColor.ja", resourceCulture);
+                return ResourceManager.GetString("ExtendsAppearanceBasePressedBackColor.ja", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Gets or sets the foreground color when the mouse is clicked within the bounds of the control. に類似しているローカライズされた文字列を検索します。
+        ///   Gets or sets the foreground color when the spacebar is pressed or the mouse is clicked within the control&apos;s bounds. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ExtendsAppearanceBaseMouseDownForeColor {
+        internal static string ExtendsAppearanceBasePressedForeColor {
             get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownForeColor", resourceCulture);
+                return ResourceManager.GetString("ExtendsAppearanceBasePressedForeColor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
+        ///   スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ExtendsAppearanceBaseMouseDownForeColor_ja {
+        internal static string ExtendsAppearanceBasePressedForeColor_ja {
             get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseDownForeColor.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Gets or sets the color of the client area of ​​the button when the mouse pointer is within the bounds of the control. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ExtendsAppearanceBaseMouseOverBackColor {
-            get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverBackColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ExtendsAppearanceBaseMouseOverBackColor_ja {
-            get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverBackColor.ja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Gets or sets the foreground color when the mouse pointer is within the bounds of the control. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ExtendsAppearanceBaseMouseOverForeColor {
-            get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverForeColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ExtendsAppearanceBaseMouseOverForeColor_ja {
-            get {
-                return ResourceManager.GetString("ExtendsAppearanceBaseMouseOverForeColor.ja", resourceCulture);
+                return ResourceManager.GetString("ExtendsAppearanceBasePressedForeColor.ja", resourceCulture);
             }
         }
         

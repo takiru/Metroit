@@ -332,17 +332,27 @@ namespace Metroit.Windows.Forms
                 return ControlPaint.Light(ForeColor);
             }
 
-            switch (_focusOverlayController.MouseState)
+            if (_focusOverlayController.IsSpaceKeyDown)
             {
-                case MouseState.Hover:
-                    return ExtendsAppearance.MouseOverForeColor;
-
-                case MouseState.Pressed:
-                    return ExtendsAppearance.MouseDownForeColor;
-
-                default:
-                    return ForeColor;
+                return ExtendsAppearance.PressedForeColor;
             }
+
+            if (_focusOverlayController.MouseState == MouseState.Pressed)
+            {
+                return ExtendsAppearance.PressedForeColor;
+            }
+
+            if (_focusOverlayController.MouseState == MouseState.Hover)
+            {
+                return ExtendsAppearance.FocusedForeColor;
+            }
+
+            if (Focused)
+            {
+                return ExtendsAppearance.FocusedForeColor;
+            }
+
+            return ForeColor;
         }
     }
 }

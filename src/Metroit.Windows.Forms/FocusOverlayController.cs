@@ -28,6 +28,22 @@ namespace Metroit.Windows.Forms
             Control.MouseLeave += (s, e) => { MouseState = MouseState.Normal; Control.Invalidate(); };
             Control.MouseDown += (s, e) => { MouseState = MouseState.Pressed; Control.Invalidate(); };
             Control.MouseUp += (s, e) => { MouseState = MouseState.Hover; Control.Invalidate(); };
+            Control.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Space)
+                {
+                    IsSpaceKeyDown = true;
+                    Control.Invalidate();
+                }
+            };
+            Control.KeyUp += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Space)
+                {
+                    IsSpaceKeyDown = false;
+                    Control.Invalidate();
+                }
+            };
             Control.Resize += (s, e) => { Control.Invalidate(); };
             Control.GotFocus += (s, e) => { Control.Invalidate(); };
             Control.LostFocus += (s, e) => { Control.Invalidate(); };
@@ -50,6 +66,12 @@ namespace Metroit.Windows.Forms
 
             GetCurrentFillColorDelegate = getCurrentFillColor;
         }
+
+        /// <summary>
+        /// スペースキーが押されているかどうかを示す値を取得します。
+        /// </summary>
+        public bool IsSpaceKeyDown { get; private set; } = false;
+
         /// <summary>
         /// 現在のマウス状態。
         /// </summary>
@@ -320,17 +342,27 @@ namespace Metroit.Windows.Forms
                 return ControlPaint.LightLight(Control.BackColor);
             }
 
-            switch (MouseState)
+            if (IsSpaceKeyDown)
             {
-                case MouseState.Hover:
-                    return _extendsAppearance.MouseOverBackColor;
-
-                case MouseState.Pressed:
-                    return _extendsAppearance.MouseDownBackColor;
-
-                default:
-                    return Control.BackColor;
+                return _extendsAppearance.PressedBackColor;
             }
+
+            if (MouseState == MouseState.Pressed)
+            {
+                return _extendsAppearance.PressedBackColor;
+            }
+
+            if (MouseState == MouseState.Hover)
+            {
+                return _extendsAppearance.FocusedBackColor;
+            }
+
+            if (Control.Focused)
+            {
+                return _extendsAppearance.FocusedBackColor;
+            }
+
+            return Control.BackColor;
         }
     }
 }

@@ -48,45 +48,45 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        private CheckedColorAppearance _mouseOverAppearance;
+        private CheckedColorAppearance _focusedAppearance;
 
         /// <summary>
-        /// マウスカーソルが領域内に入ったときの外観を取得または設定します。
+        /// フォーカスを有しているか、マウスカーソルが領域内に入ったときの外観を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [MetDescription("CheckBoxAppearanceMouseOver")]
+        [MetDescription("CheckBoxAppearanceFocused")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CheckedColorAppearance MouseOver
+        public CheckedColorAppearance Focused
         {
             get
             {
-                if (_mouseOverAppearance == null)
+                if (_focusedAppearance == null)
                 {
-                    _mouseOverAppearance = new CheckedColorAppearance(Owner, $"{Key}.{nameof(MouseOver)}", DefaultControllers);
+                    _focusedAppearance = new CheckedColorAppearance(Owner, $"{Key}.{nameof(Focused)}", DefaultControllers);
                 }
-                return _mouseOverAppearance;
+                return _focusedAppearance;
             }
         }
 
-        private CheckedColorAppearance _mouseDownAppearance;
+        private CheckedColorAppearance _pressedAppearance;
 
         /// <summary>
-        /// マウスがクリックされたときの外観を取得または設定します。
+        /// スペースキーが押されたか、マウスがクリックされたときの外観を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [MetCategory("MetAppearance")]
-        [MetDescription("CheckBoxAppearanceMouseDown")]
+        [MetDescription("CheckBoxAppearancePressed")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public CheckedColorAppearance MouseDown
+        public CheckedColorAppearance Pressed
         {
             get
             {
-                if (_mouseDownAppearance == null)
+                if (_pressedAppearance == null)
                 {
-                    _mouseDownAppearance = new CheckedColorAppearance(Owner, $"{Key}.{nameof(MouseDown)}", DefaultControllers);
+                    _pressedAppearance = new CheckedColorAppearance(Owner, $"{Key}.{nameof(Pressed)}", DefaultControllers);
                 }
-                return _mouseDownAppearance;
+                return _pressedAppearance;
             }
         }
 

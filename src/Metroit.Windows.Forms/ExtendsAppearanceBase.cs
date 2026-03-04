@@ -83,19 +83,19 @@ namespace Metroit.Windows.Forms
             }
         }
 
-        private Color _mouseOverBackColor = Color.FromArgb(11, 94, 215);
+        private Color _focusedBackColor = Color.FromArgb(11, 94, 215);
 
         /// <summary>
-        /// マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。
+        /// フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、ボタンのクライアント領域の色を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "11, 94, 215")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [MetCategory("MetAppearance")]
-        [MetDescription("ExtendsAppearanceBaseMouseOverBackColor")]
-        public virtual Color MouseOverBackColor
+        [MetDescription("ExtendsAppearanceBaseFocusedBackColor")]
+        public virtual Color FocusedBackColor
         {
-            get => _mouseOverBackColor;
+            get => _focusedBackColor;
             set
             {
                 if (value.Equals(Color.Transparent) || value.Equals(Color.Empty))
@@ -103,27 +103,27 @@ namespace Metroit.Windows.Forms
                     throw new NotSupportedException(ExceptionResources.GetString("NotSupportedColor"));
                 }
 
-                if (_mouseOverBackColor != value)
+                if (_focusedBackColor != value)
                 {
-                    _mouseOverBackColor = value;
+                    _focusedBackColor = value;
                     Owner.Invalidate();
                 }
             }
         }
 
-        private Color _mouseOverForeColor = Color.White;
+        private Color _focusedForeColor = Color.White;
 
         /// <summary>
-        /// マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。
+        /// フォーカスを有しているか、マウス ポインターがコントロールの境界内にあるときの、前景色を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "White")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [MetCategory("MetAppearance")]
-        [MetDescription("ExtendsAppearanceBaseMouseOverForeColor")]
-        public virtual Color MouseOverForeColor
+        [MetDescription("ExtendsAppearanceBaseFocusedForeColor")]
+        public virtual Color FocusedForeColor
         {
-            get => _mouseOverForeColor;
+            get => _focusedForeColor;
             set
             {
                 if (value.Equals(Color.Transparent) || value.Equals(Color.Empty))
@@ -131,27 +131,27 @@ namespace Metroit.Windows.Forms
                     throw new NotSupportedException(ExceptionResources.GetString("NotSupportedColor"));
                 }
 
-                if (_mouseOverForeColor != value)
+                if (_focusedForeColor != value)
                 {
-                    _mouseOverForeColor = value;
+                    _focusedForeColor = value;
                     Owner.Invalidate();
                 }
             }
         }
 
-        private Color _mouseDownBackColor = Color.FromArgb(10, 88, 202);
+        private Color _pressedBackColor = Color.FromArgb(10, 88, 202);
 
         /// <summary>
-        /// マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。
+        /// スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、ボタンのクライアント領域の色を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "10, 88, 202")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [MetCategory("MetAppearance")]
-        [MetDescription("ExtendsAppearanceBaseMouseDownBackColor")]
-        public virtual Color MouseDownBackColor
+        [MetDescription("ExtendsAppearanceBasePressedBackColor")]
+        public virtual Color PressedBackColor
         {
-            get => _mouseDownBackColor;
+            get => _pressedBackColor;
             set
             {
                 if (value.Equals(Color.Transparent) || value.Equals(Color.Empty))
@@ -159,27 +159,27 @@ namespace Metroit.Windows.Forms
                     throw new NotSupportedException(ExceptionResources.GetString("NotSupportedColor"));
                 }
 
-                if (_mouseDownBackColor != value)
+                if (_pressedBackColor != value)
                 {
-                    _mouseDownBackColor = value;
+                    _pressedBackColor = value;
                     Owner.Invalidate();
                 }
             }
         }
 
-        private Color _mouseDownForeColor = Color.White;
+        private Color _pressedForeColor = Color.White;
 
         /// <summary>
-        /// マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。
+        /// スペースキーが押されたか、マウスがコントロールの境界内でクリックされたときの、前景色を取得または設定します。
         /// </summary>
         [Browsable(true)]
         [DefaultValue(typeof(Color), "White")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [MetCategory("MetAppearance")]
-        [MetDescription("ExtendsAppearanceBaseMouseDownForeColor")]
-        public virtual Color MouseDownForeColor
+        [MetDescription("ExtendsAppearanceBasePressedForeColor")]
+        public virtual Color PressedForeColor
         {
-            get => _mouseDownForeColor;
+            get => _pressedForeColor;
             set
             {
                 if (value.Equals(Color.Transparent) || value.Equals(Color.Empty))
@@ -187,9 +187,9 @@ namespace Metroit.Windows.Forms
                     throw new NotSupportedException(ExceptionResources.GetString("NotSupportedColor"));
                 }
 
-                if (_mouseDownForeColor != value)
+                if (_pressedForeColor != value)
                 {
-                    _mouseDownForeColor = value;
+                    _pressedForeColor = value;
                     Owner.Invalidate();
                 }
             }
