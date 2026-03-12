@@ -22,10 +22,7 @@ namespace Metroit.ChangeTracking
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public StatefulTrackingObject() : base()
-        {
-            PropertyChanged += TrackingObject_PropertyChanged;
-        }
+        public StatefulTrackingObject() : base() { }
 
         /// <summary>
         /// 状態を変更します。
@@ -39,11 +36,11 @@ namespace Metroit.ChangeTracking
         /// <summary>
         /// 変更通知が行われたプロパティまたはフィールドを追跡する。
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TrackingObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             ChangeStateOnPropertyChanged();
+            base.OnPropertyChanged(e);
         }
 
         /// <summary>

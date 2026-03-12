@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.0</VersionPrefix>
+    <VersionPrefix>4.1.1</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -15,20 +15,9 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Add
-      - PropertyChangedTrackingEventHandler, PropertyChangedTrackingEventArgs
       Modify
-      - The PropertyChangedTracker can change how it determines the value to track by overriding GetPropertyValue().
-      - PropertyChangedTracker has been modified to raise the OnResetCompleted() and ResetCompleted events when Reset() is performed.
-      - PropertyChangedTracker has been modified to raise the OnTrackingPropertyValueChanged() and TrackingPropertyValueChanged events when TrackingProperty() is performed.
-      - PropertyChangedTracker's ContainsChangedProperty() has been replaced by HasChanged().
-      - PropertyChangedTracker now has a SetInstance() method, which is useful when a constructor with arguments is not available.
-      - The TrackingObject has been modified to explicitly specify a PropertyChangeTracker.
-      - TrackingObject's OnPropertyChanged() can now be overridden.
-      - The StatefulTrackingObject has been modified to explicitly specify a PropertyChangeTracker.
-      - When a row is added using Add() or Insert(), TrackingList now adds the added item as ItemState.NotModified if the added item was ItemState.New.
-      - TrackingList no longer changes the ItemState when content within an item changes. To change the ItemState, the specified item must provide it.
-      - Improved the accuracy of Unicode detection for StringExtensions.GetTextCount() and StringExtensions.IsFullWidth().
+      - The control required for property change notifications within TrackingObject has been modified to be controlled before OnPropertyChanged() occurs.
+      - In StatefulTrackingObject, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

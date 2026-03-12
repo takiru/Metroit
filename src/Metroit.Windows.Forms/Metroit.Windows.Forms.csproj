@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.0</VersionPrefix>
+    <VersionPrefix>4.1.1</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -20,18 +20,8 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      Add
-      - MetApplicationContext
       Modify
-      - The MouseOverBackColor property has been replaced by the FocusedBackColor property.
-      - The MouseOverForeColor property has been replaced by the FocusedForeColor property.
-      - The MouseDownBackColor property has been replaced by the PressedBackColor property.
-      - The MouseDownForeColor property has been replaced by the PressedForeColor property.
-      - The MouseOver property has been replaced by the Focused property.
-      - The MouseDown property has been replaced by the Pressed property.
-      - For MetRoundedButton and MetRoundedRadioButton, the color is now reflected when the button has focus and when the space bar is pressed.
-      BugFix
-      - Fixed an issue where a NullReferenceException would occur when the overlay displayed by MetRoundedButton or MetRoundedRadioButton was hidden.
+      - Dependent packages have been updated to Metroit 4.1.1.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
