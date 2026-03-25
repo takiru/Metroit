@@ -30,7 +30,26 @@ namespace Metroit.ChangeTracking
         /// <param name="state">状態。</param>
         public void ChangeState(ItemState state)
         {
+            if (_state == state)
+            {
+                return;
+            }
             _state = state;
+            OnStateChanged(new StateChangedEventArgs(_state));
+        }
+
+        /// <summary>
+        /// データの状態に変更があったときに発生します。
+        /// </summary>
+        public event StateChangedEventHandler StateChanged;
+
+        /// <summary>
+        /// <see cref="StateChanged"/> イベントを発生させます。
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnStateChanged(StateChangedEventArgs e)
+        {
+            StateChanged?.Invoke(this, e);
         }
 
         /// <summary>

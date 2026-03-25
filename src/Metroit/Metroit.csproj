@@ -5,7 +5,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides some auxiliary instructions.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.1</VersionPrefix>
+    <VersionPrefix>4.1.2</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -15,9 +15,10 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Modify
-      - The control required for property change notifications within TrackingObject has been modified to be controlled before OnPropertyChanged() occurs.
-      - In StatefulTrackingObject, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
+      Add
+      - The IStateObject.StateChanged event has been added.
+      - The StatefulTrackingObject.OnStateChanged method has been added.
+      - The StatefulTrackingObject.StateChanged event has been added.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

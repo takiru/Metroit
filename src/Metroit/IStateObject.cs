@@ -15,5 +15,10 @@
         /// </summary>
         /// <param name="state">変更する状態。</param>
         void ChangeState(ItemState state);
+
+        /// <summary>
+        /// データの状態に変更があったときに発生します。
+        /// </summary>
+        event StateChangedEventHandler StateChanged;
     }
 }

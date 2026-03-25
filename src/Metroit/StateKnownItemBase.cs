@@ -60,7 +60,7 @@ namespace Metroit
         /// <summary>
         /// アイテムを修正データ扱いにします。
         /// </summary>
-        public void ModifedItem()
+        public void ModifiedItem()
         {
             State = ItemState.Modified;
         }
@@ -68,7 +68,7 @@ namespace Metroit
         /// <summary>
         /// アイテムを未修正データ扱いにします。
         /// </summary>
-        public void NotModifedItem()
+        public void NotModifiedItem()
         {
             State = ItemState.NotModified;
         }
@@ -113,7 +113,7 @@ namespace Metroit
                         break;
 
                     case ItemState.NotModified:
-                        ModifedItem();
+                        ModifiedItem();
                         break;
                 }
             }

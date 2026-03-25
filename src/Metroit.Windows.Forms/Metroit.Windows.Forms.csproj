@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.1</VersionPrefix>
+    <VersionPrefix>4.1.2</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -21,7 +21,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Modify
-      - Dependent packages have been updated to Metroit 4.1.1.
+      - Dependent packages have been updated to Metroit 4.1.2.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
