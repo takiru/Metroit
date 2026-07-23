@@ -82,7 +82,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         public void Dispose()
         {
-            _focusOverlay.Dispose();
+            _focusOverlay?.Dispose();
         }
 
         /// <summary>
