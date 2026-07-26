@@ -98,7 +98,7 @@ namespace Metroit.Windows.Forms
             }
 
             // フォーカス取得時の色に変更
-            this.changeFocusColor();
+            ChangeDisplayColor();
 
             // テキストの反転
             // マウスクリックによるフォーカス取得は、MouseDownイベントが走行したタイミングで選択が解除されてしまうため、MouseDownイベントで実施する
@@ -119,7 +119,7 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetTextBox_Leave(object sender, EventArgs e)
         {
-            this.changeBaseColor();
+            ChangeDisplayColor();
         }
 
         /// <summary>

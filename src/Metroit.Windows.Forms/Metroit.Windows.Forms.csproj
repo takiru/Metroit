@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.2.1</VersionPrefix>
+    <VersionPrefix>4.1.2.2</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -21,7 +21,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Bugfix
-      - Resolved an issue where Dispose() would fail for MetRoundedButton and MetRoundedRadioButton due to overlay control when the screen was closed before it was displayed.
+      - Fixed an issue in MetNumericTextBox where changes to the value were not immediately reflected in the Value property.
+      - Fixed an issue in MetNumericTextBox where NegativeForeColor was not applied when focus was lost via mouse interaction.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

@@ -79,7 +79,6 @@ namespace Metroit.Windows.Forms
                 base.Text = "";
             }
             this.textFormatting = false;
-            this.ChangeDisplayColor();
             if (!this.FocusSelect)
             {
                 this.SelectionStart = this.leavedSelectionStart;
@@ -157,10 +156,10 @@ namespace Metroit.Windows.Forms
             base.Text = this.createFormattedText(this.value);
             this.textFormatting = false;
 
-            this.ChangeDisplayColor();
-
             base.OnLostFocus(e);
         }
+
+        private bool handledTextChanged = false;
 
         /// <summary>
         /// テキストが変わったらValueに値を設定し、背景色・文字色を変更する。
@@ -171,26 +170,47 @@ namespace Metroit.Windows.Forms
         {
             if (this.valueDirectSetting)
             {
+                return;
+            }
+
+            if (base.Text == "")
+            {
+                if (this.AcceptNull)
+                {
+                    handledTextChanged = true;
+                    Value = null;
+                }
                 this.ChangeDisplayColor();
                 return;
             }
 
+            // 小数点の始まりは、decimalではないことと、Value値の変更は発生しない
+            if (base.Text.Length == 1 && base.Text == ".")
+            {
+                this.ChangeDisplayColor();
+                return;
+            }
+
+            // マイナス記号が入ってきたとき
             decimal value;
-            if (base.Text == "" || !decimal.TryParse(base.Text, out value))
+            if (!decimal.TryParse(base.Text, out value))
             {
                 if (this.AcceptNull)
                 {
-                    this.value = null;
+                    handledTextChanged = true;
+                    Value = null;
                 }
                 else
                 {
-                    this.value = 0;
+                    handledTextChanged = true;
+                    Value = MinValue;
                 }
+                this.ChangeDisplayColor();
+                return;
             }
-            else
-            {
-                this.value = value;
-            }
+
+            handledTextChanged = true;
+            Value = value;
             this.ChangeDisplayColor();
         }
 
@@ -489,8 +509,11 @@ namespace Metroit.Windows.Forms
                 }
 
                 textFormatting = true;
-                var formattedText = createFormattedText(value);
-                base.Text = formattedText;
+                if (handledTextChanged)
+                {
+                    var formattedText = createFormattedText(value);
+                    base.Text = formattedText;
+                }
 
                 if (value != internalValue)
                 {
@@ -542,7 +565,11 @@ namespace Metroit.Windows.Forms
                 this.textFormatting = true;
                 this.value = value;
                 this.internalValue = value;
-                base.Text = this.createFormattedText(value);
+                if (!handledTextChanged)
+                {
+                    base.Text = this.createFormattedText(value);
+                }
+                handledTextChanged = false;
                 OnValueChanged(new EventArgs());
                 this.textFormatting = false;
                 this.valueDirectSetting = false;
