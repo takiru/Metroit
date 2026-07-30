@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.2.2</VersionPrefix>
+    <VersionPrefix>4.1.2.3</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -21,8 +21,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
       Bugfix
-      - Fixed an issue in MetNumericTextBox where changes to the value were not immediately reflected in the Value property.
-      - Fixed an issue in MetNumericTextBox where NegativeForeColor was not applied when focus was lost via mouse interaction.
+      - Fixed an issue where the foreground and background colors did not become lighter when MetComboBox's Enabled property was set to False.
+      - Excessive flickering was occurring due to the rendering control of MetComboBox, so the rendering control was completely overhauled.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

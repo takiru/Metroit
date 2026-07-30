@@ -23,7 +23,6 @@ namespace Metroit.Windows.Forms
         private Color _errorBorderColor = Color.Red;
 
         private bool _hasFocus = false;
-        private bool _isMouseOverButton = false;
         private bool _isDroppedDown = false;
 
         private bool _readOnly = false;
@@ -39,8 +38,7 @@ namespace Metroit.Windows.Forms
         /// </summary>
         public MetComboBox()
         {
-            // DrawModeはNormalのまま（標準のサイズを維持）
-            this.DrawMode = DrawMode.Normal;
+            this.DrawMode = DrawMode.OwnerDrawFixed;
 
             // 初期状態の色を設定
             UpdateColors();
@@ -370,8 +368,7 @@ namespace Metroit.Windows.Forms
                 enterSelectedItem = this.SelectedItem;
             }
             UpdateColors();
-            // Invalidateではなく直接CustomPaintを呼ぶ
-            CustomPaint();
+            this.Invalidate();
             CustomPaintBorder();
         }
 
@@ -384,8 +381,7 @@ namespace Metroit.Windows.Forms
             base.OnLeave(e);
             _hasFocus = false;
             UpdateColors();
-            // Invalidateではなく直接CustomPaintを呼ぶ
-            CustomPaint();
+            this.Invalidate();
             CustomPaintBorder();
         }
 
@@ -400,7 +396,7 @@ namespace Metroit.Windows.Forms
             {
                 _hasFocus = true;
                 UpdateColors();
-                CustomPaint();
+                this.Invalidate();
                 CustomPaintBorder();
             }
         }
@@ -416,61 +412,65 @@ namespace Metroit.Windows.Forms
             {
                 _hasFocus = false;
                 UpdateColors();
-                CustomPaint();
+                this.Invalidate();
                 CustomPaintBorder();
             }
         }
 
         /// <summary>
-        /// マウス移動時にドロップダウンボタン上かどうかを判定し、必要に応じて再描画を行う。
+        /// 閉じた状態の表示部分は独自の色で、ドロップダウンリストの各項目は標準の色分けで描画する。
         /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseMove(MouseEventArgs e)
+        protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            base.OnMouseMove(e);
+            bool isClosedBoxDisplay = (e.State & DrawItemState.ComboBoxEdit) == DrawItemState.ComboBoxEdit;
 
-            // ドロップダウンが開いている場合は何もしない
-            if (_isDroppedDown)
+            Color backColor = _hasFocus ? _focusBackColor : _baseBackColor;
+            Color foreColor = _hasFocus ? _focusForeColor : _baseForeColor;
+
+            if (!Enabled)
             {
-                return;
+                backColor = AdjustForDisabledBackColor(backColor);
+                foreColor = AdjustForDisabledForeColor(foreColor);
             }
 
-            // ドロップダウンボタンの領域を計算
-            int buttonWidth = SystemInformation.VerticalScrollBarWidth;
-            Rectangle buttonRect = new Rectangle(
-                this.Width - buttonWidth,
-                0,
-                buttonWidth,
-                this.Height
-            );
-
-            bool wasOverButton = _isMouseOverButton;
-            _isMouseOverButton = buttonRect.Contains(e.Location);
-
-            // マウスがボタン領域に入った、または出た場合に再描画
-            if (wasOverButton != _isMouseOverButton)
+            if (isClosedBoxDisplay)
             {
-                CustomPaintBorder();
-            }
-        }
-
-        /// <summary>
-        /// マウスがコントロールから離れたときにドロップダウンボタン上かどうかを判定し、必要に応じて再描画を行う。
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-
-            if (_isMouseOverButton)
-            {
-                _isMouseOverButton = false;
-
-                // ドロップダウンが開いていない場合のみ再描画
-                if (!_isDroppedDown)
+                using (SolidBrush backBrush = new SolidBrush(backColor))
                 {
-                    CustomPaintBorder();
+                    e.Graphics.FillRectangle(backBrush, e.Bounds);
                 }
+
+                string displayText = e.Index >= 0 ? this.GetItemText(this.Items[e.Index]) : this.Text;
+
+                TextFormatFlags flags = TextFormatFlags.Left |
+                                        TextFormatFlags.VerticalCenter |
+                                        TextFormatFlags.SingleLine |
+                                        TextFormatFlags.EndEllipsis |
+                                        TextFormatFlags.NoPrefix;
+
+                TextRenderer.DrawText(e.Graphics, displayText, e.Font, e.Bounds, foreColor, flags);
+            }
+            else
+            {
+                // 対象の項目が無い場合は、背景の描画だけ行って終了する
+                if (e.Index < 0)
+                {
+                    e.DrawBackground();
+                    return;
+                }
+
+                e.DrawBackground();
+
+                string itemText = this.GetItemText(this.Items[e.Index]);
+
+                TextFormatFlags flags = TextFormatFlags.Left |
+                                        TextFormatFlags.VerticalCenter |
+                                        TextFormatFlags.SingleLine |
+                                        TextFormatFlags.NoPrefix;
+
+                TextRenderer.DrawText(e.Graphics, itemText, e.Font, e.Bounds, foreColor, flags);
+
+                e.DrawFocusRectangle();
             }
         }
 
@@ -482,7 +482,6 @@ namespace Metroit.Windows.Forms
         {
             base.OnDropDown(e);
             _isDroppedDown = true;
-            _isMouseOverButton = false;
             this.Invalidate();
             CustomPaintBorder();
         }
@@ -578,6 +577,10 @@ namespace Metroit.Windows.Forms
             base.OnEnabledChanged(e);
             if (_metTextBox != null) _metTextBox.Enabled = this.Enabled;
             if (_label != null) _label.Enabled = this.Enabled;
+
+            UpdateColors();
+            this.Invalidate();
+            CustomPaintBorder();
         }
 
         /// <summary>
@@ -673,8 +676,6 @@ namespace Metroit.Windows.Forms
 
             if (m.Msg == WindowMessage.WM_PAINT)
             {
-                // 常にカスタム描画を実行（ドロップダウンが開いている場合も含む）
-                CustomPaint();
                 CustomPaintBorder();
             }
             else if (m.Msg == WindowMessage.WM_NCPAINT)
@@ -686,7 +687,7 @@ namespace Metroit.Windows.Forms
                 // フォーカスを取得したとき
                 _hasFocus = true;
                 UpdateColors();
-                CustomPaint();
+                this.Invalidate();
                 CustomPaintBorder();
             }
             else if (m.Msg == WindowMessage.WM_KILLFOCUS)
@@ -694,7 +695,7 @@ namespace Metroit.Windows.Forms
                 // フォーカスを失ったとき
                 _hasFocus = false;
                 UpdateColors();
-                CustomPaint();
+                this.Invalidate();
                 CustomPaintBorder();
             }
         }
@@ -710,6 +711,12 @@ namespace Metroit.Windows.Forms
         {
             Color newBackColor = _hasFocus ? _focusBackColor : _baseBackColor;
             Color newForeColor = _hasFocus ? _focusForeColor : _baseForeColor;
+
+            if (!Enabled)
+            {
+                newBackColor = AdjustForDisabledBackColor(newBackColor);
+                newForeColor = AdjustForDisabledForeColor(newForeColor);
+            }
 
             // 色が変わる場合のみ更新（不要な再描画を防ぐ）
             if (base.BackColor != newBackColor)
@@ -735,6 +742,12 @@ namespace Metroit.Windows.Forms
                 // 現在の色を取得
                 Color backColor = _hasFocus ? _focusBackColor : _baseBackColor;
                 Color foreColor = _hasFocus ? _focusForeColor : _baseForeColor;
+
+                if (!Enabled)
+                {
+                    backColor = AdjustForDisabledBackColor(backColor);
+                    foreColor = AdjustForDisabledForeColor(foreColor);
+                }
 
                 // ドロップダウンボタンの幅を取得
                 int buttonWidth = SystemInformation.VerticalScrollBarWidth;
@@ -832,7 +845,7 @@ namespace Metroit.Windows.Forms
 
                         using (Pen pen = new Pen(borderColor, 1))
                         {
-                            if (_isMouseOverButton || _isDroppedDown)
+                            if (_isDroppedDown)
                             {
                                 // マウスがボタン上にある場合、またはドロップダウンが開いている場合
                                 // ボタン領域を除いて外枠を描画
@@ -861,6 +874,76 @@ namespace Metroit.Windows.Forms
                 {
                     User32.ReleaseDC(this.Handle, hdc);
                 }
+            }
+        }
+
+        /// <summary>
+        /// 基準の色からRGBスケーリングを暗くする。
+        /// </summary>
+        /// <param name="color">基準の色。</param>
+        /// <param name="amount">スケーリングする値。</param>
+        /// <returns>スケーリングした値。</returns>
+        private static Color Darken(Color color, float amount)
+        {
+            // amount: 0.0(変化なし) ～ 1.0(黒に近づく)
+            int r = (int)(color.R * (1 - amount));
+            int g = (int)(color.G * (1 - amount));
+            int b = (int)(color.B * (1 - amount));
+            return Color.FromArgb(color.A, r, g, b);
+        }
+
+        /// <summary>
+        /// 基準の色からRGBスケーリングを明るくする。
+        /// </summary>
+        /// <param name="color">基準の色。</param>
+        /// <param name="amount">スケーリングする値。</param>
+        /// <returns>スケーリングした値。</returns>
+        private static Color Lighten(Color color, float amount)
+        {
+            // amount: 0.0(変化なし) ～ 1.0(白に近づく)
+            int r = (int)(color.R + (255 - color.R) * amount);
+            int g = (int)(color.G + (255 - color.G) * amount);
+            int b = (int)(color.B + (255 - color.B) * amount);
+            return Color.FromArgb(color.A, r, g, b);
+        }
+
+        /// <summary>
+        /// 基準の色の明るさに応じて、明るい色は暗く、暗い色は明るくして、
+        /// 無効状態(Disabled)にふさわしい背景色を返す。
+        /// </summary>
+        /// <param name="color">基準の色。</param>
+        /// <returns>調整後の色。</returns>
+        private static Color AdjustForDisabledBackColor(Color color)
+        {
+            // 輝度が0.5以上なら明るい色とみなし、暗くする
+            // 輝度が0.5未満なら暗い色とみなし、明るくする
+            if (color.GetBrightness() >= 0.5f)
+            {
+                return Darken(color, 0.0588f);
+            }
+            else
+            {
+                return Lighten(color, 0.0588f);
+            }
+        }
+
+        /// <summary>
+        /// 基準の色の明るさに応じて、明るい色は暗く、暗い色は明るくして、
+        /// 無効状態(Disabled)にふさわしい前景色を返す。
+        /// </summary>
+        /// <param name="color">基準の色。</param>
+        /// <returns>調整後の色。</returns>
+        private static Color AdjustForDisabledForeColor(Color color)
+        {
+            // 輝度が0.5以上なら明るい色とみなし、暗くする
+            // 輝度が0.5未満なら暗い色とみなし、明るくする
+            if (color.GetBrightness() >= 0.5f)
+            {
+                return Darken(color, 0.3942f);
+            }
+            else
+            {
+                return Lighten(color, 0.3942f);
             }
         }
 
