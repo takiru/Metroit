@@ -1040,8 +1040,8 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void changeFocusColor()
         {
-            base.ForeColor = this.FocusForeColor;
-            base.BackColor = this.FocusBackColor;
+            ApplyColor(this.FocusForeColor, isForeColor: true);
+            ApplyColor(this.FocusBackColor, isForeColor: false);
         }
 
         /// <summary>
@@ -1049,14 +1049,49 @@ namespace Metroit.Windows.Forms
         /// </summary>
         private void changeBaseColor()
         {
-            base.ForeColor = this.BaseForeColor;
-            base.BackColor = this.BaseBackColor;
+            ApplyColor(this.BaseForeColor, isForeColor: true);
+            ApplyColor(this.BaseBackColor, isForeColor: false);
 
             // ラベルの代替表示を行っている場合はラベルの表示色も変更
             if (this.ReadOnlyLabel && this.label != null)
             {
                 this.label.ForeColor = this.BaseForeColor;
                 this.label.BackColor = this.BaseBackColor;
+            }
+        }
+
+        /// <summary>
+        /// 指定した色が、コントロールの既定色と一致する場合はプロパティを未設定状態に戻し、
+        /// 異なる場合のみ明示的に代入する。これにより、ネイティブの自動色決定（Enabled/ReadOnlyに応じた
+        /// 自動グレー化）が、カスタマイズされていない限り、常に機能し続けるようにする。
+        /// </summary>
+        /// <param name="color">設定したい色。</param>
+        /// <param name="isForeColor">前景色を対象とする場合は true、背景色の場合は false。</param>
+        private void ApplyColor(Color color, bool isForeColor)
+        {
+            var defaultColor = isForeColor ? SystemColors.WindowText : (this.ReadOnly ? SystemColors.Control : SystemColors.Window);
+
+            if (color == defaultColor)
+            {
+                if (isForeColor)
+                {
+                    base.ResetForeColor();
+                }
+                else
+                {
+                    base.ResetBackColor();
+                }
+            }
+            else
+            {
+                if (isForeColor)
+                {
+                    base.ForeColor = color;
+                }
+                else
+                {
+                    base.BackColor = color;
+                }
             }
         }
 
