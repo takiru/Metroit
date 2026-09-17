@@ -354,6 +354,7 @@ namespace Metroit.Windows.Forms
             UncheckedAppearance.Pressed.BackColor = Color.FromArgb(230, 230, 230);
 
             Enter += MetCheckBox_Enter;
+            Validated += MetCheckBox_Validated;
         }
 
         private const int WM_LBUTTONUP = 0x0202;
@@ -1309,13 +1310,34 @@ namespace Metroit.Windows.Forms
         private CheckState _enterCheckState = CheckState.Checked;
 
         /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool isFocusEntered = false;
+
+        /// <summary>
         /// フォーカスを得たときに、現在のチェック状態を保存します。
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MetCheckBox_Enter(object sender, EventArgs e)
         {
-            _enterCheckState = CheckState;
+            if (!isFocusEntered)
+            {
+                _enterCheckState = CheckState;
+                isFocusEntered = true;
+            }
+        }
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetCheckBox_Validated(object sender, EventArgs e)
+        {
+            isFocusEntered = false;
         }
 
         /// <summary>

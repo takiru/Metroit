@@ -356,6 +356,13 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool isFocusEntered = false;
+
+        /// <summary>
         /// フォーカスを得た時に色を変更する。
         /// </summary>
         /// <param name="e"></param>
@@ -365,11 +372,25 @@ namespace Metroit.Windows.Forms
             _hasFocus = true;
             if (!IsValidatingCanceled)
             {
-                enterSelectedItem = this.SelectedItem;
+                if (!isFocusEntered)
+                {
+                    enterSelectedItem = this.SelectedItem;
+                    isFocusEntered = true;
+                }
             }
             UpdateColors();
             this.Invalidate();
             CustomPaintBorder();
+        }
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetComboBox_Validated(object sender, EventArgs e)
+        {
+            isFocusEntered = false;
         }
 
         /// <summary>

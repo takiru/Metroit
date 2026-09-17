@@ -64,6 +64,7 @@ namespace Metroit.Windows.Forms
             _animationTimer.Tick += AnimationTimer_Tick;
 
             Enter += MetToggleSwitch_Enter;
+            Validated += MetToggleSwitch_Validated;
         }
 
         /// <summary>
@@ -1051,10 +1052,31 @@ namespace Metroit.Windows.Forms
         /// <param name="e"></param>
         private void MetToggleSwitch_Enter(object sender, EventArgs e)
         {
-            _enterChecked = Checked;
+            if (!_isFocusEntered)
+            {
+                _enterChecked = Checked;
+                _isFocusEntered = true;
+            }
         }
 
         private bool _enterChecked = false;
+
+        /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool _isFocusEntered = false;
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetToggleSwitch_Validated(object sender, EventArgs e)
+        {
+            _isFocusEntered = false;
+        }
 
         /// <summary>
         /// ロールバック済みかどうかを取得します。

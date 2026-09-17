@@ -47,6 +47,7 @@ namespace Metroit.Windows.Forms
             }
 
             this.Enter += MetNumericFormatTextBox_Enter;
+            this.Validated += MetNumericFormatTextBox_Validated;
             this.TextChanged += MetNumericFormatTextBox_TextChanged;
         }
 
@@ -58,6 +59,13 @@ namespace Metroit.Windows.Forms
         private decimal? enterValue = null;
 
         /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool isFocusEntered = false;
+
+        /// <summary>
         /// フォーカスを得た時、数値で描画しなおす。
         /// </summary>
         /// <param name="sender"></param>
@@ -66,7 +74,11 @@ namespace Metroit.Windows.Forms
         {
             if (!IsValidatingCanceled)
             {
-                this.enterValue = this.value;
+                if (!isFocusEntered)
+                {
+                    this.enterValue = this.value;
+                    isFocusEntered = true;
+                }
             }
 
             this.textFormatting = true;
@@ -84,6 +96,16 @@ namespace Metroit.Windows.Forms
                 this.SelectionStart = this.leavedSelectionStart;
                 this.SelectionLength = this.leavedSelectionLength;
             }
+        }
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetNumericFormatTextBox_Validated(object sender, EventArgs e)
+        {
+            isFocusEntered = false;
         }
 
         /// <summary>

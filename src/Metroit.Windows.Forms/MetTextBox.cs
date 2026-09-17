@@ -55,6 +55,7 @@ namespace Metroit.Windows.Forms
 
             // イベントハンドラの追加
             this.Enter += MetTextBox_Enter;
+            this.Validated += MetTextBox_Validated;
             this.Leave += MetTextBox_Leave;
             this.KeyDown += MetTextBox_KeyDown;
             this.KeyPress += MetTextBox_KeyPress;
@@ -80,6 +81,13 @@ namespace Metroit.Windows.Forms
 
         private string enterText = "";
 
+        /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool isFocusEntered = false;
+
         // 候補コンボボックスからリストを選択したかどうか
         private bool candidateSelectedValueChanging = false;
 
@@ -94,7 +102,11 @@ namespace Metroit.Windows.Forms
         {
             if (!IsValidatingCanceled)
             {
-                this.enterText = this.Text;
+                if (!isFocusEntered)
+                {
+                    enterText = Text;
+                    isFocusEntered = true;
+                }
             }
 
             // フォーカス取得時の色に変更
@@ -110,6 +122,16 @@ namespace Metroit.Windows.Forms
             {
                 this.isMouseClickFocus = true;
             }
+        }
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetTextBox_Validated(object sender, EventArgs e)
+        {
+            isFocusEntered = false;
         }
 
         /// <summary>

@@ -35,6 +35,7 @@ namespace Metroit.Windows.Forms
 
             this.KeyDown += MetDateTimePicker_KeyDown;
             this.Enter += MetDateTimePicker_Enter;
+            this.Validated += MetDateTimePicker_Validated;
             this.Leave += MetDateTimePicker_Leave;
         }
 
@@ -74,6 +75,13 @@ namespace Metroit.Windows.Forms
         }
 
         /// <summary>
+        /// フォーカスを得たかどうかを取得する。<br/>
+        /// <see cref="Control.OnValidating(CancelEventArgs)"/> や <see cref="Control.Validating"/> によって <see cref="CancelEventArgs.Cancel"/> が <see langword="true"/> とされたとき、
+        /// すでにフォーカスは得ていることを示す。
+        /// </summary>
+        private bool isFocusEntered = false;
+
+        /// <summary>
         /// フォーカスを得た時、色の変更とテキストの反転を行う。
         /// </summary>
         /// <param name="sender"></param>
@@ -82,11 +90,25 @@ namespace Metroit.Windows.Forms
         {
             if (!IsValidatingCanceled)
             {
-                this.enterValue = this.Value;
+                if (!isFocusEntered)
+                {
+                    this.enterValue = this.Value;
+                    isFocusEntered = true;
+                }
             }
 
             // フォーカス取得時の色に変更
             this.changeFocusColor();
+        }
+
+        /// <summary>
+        /// 検証も許容され、別なコントロールへフォーカスが行われた想定とし、フォーカスを失ったことをマークする。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetDateTimePicker_Validated(object sender, EventArgs e)
+        {
+            isFocusEntered = false;
         }
 
         /// <summary>
