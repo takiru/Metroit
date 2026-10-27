@@ -10,6 +10,11 @@ namespace Metroit.Windows.Forms
     /// トグルスイッチを提供します。
     /// </summary>
     [DefaultEvent("CheckedChanged")]
+#if NETFRAMEWORK
+    [Designer(typeof(Metroit.Windows.Forms.Design.MetToggleSwitchDesigner))]
+#elif NET6_0_OR_GREATER
+    [Designer("Metroit.Windows.Forms.Design.MetToggleSwitchDesigner, Metroit.Windows.Forms")]
+#endif
     public class MetToggleSwitch : Control, IControlRollback
     {
         private Timer _animationTimer;
@@ -1099,6 +1104,31 @@ namespace Metroit.Windows.Forms
             Rollbacking = true;
             Checked = _enterChecked;
             Rollbacking = false;
+        }
+
+        /// <summary>
+        /// SnapToLine のために、テキスト描画位置のベースラインを取得する。
+        /// </summary>
+        /// <returns>テキスト描画位置のベースライン。</returns>
+        internal int GetTextBaseline()
+        {
+            using (var g = CreateGraphics())
+            {
+                var textSize = GetTextSize(g);
+
+                var family = Font.FontFamily;
+                var style = Font.Style;
+                var lineSpacing = family.GetLineSpacing(style);
+                var ascent = family.GetCellAscent(style);
+
+                // テキスト領域の上端からベースラインまでの距離
+                var ascentPx = textSize.Height * ascent / lineSpacing;
+
+                // テキストは Height の中央に配置されている
+                var top = (Height - textSize.Height) / 2f;
+
+                return (int)Math.Round(top + ascentPx);
+            }
         }
     }
 }

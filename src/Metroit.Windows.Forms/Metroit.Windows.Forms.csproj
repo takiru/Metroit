@@ -20,7 +20,8 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      - Fixed an issue where, after a modal dialog (or similar) triggered from a `MetRoundedButton` was closed and control returned, the button would fail to revert to its `ExtendsAppearance.BackColor` when focus shifted to another control.
+      - Fixed an issue where, after a modal dialog (or similar) triggered from a MetRoundedButton was closed and control returned, the button would fail to revert to its ExtendsAppearance.BackColor when focus shifted to another control.
+      - Fixed an issue where SnapToLine was not working in MetToggleSwitch.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
@@ -28,6 +29,9 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Design" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net8.0-windows'">
+    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
