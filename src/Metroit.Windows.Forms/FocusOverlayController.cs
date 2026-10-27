@@ -24,6 +24,7 @@ namespace Metroit.Windows.Forms
         public FocusOverlayController(Control control, Func<Color> getCurrentFillColor = null)
         {
             Control = control;
+            Control.Leave += (s, e) => { MouseState = MouseState.Normal; Control.Invalidate(); };
             Control.MouseEnter += (s, e) => { MouseState = MouseState.Hover; Control.Invalidate(); };
             Control.MouseLeave += (s, e) => { MouseState = MouseState.Normal; Control.Invalidate(); };
             Control.MouseDown += (s, e) => { MouseState = MouseState.Pressed; Control.Invalidate(); };

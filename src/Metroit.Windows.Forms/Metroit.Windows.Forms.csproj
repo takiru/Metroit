@@ -6,7 +6,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It is a library that helps to create WinForms application.</Description>
     <Copyright>Copyright ©  2024 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>4.1.4</VersionPrefix>
+    <VersionPrefix>4.1.5</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit</PackageProjectUrl>
@@ -20,8 +20,7 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>disable</ImplicitUsings>
     <PackageReleaseNotes>
-      Bugfix
-      - Fixed an issue where IsRollbacked would become true when a value was cancelled via the Validating event in an input control.
+      - Fixed an issue where, after a modal dialog (or similar) triggered from a `MetRoundedButton` was closed and control returned, the button would fail to revert to its `ExtendsAppearance.BackColor` when focus shifted to another control.
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
